@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="zr.zrpower.dao.mapper.BpipTableFieldMapper">
+
+	<!-- 信息 -->
+	<select id="queryObject" resultType="zr.zrpower.model.dbmanage.BPIP_FIELD">
+		select * from BPIP_FIELD where FIELDID = #{value}
+	</select>
+    <!-- 以下为数据事务操作 -->
+	<select id="queryList" resultType="zr.zrpower.model.dbmanage.BPIP_FIELD">
+		select * from BPIP_FIELD
+		<where>
+			<if test="TABLEID != null and TABLEID !=''">
+				and TABLEID = #{TABLEID}
+			</if>
+			<if test="FIELDNAME != null and FIELDNAME !=''">
+				and FIELDNAME = #{FIELDNAME}
+			</if>
+			<if test="FIELDTAG != null and FIELDTAG != ''">
+				and FIELDTAG = #{FIELDTAG}
+			</if>
+			<if test="FIELDTYPE != null and FIELDTYPE != ''">
+				and FIELDTYPE = #{FIELDTYPE}
+			</if>
+			<if test="DICTTABLE != null and DICTTABLE != ''">
+				and DICTTABLE = #{DICTTABLE}
+			</if>
+			<if test="CHINESENAME != null and CHINESENAME != ''">
+				and CHINESENAME like concat('%',#{CHINESENAME},'%')
+			</if>
+		</where>
+		order by FIELDID asc
+	</select>
+	
+	<select id="selectList" resultType="zr.zrpower.model.dbmanage.BPIP_FIELD">
+		select FIELDID,TABLEID,FIELDNAME,CHINESENAME from BPIP_FIELD
+		<where>
+			<if test="TABLEID != null and TABLEID !=''">
+				and TABLEID = #{TABLEID}
+			</if>
+			<if test="FIELDNAME != null and FIELDNAME !=''">
+				and FIELDNAME = #{FIELDNAME}
+			</if>
+			<if test="FIELDTAG != null and FIELDTAG != ''">
+				and FIELDTAG = #{FIELDTAG}
+			</if>
+			<if test="FIELDTYPE != null and FIELDTYPE != ''">
+				and FIELDTYPE = #{FIELDTYPE}
+			</if>
+			<if test="DICTTABLE != null and DICTTABLE != ''">
+				and DICTTABLE = #{DICTTABLE}
+			</if>
+			<if test="CHINESENAME != null and CHINESENAME != ''">
+				and CHINESENAME like concat('%',#{CHINESENAME},'%')
+			</if>
+		</where>
+		order by FIELDID asc
+	</select>
+	
+	<insert id="save" parameterType="zr.zrpower.model.dbmanage.BPIP_FIELD" useGeneratedKeys="true" keyProperty="fieldid">
+		insert into BPIP_FIELD
+		(
+		`FIELDID`,
+		`TABLEID`,
+		`FIELDNAME`,
+		`FIELDTAG`,
+		`CHINESENAME`,
+		`FIELDTYPE`,
+		`FIELDLENGTH`,
+		`ISNULL`,
+		`DICTTABLE`,
+		`DESCRIPTION`,
+		`TAGEXT`,
+		`AUTO1`,
+		`AUTO2`,
+		`AUTO3`,
+		`BLOBSIZE`,
+		`QFIELD`,
+		`ISKEY`,
+		`INITVALUE`
+		)
+		values
+		(
+		#{FIELDID},
+		#{TABLEID},
+		#{FIELDNAME},
+		#{FIELDTAG},
+		#{CHINESENAME},
+		#{FIELDTYPE},
+		#{FIELDLENGTH},
+		#{ISNULL},
+		#{DICTTABLE},
+		#{DESCRIPTION},
+		#{TAGEXT},
+		#{AUTO1},
+		#{AUTO2},
+		#{AUTO3},
+		#{BLOBSIZE},
+		#{QFIELD},
+		#{ISKEY},
+		#{INITVALUE}
+		)
+	</insert>
+	
+	<update id="update" parameterType="zr.zrpower.model.dbmanage.BPIP_FIELD">
+		update BPIP_FIELD
+		<set>
+			<if test="FIELDID != null and FIELDID !='' ">`FIELDID` = #{FIELDID}, </if>
+			<if test="TABLEID != null and TABLEID !='' ">`TABLEID` = #{TABLEID}, </if>
+			<if test="FIELDNAME != null and FIELDNAME !='' ">`FIELDNAME` = #{FIELDNAME}, </if>
+			<if test="FIELDTAG != null and FIELDTAG !='' ">`FIELDTAG` = #{FIELDTAG}, </if>
+			<if test="CHINESENAME != null and CHINESENAME !='' ">`CHINESENAME` = #{CHINESENAME}, </if>
+			<if test="FIELDTYPE != null and FIELDTYPE !='' ">`FIELDTYPE` = #{FIELDTYPE}, </if>
+			<if test="FIELDLENGTH != null ">`FIELDLENGTH` = #{FIELDLENGTH}, </if>
+			<if test="ISNULL != null and ISNULL !='' ">`ISNULL` = #{ISNULL},</if>
+			<if test="DICTTABLE != null and DICTTABLE !='' ">`DICTTABLE` = #{DICTTABLE},</if>
+			<if test="DESCRIPTION != null and DESCRIPTION !='' ">`DESCRIPTION` = #{DESCRIPTION},</if>
+			<if test="TAGEXT != null and TAGEXT !='' ">`TAGEXT` = #{TAGEXT},</if>
+			<if test="AUTO1 != null and AUTO1 !='' ">`AUTO1` = #{AUTO1},</if>
+			<if test="AUTO2 != null and AUTO2 !='' ">`AUTO2` = #{AUTO2},</if>
+			<if test="AUTO3 != null and AUTO3 !='' ">`AUTO3` = #{AUTO3},</if>
+			<if test="BLOBSIZE != null and BLOBSIZE !='' ">`BLOBSIZE` = #{BLOBSIZE},</if>
+			<if test="QFIELD != null and QFIELD !='' ">`QFIELD` = #{QFIELD},</if>
+			<if test="INITVALUE != null and INITVALUE !='' ">`INITVALUE` = #{INITVALUE},</if>
+			<if test="ISKEY != null and ISKEY !='' ">`ISKEY` = #{ISKEY}</if>
+		</set>
+		where FIELDID = #{FIELDID}
+	</update>
+    
+    <!-- 删除表执行以下几句 -->
+	<delete id="delete">
+		delete from BPIP_FIELD where FIELDID = #{value}
+	</delete>
+	
+	<!-- 返回表编码 -->
+	<select id="getMaxNo" resultType="String">
+	    select max(FIELDID) as MAX_NO from BPIP_FIELD
+	</select>
+	
+	<!-- 检查数据库是否有同名字段 -->
+	<select id="isField" resultType="int">
+	    select count(FIELDID) as cout_num from BPIP_FIELD where FIELDNAME=#{fieldName} and TABLEID=#{tableId}
+	</select>
+	
+	
+</mapper>

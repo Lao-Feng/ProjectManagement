@@ -1,0 +1,117 @@
+<HEAD>
+<TITLE></TITLE>
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="/static/vue/element-ui/lib/theme-chalk/index.css" >
+<link rel="stylesheet" type="text/css" href="/static/vue/element-ui/lib/theme-chalk/html.css" >
+<script type="text/javascript" src="/static/vue/jquery-1_15.9.1.min.js"></script>
+<script type="text/javascript" src="/static/vue/vue.min.js" ></script>
+<script type="text/javascript" src="/static/vue/element-ui/lib/index.js" type="text/javascript"></script>
+<script type="text/javascript" src="/static/vue/layer/layer.js"></script>
+<script type="text/javascript" src="/static/vue/ZRutils.js"></script>
+<script type="text/javascript" src="/static/vue/ZRicon.js"></script>
+<SCRIPT type="text/javascript" src="/static/ZrWorkFlow/js/Workflow.js"></SCRIPT>
+</HEAD>
+<body style="margin:0px;background:white;">
+	<div id="formvue" class="table" v-loading="htmlLoading">
+	    <br>
+	    <el-form :model="form" ref="form" :rules="rules">
+         <el-form-item label="委托时间：" prop="DATE" :label-width="formLabelWidth">
+              <el-date-picker v-model="form.DATE" type="datetimerange" clearable size="small" range-separator="至" start-placeholder="开始日期" end-placeholder="结束日期" value-format="yyyy-MM-dd HH:mm:ss"></el-date-picker>
+        </el-form-item>
+        <el-form-item label="委托人:" :label-width="formLabelWidth">
+            <el-input v-model="form.NAME" placeholder="委托人" style="width:98%"></el-input>
+        </el-form-item>
+        <div style="text-align:center;margin-top: 5px;">
+	     <el-button type="primary" icon="el-icon-delete" size="small" onclick="OkUser();">删除</el-button>
+         <el-button type="primary" icon="el-icon-close" size="small" onclick="parent.layer.closeAll();">取消</el-button>
+	</div>
+	
+	<div v-show="false">
+	    <FORM id="RegForm" name="RegForm" method="post" action="/flow/flowentrust">
+ 	<input type="hidden" id="Act" name="Act" value="del">
+ 	<input type="hidden" name="SUSERNO" th:value="${USERID}">
+	<input type="hidden" name="ID" th:value='${ID}'>
+ 	<input type="hidden" name="SDATE" id="SDATE" value="">
+ 	<input type="hidden" name="EDATE" id="EDATE" value="">
+ 	<input type="hidden" name="Browse_User_Name" id="Browse_User_Name" value="">
+ 	<input type="hidden" name="IUSERNO" id="IUSERNO" value="">
+ 	</FORM>
+	</div>
+<script type="text/javascript">
+/**
+ * 选择用户tree，返回值
+ * @returns
+ */
+function on_user_onclick(data, keys){
+	if (keys.checkedKeys.length > 0) {
+		$thisvue.$refs.user_tree.setCheckedKeys([data.userid]);
+		if(data.userid.length==16){
+			$("#IUSERNO").val(data.userid)
+			$("#Browse_User_Name").val(data.name)
+		}
+	}
+}
+function OkUser(){
+	$.ajax({
+		url:"/flow/flowentrust",
+		type:'post',
+		dataType:'json',
+		data:$('#RegForm').serialize(),// 要提交的表单
+		success:function (data) {
+			if(data.strReturn == 1){
+				parent.vm2.init_flowlist();
+				parent.layer.closeAll();
+			}else{
+				parent.layer.closeAll();
+			}
+		}
+	});
+}
+</script>    
+<script type="text/javascript" th:inline="javascript">
+var vh = $(document).height();
+var $thisvue;
+var vm2 = new Vue({
+    el: '#formvue',
+    name: 'flow_formvue',
+    data() {
+        return {
+            htmlLoading:true,//全局加载
+            rowsloadtitle:'数据加载...',
+            
+            formLabelWidth:'100px',
+
+            user_tree: [],
+            proe_user: {
+                children: 'list',
+                label: 'name'
+            },
+            
+            form:{
+            	DATE:[],
+            	NAME:[[${IUSER}]]
+            },
+            rules:{},
+        }
+    },
+    created() {
+    	let e = this;
+    	$thisvue = this
+    	$flow = this
+    	ZRqueryUserList()
+    },
+    mounted(){
+    	this.$nextTick(() => {
+		    this.htmlLoading = false
+		    this.form.DATE=[ [[${SDATE}]]+' 00:00:00',[[${SDATE}]]+' 23:59:59']
+        })
+    },
+    computed: {},
+    methods: {
+    }
+});
+</script>
+
+</BODY>
+</HTML>

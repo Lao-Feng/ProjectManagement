@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="zr.zrpower.dao.mapper.BaseDbaDaoMapper">
+    <!-- 统用执行数据库操作sql  -->
+    <update id="dbaSql">
+		${value}
+	</update>
+	<!-- 通用删除表 DropTable-->
+	<update id="DropTable">
+		drop table ${value}
+	</update>
+	
+	<select id="dbaSelectSql" resultType="int">
+		${value}
+	</select>
+	
+
+	<!-- 3、 Mysql 数据库 -->
+	<!-- 创建字典表 -->
+	<update id="MysqlCreatCodeTable" parameterType="zr.zrpower.model.dbmanage.BPIP_TABLE">
+		CREATE TABLE `${TABLENAME}` (
+		   `CODE` varchar(6) NOT NULL COMMENT '主键key' ,
+		   `NAME` varchar(100) NULL COMMENT '名称' ,
+		   `SPELL` varchar(50) NULL COMMENT '拼音首字母' ,
+		   `ISSHOW` varchar(1) NULL COMMENT '是否禁用:1=禁用,0或空=正常' ,
+		   PRIMARY KEY (`CODE`)
+		)
+		COMMENT=#{CHINESENAME}
+	</update>
+	<!-- 创建普通表 -->
+	<update id="MysqlCreatTable" parameterType="zr.zrpower.model.dbmanage.BPIP_TABLE">
+		CREATE TABLE `${TABLENAME}` (
+		   `${PRIMARYKEY}` ${KEYTYPE}(${KEYLEN}) NOT NULL COMMENT '主键id' ,
+		    PRIMARY KEY (`${PRIMARYKEY}`)
+		)
+		COMMENT=#{CHINESENAME}
+	</update>
+	<!-- 修改表主键key -->
+	<update id="MysqlAlterTableKey" parameterType="zr.zrpower.model.dbmanage.BPIP_TABLE">
+	    ALTER TABLE `${TABLENAME}`
+           MODIFY COLUMN `${PRIMARYKEY}`  ${KEYTYPE}(${KEYLEN}) NOT NULL FIRST ,
+           ADD PRIMARY KEY (`${PRIMARYKEY}`)
+	</update>
+	<!-- 创建表字段 -->
+	<update id="MysqlCreatFiled" parameterType="zr.zrpower.model.dbmanage.BPIP_FIELD">
+	    ALTER TABLE `${TABLENAME}` ADD COLUMN `${FIELDNAME}`
+	     <choose>
+           <when test="FIELDLENGTH !=null and FIELDLENGTH >0 ">
+                ${FIELDTYPENAME}(${FIELDLENGTH})
+           </when>
+           <otherwise>
+                ${FIELDTYPENAME}
+           </otherwise>
+        </choose>
+        <choose>
+           <when test="ISNULL !=null and ISNULL ==0 ">
+                NOT NULL COMMENT '${CHINESENAME}'
+           </when>
+           <otherwise>
+                NULL COMMENT '${CHINESENAME}'
+           </otherwise>
+        </choose>
+        <if test="ISKEY !=null and ISKEY==1">
+            ,DROP PRIMARY KEY, ADD PRIMARY KEY (`${FIELDNAME}`)
+        </if>
+	</update>
+	<!-- 修改表字段 -->
+	<update id="MysqlAlterFiled" parameterType="zr.zrpower.model.dbmanage.BPIP_FIELD">
+	    ALTER TABLE `${TABLENAME}`
+           CHANGE COLUMN `${FIELDNAMEOLD}` `${FIELDNAME}` 
+        <choose>
+           <when test="FIELDLENGTH !=null and FIELDLENGTH >0 ">
+                ${FIELDTYPENAME}(${FIELDLENGTH})
+           </when>
+           <otherwise>
+                ${FIELDTYPENAME}
+           </otherwise>
+        </choose>
+        <choose>
+           <when test="ISNULL !=null and ISNULL ==0 ">
+                NOT NULL COMMENT '${CHINESENAME}'
+           </when>
+           <otherwise>
+                NULL COMMENT '${CHINESENAME}'
+           </otherwise>
+        </choose>
+        <choose>
+           <when test="ISKEY !=null and ISKEY ==1 ">
+                ,DROP PRIMARY KEY, ADD PRIMARY KEY (`${FIELDNAME}`)
+           </when>
+           <otherwise></otherwise>
+        </choose>
+	</update>
+	<!-- 删除表字段 -->
+	<update id="MysqlDropFiled" parameterType="zr.zrpower.model.dbmanage.BPIP_FIELD">
+	    ALTER TABLE `${TABLENAME}` DROP COLUMN `${FIELDNAME}`
+	</update>
+	
+	
+	<!-- 1、Oracle 数据库 -->
+	<!-- 创建字典表 -->
+	<update id="OracleCreatCodeTable" parameterType="zr.zrpower.model.dbmanage.BPIP_TABLE">
+		create table ${TABLENAME}(
+           CODE   varchar2(6) not null,
+           NAME   varchar2(100),
+           SPELL  varchar2(50),
+           ISSHOW varchar2(1)
+        )
+	</update>
+	<!-- 增加表主键 -->
+	<update id="OracleKeyTable" parameterType="zr.zrpower.model.dbmanage.BPIP_TABLE">
+		alter table ${TABLENAME} add constraint PK_${TABLENAME} primary key (${PRIMARYKEY})
+	</update>
+	<!-- 增加表备注 -->
+	<update id="OracleCommentTable" parameterType="zr.zrpower.model.dbmanage.BPIP_TABLE">
+		comment on table ${TABLENAME} is #{CHINESENAME}
+	</update>
+	<!-- 增加字段备注 -->
+	<update id="OracleCommentField" parameterType="zr.zrpower.model.dbmanage.BPIP_FIELD">
+		comment on column ${TABLENAME}.${FIELDNAME} is #{CHINESENAME}
+	</update>
+	<!-- 创建普通表 -->
+	<update id="OracleCreatTable" parameterType="zr.zrpower.model.dbmanage.BPIP_TABLE">
+	    create table ${TABLENAME}(
+	        ${PRIMARYKEY} 
+	    <choose>
+           <when test="KEYLEN !=null and KEYLEN >0 ">
+                ${KEYTYPE}(${KEYLEN})
+           </when>
+           <otherwise>
+                ${KEYTYPE}
+           </otherwise>
+        </choose>
+		    NOT NULL
+		)
+	</update>
+	<!-- 修改表key -->
+	<update id="OracleAlterTableKey" parameterType="zr.zrpower.model.dbmanage.BPIP_TABLE">
+	     alter table ${TABLENAME} add constraint PK_${TABLENAME} primary key (${PRIMARYKEY})
+	</update>
+	<!-- 创建表字段 -->
+	<update id="OracleCreatFiled" parameterType="zr.zrpower.model.dbmanage.BPIP_FIELD">
+	     alter table ${TABLENAME} add ${FIELDNAME}
+	     <choose>
+           <when test="FIELDLENGTH !=null and FIELDLENGTH >0 ">
+                ${FIELDTYPENAME}(${FIELDLENGTH})
+           </when>
+           <otherwise>
+                ${FIELDTYPENAME}
+           </otherwise>
+        </choose>
+        <choose>
+           <when test="ISNULL !=null and ISNULL ==0 ">
+                NOT NULL
+           </when>
+           <otherwise>
+                NULL
+           </otherwise>
+        </choose>
+	</update>
+	<!-- 修改表字段 -->
+	<update id="OracleAlterFiled" parameterType="zr.zrpower.model.dbmanage.BPIP_FIELD">
+	    alter table ${TABLENAME} rename column ${FIELDNAMEOLD} to ${FIELDNAME}
+	</update>
+	<!-- 删除表字段 -->
+	<update id="OracleDropFiled" parameterType="zr.zrpower.model.dbmanage.BPIP_FIELD">
+	    ALTER TABLE ${TABLENAME} DROP COLUMN ${FIELDNAME}
+	</update>
+	
+	
+	<!-- 3、 SqlServer 数据库 -->
+	<!-- 创建字典表 -->
+	<update id="SqlserverCreatCodeTable" parameterType="zr.zrpower.model.dbmanage.BPIP_TABLE">
+		CREATE TABLE [dbo].[${TABLENAME}](
+		    [CODE] [varchar](6)  NOT NULL,
+		    [NAME] [varchar](100)  NULL,
+		    [SPELL] [varchar](50)  NULL,
+		    [ISSHOW] [varchar](1)  NULL  
+		    CONSTRAINT [PK_${TABLENAME}] PRIMARY KEY CLUSTERED ([CODE]))
+	</update>
+	<!-- 创建普通表 -->
+	<update id="SqlserverCreatTable" parameterType="zr.zrpower.model.dbmanage.BPIP_TABLE">
+		CREATE TABLE [dbo].[${TABLENAME}](
+		<choose>
+           <when test="KEYLEN !=null and KEYLEN >0 ">
+                [${PRIMARYKEY}] [${KEYTYPE}](${KEYLEN}) 
+           </when>
+           <otherwise>
+                [${PRIMARYKEY}] [${KEYTYPE}]
+           </otherwise>
+        </choose>
+		    NOT NULL  
+		    CONSTRAINT [PK_${TABLENAME}] PRIMARY KEY CLUSTERED ([${PRIMARYKEY}]))
+	</update>
+	<!-- 修改表主键key -->
+	<update id="SqlserverAlterTableKey" parameterType="zr.zrpower.model.dbmanage.BPIP_TABLE">
+        ALTER TABLE [dbo].[${TABLENAME}] ADD CONSTRAINT
+	          PK_${TABLENAME} PRIMARY KEY CLUSTERED  (${PRIMARYKEY}) 
+	</update>
+	<!-- 创建表字段 -->
+	<update id="SqlserverCreatFiled" parameterType="zr.zrpower.model.dbmanage.BPIP_FIELD">
+	    ALTER TABLE [dbo].[${TABLENAME}] ADD ${FIELDNAME}
+	    <choose>
+           <when test="FIELDLENGTH !=null and FIELDLENGTH >0 ">
+                ${FIELDTYPENAME}(${FIELDLENGTH})
+           </when>
+           <otherwise>
+                ${FIELDTYPENAME}
+           </otherwise>
+        </choose>
+        <choose>
+           <when test="ISNULL !=null and ISNULL ==0 ">
+                NOT NULL
+           </when>
+           <otherwise>
+                NULL
+           </otherwise>
+        </choose>
+	</update>
+	<!-- 修改表字段 -->
+	<update id="SqlserverAlterFiled" parameterType="zr.zrpower.model.dbmanage.BPIP_FIELD">
+	    EXEC sp_rename '[dbo].[${TABLENAME}].[${FIELDNAMEOLD}]', '${FIELDNAME}', 'COLUMN'
+	</update>
+	<!-- 删除表字段 -->
+	<update id="SqlserverDropFiled" parameterType="zr.zrpower.model.dbmanage.BPIP_FIELD">
+	    ALTER TABLE [dbo].[${TABLENAME}] DROP COLUMN [${FIELDNAME}]
+	</update>
+	
+
+
+</mapper>

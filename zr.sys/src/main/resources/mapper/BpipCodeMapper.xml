@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="zr.zrpower.dao.mapper.BpipCodeMapper">
+
+	<!-- 信息 -->
+	<select id="queryObject" resultType="zr.zrpower.model.CODE_YWXT">
+		select * from ${table} where code = #{value}
+	</select>
+	<!-- 以下为数据事务操作 -->
+	<select id="queryList" resultType="zr.zrpower.model.CODE_YWXT">
+		select * from ${table}
+		<where>
+			<if test=" code != null and code != '' ">
+				and code = #{code}
+			</if>
+			<if test=" name != null and name != '' ">
+				and name like concat('%',#{name},'%')
+			</if>
+			<if test=" spell != null and spell != '' ">
+				and spell like concat('',#{spell},'%')
+			</if>
+			<if test=" isshow != null and isshow != '' ">
+				and isshow = #{isshow}
+			</if>
+		</where>
+		order by code asc
+	</select>
+
+    <!-- 查询不同类型的数据库表 -->
+	<select id="getTables" resultType="zr.zrpower.model.BPIP_TABLE">
+		select * from bpip_table
+		<where>
+			<if test="TABLETYPE != null and TABLETYPE !=''">
+				and TABLETYPE = #{TABLETYPE}
+			</if>
+			<if test="TABLENAME != null and TABLENAME != '' ">
+				and TABLENAME like concat('',#{TABLENAME},'%')
+			</if>
+			<if test="CHINESENAME != null and CHINESENAME != '' ">
+				and CHINESENAME like concat('%',#{CHINESENAME},'%')
+			</if>
+			<if test="TABLESPACE != null and TABLESPACE != '' ">
+				and TABLESPACE = #{TABLESPACE}
+			</if>
+		</where>
+	</select>
+
+	<insert id="save" parameterType="zr.zrpower.model.CODE_YWXT"
+		useGeneratedKeys="true" keyProperty="code">
+		insert into ${table}
+		(
+		`CODE`,
+		`NAME`,
+		`SPELL`,
+		`ISSHOW`
+		)
+		values
+		(
+		#{CODE},
+		#{NAME},
+		#{SPELL},
+		#{ISSHOW}
+		)
+	</insert>
+	
+	
+	<update id="update" parameterType="zr.zrpower.model.CODE_YWXT">
+		update ${table}
+		<set>
+			<if test="CODE != null">`CODE` = #{CODE}, </if>
+			<if test="NAME != null">`NAME` = #{NAME}, </if>
+			<if test="SPELL != null">`SPELL` = #{SPELL}, </if>
+			<if test="ISSHOW != null">`ISSHOW` = #{ISSHOW}</if>
+		</set>
+		where CODE = #{CODE}
+	</update>
+
+	<!-- 删除 -->
+	<delete id="delete">
+		delete from ${table} where CODE = #{code}
+	</delete>
+
+</mapper>

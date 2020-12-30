@@ -1,0 +1,33 @@
+<HTML>
+<HTML>
+<HEAD>
+<TITLE>帮助</TITLE>
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+</HEAD>
+<Body>
+一、数值公式<br>
+&nbsp;&nbsp;&nbsp;&nbsp;表达式示例: 2+3*3.3/3-2*(3+2/2*1)/2-3<br />
+&nbsp;&nbsp;&nbsp;&nbsp;说明:<br />
+&nbsp;&nbsp;&nbsp;&nbsp;表达式中的元素有:<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;数值常数(包括小数点): 如: 3.2 8.3<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;运算符: 如: + - * /<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;括号: ( )<br />
+<br />
+二、条件公式
+<br />
+&nbsp;&nbsp;&nbsp;&nbsp;表达式示例 ([Table.Field1]='{PoliceNum}' OR [Table.Field2]>='2017-01-01') AND [Table.Field3] like '%aaaa%'<br>
+&nbsp;&nbsp;&nbsp;&nbsp;说明:<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.[TableName.FieldName]表示表名．字段名<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2.{}中的内容表示Session变量的值<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.日期的值请用'yyyy-mm-dd'的格式表示<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4.支持Oracle数据库的所有逻辑运算<br><br />
+三、公用部分<br>
+&nbsp;&nbsp;&nbsp;&nbsp;1.获取当前日期为sysdate<br>
+&nbsp;&nbsp;&nbsp;&nbsp;2.字符串相加表示为'aaaa'||'bb',结果为'aaaabb'<br />
+&nbsp;&nbsp;&nbsp;&nbsp;3.Session变量与字符串相加表示为'{变量}'||'bb',结果为'变量的值bb'<br />
+&nbsp;&nbsp;&nbsp;&nbsp;4.字符串拆分用substr表示,如substr('{变量}',1,2)表示为从1位开始,取2个字符;<br /><br />
+&nbsp;&nbsp;&nbsp;&nbsp;5.特殊变量表示为^变量名称^<br />
+&nbsp;&nbsp;&nbsp;&nbsp;注意：在设置公式时应符合运算的规则，设置好后应检查一次，在确认没问题时再保存!
+</BODY>
+</HTML>

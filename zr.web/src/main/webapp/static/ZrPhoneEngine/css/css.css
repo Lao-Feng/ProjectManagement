@@ -1,0 +1,113 @@
+body {
+	font-size: 1rem;
+	background: #eee;
+	color: #3a3a3a;
+	font-family: "microsoft yahei"
+}
+
+.ishide {
+	display: none
+}
+
+@media screen and (max-width:480px) {
+	.content {
+		width: 100%;
+		margin: 0 auto;
+		overflow: hidden;
+	}
+}
+
+@media screen and (max-width:1023px) {
+	.content {
+		width: 100%;
+		margin: 0 auto;
+		overflow: hidden;
+	}
+}
+
+@media screen and (min-width:1024px) {
+	.content {
+		width: 100%;
+		margin: 0 auto;
+		overflow: hidden;
+	}
+}
+
+header {
+	display: block;
+	color: #fff;
+	background-size: contain;
+	text-align: center;
+	padding: 2px 5px 0px 5px;
+	overflow: hidden;
+}
+
+
+
+
+
+.module .ct-form-search {
+	position: relative;
+	border-bottom: 0px solid #b6b6b6
+}
+
+.module .ct-form-search .in-search {
+	display: -webkit-box;
+	height: 2.8rem;
+	line-height: 2.8rem;
+	padding: 0 .5rem;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	-ms-border-radius: 3px;
+	-o-border-radius: 3px;
+	border-radius: 3px
+}
+
+.module .ct-form-search .in-search .inp-search {
+	-webkit-box-flex: 1;
+	height: 2.4rem;
+	padding: 0 .5rem;
+	-webkit-box-shadow: 0 2px 3px silver inset;
+	-moz-box-shadow: 0 2px 3px silver inset;
+	box-shadow: 0 2px 3px silver inset
+}
+
+.module .ct-form-search .in-search input {
+	display: block;
+	-webkit-appearance: none;
+	color: #3a3a3a
+}
+
+
+
+
+
+
+
+
+
+
+.link ul li {
+	width: 100%;
+	
+	height: 100px;
+	overflow: visible;
+	float: inherit;
+	display: inline-block;
+}
+
+.link ul li a {
+	display: inline-block;
+	width: 30%;
+	text-align: center;
+	float: inherit;
+	padding-bottom: 6px;
+}
+
+.link ul li img {
+	width: 70px;
+	height: 70px
+}
+
+
+

@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="zr.zrpower.dao.mapper.BpipUserMapper">
+
+    <!-- 通过用户id判断用户是否存在 -->
+	<select id="queryUserId" resultType="int">
+		select count(userid) as count_nnum from BPIP_USER where loginid = #{value}
+	</select>
+
+	<!-- 信息 -->
+	<select id="queryObject" resultType="zr.zrpower.model.BPIP_USER">
+		select * from BPIP_USER where userid = #{value}
+	</select>
+	<!-- 以下为数据事务操作 -->
+	<select id="queryList" resultType="zr.zrpower.model.BPIP_USER">
+		select * from BPIP_USER
+		<where>
+			<if test="USERSTATE != null and USERSTATE != ''">
+				and USERSTATE = #{USERSTATE}
+			</if>
+			<if test="UNITID != null and UNITID != ''">
+				and UNITID = #{UNITID}
+			</if>
+			<if test="NAME != null and NAME != ''">
+				and NAME like concat('%',#{NAME},'%')
+			</if>
+			<if test="LOGINID != null and LOGINID != ''">
+				and LOGINID like concat('',#{LOGINID},'%')
+			</if>
+		</where>
+		order by USERID asc
+	</select>
+
+	<select id="queryTotal" resultType="int">
+		select count(USERID) from BPIP_USER
+		<where>
+			<if test="USERSTATE != null and USERSTATE != ''">
+				and USERSTATE = #{USERSTATE}
+			</if>
+			<if test="UNITID != null and UNITID != ''">
+				and UNITID = #{UNITID}
+			</if>
+			<if test="NAME != null and NAME != ''">
+				and NAME like concat('%',#{NAME},'%')
+			</if>
+		</where>
+	</select>
+
+	<select id="getMaxNo" resultType="String">
+		SELECT MAX(USERID) AS MAX_NO FROM BPIP_USER
+		<where>
+			<if test="value != null and value != ''">
+				and USERID like concat('',#{value},'%')
+			</if>
+		</where>
+	</select>
+
+	<insert id="saveBack" parameterType="zr.zrpower.model.BPIP_USER"
+		useGeneratedKeys="true" keyProperty="userid">
+		insert into BPIP_USER
+		(
+		`USERID`,
+		`LOGINID`,
+		`LOGINPW`,
+		`USERSTATE`,
+		`NAME`,
+		`LCODE`,
+		`UNITID`,
+		`SEX`,
+		`BIRTHDAY`,
+		`PHONE`,
+		`MOBILE`,
+		`EMAIL`,
+		`USERIMAGE`,
+		`LOGINTIME`,
+		`PAGESIZE`,
+		`WINDOWTYPE`,
+		`DEPTINSIDE`,
+		`ORBERCODE`,
+		`ONLINEDATE`
+		)
+		values
+		(
+		#{USERID},
+		#{LOGINID},
+		#{LOGINPW},
+		#{USERSTATE},
+		#{NAME},
+		#{LCODE},
+		#{UNITID},
+		#{SEX},
+		#{BIRTHDAY},
+		#{PHONE},
+		#{MOBILE},
+		#{EMAIL},
+		#{USERIMAGE},
+		#{LOGINTIME},
+		#{PAGESIZE},
+		#{WINDOWTYPE},
+		#{DEPTINSIDE},
+		#{ORBERCODE},
+		#{ONLINEDATE}
+		)
+	</insert>
+
+
+	<update id="update" parameterType="zr.zrpower.model.BPIP_USER">
+		update BPIP_USER
+		<set>
+			<if test="USERID != null and USERID != '' ">`USERID` = #{USERID}, </if>
+			<if test="LOGINID != null and LOGINID != '' ">`LOGINID` = #{LOGINID}, </if>
+			<if test="LOGINPW != null and LOGINPW != '' ">`LOGINPW` = #{LOGINPW}, </if>
+			<if test="USERSTATE != null and USERSTATE != '' ">`USERSTATE` = #{USERSTATE}, </if>
+			<if test="NAME != null and NAME != '' ">`NAME` = #{NAME}, </if>
+			<if test="LCODE != null and LCODE != '' ">`LCODE` = #{LCODE}, </if>
+			<if test="UNITID != null and UNITID != '' ">`UNITID` = #{UNITID}, </if>
+			<if test="SEX != null and SEX != '' ">`SEX` = #{SEX}, </if>
+			<if test="BIRTHDAY != null">`BIRTHDAY` = #{BIRTHDAY}, </if>
+			<if test="PHONE != null and PHONE != '' ">`PHONE` = #{PHONE}, </if>
+			<if test="MOBILE != null and MOBILE != '' ">`MOBILE` = #{MOBILE}, </if>
+			<if test="EMAIL != null and EMAIL != '' ">`EMAIL` = #{EMAIL}, </if>
+			<if test="USERIMAGE != null and USERIMAGE != '' ">`USERIMAGE` = #{USERIMAGE}, </if>
+			<if test="LOGINTIME != null and LOGINTIME != '' ">`LOGINTIME` = #{LOGINTIME}, </if>
+			<if test="PAGESIZE != null and PAGESIZE != '' ">`PAGESIZE` = #{PAGESIZE}, </if>
+			<if test="WINDOWTYPE != null and WINDOWTYPE != '' ">`WINDOWTYPE` = #{WINDOWTYPE}, </if>
+			<if test="DEPTINSIDE != null and DEPTINSIDE != '' ">`DEPTINSIDE` = #{DEPTINSIDE}, </if>
+			<if test="ORBERCODE != null and ORBERCODE != '' ">`ORBERCODE` = #{ORBERCODE}, </if>
+			<if test="ONLINEDATE != null and ONLINEDATE != '' ">`ONLINEDATE` = #{ONLINEDATE}</if>
+		</set>
+		where USERID = #{USERID}
+	</update>
+
+    <!-- 删除用户及系统管理设置数据 -->
+	<delete id="delete">
+		delete from BPIP_USER where USERID = #{value}
+	</delete>
+	<delete id="delUserPhoto">
+		delete from BPIP_USER_PHOTO where USERID = #{value}
+	</delete>
+	<delete id="delUserRemove">
+		delete from BPIP_USER_REMOVE where USERID = #{value}
+	</delete>
+	<delete id="delUserIdea">
+		delete from bpip_user_idea where USER_NO = #{value}
+	</delete>
+	<delete id="delUserRole">
+		delete from bpip_user_role where USERID = #{value}
+	</delete>
+	
+
+</mapper>

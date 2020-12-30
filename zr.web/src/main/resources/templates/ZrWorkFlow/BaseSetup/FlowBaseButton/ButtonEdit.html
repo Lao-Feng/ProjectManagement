@@ -1,0 +1,165 @@
+
+<!Doctype html>
+<html>
+<head>
+    <title></title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" type="text/css" href="/static/vue/element-ui/lib/theme-chalk/index.css" >
+<link rel="stylesheet" type="text/css" href="/static/vue/element-ui/lib/theme-chalk/html.css" >
+<script type="text/javascript" src="/static/vue/jquery-1_15.9.1.min.js"></script>
+<script type="text/javascript" src="/static/vue/vue.min.js" ></script>
+<script type="text/javascript" src="/static/vue/element-ui/lib/index.js" type="text/javascript"></script>
+<script type="text/javascript" src="/static/vue/layer/layer.js"></script>
+<script type="text/javascript" src="/static/vue/ZRutils.js"></script>
+<script type="text/javascript" src="/static/vue/ZRicon.js"></script>
+<style type="text/css">
+table {
+   font-size: 12px;
+}
+.container {
+    padding: 10px;
+}
+</style>
+</head>
+<body style="margin:0px;background: white;">
+<div id="listform" class="container" v-loading="htmlLoading">
+    <el-form :model="form" ref="form" :rules="rules">
+         <el-form-item label="按钮名称：" prop="BNAME" :label-width="formLabelWidth">
+              <el-input v-model="form.BNAME" placeholder="按钮名称" style="width:98%"></el-input>
+        </el-form-item>
+        <el-form-item label="按钮运转名称：" prop="NAME" :label-width="formLabelWidth">
+              <el-input v-model="form.NAME" placeholder="按钮运转名称" style="width:98%" ></el-input>
+        </el-form-item>
+        <el-row>
+             <el-col :span="12">
+                  <el-form-item label="按钮类别：" :label-width="formLabelWidth">
+                    <el-select v-model="form.TYPE" filterable placeholder="请选择">
+                      <el-option v-for="item in TYPE" :key="item.value" :label="item.label" :value="item.value"></el-option>
+                    </el-select>
+                  </el-form-item>
+             </el-col>
+             <el-col :span="12">
+                  <el-form-item label="按钮布局分类：" :label-width="formLabelWidth">
+                    <el-select v-model="form.POSITION" filterable placeholder="请选择">
+                      <el-option v-for="item in POSITION" :key="item.value" :label="item.label" :value="item.value"></el-option>
+                    </el-select>
+                  </el-form-item>
+             </el-col>
+        </el-row>
+        <el-row>
+             <el-col :span="12">
+                  <el-form-item label="按钮图标：" :label-width="formLabelWidth">
+                       <el-select v-model="form.ICO" placeholder="图标选择" filterable clearable>
+                            <el-option v-for="(item,index) in ZRicon_list" :key="index" :label="item" :value="item">
+                                 <i :class="item"></i>&nbsp;{{item}}
+                            </el-option>
+                       </el-select>
+                  </el-form-item>
+             </el-col>
+             <el-col :span="12">
+                  <el-form-item label="排序号：" :label-width="formLabelWidth">
+                    <el-input v-model="form.CODE" placeholder="输入整数"  ></el-input>
+                  </el-form-item>
+             </el-col>
+        </el-row>
+        <el-form-item label="所属角色编号：" :label-width="formLabelWidth">
+              <el-input v-model="form.ROLEIDS" placeholder="提示：多个编码用,隔开。对于已经完成流程的按钮控制时使用(如打印)。" style="width:98%" ></el-input>
+        </el-form-item>
+        <el-form-item label="HTML/TXT值：" :label-width="formLabelWidth">
+              <el-input v-model="form.PROPERTY" placeholder="提示：书写正确的按钮方法及参数。" style="width:98%" type="textarea" :rows="4"></el-input>
+        </el-form-item>
+    </el-form>	
+    <div style="text-align:center;margin-top: 5px;">
+	     <el-button type="primary" icon="el-icon-check" size="small" @click="save">提交</el-button>
+	     <el-button type="primary" icon="el-icon-check" size="small" @click="del">删除</el-button>
+         <el-button type="primary" icon="el-icon-close" size="small" onclick="parent.layer.closeAll();">取消</el-button>
+	</div>
+</div>
+<script type="text/javascript" th:inline="javascript">
+var vh = $(document).height();
+
+var TYPE=[{value:'1',label:'功能按钮'},
+	{value:'2',label:'文档按钮'},
+	{value:'3',label:'控制按钮'},
+	{value:'4',label:'公共功能按钮'},
+	{value:'5',label:'公共已分配按钮'},
+	{value:'6',label:'流程创建人按钮'}];
+var POSITION=[{value:'1',label:'页面上'},
+	{value:'2',label:'页面下'},
+	{value:'3',label:'页面上和下'}];	
+var vmform = new Vue({
+    el: '#listform',
+    name: 'flow_listform',
+    data() {
+        return {
+            htmlLoading:true,//全局加载
+            rowsloadtitle:'数据加载...',
+            
+            formLabelWidth:'110px',
+            
+            form:{},
+            rules:{
+            	BNAME:[{
+                    required: true,
+                    message: '按钮名称必填',
+                    trigger: 'blur'
+                }],
+            	NAME: [{
+                    required: true,
+                    message: '按钮运转名称必填',
+                    trigger: 'blur'
+                }],
+            },
+        }
+    },
+    created() {
+    	let e = this
+    	$zrthis = this
+    },
+    mounted(){
+    	this.$nextTick(() => {
+		    this.htmlLoading = false
+		    this.init_form()
+        })
+    },
+    computed: {
+    	data() {
+            return this.rows
+        }
+    },
+    methods: {
+    	init_form(){
+    		let e = this
+    		e.form = [[${BUTTON}]]
+    	},
+    	save(){
+    		let e = this
+    		e.form.ID=[[${ID}]]
+    		e.form.Act='edit'
+    		e.form.UNIT=[[${USERID}]]
+    		ZRsave(e.form, 'form', '/flow/flowbutton', function(json){
+    			parent.window.location.reload();
+    			parent.layer.closeAll();
+    		});
+    	},
+    	del(){
+    		let e = this
+    		layer.confirm('确定要删除吗？', {
+    			   btn: ['确定','取消']
+    			}, function(){
+    				e.form.ID=[[${ID}]]
+    	    		e.form.Act='del'
+    	    		e.form.UNIT=[[${USERID}]]
+    				ZRsave(e.form, 'form', '/flow/flowbutton', function(json){
+    	    			parent.window.location.reload();
+    	    			parent.layer.closeAll();
+    	    		});
+    			}, function(){
+    		    });
+    	}
+    }
+});
+</script>    
+
+</body>
+</html>

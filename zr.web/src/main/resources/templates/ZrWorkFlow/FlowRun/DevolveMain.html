@@ -1,0 +1,61 @@
+<HTML>
+<HEAD>
+<TITLE></TITLE>
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<SCRIPT type="text/javascript">
+//作用：获取记录
+function GetUserNo(){
+  var selectedstring = "";
+  var strValue= "";
+   $("input:radio:checked").each(function(index,element){
+      strValue = $(element).val();
+      if (strValue.length==16){
+      if (selectedstring == ""){
+          selectedstring = strValue;
+      }else{
+          selectedstring = selectedstring  + "," + strValue;
+      }}
+  });
+
+  if (selectedstring != "") {
+      devolveRe(selectedstring)
+  }else {
+      $.messager.alert('提示','请先选择移交的人员！','info');
+  }
+  return;
+}
+
+function selectOnclick(id) {
+    if (document.getElementById(id).checked==true)
+    {document.getElementById(id).checked='';}
+    else
+    {document.getElementById(id).checked='checked';}
+}
+</script>
+</head>
+<input type="hidden" name="setall" value="0">
+<TABLE border="0" width="95%" cellpadding=0 cellspacing=0>
+     <TR>
+      <TD height="320" valign="top">
+  <DIV id="divMessage" style='padding-left:0;padding-top:0;width:100%;height:100%;overflow:auto'>
+  <TABLE border="0" width="97%" cellpadding=0 cellspacing=0>
+    <TR>
+       <TD width="97%" height="3"></TD>
+    </TR>
+    <TR>
+      <TD valign="top">
+        <TABLE  border="0" width="95%" cellpadding=0 cellspacing=0>
+            <div th:utext="${UserList}"></div>
+        </TABLE>
+      </TD>
+    </TR>
+  </TABLE>
+  </DIV>
+  </td></tr>
+</TABLE>
+ <div data-options="region:'south',border:false" style="text-align:center;padding:5px 0 15px;">
+	<a class="easyui-linkbutton" data-options="iconCls:'icon-ok'" href="javascript:void(0)" onclick="Javascript:GetUserNo();" style="width:80px">确定</a>
+	<a class="easyui-linkbutton" data-options="iconCls:'icon-cancel'" href="javascript:void(0)" onclick="Javascript:$('#win').window('close');" style="width:80px">取消</a>
+ </div>
+</html>

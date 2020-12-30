@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="zr.zrpower.dao.mapper.BpipTableMapper">
+
+	<!-- 信息 -->
+	<select id="queryObject" resultType="zr.zrpower.model.dbmanage.BPIP_TABLE">
+		select * from BPIP_TABLE where TABLEID = #{value}
+	</select>
+    <!-- 以下为数据事务操作 -->
+	<select id="queryList" resultType="zr.zrpower.model.dbmanage.BPIP_TABLE">
+		select * from BPIP_TABLE
+		<where>
+			<if test="TABLETYPE != null and TABLETYPE !=''">
+				and TABLETYPE = #{TABLETYPE}
+			</if>
+			<if test="TABLESPACE != null and TABLESPACE !=''">
+				and TABLESPACE = #{TABLESPACE}
+			</if>
+			<if test="TABLENAME != null and TABLENAME != ''">
+				and TABLENAME like concat('%',#{TABLENAME},'%')
+			</if>
+			<if test="CHINESENAME != null and CHINESENAME != ''">
+				and CHINESENAME like concat('%',#{CHINESENAME},'%')
+			</if>
+		</where>
+		order by TABLEID asc
+	</select>
+	
+	
+	<select id="selectList" resultType="zr.zrpower.model.dbmanage.BPIP_TABLE">
+		select TABLEID,TABLENAME,CHINESENAME,TABLESPACE,TABLETYPE from BPIP_TABLE
+		<where>
+			<if test="TABLETYPE != null and TABLETYPE !=''">
+				and TABLETYPE = #{TABLETYPE}
+			</if>
+			<if test="TABLESPACE != null and TABLESPACE !=''">
+				and TABLESPACE = #{TABLESPACE}
+			</if>
+			<if test="TABLENAME != null and TABLENAME != ''">
+				and TABLENAME like concat('%',#{TABLENAME},'%')
+			</if>
+			<if test="CHINESENAME != null and CHINESENAME != ''">
+				and CHINESENAME like concat('%',#{CHINESENAME},'%')
+			</if>
+		</where>
+		order by TABLEID asc
+	</select>
+	
+	<insert id="save" parameterType="zr.zrpower.model.dbmanage.BPIP_TABLE" useGeneratedKeys="true" keyProperty="tableid">
+		insert into BPIP_TABLE
+		(
+		`TABLEID`,
+		`TABLENAME`,
+		`CHINESENAME`,
+		`TABLESPACE`,
+		`DESCRIPTION`,
+		`TABLETYPE`,
+		`PRIMARYKEY`,
+		`TITLE`,
+		`KEYTYPE`,
+		`KEYLEN`
+		)
+		values
+		(
+		#{TABLEID},
+		#{TABLENAME},
+		#{CHINESENAME},
+		#{TABLESPACE},
+		#{DESCRIPTION},
+		#{TABLETYPE},
+		#{PRIMARYKEY},
+		#{TITLE},
+		#{KEYTYPE},
+		#{KEYLEN}
+		)
+	</insert>
+	
+	<update id="update" parameterType="zr.zrpower.model.dbmanage.BPIP_TABLE">
+		update BPIP_TABLE
+		<set>
+			<if test="TABLEID != null and TABLEID !='' ">`TABLEID` = #{TABLEID}, </if>
+			<if test="TABLENAME != null and TABLENAME !='' ">`TABLENAME` = #{TABLENAME}, </if>
+			<if test="CHINESENAME != null and CHINESENAME !='' ">`CHINESENAME` = #{CHINESENAME}, </if>
+			<if test="TABLESPACE != null and TABLESPACE !='' ">`TABLESPACE` = #{TABLESPACE}, </if>
+			<if test="DESCRIPTION != null and DESCRIPTION !='' ">`DESCRIPTION` = #{DESCRIPTION}, </if>
+			<if test="TABLETYPE != null and TABLETYPE !='' ">`TABLETYPE` = #{TABLETYPE}, </if>
+			<if test="PRIMARYKEY != null and PRIMARYKEY !='' ">`PRIMARYKEY` = #{PRIMARYKEY}, </if>
+			<if test="TITLE != null and TITLE !='' ">`TITLE` = #{TITLE},</if>
+			<if test="KEYTYPE != null and KEYTYPE !='' ">`KEYTYPE` = #{KEYTYPE},</if>
+			<if test="KEYLEN != null and KEYLEN !='' ">`KEYLEN` = #{KEYLEN}</if>
+		</set>
+		where TABLEID = #{TABLEID}
+	</update>
+    
+    <!-- 删除表执行以下几句 -->
+	<delete id="delete">
+		delete from BPIP_TABLE where TABLEID = #{value}
+	</delete>
+	<delete id="deleteFields">
+		delete from BPIP_FIELD where TABLEID = #{value}
+	</delete>
+	<delete id="dropTable">
+		drop table ${value}
+	</delete>
+	
+	<!-- 返回表编码 -->
+	<select id="getMaxNo" resultType="String">
+	    select max(TABLEID) as MAX_NO from BPIP_TABLE
+	</select>
+	
+	<!-- 检查数据库是否有同名表 -->
+	<select id="isTable" resultType="int">
+	    select count(TABLEID) as cout_num from BPIP_TABLE where TABLENAME=#{value}
+	</select>
+	
+	
+</mapper>

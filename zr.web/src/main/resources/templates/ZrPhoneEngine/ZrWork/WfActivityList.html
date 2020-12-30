@@ -1,0 +1,66 @@
+<HTML>
+<HEAD>
+<TITLE></TITLE>
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link REL="stylesheet" type="text/css" href="/static/Zrsysmanage/css/html5.css">
+<SCRIPT type="text/javascript" src="/static/Zrsysmanage/script/Public.js"></SCRIPT>
+<SCRIPT type="text/javascript" src="/static/ZrPhoneEngine/ZrWork/js/Workflow.js"></SCRIPT>
+<script type="text/javascript">
+//确定
+function FunOk(){
+  var length = document.NodeListForm.elements.length
+  var recordindex
+  var selectedstring
+  var strValue
+  selectedstring=""
+  for (var i=0; i<length; i++){
+    recordindex  = document.NodeListForm.elements[i].name.indexOf("record");
+    if (recordindex  != -1) {
+      if (document.NodeListForm.elements[i].checked){
+        strValue = document.NodeListForm.elements[i].value;
+        intValue = strValue.length;
+        if (selectedstring == ""){
+          selectedstring = strValue;
+        }else{
+          selectedstring = selectedstring  + "," + strValue;
+        }
+      }
+    }
+  }
+  if (selectedstring != "") {
+      return selectedstring;
+  }else {
+      //alert("请选择流程!");
+  }
+  return;
+}
+
+function selectOnclick(id){
+    var length = document.NodeListForm.elements.length
+    var recordindex
+    var selectedstring
+    var strValue
+    selectedstring=""
+    for (var i=0; i<length; i++){
+    recordindex  = document.NodeListForm.elements[i].name.indexOf("record");
+    if (recordindex  != -1) {
+          strValue = document.NodeListForm.elements[i].value;
+          if (strValue==id)
+          {
+            document.NodeListForm.elements[i].checked='checked';
+          }else
+          {document.NodeListForm.elements[i].checked='';}
+     }
+    }
+}
+</SCRIPT>
+</HEAD>
+<BODY class="UserListBody">
+	<Form method="post" name="NodeListForm" action="">
+		<input type="hidden" name="formfields" value="">
+		<DIV id="divMessage" style='padding-left:0;padding-top:0;width:200px;height:100%;overflow:auto' th:utext="${NodeLst}">
+		</DIV>
+	</FORM>
+</BODY>
+</HTML>

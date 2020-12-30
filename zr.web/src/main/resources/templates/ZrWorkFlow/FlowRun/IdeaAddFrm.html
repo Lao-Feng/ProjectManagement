@@ -1,0 +1,28 @@
+<HTML>
+<HEAD>
+<TITLE></TITLE>
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+</HEAD>
+<FORM name="fromidea" id="fromidea" method="post" Action="/user/actionuseridea">
+	<input type="hidden" name="ISSYSTEM" value="0">
+	<input type="hidden" name="USER_NO" th:value="${USERID}">
+	<input type="hidden" name="Act" value="add">
+    <br>&nbsp;
+    <input type="text" name="CONTENT" size="37" maxlength="100" class="easyui-textbox"  data-options="required:true" value="填写个人的意见">
+</FORM>
+<div data-options="region:'south',border:false" style="text-align:center;padding:5px 0 15px;">
+	<a class="easyui-linkbutton" data-options="iconCls:'icon-ok'" href="javascript:void(0)" onclick="Javascript:saveidea();" style="width:80px">确定</a>
+	<a class="easyui-linkbutton" data-options="iconCls:'icon-cancel'" href="javascript:void(0)" onclick="Javascript:$('#win1').window('close');" style="width:80px">取消</a>
+</div>
+</HTML>
+<script type="text/javascript">
+function saveidea(){
+    $('#fromidea').form('submit',{
+		onSubmit:function(){
+
+		}
+	});
+    setTimeout("$('#win1').window('close');getReloadidea();",500);
+}
+</script>

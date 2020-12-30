@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="zr.zrpower.dao.mapper.FieldMapper">
+  
+  <!-- 获取字段名列表 -->
+  <select id="getBpipFieldList" parameterType="java.lang.String" resultType="zr.zrpower.model.dbmanage.BPIP_FIELD">
+  	  Select FIELDID      	as FIELDID,
+  	  		 TABLEID      	as TABLEID,
+  	  		 FIELDNAME      as FIELDNAME,
+  	  		 FIELDTAG      	as FIELDTAG,
+  	  		 CHINESENAME    as CHINESENAME,
+  	  		 FIELDTYPE		as FIELDTYPE,
+  	  		 FIELDLENGTH    as FIELDLENGTH,
+  	  		 ISNULL      	as ISNULL,
+  	  		 DICTTABLE      as DICTTABLE,
+  	  		 DESCRIPTION    as DESCRIPTION,
+  	  		 TAGEXT      	as TAGEXT,
+  	  		 AUTO1      	as AUTO1,
+  	  		 AUTO2      	as AUTO2,
+  	  		 AUTO3      	as AUTO3,
+  	  		 BLOBSIZE      	as BLOBSIZE,
+  	  		 QFIELD      	as QFIELD,
+  	  		 ISKEY      	as ISKEY
+      From BPIP_FIELD
+      <if test="condition != null">
+      Where TABLEID = #{condition}
+      </if>
+	  Order By FIELDID
+  </select>
+  
+  <!-- 获取字段名信息 -->
+  <select id="getFieldId" parameterType="java.lang.String" resultType="zr.zrpower.model.dbmanage.BPIP_FIELD">
+  	  Select FIELDID      	as FIELDID,
+  	  		 TABLEID      	as TABLEID,
+  	  		 FIELDNAME      as FIELDNAME,
+  	  		 FIELDTAG      	as FIELDTAG,
+  	  		 CHINESENAME    as CHINESENAME,
+  	  		 FIELDTYPE		as FIELDTYPE,
+  	  		 FIELDLENGTH    as FIELDLENGTH,
+  	  		 ISNULL      	as ISNULL,
+  	  		 DICTTABLE      as DICTTABLE,
+  	  		 DESCRIPTION    as DESCRIPTION,
+  	  		 TAGEXT      	as TAGEXT,
+  	  		 AUTO1      	as AUTO1,
+  	  		 AUTO2      	as AUTO2,
+  	  		 AUTO3      	as AUTO3,
+  	  		 BLOBSIZE      	as BLOBSIZE,
+  	  		 QFIELD      	as QFIELD,
+  	  		 ISKEY      	as ISKEY
+      From BPIP_FIELD
+      Where FIELDID = #{fieldID}
+  </select>
+</mapper>

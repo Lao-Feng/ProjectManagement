@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="zr.zrpower.dao.mapper.TableSpaceMapper">
+  
+  <!-- 增加表空间信息 -->
+  <insert id="insertSP" parameterType="java.util.Map">
+	Insert Into BPIP_TABLESPACE
+	<trim prefix="(" suffix=")" suffixOverrides=",">
+		<if test="ID != null">
+			ID,
+		</if>
+		<if test="CHINESENAME != null">
+			CHINESENAME,
+		</if>
+		<if test="DESCRIPTION != null">
+			DESCRIPTION,
+		</if>
+		<if test="DTABLE != null">
+			DTABLE,
+		</if>
+	</trim>
+	<trim prefix="values (" suffix=")" suffixOverrides=",">
+		<if test="ID != null">
+			#{ID},
+		</if>
+		<if test="CHINESENAME != null">
+			#{CHINESENAME},
+		</if>
+		<if test="DESCRIPTION != null">
+			#{DESCRIPTION},
+		</if>
+		<if test="DTABLE != null">
+			#{DTABLE},
+		</if>
+	</trim>
+  </insert>
+
+  <!-- 编辑表空间信息 -->
+  <update id="editSP" parameterType="java.util.Map">
+    update BPIP_TABLESPACE
+    <set>
+        <if test="CHINESENAME != null">
+			CHINESENAME = #{CHINESENAME},
+		</if>
+		<if test="DESCRIPTION != null">
+			DESCRIPTION = #{DESCRIPTION},
+		</if>
+		<if test="DTABLE != null">
+			DTABLE = #{DTABLE},
+		</if>
+    </set>
+    Where ID = #{ID}
+  </update>
+  
+</mapper>

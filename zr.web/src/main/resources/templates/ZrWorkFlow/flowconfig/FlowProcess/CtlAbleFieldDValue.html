@@ -1,0 +1,246 @@
+<link rel="stylesheet" type="text/css" href="/static/vue/element-ui/lib/theme-chalk/index.css" >
+<link rel="stylesheet" type="text/css" href="/static/vue/element-ui/lib/theme-chalk/html.css" >
+<script type="text/javascript" src="/static/vue/jquery-1_15.9.1.min.js"></script>
+<script type="text/javascript" src="/static/vue/vue.min.js" ></script>
+<script type="text/javascript" src="/static/vue/element-ui/lib/index.js" type="text/javascript"></script>
+<script type="text/javascript" src="/static/vue/layer/layer.js"></script>
+<script type="text/javascript">
+var selVue;
+//清除select的option选项
+function ClearList(ObjId){
+    $("#"+ObjId).empty();
+}
+function btnSpecialValue(strValue){
+  if(CheckInputWhereExpression(selVue.form2.txtResult,strValue)){
+	  var va=selVue.form2.txtResult+strValue;
+	    selVue.form2.txtResult = va;
+  }
+}
+
+function fillFieldName(obj){
+    var fieldName="["+$('select[name=TableList_select]').val()+"."+$('select[name=FieldList_select]').val()+"]";
+    var va=selVue.form2.txtResult+fieldName;
+    selVue.form2.txtResult = va;
+}
+
+function fillVariable(obj){
+	var fieldName=$('select[name=VaribleList]').val();
+    var va=selVue.form2.txtResult+fieldName;
+    selVue.form2.txtResult = va;
+}
+
+function OKClick(){
+   $zrthis.form.txtdefaultvalue = selVue.form2.txtResult;
+   layer.closeAll();
+}
+
+function ininvalue(){
+   selVue.form2.txtResult = $zrthis.form.txtdefaultvalue != null ? $zrthis.form.txtdefaultvalue : '';
+}
+setTimeout("ininvalue()",600);
+</script>
+<div id="mangactive2"  class="container" style="padding-top: 0px;">
+  <el-form :model="form2" ref="form2" :rules="rules" style="margin-bottom: 0px;">
+      <table border='0' width="99%" cellspacing="0" cellpadding="0" align=center>
+                <tr>
+                  <td colspan="2">
+                    <table border='0' width="100%" cellspacing="0" cellpadding="0" align=center>
+                      <tr>
+                        <td width="160px" align="center" height=23>
+                          	待选表
+                        </td>
+                        <td width="160px" align="center">
+                          	待选字段
+                        </td>
+                        <td width="160px" align="center">
+                          	待选变量值
+                        </td>
+                        <td width="410px" align="center"></td>
+                      </tr>
+                      <tr>
+                        <td align="center">
+                          <select id="TableList_select" name="TableList_select" style="width: 150px;" size=15 onchange='loadFieldList_select(this.value)' >
+                          </select>
+                        </td>
+                        <td align=center>
+                          <select id="FieldList_select" name="FieldList_select" style="width: 150px;" size=15 onclick="fillFieldName(this)">
+                          </select>
+                        </td>
+                        <td align="center" >
+                          <select name="VaribleList" style="width: 130px" size=15 onchange="fillVariable(this)" th:utext="${LIST1}">
+                          
+                          </select>
+                        </td>
+                        <td align="center" valign="top">
+                        <el-button-group>
+                          <el-button type="primary" size="small"  onclick="btnSpecialValue('+')">+</el-button>
+                          <el-button type="primary" size="small"  onclick="btnSpecialValue('-')">-</el-button>
+                          <el-button type="primary" size="small"  onclick="btnSpecialValue('*')">*</el-button>
+                          <el-button type="primary" size="small"  onclick="btnSpecialValue('/')">/</el-button>
+                          <el-button type="primary" size="small"  onclick="btnSpecialValue('(')">(</el-button>
+                          <el-button type="primary" size="small"  onclick="btnSpecialValue(')')">)</el-button>
+                          <el-button type="primary" size="small"  onclick="btnSpecialValue('>')">></el-button>
+                        </el-button-group><br><br>
+                        <el-button-group>  
+                          
+                          <el-button type="primary" size="small"  onclick="btnSpecialValue('<')"><</el-button>
+                          <el-button type="primary" size="small"  onclick="btnSpecialValue('<=')">>=</el-button>
+                          <el-button type="primary" size="small"  onclick="btnSpecialValue('!=')">!=</el-button>
+                          <el-button type="primary" size="small"  onclick="btnSpecialValue('=')">=</el-button>
+                          <el-button type="primary" size="small"  onclick="btnSpecialValue('>=')">>=</el-button>
+                          <el-button type="primary" size="small"  onclick="btnSpecialValue('0')">0</el-button>
+                          
+                        </el-button-group><br><br>
+                        <el-button-group>
+                          
+                          <el-button type="primary" size="small"  onclick="btnSpecialValue('1')">1</el-button>
+                          <el-button type="primary" size="small"  onclick="btnSpecialValue('2')">2</el-button>
+                          <el-button type="primary" size="small"  onclick="btnSpecialValue('3')">3</el-button>
+                          <el-button type="primary" size="small"  onclick="btnSpecialValue('4')">4</el-button>
+                          <el-button type="primary" size="small"  onclick="btnSpecialValue('5')">5</el-button>
+                          <el-button type="primary" size="small"  onclick="btnSpecialValue('6')">6</el-button>
+                          <el-button type="primary" size="small"  onclick="btnSpecialValue('7')">7</el-button>
+                        </el-button-group><br><br>
+                        <el-button-group>
+                          
+                          
+                          <el-button type="primary" size="small"  onclick="btnSpecialValue('8')">8</el-button>
+                          <el-button type="primary" size="small"  onclick="btnSpecialValue('9')">9</el-button>
+                          <el-button type="primary" size="small"  onclick="btnSpecialValue(' AND ')">AND</el-button>
+                          <el-button type="primary" size="small"  onclick="btnSpecialValue(' OR ')">OR</el-button>
+                          <el-button type="primary" size="small"  onclick="btnSpecialValue('SUM')">SUM</el-button>
+                        </el-button-group><br><br>
+                        <el-button-group>
+                          
+                          
+                          <el-button type="primary" size="small"  onclick="btnSpecialValue('COUNT')">COUNT</el-button>
+                          <el-button type="primary" size="small"  onclick="btnSpecialValue('AVG')">AVG</el-button>
+                          <el-button type="primary" size="small"  onclick="btnSpecialValue('MAX')">MAX</el-button>
+                          <el-button type="primary" size="small"  onclick="btnSpecialValue('MIN')">MIN</el-button>
+                        </el-button-group>
+                        </td>
+                   </tr>
+                   <tr>
+                   <td colspan=4 height=5>&nbsp;</td>
+                   </tr>
+                   <tr>
+                    <td align=center colspan=4>
+                     <el-form-item label="设置结果：" :label-width="formLabelWidth">
+                       <el-input v-model="form2.txtResult" clearable placeholder="选择或者输入值填充"></el-input>
+                  </el-form-item>
+                    </td>
+                   </tr>
+                    </table>
+                  </td>
+                </tr>
+            </table>
+</el-form>
+<div style="text-align:center;padding:5px 0 0;">
+    <el-button type="primary" icon="el-icon-check" size="small" onclick="javascript:OKClick();">确定</el-button>
+    <el-button type="primary" icon="el-icon-close" size="small" onclick="layer.closeAll();">取消</el-button>
+</div>
+</div>
+<!-- 
+<script type='text/javascript' src='/dwr/engine.js'></script>
+<script type='text/javascript' src='/dwr/util.js'></script>
+<script type='text/javascript' src='/dwr/interface/FlowMaActBean.js'></script>
+ -->
+<script type="text/javascript">
+var select
+// 加载数据表下拉列表。
+function loadTableList_select(){
+	//Ajax请求数据信息
+    $.ajax({
+        async: false,
+        type: "GET",
+        url:'/flowMaActBean/getTableList',
+        contentType: "application/json",
+        dataType: "json",
+        success: function(result) {
+        	$("#TableList_select").empty();//清除select的option选项
+        	var jsonArr = result;//转换为json数组
+        	//给select下拉框赋值
+        	var optionVal = '',select_val='';
+        	for(var i=0; i<result.length; i++) {
+        		optionVal += '<option value ="'+jsonArr[i].id+'">'+jsonArr[i].text+'</option>';
+        		if(i == 0){
+        			select_val = jsonArr[i].id;
+        		}
+        	}
+        	$("#TableList_select").append(optionVal);
+        	loadFieldList_select(select_val)
+        },
+        error: function(exception) {
+        	console.log(exception)
+        }
+    });
+}
+loadTableList_select();
+
+// 加载字段下拉列表。
+function loadFieldList_select(TableName){
+    if(TableName==null||TableName==''){
+       $("#FieldList_select").empty();
+       return;
+    }
+    //Ajax请求数据信息
+    $.ajax({
+        async: false,
+        type: "GET",
+        url:'/flowMaActBean/getFieldList',
+        contentType: "application/json",
+        data:{"TableName" : TableName},
+        dataType: "json",
+        success: function(result) {
+        	$("#FieldList_select").empty();//清除select的option选项
+        	var jsonArr = result;//转换为json数组
+        	//给select下拉框赋值
+        	var optionVal = '';
+        	for(var i=0; i<result.length; i++) {
+        		optionVal += '<option value ="'+jsonArr[i].id+'">'+jsonArr[i].text+'</option>';
+        	}
+        	$("#FieldList_select").append(optionVal);
+        },
+        error: function(exception) {
+        	console.log(exception)
+        }
+    });
+}
+
+
+</script>
+<script type="text/javascript" th:inline="javascript">
+var vm2 = new Vue({
+    el: '#mangactive2',
+    name: 'zr_mangactive2',
+    data() {
+        return {
+            htmlLoading:true,//全局加载
+            rowsloadtitle:'数据加载...',
+            
+            activeName: '1',
+            formLabelWidth: '150px',
+            
+            isshow:false,
+            
+            /* LIST1:pcList1,
+            LIST2:pcList2, */
+            form2:{
+            	txtResult:'',
+            },
+            rules:{},
+        }
+    },
+    created() {
+    	let e = this;
+    	selVue = this
+    },
+    mounted(){
+    	let e = this
+    },
+    computed: {
+    },
+    methods: {
+    }
+});
+</script>

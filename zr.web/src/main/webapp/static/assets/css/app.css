@@ -1,0 +1,82 @@
+/* Write your styles */
+body { min-height: 480px; }
+.am-header-fixed0 {
+  position: inherit;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  z-index: 1010;
+}
+
+.main-contor{
+	/*margin-top: 49px;*/
+	width: 100%;
+}
+
+.am-gallery-default .am-main-title {
+    margin-top: 10px;
+    font-weight: 200;
+    font-size: 1.4rem;
+    display: block;
+    word-wrap: normal;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    color: rgb(85, 85, 85);
+}
+.am-gallery-default .am-main-item{
+	width: 33%;
+	float: left;
+	text-align: center;
+	margin-top: 20px;
+}
+.m-widget-list a::after {
+    display: inline-block;
+    font: normal normal normal 1.6rem/1 FontAwesome,sans-serif;
+    font-size: inherit;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    transform: translate(0,0);
+    content: "\f054";
+    position: absolute;
+    right: 10px;
+    color: rgb(204, 204, 204);
+    top: 50%;
+    margin-top: -8px;
+}
+.m-widget-list .widget-name{
+	margin-left:10px;
+}
+
+/***from style  satrt ***/
+.am-selected {
+    width: 99%;
+    background: rgb(255, 255, 255);
+}
+.am-ucheck-icons {
+    color: rgb(251, 247, 247);
+    display: block;
+    height: 20px;
+    top: 0;
+    left: 0;
+    position: absolute;
+    width: 20px;
+    text-align: center;
+    line-height: 21px;
+    font-size: 18px;
+    cursor: pointer;
+}
+label.am-checkbox, label.am-radio {
+    font-weight: 400;
+    color: rgb(255, 255, 255);
+}
+.input-from{
+  line-height: 40px;
+  height: 40px;
+}
+/***from style  satrt ***/
+
+
+

@@ -1,0 +1,1025 @@
+/**************** HTML基本控件******************/
+A:link
+{
+    COLOR: #000000;
+    FONT-FAMILY: "宋体", "Arial", "Times New Roman";
+    TEXT-DECORATION: none
+}
+A:visited
+{
+    COLOR: #000000;
+    FONT-FAMILY: "宋体", "Arial", "Times New Roman";
+    TEXT-DECORATION: none
+}
+A:hover
+{
+    COLOR: #ff8000;
+    FONT-FAMILY: "宋体", "Arial", "Times New Roman";
+    TEXT-DECORATION: none
+}
+.9ft
+{
+    FONT-FAMILY: "宋体";
+    FONT-SIZE: 9pt;
+    FONT-STYLE: normal;
+    TEXT-DECORATION: none
+}
+.11ft
+{
+    FONT-FAMILY: "宋体";
+    FONT-SIZE: 10.5pt;
+    FONT-STYLE: normal;
+    TEXT-DECORATION: none
+}
+.12ft
+{
+    FONT-FAMILY: "宋体";
+    FONT-SIZE: 12pt;
+    FONT-STYLE: normal;
+    TEXT-DECORATION: none
+}
+.eng
+{
+    FONT-FAMILY: "Verdana";
+    FONT-SIZE: 9pt;
+    FONT-STYLE: normal;
+    TEXT-DECORATION: none
+}
+TABLE
+{
+    FONT: 9pt "宋体";
+    TEXT-TRANSFORM: none
+}
+TD
+{
+    FONT: 9pt "宋体";
+    TEXT-TRANSFORM: none
+}
+BR
+{
+    FONT: 9pt "宋体";
+    TEXT-TRANSFORM: none
+}
+HR
+{
+    COLOR: #3379b7
+}
+BODY
+{
+    FONT-FAMILY: "宋体";
+    FONT-SIZE: 9pt;
+    SCROLLBAR-FACE-COLOR: #DFDFDF;
+    SCROLLBAR-HIGHLIGHT-COLOR: #f5f9ff;
+    SCROLLBAR-SHADOW-COLOR: #949494;
+    SCROLLBAR-3DLIGHT-COLOR: #949494;
+    SCROLLBAR-ARROW-COLOR: #949494;
+    SCROLLBAR-TRACK-COLOR: #F7F7EE;
+    SCROLLBAR-DARKSHADOW-COLOR: #FFFFFF;
+    SCROLLBAR-BASE-COLOR: #A5BE52;
+}
+SELECT
+{
+    FONT-FAMILY: "宋体";
+    FONT-SIZE: 9pt
+}
+OPTION
+{
+    FONT-FAMILY: "宋体";
+    FONT-SIZE: 9pt
+}
+TEXTAREA
+{
+    BACKGROUND-COLOR: #ffffff;
+    BORDER-BOTTOM: black 1px solid;
+    BORDER-LEFT: black 1px solid;
+    BORDER-RIGHT: black 1px solid;
+    BORDER-TOP: black 1px solid;
+    FONT-FAMILY: "宋体";
+    FONT-SIZE: 9pt
+}
+checkbox
+{
+    FONT-FAMILY: "宋体";
+    FONT-SIZE: 9pt
+}
+
+/******************录入表单表格***********************/
+.inputTable
+{
+    border: 0px solid #C0C0C0;
+    width:98%;
+    FONT-FAMILY: 宋体;
+    FONT-SIZE: 9pt;
+}
+/******************录入表单单元格***********************/
+.inputTdtitle
+{
+    border: 0px solid #C0C0C0;
+    width:15%;
+    text-align:right;
+    FONT-FAMILY: 宋体;
+    FONT-SIZE: 9pt;
+}
+/******************录入表单单元格***********************/
+.inputTd
+{
+    border: 0px solid #C0C0C0;
+    FONT-FAMILY: 宋体;
+    FONT-SIZE: 9pt;
+}
+
+/******************按钮、下接框***********************/
+.btnButton
+{
+    BACKGROUND-COLOR: #BFBFBF;
+    BORDER-BOTTOM: 1pt solid #000000;
+    BORDER-LEFT: 1pt solid #FFFFFF;
+    BORDER-RIGHT: 1pt solid #000000;
+    BORDER-TOP: 1pt solid #FFFFFF;
+    COLOR: #000000;
+    CURSOR: hand;
+    FONT-FAMILY: 宋体;
+    FONT-SIZE: 9pt;
+    FONT-VARIANT: small-caps;
+    HEIGHT: 18pt;
+    TEXT-ALIGN: center;
+    WIDTH: 54pt
+}
+.Button
+{
+	border-right: 1pt ridge;
+	border-top: 1pt ridge;
+	font-size: 9pt;
+	vertical-align: sub;
+	border-left: 1pt ridge;
+	/*width: 60pt;*/
+	cursor: hand;
+	color: #000000;
+	border-bottom: 1pt ridge;
+	font-family: 宋体;
+	height: 18pt;
+	background-color: #D4D0C8;
+	text-align: center;
+	font-variant: small-caps;
+}
+.Button1
+{
+	border-right: 1pt ridge;
+	border-top: 1pt ridge;
+	font-size: 9pt;
+
+	border-left: 1pt ridge;
+	width: 30pt;
+	cursor: hand;
+	color: #000000;
+	border-bottom: 1pt ridge;
+	font-family: 宋体;
+	height: 18pt;
+	background-color: #D4D0C8;
+	text-align: center;
+	font-variant: small-caps;
+}
+
+.ChButton
+{
+	border-right: 1pt ridge;
+	border-top: 1pt ridge;
+	font-size: 9pt;
+	border-left: 1pt ridge;
+	width: 54pt;
+	cursor: hand;
+	color: #ffffff;
+	border-bottom: 1pt ridge;
+	font-family: 宋体;
+	height: 18pt;
+	background-color:#D4D0C8;
+	text-align: center;
+	font-variant: small-caps;
+}
+
+.LogButton
+{
+    BACKGROUND-IMAGE: url(../Zrsysmanage/images/blueimg/PuBtnBg.gif);
+    BORDER: 0pt;
+    COLOR: #000000;
+    CURSOR: hand;
+    FONT-FAMILY: 宋体;
+    FONT-SIZE: 9pt;
+    FONT-VARIANT: small-caps;
+    HEIGHT: 15pt;
+    TEXT-ALIGN: center;
+    TEXT-VALIGN: baseline;
+    WIDTH: 33pt
+}
+.MenuButton
+{
+    BACKGROUND-IMAGE: url(../Zrsysmanage/images/blueimg/BackLine.jpg);
+    BORDER-BOTTOM: #515151 1px solid;
+    BORDER-LEFT: #515151 1px solid;
+    BORDER-RIGHT: #515151 1px solid;
+    BORDER-TOP: #515151 1px solid;
+    FONT-FAMILY: "宋体";
+    FONT-SIZE: 9pt;
+    TEXT-DECORATION: none;
+    COLOR: #000000;
+    WIDTH: 50pt;
+    HEIGHT: 16pt;
+    CURSOR: hand;
+}
+
+.HelpButton
+{
+   border-right: 0pt solid;
+   border-top: 0pt solid;
+   border-left: 0pt solid;
+   border-bottom: 0pt solid;
+   font-size: 9pt;
+   cursor: hand;
+   color: #003366;
+   font-family: 宋体;
+   background-color: #E6E6E6;
+}
+
+.HelpButtonAct
+{
+   border-right: 0pt solid;
+   border-top: 0pt solid;
+   border-left: 0pt solid;
+   border-bottom: 0pt solid;
+   font-size: 9pt;
+   cursor: hand;
+   color: #003366;
+   font-family: 宋体;
+   background-color: #EFF7D6;
+}
+
+.SelectStyleMin
+{
+    WIDTH: 100px
+}
+.SelectStyle
+{
+    WIDTH: 252px
+}
+.SelectStyle1
+{
+    WIDTH: 252px;
+    background-color:#FF0000;
+}
+.SelectStyleMax
+{
+    WIDTH: 280px
+}
+.SelectStyle2
+{
+    WIDTH: 350px
+}
+.ListCss
+{
+    WIDTH: 300px
+}
+.DeskCss
+{
+   display: none;
+   position: absolute;
+   width: 280px;
+   background-color: rgb(140,190,090);
+   BORDER-LEFT: solid #FFFFFF 1px;
+   BORDER-TOP: solid #FFFFFF 1px;
+   BORDER-RIGHT: solid #000000 1px;
+   BORDER-BOTTOM: solid #000000 1px;
+}
+.FieldsetCss
+{
+   BORDER-LEFT: solid #808080 1px;
+   BORDER-TOP: solid #808080 1px;
+   BORDER-RIGHT: solid #808080 1px;
+   BORDER-BOTTOM: solid #808080 1px;
+
+}
+
+/******************表格***********************/
+.PuTblFrame
+{
+    BACKGROUND-COLOR: #F7F7EE;
+    BORDER-BOTTOM: #000000 1px solid;
+    BORDER-LEFT: #000000 1px solid;
+    BORDER-RIGHT: #000000 1px solid;
+    BORDER-TOP: #000000 1px solid
+}
+.PuTbHead
+{
+    COLOR: #000000;
+    FONT-FAMILY: 宋体;
+    FONT-SIZE: 11pt;
+    HEIGHT: 41pt;
+    BACKGROUND-COLOR: #A9A9A9
+}
+.PuTbMenu
+{
+    COLOR: #000000;
+    WIDTH: 49pt;
+    HEIGHT: 41pt;
+    CURSOR: hand;
+    BORDER:  0px solid;
+    TEXT-ALIGN: center
+}
+.PuTbMenuAct
+{
+    WIDTH: 49pt;
+    HEIGHT: 41pt;
+    CURSOR: hand;
+    TEXT-ALIGN: center;
+    BACKGROUND-IMAGE: url(../Zrsysmanage/images/blueimg/head_table_back.jpg);
+    BORDER: #A7A7A7 1px solid;
+
+}
+.PuTbMenuLine
+{
+    WIDTH: 2pt;
+    TEXT-ALIGN: center
+}
+.tblMain
+{
+    BORDER-BOTTOM: #2b445f 1px solid;
+    BORDER-LEFT: #2b445f 0px solid;
+    BORDER-RIGHT: #2b445f 1px solid;
+    BORDER-TOP: #2b445f 1px solid
+}
+.tdHeadLeft
+{
+    BACKGROUND-COLOR: #619bd8;
+    BORDER-LEFT: #2b445f 1px solid;
+    COLOR: white;
+    HEIGHT: 18px;
+    TEXT-ALIGN: left
+}
+.tdHead
+{
+    BACKGROUND-COLOR: #619bd8;
+    COLOR: white;
+    HEIGHT: 18px;
+    TEXT-ALIGN: left
+}
+.tdBodyLeft
+{
+    BACKGROUND-COLOR: #f1f1f1;
+    BORDER-LEFT: #2b445f 1px solid;
+    BORDER-TOP: #2b445f 1px solid;
+    HEIGHT: 22px
+}
+.tdBody
+{
+    BACKGROUND-COLOR: #f1f1f1;
+    BORDER-BOTTOM: #2b445f 0px solid;
+    BORDER-LEFT: #2b445f 1px solid;
+    BORDER-RIGHT: #2b445f 0px solid;
+    BORDER-TOP: #2b445f 1px solid;
+    HEIGHT: 22px
+}
+.tblFoot
+{
+    BACKGROUND-COLOR: #1e65a7;
+    BORDER-RIGHT: #1e65a7 1px solid;
+    HEIGHT: 22px;
+    TEXT-ALIGN: right
+}
+
+/***************页面窗体**************************/
+.BodyMain
+{
+    BACKGROUND-COLOR: #F7F7EE;
+    MARGIN: 0px 0px 0px 0px;
+    OVERFLOW-X:hidden;
+    OVERFLOW-Y:hidden;
+    SCROLLBAR-FACE-COLOR: #DFDFDF;
+    SCROLLBAR-HIGHLIGHT-COLOR: #f5f9ff;
+    SCROLLBAR-SHADOW-COLOR: #949494;
+    SCROLLBAR-3DLIGHT-COLOR: #949494;
+    SCROLLBAR-ARROW-COLOR: #949494;
+    SCROLLBAR-TRACK-COLOR: #F7F7EE;
+    SCROLLBAR-DARKSHADOW-COLOR: #FFFFFF;
+    SCROLLBAR-BASE-COLOR: #A5BE52;
+    LIST-STYLE-TYPE: circle
+}
+.BodyMain1
+{
+    BACKGROUND-COLOR: #F7F7EE;
+    MARGIN: 0px 0px 0px 0px;
+    SCROLLBAR-FACE-COLOR: #DFDFDF;
+    SCROLLBAR-HIGHLIGHT-COLOR: #f5f9ff;
+    SCROLLBAR-SHADOW-COLOR: #949494;
+    SCROLLBAR-3DLIGHT-COLOR: #949494;
+    SCROLLBAR-ARROW-COLOR: #949494;
+    SCROLLBAR-TRACK-COLOR: #F7F7EE;
+    SCROLLBAR-DARKSHADOW-COLOR: #FFFFFF;
+    SCROLLBAR-BASE-COLOR: #A5BE52;
+    LIST-STYLE-TYPE: circle
+}
+.UserListBody
+{
+    BACKGROUND-COLOR: #F7F7EE;
+    MARGIN: 0px 0px 0px 0px;
+    OVERFLOW-X:hidden;
+    OVERFLOW-Y:hidden;
+    SCROLLBAR-FACE-COLOR: #BCBCBC;
+    SCROLLBAR-HIGHLIGHT-COLOR: #f5f9ff;
+    SCROLLBAR-SHADOW-COLOR: #d6d3d6;
+    SCROLLBAR-3DLIGHT-COLOR: #949494;
+    SCROLLBAR-ARROW-COLOR: #949494;
+    SCROLLBAR-TRACK-COLOR: #F7F7EE;
+    SCROLLBAR-DARKSHADOW-COLOR: #FFFFFF;
+    SCROLLBAR-BASE-COLOR: #A5BE52;
+    LIST-STYLE-TYPE: circle
+}
+.BodyHelp
+{
+    BACKGROUND-COLOR: #E6E6E6;
+    MARGIN: 0px 0px 0px 0px;
+    OVERFLOW-X:hidden;
+    OVERFLOW-Y:hidden;
+    SCROLLBAR-FACE-COLOR: #BCBCBC;
+    SCROLLBAR-HIGHLIGHT-COLOR: #f5f9ff;
+    SCROLLBAR-SHADOW-COLOR: #d6d3d6;
+    SCROLLBAR-3DLIGHT-COLOR: #949494;
+    SCROLLBAR-ARROW-COLOR: #949494;
+    SCROLLBAR-TRACK-COLOR: #F7F7EE;
+    SCROLLBAR-DARKSHADOW-COLOR: #FFFFFF;
+    SCROLLBAR-BASE-COLOR: #A5BE52;
+    LIST-STYLE-TYPE: circle
+}
+.BodyHelpMenu
+{
+    BACKGROUND-COLOR: #E6E6E6;
+    MARGIN: 0px 0px 0px 0px;
+    OVERFLOW-X:hidden;
+    OVERFLOW-Y:hidden;
+    SCROLLBAR-FACE-COLOR: #BCBCBC;
+    SCROLLBAR-HIGHLIGHT-COLOR: #f5f9ff;
+    SCROLLBAR-SHADOW-COLOR: #d6d3d6;
+    SCROLLBAR-3DLIGHT-COLOR: #949494;
+    SCROLLBAR-ARROW-COLOR: #949494;
+    SCROLLBAR-TRACK-COLOR: #F7F7EE;
+    SCROLLBAR-DARKSHADOW-COLOR: #FFFFFF;
+    SCROLLBAR-BASE-COLOR: #A5BE52;
+    LIST-STYLE-TYPE: circle
+}
+.AttrBodyMain
+{
+    BACKGROUND-COLOR: #FFFFFF;
+    MARGIN: 0px 0px 0px 0px;
+    SCROLLBAR-FACE-COLOR: #d6d3ce;
+    SCROLLBAR-HIGHLIGHT-COLOR: #f5f9ff;
+    SCROLLBAR-SHADOW-COLOR: #d6d3d6;
+    SCROLLBAR-3DLIGHT-COLOR: #949494;
+    SCROLLBAR-ARROW-COLOR: #949494;
+    SCROLLBAR-TRACK-COLOR: #F7F7EE;
+    SCROLLBAR-DARKSHADOW-COLOR: #ffffff;
+    SCROLLBAR-BASE-COLOR: #EAEAEA;
+    LIST-STYLE-TYPE: circle
+}
+.PupBodyMain
+{
+    BACKGROUND-COLOR: #FFFFFF;
+    MARGIN: 0px 0px 0px 10px;
+    SCROLLBAR-FACE-COLOR: #d6d3ce;
+    SCROLLBAR-HIGHLIGHT-COLOR: #f5f9ff;
+    SCROLLBAR-SHADOW-COLOR: #d6d3d6;
+    SCROLLBAR-3DLIGHT-COLOR: #949494;
+    SCROLLBAR-ARROW-COLOR: #949494;
+    SCROLLBAR-TRACK-COLOR: #F7F7EE;
+    SCROLLBAR-DARKSHADOW-COLOR: #ffffff;
+    SCROLLBAR-BASE-COLOR: #EAEAEA;
+    LIST-STYLE-TYPE: circle
+}
+
+.MenuBodyMain
+{
+    BACKGROUND-COLOR: #FFFFF;
+    MARGIN: 15px 5px 15px 5px;
+    SCROLLBAR-FACE-COLOR: #d6d3ce;
+    SCROLLBAR-HIGHLIGHT-COLOR: #f5f9ff;
+    SCROLLBAR-SHADOW-COLOR: #d6d3d6;
+    SCROLLBAR-3DLIGHT-COLOR: #949494;
+    SCROLLBAR-ARROW-COLOR: #949494;
+    SCROLLBAR-TRACK-COLOR: #F7F7EE;
+    SCROLLBAR-DARKSHADOW-COLOR: #ffffff;
+    SCROLLBAR-BASE-COLOR: #EAEAEA;
+    LIST-STYLE-TYPE: circle
+}
+
+.HeadBodyMain
+{
+    MARGIN: 0px 0px 0px 0px;
+    SCROLLBAR-FACE-COLOR: #d6d3ce;
+    SCROLLBAR-HIGHLIGHT-COLOR: #f5f9ff;
+    SCROLLBAR-SHADOW-COLOR: #d6d3d6;
+    SCROLLBAR-3DLIGHT-COLOR: #949494;
+    SCROLLBAR-ARROW-COLOR: #949494;
+    SCROLLBAR-TRACK-COLOR: #F7F7EE;
+    SCROLLBAR-DARKSHADOW-COLOR: #ffffff;
+    SCROLLBAR-BASE-COLOR: #EAEAEA;
+    LIST-STYLE-TYPE: circle
+}
+
+.DocBodyMain
+{
+    BACKGROUND-COLOR: #FFFFFF;
+    MARGIN: 0px 0px 0px 0px;
+    OVERFLOW-X:hidden;
+    OVERFLOW-Y:hidden;
+    SCROLLBAR-FACE-COLOR: #BCBCBC;
+    SCROLLBAR-HIGHLIGHT-COLOR: #f5f9ff;
+    SCROLLBAR-SHADOW-COLOR: #d6d3d6;
+    SCROLLBAR-3DLIGHT-COLOR: #949494;
+    SCROLLBAR-ARROW-COLOR: #949494;
+    SCROLLBAR-TRACK-COLOR: #F7F7EE;
+    SCROLLBAR-DARKSHADOW-COLOR: #ffffff;
+    SCROLLBAR-BASE-COLOR: #EAEAEA;
+    LIST-STYLE-TYPE: circle
+}
+
+/**********************************************/
+.DivMenuFont
+{
+    TEXT-ALIGN: center;
+    TEXT-VALIGN: baseline;
+    FONT-SIZE: 12pt;
+    FONT-WEIGHT: BOLD;
+    COLOR: #FFFFFF;
+    BACKGROUND-COLOR: #6D9A30;
+    HEIGHT:202t
+}
+
+
+/*******************菜单功能*************************************/
+.HeadBg
+{
+   BACKGROUND-COLOR: #f1f1f1
+}
+.HeadOut
+{
+    BACKGROUND-COLOR: #f1f1f1;
+    BORDER-BOTTOM: #f1f1f1 1px solid;
+    BORDER-LEFT: #f1f1f1 1px solid;
+    BORDER-RIGHT: #f1f1f1 1px solid;
+    BORDER-TOP: #f1f1f1 1px solid;
+    COLOR: #1e65a7;
+    CURSOR: hand;
+    FONT-SIZE: 11pt
+}
+.HeadOver
+{
+    BACKGROUND-COLOR: #dae4f0;
+    BORDER-BOTTOM: #1e65a7 1px solid;
+    BORDER-LEFT: #1e65a7 1px solid;
+    BORDER-RIGHT: #1e65a7 1px solid;
+    BORDER-TOP: #1e65a7 1px solid;
+    COLOR: #1e65a7;
+    CURSOR: hand;
+    FONT-SIZE: 11pt
+}
+
+
+/*******************输入表单************************************/
+.PutdSet
+{
+    HEIGHT: 25px;
+    TEXT-ALIGN: right
+}
+.Input
+{
+    BACKGROUND-COLOR: #ffffff;
+    HEIGHT: 22px;
+    COLOR: black;
+    FONT-FAMILY: "宋体";
+    FONT-SIZE: 9pt
+}
+.LoginInput
+{
+    HEIGHT: 22px;
+    BORDER-BOTTOM: #3D3D3D 1px solid;
+    BORDER-LEFT: #3D3D3D 1px solid;
+    BORDER-RIGHT: #3D3D3D 1px solid;
+    BORDER-TOP: #3D3D3D 1px solid;
+}
+.LineInput
+{
+    BACKGROUND-COLOR: transparent;
+    BORDER-BOTTOM: #000000 1px solid;
+    BORDER-LEFT: 0px solid;
+    BORDER-RIGHT: 0px solid;
+    BORDER-TOP: 0px solid;
+    HEIGHT: 18px;
+    COLOR: black;
+    FONT-FAMILY: "宋体";
+    FONT-SIZE: 9pt
+}
+.PageStyle
+{
+    COLOR: #000000;
+    BACKGROUND-COLOR: #F7F7EE
+}
+
+/************************字体、线条样式****************************************/
+.WriteSign
+{
+    COLOR: #ff8000;
+    FONT-FAMILY: 宋体;
+    FONT-SIZE: 9pt;
+    FONT-WEIGHT: normal
+}
+.user
+{
+    COLOR: #000000;
+    FONT-FAMILY: 宋体;
+    FONT-SIZE: 9pt;
+    FONT-WEIGHT: normal
+}
+.flowNotFont
+{
+    COLOR: #A6A6A6;
+    FONT-FAMILY: 宋体;
+    FONT-SIZE: 9pt;
+    FONT-WEIGHT: normal
+}
+.titleFont
+{
+    COLOR: #000000;
+    FONT-FAMILY: 宋体;
+    FONT-SIZE: 9pt;
+    FONT-WEIGHT: normal
+}
+.AlertSign
+{
+    COLOR: #000000;
+    FONT-FAMILY: 宋体;
+    FONT-SIZE: 11pt;
+    FONT-WEIGHT: normal
+}
+.AlertSign1
+{
+    COLOR: #000000;
+    FONT-FAMILY: 宋体;
+    FONT-SIZE: 11pt;
+    FONT-WEIGHT: normal
+}
+
+.AlarmSign
+{
+    COLOR: #000000;
+    FONT-FAMILY: 楷体_GB2312;
+    FONT-SIZE: 11pt;
+    FONT-WEIGHT: normal
+}
+.LineSign
+{
+    COLOR: #EAEAEA
+}
+.HeadSign
+{
+    COLOR: #FFFFFF;
+    FONT-FAMILY: 宋体;
+    FONT-SIZE: 9pt;
+    FONT-WEIGHT: normal
+}
+
+/**********************************************************/
+
+.Window
+{
+	border-right: black 1px solid;
+	border-top: black 0px solid;
+	font-weight: normal;
+	font-size: 9pt;
+	background: none transparent scroll repeat 0% 0%;
+	border-left: black 1px solid;
+	color: #000000;
+	border-bottom: black 1px solid;
+	font-family: "宋体";
+	text-decoration: none;
+        position : relative  ;
+}
+
+
+.Window_Title
+{
+	background-position: 0% 0%;
+	font-size: 9pt;
+	background-attachment: fixed;
+	width: 100%;
+	color: #000000;
+	background-repeat: repeat;
+	font-family: "宋体";
+	height: 20px;
+	text-decoration: none;
+}
+
+
+.Window_Menubar
+{
+	font-weight: normal;
+	font-size: 9pt;
+	background: #DFDFDF;
+	width: 100%;
+	color: #ffffff;
+	font-family: "宋体";
+	height: 24px;
+	text-decoration: none;
+}
+.Window_Menubar1
+{
+	font-weight: normal;
+	font-size: 9pt;
+	background: #DFDFDF;
+	width: 100%;
+	color: #000000;
+	font-family: "宋体";
+	height: 24px;
+	text-decoration: none;
+}
+
+
+.Window_Body
+{
+	font-weight: normal;
+	font-size: 9pt;
+	background: #F7F7EE;
+	color: #000000;
+	font-family: "宋体";
+	text-decoration: none;
+
+
+    SCROLLBAR-FACE-COLOR: #DFDFDF;
+    SCROLLBAR-HIGHLIGHT-COLOR: #f5f9ff;
+    SCROLLBAR-SHADOW-COLOR: #949494;
+    SCROLLBAR-3DLIGHT-COLOR: #949494;
+    SCROLLBAR-ARROW-COLOR: #949494;
+    SCROLLBAR-TRACK-COLOR: #F7F7EE;
+    SCROLLBAR-DARKSHADOW-COLOR: #FFFFFF;
+    SCROLLBAR-BASE-COLOR: #A5BE52;
+
+
+}
+
+.Window_Footer
+{
+	font-size: 9pt;
+	background: #a5be52;
+	color: #ffffff;
+	font-family: "宋体";
+	height: 16px;
+	text-decoration: none;
+}
+
+.Window_Label
+{
+	background: #cccccc;
+	margin: 0px;
+	width: 100%;
+	height: 24px;
+	padding-top: 0px;
+	padding-right: 0px;
+	padding-left: 0px;
+	padding-bottom: 0px;
+	font-weight: normal;
+	font-family: "宋体";
+	font-size: 9pt;
+	color: black;
+	border-top-style: none;
+	border-right-style: none;
+	border-left-style: none;
+	border-bottom-style: none;
+	text-decoration: none;
+}
+
+.Window_TableBg
+{
+	bordercolor: #FFFFFF;
+}
+
+.Window_Table
+{
+	border: black 10px solid
+}
+
+.Window_TbT
+{
+	HEIGHT: 24px;
+	BACKGROUND-COLOR: #EAEAEA;
+        border-style: solid;
+        border-width: 1px;
+	TEXT-ALIGN: center
+}
+.Window_MainTbT
+{
+	HEIGHT: 24px;
+	BACKGROUND-COLOR: #EAEAEA;
+	TEXT-ALIGN: right
+}
+.Window_TbB
+{
+	HEIGHT: 20px;
+        BORDER-BOTTOM: #DFDFDF 1px solid;
+	BACKGROUND-COLOR: #F7F7EE;
+        border-style: solid;
+        border-width: 1px;
+        TEXT-ALIGN: center
+}
+.Main_page
+{
+	HEIGHT: 20px;
+        BORDER-BOTTOM: #EAEAEA 1px solid;
+	BACKGROUND-COLOR: #F7F7EE
+}
+.Window_TbE
+{
+	HEIGHT: 20px;
+	BACKGROUND-COLOR: #D3D3D3;
+        TEXT-ALIGN: center
+}
+.Window_TbS
+{
+	HEIGHT: 20px;
+        BORDER-BOTTOM: #BFDBF7 1px solid;
+	BACKGROUND-COLOR: #FFFFCC;
+        border-style: solid;
+        border-width: 1px;
+        TEXT-ALIGN: center
+}
+.Window_TbSE
+{
+	HEIGHT: 20px;
+        BORDER-BOTTOM: #BFDBF7 1px solid;
+	BACKGROUND-COLOR: #D3D3D3;
+        border-style: solid;
+        border-width: 1px;
+        TEXT-ALIGN: center
+}
+.Menu
+{
+	font-size: 9pt;
+	font-family: "宋体";
+	background-color: transparent;
+	text-decoration: none;
+}
+.Menud
+{
+	border-right: #C6C6C6 1px solid;
+	border-top: #C6C6C6 1px solid;
+	font-size: 9pt;
+	vertical-align: baseline;
+	border-left: #C6C6C6 1px solid;
+	cursor: hand;
+	color: black;
+	border-bottom: #C6C6C6 1px solid;
+	background-color: #C6C6C6;
+	text-align: center;
+}
+
+.Menut
+{
+	font-size: 9pt;
+	background-color: transparent;
+}
+
+.Menuu
+{
+	border-right: #BCBCBC 1px solid;
+	border-top: #BCBCBC 1px solid;
+	font-size: 9pt;
+	vertical-align: baseline;
+	border-left: #BCBCBC 1px solid;
+	cursor: hand;
+	color: black;
+	border-bottom: #BCBCBC 1px solid;
+	background-color: #BCBCBC;
+	text-align: center;
+}
+
+
+
+/************************************/
+
+.Hr
+{
+    BORDER-BOTTOM: black 1px solid;
+    BORDER-LEFT: medium none;
+    BORDER-RIGHT: medium none;
+    BORDER-TOP: black 1px solid
+}
+
+.MenuTbl
+{
+	background-color: #F7F7EE;
+}
+.MenuTd
+{
+	background-color: #C6C6C6;
+}
+.Pnlu
+{
+	border-right: #929292 1px solid;
+	border-top: #ffffff 1px solid;
+	font-size: 9pt;
+	border-left: #ffffff 1px solid;
+	cursor: hand;
+	border-bottom: #929292 1px solid;
+	background-color: #EEEEE6;
+}
+.Pnld
+{
+	border-right: #DFDFDF 0px solid;
+	border-top: #DFDFDF 0px solid;
+	font-size: 9pt;
+	border-left: #DFDFDF 0px solid;
+	cursor: hand;
+	border-bottom: #DFDFDF 0px solid;
+	background-color: transparent;
+}
+.Grpu
+{
+	border-right: #A5A5A5 1px solid;
+	border-top: #A5A5A5 1px solid;
+	font-size: 9pt;
+	border-left: #A5A5A5 1px solid;
+	cursor: hand;
+	color: black;
+	border-bottom: #A5A5A5 1px solid;
+	background-color: #A5A5A5;
+}
+.Grpd
+{
+	border-right: #DFDFDF 0px solid;
+	border-top: #DFDFDF 0px solid;
+	font-size: 9pt;
+	border-left: #DFDFDF 0px solid;
+	cursor: hand;
+	color: black;
+	border-bottom: #DFDFDF 0px solid;
+	background-color: #DFDFDF;
+}
+.CursorHand { cursor: hand; }
+input.text{
+ border:1px solid #4f6480;font-size:12px;font-family: Verdana, Arial, Helvetica, sans-serif;height:20px
+}
+/*------------单位树的样式-------------*/
+.xtree
+{
+	behavior:url(../Zrsysmanage/xtree/xtree.htc);
+	padding:0px;
+}
+.TreeNode
+{
+	height:20px;
+}
+.TreeNode input
+{
+	margin:0;
+	padding:0;
+	position:relative;
+	top:-2px;
+}
+.TreeNode img
+{
+	cursor:pointer;
+}
+.TreeNode span
+{
+	font-family:Verdana Arial 宋体;
+	font-size:12px;
+	height:17px;
+	margin-left:3px;
+	border:0px solid #E0E0E0;
+
+	cursor:default
+}
+.TreeNode span a
+{
+	color:#000000;
+	text-decoration:none
+}
+span.MouseOver
+{
+	background-color:#E6E6E6;
+	border:1px solid #888888;
+}
+span.HighLight
+{
+	background-color:#E6E6E6;
+	border:1px solid #888888;
+}
+span.loading
+{
+	font-family:Verdana Arial 宋体;
+	font-size:12px;
+	height:17px;
+	margin-left:3px;
+	color:#888888;
+}
+.container
+{
+	padding-left:15;
+	height:22;
+}
+/*-----------单位树的样式结束------------*/

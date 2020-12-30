@@ -1,0 +1,392 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="zr.zrpower.dao.mapper.StatisticsConfigMapper">
+  <!-- 增加统计计算字段配置表数据实体类信息 -->
+  <insert id="addANALYSE_STATISTICS_CFIELD" parameterType="java.util.Map">
+	Insert Into ANALYSE_STATISTICS_CFIELD
+	<trim prefix="(" suffix=")" suffixOverrides=",">
+		<if test="ID != null">
+			ID,
+		</if>
+		<if test="FID != null">
+			FID,
+		</if>
+		<if test="SFIELDNAME != null">
+			SFIELDNAME,
+		</if>
+		<if test="SFIELDSHOWNAME != null">
+			SFIELDSHOWNAME,
+		</if>
+		<if test="EXPRESSIONS != null">
+			EXPRESSIONS,
+		</if>
+		<if test="DISTINCTION != null">
+			DISTINCTION,
+		</if>
+		<if test="ISSHOW != null">
+			ISSHOW,
+		</if>
+		<if test="SAVEFIELD != null">
+			SAVEFIELD,
+		</if>
+		<if test="EXPRESSIONSWHERE != null">
+			EXPRESSIONSWHERE,
+		</if>
+		<if test="ADDSIGN != null">
+			ADDSIGN,
+		</if>
+		<if test="RADIXPOINT != null">
+			RADIXPOINT,
+		</if>
+		<if test="SHOWCODE != null">
+			SHOWCODE,
+		</if>
+		<if test="TABLEID != null">
+			TABLEID,
+		</if>
+		<if test="CPLANARFIELD != null">
+			CPLANARFIELD,
+		</if>
+		<if test="CJOIN != null">
+			CJOIN,
+		</if>
+		<if test="CPLANARESPECIAL != null">
+			CPLANARESPECIAL,
+		</if>
+	</trim>
+	<trim prefix="values (" suffix=")" suffixOverrides=",">
+		<if test="ID != null">
+			#{ID},
+		</if>
+		<if test="FID != null">
+			#{FID},
+		</if>
+		<if test="SFIELDNAME != null">
+			#{SFIELDNAME},
+		</if>
+		<if test="SFIELDSHOWNAME != null">
+			#{SFIELDSHOWNAME},
+		</if>
+		<if test="EXPRESSIONS != null">
+			#{EXPRESSIONS},
+		</if>
+		<if test="DISTINCTION != null">
+			#{DISTINCTION},
+		</if>
+		<if test="ISSHOW != null">
+			#{ISSHOW},
+		</if>
+		<if test="SAVEFIELD != null">
+			#{SAVEFIELD},
+		</if>
+		<if test="EXPRESSIONSWHERE != null">
+			#{EXPRESSIONSWHERE},
+		</if>
+		<if test="ADDSIGN != null">
+			#{ADDSIGN},
+		</if>
+		<if test="RADIXPOINT != null">
+			#{RADIXPOINT},
+		</if>
+		<if test="SHOWCODE != null">
+			#{SHOWCODE},
+		</if>
+		<if test="TABLEID != null">
+			#{TABLEID},
+		</if>
+		<if test="CPLANARFIELD != null">
+			#{CPLANARFIELD},
+		</if>
+		<if test="CJOIN != null">
+			#{CJOIN},
+		</if>
+		<if test="CPLANARESPECIAL != null">
+			#{CPLANARESPECIAL},
+		</if>
+	</trim>
+  </insert>
+
+  <!-- 编辑统计计算字段配置表数据实体类信息 -->
+  <update id="editANALYSE_STATISTICS_CFIELD" parameterType="java.util.Map">
+    update ANALYSE_STATISTICS_CFIELD
+    <set>
+		<if test="FID != null">
+			FID = #{FID},
+		</if>
+		<if test="SFIELDNAME != null">
+			SFIELDNAME = #{SFIELDNAME},
+		</if>
+		<if test="SFIELDSHOWNAME != null">
+			SFIELDSHOWNAME = #{SFIELDSHOWNAME},
+		</if>
+		<if test="EXPRESSIONS != null">
+			EXPRESSIONS = #{EXPRESSIONS},
+		</if>
+		<if test="DISTINCTION != null">
+			DISTINCTION = #{DISTINCTION},
+		</if>
+		<if test="ISSHOW != null">
+			ISSHOW = #{ISSHOW},
+		</if>
+		<if test="SAVEFIELD != null">
+			SAVEFIELD = #{SAVEFIELD},
+		</if>
+		<if test="EXPRESSIONSWHERE != null">
+			EXPRESSIONSWHERE = #{EXPRESSIONSWHERE},
+		</if>
+		<if test="ADDSIGN != null">
+			ADDSIGN = #{ADDSIGN},
+		</if>
+		<if test="RADIXPOINT != null">
+			RADIXPOINT = #{RADIXPOINT},
+		</if>
+		<if test="SHOWCODE != null">
+			SHOWCODE = #{SHOWCODE},
+		</if>
+		<if test="TABLEID != null">
+			TABLEID = #{TABLEID},
+		</if>
+		<if test="CPLANARFIELD != null">
+			CPLANARFIELD = #{CPLANARFIELD},
+		</if>
+		<if test="CJOIN != null">
+			CJOIN = #{CJOIN},
+		</if>
+		<if test="CPLANARESPECIAL != null">
+			CPLANARESPECIAL = #{CPLANARESPECIAL},
+		</if>
+    </set>
+    Where ID = #{ID}
+  </update>
+
+  <!-- 增加统计条件表数据实体类信息 -->
+  <insert id="addANALYSE_STATISTICS_WHERE" parameterType="java.util.Map">
+	Insert Into ANALYSE_STATISTICS_WHERE
+	<trim prefix="(" suffix=")" suffixOverrides=",">
+		<if test="ID != null">
+			ID,
+		</if>
+		<if test="FID != null">
+			FID,
+		</if>
+		<if test="SLEFT != null">
+			SLEFT,
+		</if>
+		<if test="FIELD != null">
+			FIELD,
+		</if>
+		<if test="SYMBOL != null">
+			SYMBOL,
+		</if>
+		<if test="WHEREVALUE != null">
+			WHEREVALUE,
+		</if>
+		<if test="SRIGHT != null">
+			SRIGHT,
+		</if>
+		<if test="LOGIC != null">
+			LOGIC,
+		</if>
+	</trim>
+	<trim prefix="values (" suffix=")" suffixOverrides=",">
+		<if test="ID != null">
+			#{ID},
+		</if>
+		<if test="FID != null">
+			#{FID},
+		</if>
+		<if test="SLEFT != null">
+			#{SLEFT},
+		</if>
+		<if test="FIELD != null">
+			#{FIELD},
+		</if>
+		<if test="SYMBOL != null">
+			#{SYMBOL},
+		</if>
+		<if test="WHEREVALUE != null">
+			#{WHEREVALUE},
+		</if>
+		<if test="SRIGHT != null">
+			#{SRIGHT},
+		</if>
+		<if test="LOGIC != null">
+			#{LOGIC},
+		</if>
+	</trim>
+  </insert>
+
+  <!-- 编辑统计条件表数据实体类信息 -->
+  <update id="editANALYSE_STATISTICS_WHERE" parameterType="java.util.Map">
+    update ANALYSE_STATISTICS_WHERE
+    <set>
+		<if test="FID != null">
+			FID = #{FID},
+		</if>
+		<if test="SLEFT != null">
+			SLEFT = #{SLEFT},
+		</if>
+		<if test="FIELD != null">
+			FIELD = #{FIELD},
+		</if>
+		<if test="SYMBOL != null">
+			SYMBOL = #{SYMBOL},
+		</if>
+		<if test="WHEREVALUE != null">
+			WHEREVALUE = #{WHEREVALUE},
+		</if>
+		<if test="SRIGHT != null">
+			SRIGHT = #{SRIGHT},
+		</if>
+		<if test="LOGIC != null">
+			LOGIC = #{LOGIC},
+		</if>
+    </set>
+    Where ID = #{ID}
+  </update>
+
+  <!-- 增加统计计算字段关联配置表数据实体类信息 -->
+  <insert id="addANALYSE_STATISTICS_CCONNECTION" parameterType="java.util.Map">
+	Insert Into ANALYSE_STATISTICS_CCONNECTION
+	<trim prefix="(" suffix=")" suffixOverrides=",">
+		<if test="ID != null">
+			ID,
+		</if>
+		<if test="FID != null">
+			FID,
+		</if>
+		<if test="MFIELD != null">
+			MFIELD,
+		</if>
+		<if test="CFIELD != null">
+			CFIELD,
+		</if>
+		<if test="JOINTYPE != null">
+			JOINTYPE,
+		</if>
+	</trim>
+	<trim prefix="values (" suffix=")" suffixOverrides=",">
+		<if test="ID != null">
+			#{ID},
+		</if>
+		<if test="FID != null">
+			#{FID},
+		</if>
+		<if test="MFIELD != null">
+			#{MFIELD},
+		</if>
+		<if test="CFIELD != null">
+			#{CFIELD},
+		</if>
+		<if test="JOINTYPE != null">
+			#{JOINTYPE},
+		</if>
+	</trim>
+  </insert>
+
+  <!-- 编辑统计计算字段关联配置表数据实体类信息 -->
+  <update id="editANALYSE_STATISTICS_CCONNECTION" parameterType="java.util.Map">
+    update ANALYSE_STATISTICS_CFIELD
+    <set>
+		<if test="FID != null">
+			FID = #{FID},
+		</if>
+		<if test="MFIELD != null">
+			MFIELD = #{MFIELD},
+		</if>
+		<if test="CFIELD != null">
+			CFIELD = #{CFIELD},
+		</if>
+		<if test="JOINTYPE != null">
+			JOINTYPE = #{JOINTYPE},
+		</if>
+    </set>
+    Where ID = #{ID}
+  </update>
+
+  <!-- 增加统计条件表数据实体类信息 -->
+  <insert id="addANALYSE_STATISTICS_CWHERE" parameterType="java.util.Map">
+	Insert Into ANALYSE_STATISTICS_CWHERE
+	<trim prefix="(" suffix=")" suffixOverrides=",">
+		<if test="ID != null">
+			ID,
+		</if>
+		<if test="FID != null">
+			FID,
+		</if>
+		<if test="SLEFT != null">
+			SLEFT,
+		</if>
+		<if test="FIELD != null">
+			FIELD,
+		</if>
+		<if test="SYMBOL != null">
+			SYMBOL,
+		</if>
+		<if test="WHEREVALUE != null">
+			WHEREVALUE,
+		</if>
+		<if test="SRIGHT != null">
+			SRIGHT,
+		</if>
+		<if test="LOGIC != null">
+			LOGIC,
+		</if>
+	</trim>
+	<trim prefix="values (" suffix=")" suffixOverrides=",">
+		<if test="ID != null">
+			#{ID},
+		</if>
+		<if test="FID != null">
+			#{FID},
+		</if>
+		<if test="SLEFT != null">
+			#{SLEFT},
+		</if>
+		<if test="FIELD != null">
+			#{FIELD},
+		</if>
+		<if test="SYMBOL != null">
+			#{SYMBOL},
+		</if>
+		<if test="WHEREVALUE != null">
+			#{WHEREVALUE},
+		</if>
+		<if test="SRIGHT != null">
+			#{SRIGHT},
+		</if>
+		<if test="LOGIC != null">
+			#{LOGIC},
+		</if>
+	</trim>
+  </insert>
+
+  <!-- 编辑统计条件表数据实体类信息 -->
+  <update id="editANALYSE_STATISTICS_CWHERE" parameterType="java.util.Map">
+    update ANALYSE_STATISTICS_CWHERE
+    <set>
+		<if test="FID != null">
+			FID = #{FID},
+		</if>
+		<if test="SLEFT != null">
+			SLEFT = #{SLEFT},
+		</if>
+		<if test="FIELD != null">
+			FIELD = #{FIELD},
+		</if>
+		<if test="SYMBOL != null">
+			SYMBOL = #{SYMBOL},
+		</if>
+		<if test="WHEREVALUE != null">
+			WHEREVALUE = #{WHEREVALUE},
+		</if>
+		<if test="SRIGHT != null">
+			SRIGHT = #{SRIGHT},
+		</if>
+		<if test="LOGIC != null">
+			LOGIC = #{LOGIC},
+		</if>
+    </set>
+    Where ID = #{ID}
+  </update>
+</mapper>

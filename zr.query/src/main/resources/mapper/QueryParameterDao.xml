@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="zr.zrpower.dao.QueryParameterDao">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="zr.zrpower.domain.QueryParameter" id="queryParameterMap">
+        <result property="userid" column="USERID"/>
+        <result property="queryid" column="QUERYID"/>
+        <result property="upHeight" column="UP_HEIGHT"/>
+        <result property="downHeight" column="DOWN_HEIGHT"/>
+    </resultMap>
+    
+ <sql id="Base_Column_List" >
+`USERID`, `QUERYID`, `UP_HEIGHT`, `DOWN_HEIGHT`
+  </sql>
+  
+	<select id="queryObject" resultType="zr.zrpower.domain.QueryParameter">
+		select
+		 <include refid="Base_Column_List" />
+		 from query_parameter where USERID = #{value}
+	</select>
+
+	<select id="queryList" resultType="zr.zrpower.domain.QueryParameter">
+		select 
+		<include refid="Base_Column_List" />
+		from query_parameter
+        <where>
+            <if test="userid != null and userid != ''">
+                and `userid` = #{userid}
+            </if>
+            <if test="queryid != null and queryid != ''">
+                and `queryid` = #{queryid}
+            </if>
+        </where>
+        <choose>
+            <when test="sidx != null and sidx.trim() != ''">
+                order by ${sidx} ${order}
+            </when>
+			<otherwise>
+                order by USERID desc
+			</otherwise>
+        </choose>
+		<if test="offset != null and limit != null">
+			limit #{offset}, #{limit}
+		</if>
+	</select>
+	
+ 	<select id="queryTotal" resultType="int">
+		select count(*) from query_parameter 
+	</select>
+	 
+	<insert id="save" parameterType="zr.zrpower.domain.QueryParameter">
+		insert into query_parameter
+		(
+			`USERID`, 
+			`QUERYID`, 
+			`UP_HEIGHT`, 
+			`DOWN_HEIGHT`
+		)
+		values
+		(
+			#{userid}, 
+			#{queryid}, 
+			#{upHeight}, 
+			#{downHeight}
+		)
+	</insert>
+	 
+	<update id="update" parameterType="zr.zrpower.domain.QueryParameter">
+		update query_parameter 
+		<set>
+			<if test="queryid != null">`QUERYID` = #{queryid}, </if>
+			<if test="upHeight != null">`UP_HEIGHT` = #{upHeight}, </if>
+			<if test="downHeight != null">`DOWN_HEIGHT` = #{downHeight}</if>
+		</set>
+		where USERID = #{userid}
+	</update>
+	
+	<delete id="delete">
+		delete from query_parameter where USERID = #{value}
+	</delete>
+	
+	<delete id="deleteBatch">
+		delete from query_parameter where USERID in 
+		<foreach item="userid" collection="array" open="(" separator="," close=")">
+			#{userid}
+		</foreach>
+	</delete>
+
+</mapper>

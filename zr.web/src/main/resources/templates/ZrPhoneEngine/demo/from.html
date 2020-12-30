@@ -1,0 +1,176 @@
+<!doctype html>
+<html class="no-js">
+<head>
+  <meta charset="utf-8">
+  <title>南方智软科技</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0,user-scalable=no,minimal-ui">
+  <meta name="apple-touch-fullscreen" content="yes">
+  <meta name="x5-fullscreen" content="true">
+  <!-- Set render engine for 360 browser -->
+  <meta name="renderer" content="webkit">
+  <!-- No Baidu Siteapp-->
+  <meta http-equiv="Cache-Control" content="no-siteapp"/>
+  <!-- Add to homescreen for Chrome on Android -->
+  <meta name="mobile-web-app-capable" content="yes">
+   <!-- Add to homescreen for Safari on iOS -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-title" content="南方智软"/>
+  <!-- Tile icon for Win8 (144x144 + tile color) -->
+  <meta name="msapplication-TileImage" content="/static/assets/i/app-icon72x72@2x.png">
+  <meta name="msapplication-TileColor" content="#0e90d2">
+  <meta name="full-screen" content="yes">
+  <meta name="browsermode" content="application">
+  <meta name="HandheldFriendly" content="true">
+  <link rel="icon" type="image/png" href="/static/assets/i/favicon.png">
+  <link rel="icon" sizes="192x192" href="/static/assets/i/app-icon72x72@2x.png">
+  <link rel="apple-touch-icon-precomposed" href="/static/assets/i/app-icon72x72@2x.png">
+  
+  <link rel="stylesheet" href="/static/assets/font_icon/css/font-awesome.css">
+  <link rel="stylesheet" href="/static/assets/css/amazeui.min.css">
+  <link rel="stylesheet" href="/static/assets/css/from.css">
+  <link rel="stylesheet" href="/static/assets/css/amazeui.datetimepicker.css"/>
+  
+  <script type="text/javascript" src="/static/assets/js/jquery.min.js"></script>
+  <script type="text/javascript" src="/static/assets/js/amazeui.min.js"></script>
+  <script type="text/javascript" src="/static/assets/js/amazeui.datetimepicker.min.js"></script>
+  <script type="text/javascript" src="/static/assets/js/locales/amazeui.datetimepicker.zh-CN.js"></script>
+</head>
+<body>
+  <!-- header  start -->
+  <header data-am-widget="header"
+          class="am-header am-header-default am-header-fixed">
+      <div class="am-header-left am-header-nav">
+          <a href="javascript:history.go(-1);" class="">
+                <i class="am-header-icon am-icon-chevron-left"></i>
+          </a>
+      </div>
+      <h1 class="am-header-title">
+          <a href="#title-link" class="">
+            From展示
+          </a>
+      </h1>
+      <div class="am-header-right am-header-nav">
+          
+      </div>
+  </header>
+  <!-- header  end -->
+  
+  <!-- main  start -->
+  <div class="main-contor">
+  <form class="am-form am-form-horizontal">
+  <div class="am-g">
+  <div class="am-u-sm-12">
+
+  <ul data-am-widget="gallery" class="am-gallery am-gallery-default am-no-layout" data-am-gallery="{ pureview: true }" >
+      <li>
+  
+      <div class="am-form-group">
+        <label for="doc-vld-input1" class="am-u-sm-5 am-form-label">文本输入</label>
+        <div class="am-u-sm-7">
+        <input type="text" id="doc-vld-input1" class="am-form-field" placeholder="文本输入（必填）" required/>
+        </div>
+      </div>
+      <hr data-am-widget="divider" style="" class="am-divider am-divider-default" />
+      
+      <div class="am-form-group">
+        <label for="doc-vld-input2">文本输入：</label>
+        <input type="text" id="doc-vld-input2" class="am-form-field" placeholder="文本输入（非填）" />
+      </div>
+      <hr data-am-widget="divider" style="" class="am-divider am-divider-default" />
+      
+      <div class="am-form-group">
+        <label for="doc-vld-input6">日期控件：</label>
+        <input type="text" class="am-form-field" placeholder="日历组件" data-am-datepicker readonly/>
+      </div>
+      <hr data-am-widget="divider" style="" class="am-divider am-divider-default" />
+      
+      <div class="am-form-group">
+        <label for="doc-vld-input7">日期时间：</label>
+        <input type="text" class="am-form-field" id='datetime' placeholder="时间组件" readonly>
+        <script type="text/javascript">
+                $(function() {
+                   $('#datetime').datetimepicker({
+                	  format: 'yyyy-mm-dd hh:ii:ss',
+                      autoclose:true,
+                      language:'zh-CN'
+                   });
+                });
+         </script>
+      </div>
+      <hr data-am-widget="divider" style="" class="am-divider am-divider-default" />
+      
+      <div class="am-form-group">
+        <label>下拉单选：</label>
+        <select data-am-selected >
+         <option value="a">Apple</option>
+         <option value="b" selected>Banana</option>
+         <option value="o">Orange</option>
+         <option value="m">Mango</option>
+         <option value="d" disabled>禁用鸟</option>
+      </select>
+      </div>
+      <hr data-am-widget="divider" style="" class="am-divider am-divider-default" />
+      
+      <div class="am-form-group">
+        <label for="doc-vld-input4">下拉多选：</label>
+        <select multiple data-am-selected id="doc-vld-input4">
+          <option value="a">Apple</option>
+          <option value="b">Banana</option>
+          <option value="o">Orange</option>
+          <option value="m">Mango</option>
+        </select>
+      </div>
+      <hr data-am-widget="divider" style="" class="am-divider am-divider-default" />
+      
+      <div class="am-form-group">
+        <label for="doc-vld-input5">下拉分组多选：</label>
+        <select multiple data-am-selected id="doc-vld-input5">
+          <optgroup label="水果">
+          <option value="a">Apple</option>
+          <option value="b">Banana</option>
+          <option value="o">Orange</option>
+          <option value="m">Mango</option>
+          </optgroup>
+          <optgroup label="装备">
+          <option value="phone">iPhone</option>
+          <option value="im">iMac</option>
+          <option value="mbp">Macbook Pro</option>
+          </optgroup>
+       </select>
+      </div>
+      <hr data-am-widget="divider" style="" class="am-divider am-divider-default" />
+      
+      <div class="am-form-group">
+        <label for="doc-vld-input2">多选框(复选框)：</label>
+        <label class="am-checkbox"><input type="checkbox" value="" data-am-ucheck> 没有选中</label>
+        <label class="am-checkbox"><input type="checkbox" checked="checked" value="" data-am-ucheck checked>已选中</label>
+        <label class="am-checkbox"><input type="checkbox" value="" data-am-ucheck disabled>禁用/未选中 </label>
+        <label class="am-checkbox"><input type="checkbox" checked="checked" value="" data-am-ucheck disabled checked>禁用/已选中</label>
+      </div>
+      <hr data-am-widget="divider" style="" class="am-divider am-divider-default" />
+      
+      <div class="am-form-group">
+        <label for="doc-vld-input2">单选框：</label>
+        <label class="am-radio"><input type="radio" name="radio1" value="" data-am-ucheck>未选中</label>
+        <label class="am-radio"><input type="radio" name="radio1" value="" data-am-ucheck checked>已选中</label>
+        <label class="am-radio"><input type="radio" name="radio2" value="" data-am-ucheck disabled>禁用/未选中</label>
+        <label class="am-radio"><input type="radio" name="radio2" value="" data-am-ucheck checked disabled>禁用/已选中</label>
+      </div>
+      <hr data-am-widget="divider" style="" class="am-divider am-divider-default" />
+  </li>
+  </ul>
+  </div>
+  </div>
+  </form>
+  </div>
+  <!-- main end -->
+
+<!--在这里编写你的代码-->
+<script type="text/javascript">
+</script>
+</body>
+</html>

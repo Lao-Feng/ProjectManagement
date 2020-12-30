@@ -1,0 +1,71 @@
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>选择人员</title>
+<link REL="stylesheet" type="text/css" href="/static/Zrsysmanage/css/html5.css">
+<SCRIPT type="text/javascript" src="/static/Zrsysmanage/script/Public.js"></SCRIPT>
+<script type="text/javascript">
+//作用：全选
+function selectall(){
+  var setcheck,length;
+  length = document.recordfrm.elements.length ;
+  if (document.recordfrm.setall.value == 0){
+    document.recordfrm.setall.value = 1;
+    setcheck = true;
+  }else{
+    document.recordfrm.setall.value = 0;
+    setcheck = false;
+  }
+  for (var i=0; i<length; i++) {
+    if (document.recordfrm.elements[i].name.indexOf("record") != -1)
+      document.recordfrm.elements[i].checked = setcheck;
+  }
+  return;
+}
+
+//作用：获取记录
+function GetUserNo(){
+  var length = document.recordfrm.elements.length;
+  var recordindex= "";
+  var selectedstring= "";
+  var strValue= "";
+  for (var i=0; i<length; i++){
+    recordindex  = document.recordfrm.elements[i].name.indexOf("record");
+    if (recordindex  != -1) {
+      if (document.recordfrm.elements[i].checked){
+        strValue = document.recordfrm.elements[i].value;
+        intValue = strValue.length;
+        if (selectedstring == ""){
+          selectedstring = strValue;
+        }else{
+          selectedstring = selectedstring  + "," + strValue;
+        }
+      }
+    }
+  }
+
+  if (selectedstring != "") {
+      return selectedstring;
+  }else {
+      //alert("请选择要提交操作的用户!");
+  }
+  return;
+}
+
+function selectOnclick(id)
+{
+    if (document.getElementById(id).checked==true)
+    {document.getElementById(id).checked='';}
+    else
+    {document.getElementById(id).checked='checked';}
+}
+</script>
+</head>
+<BODY class="BodyMain">
+<FORM method="post" name="recordfrm" action="">
+<input type="hidden" name="setall" value="0">
+
+<TABLE  border="0" width="200px" cellpadding=0 cellspacing=0 th:utext="${UserList}">
+  
+</TABLE>
+</form>
+</body>
+</html>

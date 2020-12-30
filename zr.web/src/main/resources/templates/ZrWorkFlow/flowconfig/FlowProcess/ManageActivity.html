@@ -1,0 +1,663 @@
+<HTML>
+<HEAD>
+<TITLE></TITLE>
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="/static/vue/element-ui/lib/theme-chalk/index.css" >
+<link rel="stylesheet" type="text/css" href="/static/vue/element-ui/lib/theme-chalk/html.css" >
+<script type="text/javascript" src="/static/vue/jquery-1_15.9.1.min.js"></script>
+<script type="text/javascript" src="/static/vue/vue.min.js" ></script>
+<script type="text/javascript" src="/static/vue/element-ui/lib/index.js" type="text/javascript"></script>
+<SCRIPT type='text/javascript' src="/static/ZrWorkFlow/js/Workflow.js"></SCRIPT>
+<SCRIPT type='text/javascript' src="/static/vue/script/Public.js"></SCRIPT>
+<SCRIPT type='text/javascript' src="/static/ZrWorkFlow/js/DealListVue.js"></SCRIPT>
+<script type="text/javascript" src="/static/vue/ZRutils.js"></script>
+<script type="text/javascript" src="/static/vue/layer/layer.js"></script>
+<style type="text/css">
+.el-table__body, .el-table__footer, .el-table__header {
+    font-size: 12px;
+}
+.el-table td{
+    padding: 5px 0;
+}
+</style>
+<SCRIPT type="text/javascript" th:inline="javascript">
+var ctrlAbleFieldInfo="";
+function GetctrlAbleFieldInfo(FID,AID){
+   	var _resultStr="";
+   	this.getString = function(){
+   		//Ajax请求数据信息
+	    $.ajax({
+	        async: false,
+	        type: "GET",
+	        url:'/flowMaActBean/getCtrlAbleFieldByFID',
+	        contentType: "application/json",
+	        data:{"FID": FID, "AID": AID},
+	        dataType: "json",
+	        success: function(result) {
+	        	_resultStr = JSON.stringify(result);
+	        },
+	        error: function(exception) {
+	        	console.log(exception)
+	        }
+	    });
+       	return _resultStr;
+    }
+}
+
+function ShowModal(){
+	var url = "/flow/openflowcfg?Act=CtlAbleFieldDValue&ID=txtdefaultvalue&name=txtdefaultvalue&strResult=";
+	$.post(url, {}, function(str){
+		  var index = layer.open({
+		    type: 1,
+		    title: "默认值设置",
+	        area: ['800px', '450px'],
+	        fix: false, //不固定
+	        maxmin: false,//$("input[name='txtdefaultvalue']").val()
+	        content: str
+		  });
+	});
+}
+
+function UpdateCtlFieldGrid(){
+   if(collRow){
+	   collRow.NAME6 = $zrthis.form.txtdefaultvalue;
+    }
+}
+//可控字段
+function fillCtlFieldInfoStr(){
+	var rows = $zrthis.form.fiellist3_list;
+    var strResult="";
+    for(var i=0;i<rows.length;i++){
+    	var NAME2 = rows[i].NAME2 == true ? '是':'否';
+    	var NAME3 = rows[i].NAME3 == true ? '是':'否';
+    	var NAME4 = rows[i].NAME4 == true ? '是':'否';
+    	var NAME5 = rows[i].NAME5 == true ? '是':'否';
+         strResult += rows[i].NAME7+"#"+NAME2+"#"+NAME3+"#"
+         			 +NAME4+"#"+NAME5+"#"+rows[i].NAME6+"@";
+   }
+    $zrthis.form.CtlFieldInfoStr = strResult;
+}
+
+
+
+//超时属性  
+function fillgridOverTimeFieldInfoStr(){
+  var strResult="",strTemp="";
+  //异常处理ID#持续时间(小时)#限制名称#执行频率(小时)&
+  var rows = $zrthis.form.cs_list;
+  for(var i=0;i<rows.length;i++){
+        if (rows[i].NAME1 != null){
+            strResult+="01#"+rows[i].NAME1+"#"+rows[i].NAME2+"#"+rows[i].NAME3+"#";
+            strTemp=rows[i].NAME4;
+            if(trim(strTemp).length==0){strTemp="NULL";}
+            strResult+=strTemp+"@";
+        }
+  }
+  $zrthis.form.OverTimeFieldInfo=strResult;
+}
+
+
+function openDoc(){
+	var DocID = [[${DocID}]];
+	var IDDis = [[${IDDis}]];
+    var url = "/flow/openflowcfg?Act=opendoc&type=1&ID="+DocID+"&COLL_AID="+IDDis;
+	$.post(url, {}, function(str){
+		  var index = parent.layer.open({
+		    type: 1,
+		    title: "查看模板",
+	        area: ['1000px', '500px'],
+	        fix: false, 
+	        maxmin: false,
+	        content: str
+		  });
+	});
+}
+</SCRIPT>
+</HEAD>
+<body style="margin: 0px; background:white;">
+<div id="mangactive"  v-loading="htmlLoading"  class="container" style="padding-top: 0px;">
+  <el-form :model="form" ref="form" :rules="rules" style="margin-bottom: 0px;">
+	   <el-tabs v-model="activeName">
+	      <!-- 基本属性 -->
+          <el-tab-pane name="1">
+              <span slot="label"><i class="el-icon-monitor"></i> 基本属性</span>
+              <div>
+                  <el-row>
+                    <el-col :span="12">
+                        <el-form-item label="活动ID：" prop="IDDis" :label-width="formLabelWidth">
+                            <el-input v-model="form.IDDis" clearable placeholder="流程活动ID，调用编码，不可编辑" readonly></el-input>
+                        </el-form-item>
+                    </el-col>
+                    <el-col :span="12">
+                        <el-form-item label="活动标识：" prop="IDENTIFICATION" :label-width="formLabelWidth">
+                            <el-input v-model="form.IDENTIFICATION" clearable placeholder="活动标识，调用编码，不可编辑" readonly></el-input>
+                        </el-form-item>
+                    </el-col>
+                  </el-row>
+                  <el-form-item label="活动名称：" prop="NAME" :label-width="formLabelWidth">
+                       <el-input v-model="form.NAME" clearable placeholder="活动名称"></el-input>
+                  </el-form-item>
+                  <el-form-item label="活动描述：" :label-width="formLabelWidth">
+                       <el-input v-model="form.DESC1" clearable placeholder="活动描述"></el-input>
+                  </el-form-item>
+                  <el-form-item label="活动处理后提示信息：" :label-width="formLabelWidth">
+                       <el-input v-model="form.MESSAGE" clearable placeholder="活动处理后提示信息提示"></el-input>
+                  </el-form-item>
+                  <el-form-item label="特殊操作失败时提示：" :label-width="formLabelWidth">
+                       <el-input v-model="form.ADDFORMMESSAGE" clearable placeholder="执行特殊操作不成功时消息提示"></el-input>
+                  </el-form-item>
+                  <el-row>
+                       <el-col :span="12">
+                           <el-form-item label="活动序号：" :label-width="formLabelWidth">
+                               <el-input v-model="form.ORDER1" clearable placeholder="活动序号，整数填写，注：为0时流程运转图示不显示。"></el-input>
+                           </el-form-item>
+                       </el-col>
+                  </el-row>
+                  <el-form-item label="会签是否顺序执行：" :label-width="formLabelWidth">
+                       <el-radio v-model="form.ISSIGN" label="1">是</el-radio>
+                       <el-radio v-model="form.ISSIGN" label="0">否</el-radio>
+                  </el-form-item>
+                  <el-form-item label="是否短信提示：" :label-width="formLabelWidth">
+                       <el-radio v-model="form.ISNOTE" label="1">是</el-radio>
+                       <el-radio v-model="form.ISNOTE" label="0">否</el-radio>
+                       <el-radio v-model="form.ISNOTE" label="2">自定义(默认是)</el-radio>
+                       <el-radio v-model="form.ISNOTE" label="3">自定义(默认否)</el-radio>
+                       <el-radio v-model="form.ISNOTE" label="4">自定义(短信)</el-radio>
+                  </el-form-item>
+                  <el-form-item label="是否消息提示：" :label-width="formLabelWidth">
+                       <el-radio v-model="form.ISMESSAGE" label="1">是</el-radio>
+                       <el-radio v-model="form.ISMESSAGE" label="0">否</el-radio>
+                  </el-form-item>
+              </div>
+              <div style="text-align:center;">
+                    <el-button type="primary" icon="el-icon-check" size="small" @click="save">保存</el-button>
+                    <el-button type="primary" icon="el-icon-close" size="small" onclick="parent.layer.closeAll();">取消</el-button>
+                </div>
+          </el-tab-pane>
+          
+          <!-- 策略属性 -->
+          <el-tab-pane name="2">
+              <span slot="label"><i class="el-icon-s-operation"></i> 策略属性</span>
+              <div>
+                  <el-row>
+                    <el-col :span="12">
+                        <el-form-item label="分配属性：" :label-width="formLabelWidth">
+                            <el-radio v-model="form.ASTRATEGY" label="1">分配任意一个</el-radio>
+                            <el-radio v-model="form.ASTRATEGY" label="2">分配多人</el-radio>
+                        </el-form-item>
+                    </el-col>
+                    <el-col :span="12">
+                    </el-col>
+                  </el-row>
+                  <el-form-item label="流程策略属性：" :label-width="formLabelWidth">
+                       <el-radio v-model="form.CSTRATEGY" label="1">任意完成一个</el-radio>
+                       <el-radio v-model="form.CSTRATEGY" label="2">必须完成所有</el-radio>
+                       <el-radio v-model="form.CSTRATEGY" label="3">按完成数据</el-radio>
+                       <el-radio v-model="form.CSTRATEGY" label="4">按完成的百分比</el-radio>
+                  </el-form-item>
+                  <el-row>
+                    <el-col :span="12">
+                        <el-form-item label="完成数或完成百分比：" :label-width="formLabelWidth">
+                            <el-input v-model="form.CNUM" clearable placeholder="填写完成占比，整数或小数（%）"></el-input>
+                        </el-form-item>
+                    </el-col>
+                    <el-col :span="12">
+                    </el-col>
+                  </el-row>
+                  <el-row>
+                    <el-col :span="12">
+                        <el-form-item label="前进保存数据：" :label-width="formLabelWidth">
+                            <el-radio v-model="form.ISSAVE1" label="1">是</el-radio>
+                            <el-radio v-model="form.ISSAVE1" label="0">否</el-radio>
+                        </el-form-item>
+                    </el-col>
+                    <el-col :span="12">
+                        <el-form-item label="后退保存数据：" :label-width="formLabelWidth">
+                            <el-radio v-model="form.ISSAVE2" label="1">是</el-radio>
+                            <el-radio v-model="form.ISSAVE2" label="0">否</el-radio>
+                        </el-form-item>
+                    </el-col>
+                  </el-row>
+                  <el-row>
+                    <el-col :span="12">
+                        <el-form-item label="前进必填留言：" :label-width="formLabelWidth">
+                            <el-radio v-model="form.ISLEAVE" label="1">是</el-radio>
+                            <el-radio v-model="form.ISLEAVE" label="0">否</el-radio>
+                        </el-form-item>
+                    </el-col>
+                    <el-col :span="12">
+                        <el-form-item label="后退必填留言：" :label-width="formLabelWidth">
+                            <el-radio v-model="form.ISLEAVE2" label="1">是</el-radio>
+                            <el-radio v-model="form.ISLEAVE2" label="0">否</el-radio>
+                        </el-form-item>
+                    </el-col>
+                  </el-row>
+                  <el-form-item label="多分支体现在按钮上：" :label-width="formLabelWidth">
+                       <el-radio v-model="form.ISBRANCH" label="1">是</el-radio>
+                       <el-radio v-model="form.ISBRANCH" label="0">否</el-radio>
+                  </el-form-item>
+              </div>
+          </el-tab-pane>
+          
+          <!-- 超时属性 -->
+          <el-tab-pane name="3">
+              <span slot="label"><i class="el-icon-alarm-clock"></i> 超时属性</span>
+              <div>
+                  <el-row>
+                    <el-col :span="12">
+                        <el-form-item label="持续时间(小时)：" :label-width="formLabelWidth">
+                            <el-input v-model="form.txtDuration" clearable placeholder="持续时间(小时)"></el-input>
+                        </el-form-item>
+                    </el-col>
+                    <el-col :span="12">
+                        <el-form-item label="名称:" :label-width="formLabelWidth">
+                            <el-input v-model="form.txtLimitName" clearable placeholder="名称"></el-input>
+                        </el-form-item>
+                    </el-col>
+                  </el-row>
+                  <el-row>
+                    <el-col :span="12">
+                        <el-form-item label="执行代理：" :label-width="formLabelWidth">
+                            <el-radio v-model="form.selAbnormity" ref="ref1" label="01" name="消息提示">消息提示</el-radio>
+                            <el-radio v-model="form.selAbnormity" ref="ref1" label="02" name="短信提示">短信提示</el-radio>
+                        </el-form-item>
+                    </el-col>
+                    <el-col :span="12">
+                        <el-form-item label="执行频率(小时):" :label-width="formLabelWidth">
+                            <el-input v-model="form.txtFrequency" clearable placeholder="执行频率(小时)"></el-input>
+                        </el-form-item>
+                    </el-col>
+                  </el-row>
+                  <el-table :data="form.cs_list" border  class="ftl-el-table" height="306">
+                     <el-table-column type="index" fixed :index="clId" width="35"></el-table-column>
+                     <el-table-column prop="NAME5" label="字段编码" v-if="false"></el-table-column>
+                     <el-table-column prop="NAME1" label="持续时间(小时)" width="120"></el-table-column>
+                     <el-table-column prop="NAME2" label="名称" width="300"></el-table-column>
+                     <el-table-column prop="NAME3" label="执行代理" width="120"></el-table-column>
+                     <el-table-column prop="NAME4" label="执行频率(小时)" width="120"></el-table-column>
+                     <el-table-column fixed="right" label="操作" width="110">
+                         <template slot-scope="scope">
+                             <el-button-group>
+                                 <el-button @click="delRow(scope.$index,form.cs_list)" type="danger" size="small" icon="el-icon-minus"></el-button>
+                                 <el-button @click="addRow(scope.$index,form.cs_list)" type="success" size="small" icon="el-icon-plus"></el-button>
+                             </el-button-group>
+                         </template>
+                     </el-table-column>
+                 </el-table>
+              </div>
+          </el-tab-pane>
+          
+          <!-- 操作属性 -->
+          <el-tab-pane name="4">
+              <span slot="label"><i class="el-icon-set-up"></i> 操作属性</span>
+              <div>
+                  <el-row style="height:30px">
+                    <el-col :span="11" style="padding-right: 30px;text-align: right;">待选用户组
+                    </el-col>
+                    <el-col :span="2">操作
+                    </el-col>
+                    <el-col :span="11">已选用户组
+                    </el-col>
+                  </el-row>
+                  <el-row>
+                    <el-col :span="11">
+                        <div align="right" style="padding-right: 30px">
+                            <select name="OperateSrcList" style="width:320px;height:300px" size=15 multiple th:utext="${LIST1}"></select>
+                        </div>
+                        <div align="right" style="padding-right: 30px">
+                            <el-checkbox v-model="form.checked1" @change="check1">全选 &nbsp;&nbsp;&nbsp;&nbsp; 注：使用Ctrl键可选择多个</el-checkbox>
+                        </div>
+                    </el-col>
+                    <el-col :span="2">
+                        <br><br>
+                        <el-button type="primary" size="small" icon="el-icon-arrow-up" onclick="javascript:upItemSelection(OperateDestList);"></el-button><br><br>
+                        <el-button type="primary" size="small" icon="el-icon-arrow-right" onClick="javascript:addSrcToDestListPu(OperateSrcList,OperateDestList);"></el-button><br><br>
+                        <el-button type="primary" size="small" icon="el-icon-arrow-left" onclick="javascript:deleteFromDestListPu(OperateDestList);"></el-button><br><br>
+                        <el-button type="primary" size="small" icon="el-icon-arrow-down" onclick="javascript:downItemSelection(OperateDestList);"></el-button>
+                      
+                    </el-col>
+                    <el-col :span="11">
+                        <div>
+                            <select name="OperateDestList" style="width:320px;height:300px" size=15 multiple th:utext="${LIST2}"></select>
+                        </div>
+                        <div>
+                            <el-checkbox v-model="form.checked2" @change="check2">全选 &nbsp;&nbsp;&nbsp;&nbsp; 注：使用Ctrl键可选择多个</el-checkbox>
+                        </div>
+                    </el-col>
+                  </el-row>
+              </div>
+          </el-tab-pane>
+          
+          <!-- 可控字段属性 -->
+          <el-tab-pane name="5" th:if="${formtype} == '1'">
+              <span slot="label"><i class="el-icon-postcard"></i> 可控字段属性</span>
+              <div>
+                  <el-form-item label="默认值：" :label-width="formLabelWidth">
+                       <el-input v-model="form.txtdefaultvalue" clearable placeholder="字段默认值，填写或选择填充" style="width:450px" @input="changeInputftl($event)"></el-input>
+                       <el-button-group>
+                           <el-button type="primary" size="small" icon="el-icon-setting" onClick="ShowModal();">设置</el-button>
+                           <el-button type="primary" size="small" icon="el-icon-refresh" onClick="UpdateCtlFieldGrid();">更新</el-button>
+                           <el-button type="primary" size="small" icon="el-icon-view" onClick="openDoc();">查看模板</el-button>
+                       </el-button-group>
+                       强制设置说明：设置默认值时勾选强制设置时字段中有无值时都设置成默认值。
+                  </el-form-item>
+                  <el-table :data="form.fiellist3_list" border highlight-current-row class="ftl-el-table" height="306" @row-click="selctClickRow">
+                     <el-table-column type="index" fixed :index="kkId" width="35"></el-table-column>
+                     <el-table-column prop="NAME7" label="字段编码" v-if="false"></el-table-column>
+                     <el-table-column prop="NAME1" label="字段名称" width="300"></el-table-column>
+                     <el-table-column label="显示" width="60" align="center">
+                         <template slot-scope="scope">
+                              <el-form-item class="ftl-form-coll-edit">
+                                   <el-checkbox v-model="scope.row.NAME2"></el-checkbox>
+                              </el-form-item>
+                         </template>
+                     </el-table-column>
+                     <el-table-column label="编辑" width="60" align="center">
+                         <template slot-scope="scope">
+                              <el-form-item class="ftl-form-coll-edit">
+                                   <el-checkbox v-model="scope.row.NAME3"></el-checkbox>
+                              </el-form-item>
+                         </template>
+                     </el-table-column>
+                     <el-table-column label="必填" width="60" align="center">
+                         <template slot-scope="scope">
+                              <el-form-item class="ftl-form-coll-edit">
+                                   <el-checkbox v-model="scope.row.NAME4"></el-checkbox>
+                              </el-form-item>
+                         </template>
+                     </el-table-column>
+                     <el-table-column label="强设设置" width="80" align="center">
+                         <template slot-scope="scope">
+                              <el-form-item class="ftl-form-coll-edit">
+                                   <el-checkbox v-model="scope.row.NAME5"></el-checkbox>
+                              </el-form-item>
+                         </template>
+                     </el-table-column>
+                     <el-table-column prop="NAME6" label="默认值" ></el-table-column>
+                 </el-table>
+              </div>
+          </el-tab-pane>
+          
+          <!-- 表单属性 -->
+          <el-tab-pane name="6">
+              <span slot="label"><i class="el-icon-document"></i> 表单属性</span>
+              <div>
+                  <el-form-item label="自定义表单页面地址：" :label-width="formLabelWidth">
+                       <el-input v-model="form.FORMPATH" clearable placeholder="说明：设置有自定义表单地址时流程的相关活动连接到设置的地址。"></el-input>                       
+                  </el-form-item>
+              </div>
+          </el-tab-pane>
+          
+          <!-- 附件属性 -->
+          <el-tab-pane name="7">
+              <span slot="label"><i class="el-icon-connection"></i> 附件属性</span>
+              <div>
+                  <el-form-item label="附件操作权限：" :label-width="formLabelWidth">
+                       <el-radio v-model="form.ATTTYPE" label="1">无附件</el-radio>
+                       <el-radio v-model="form.ATTTYPE" label="2">管理所有附件</el-radio>
+                       <el-radio v-model="form.ATTTYPE" label="3">管理个人上传的附件</el-radio>
+                       <el-radio v-model="form.ATTTYPE" label="4">浏览附件</el-radio>
+                  </el-form-item>
+                  <el-form-item label="需上传附件数：" :label-width="formLabelWidth">
+                       <el-input v-model="form.ATTNUM" clearable placeholder="说明：设置成第二、三项时设置后生效,0表示无数量限制。"></el-input>
+                  </el-form-item>
+              </div>
+          </el-tab-pane>
+          
+          <!-- 参与者属性 -->
+          <el-tab-pane name="8">
+              <span slot="label"><i class="el-icon-s-custom"></i> 参与者属性</span>
+              <div>
+                  <el-row style="height:30px">
+                    <el-col :span="11" style="padding-right: 30px;text-align: right;">待选用户组
+                    </el-col>
+                    <el-col :span="2">操作
+                    </el-col>
+                    <el-col :span="11">已选用户组
+                    </el-col>
+                  </el-row>
+                  <el-row>
+                    <el-col :span="11">
+                        <div align="right" style="padding-right: 30px">
+                            <select name="UserGroupSrcList" style="width:320px;height:300px" size=15 multiple th:utext="${LIST3}"></select>
+                        </div>
+                        <div align="right" style="padding-right: 30px">
+                            <el-checkbox v-model="form.checked3" @change="check3">全选 &nbsp;&nbsp;&nbsp;&nbsp; 注：使用Ctrl键可选择多个</el-checkbox>
+                        </div>
+                    </el-col>
+                    <el-col :span="2">
+                        <br><br><br><br>
+                        <el-button type="primary" size="small" icon="el-icon-arrow-right" onClick="javascript:addSrcToDestListPu(UserGroupSrcList,UserGroupDestList);"></el-button><br><br>
+                        <el-button type="primary" size="small" icon="el-icon-arrow-left" onclick="deleteFromDestListPu(UserGroupDestList);"></el-button><br><br>
+                        
+                    </el-col>
+                    <el-col :span="11">
+                        <div>
+                            <select name="UserGroupDestList" style="width:320px;height:300px" size=15 multiple th:utext="${LIST4}"></select>
+                        </div>
+                        <div>
+                            <el-checkbox v-model="form.checked4" @change="check4">全选 &nbsp;&nbsp;&nbsp;&nbsp; 注：使用Ctrl键可选择多个</el-checkbox>
+                        </div>
+                    </el-col>
+                  </el-row>
+              </div>
+          </el-tab-pane>
+       </el-tabs>
+       
+
+  </el-form>
+</div>
+
+<SCRIPT type="text/javascript" th:inline="javascript">
+function ini_table(vum){
+	var actFID= [[${Activity.ID}]];
+	//加载id=cslist的表格数据
+	$.ajax({
+        type: "GET",
+        url: "/flow/flowprocess?Act=cslist&FID="+actFID,
+        dataType: "json", //返回的数据类型为json类型
+        success: function(result) {
+        	var total = result.total;
+        	var data = result.rows;
+            //定义数组变量，存放着datagrid各列的ID
+            var datalist = [];
+			
+            //循环向datalist里添加数据
+            for (var i = 0; i < total; i++) {
+                datalist.push({"NAME5": data[i].NAME5, "NAME1": data[i].NAME1, 
+                	"NAME2": data[i].NAME2, "NAME3": data[i].NAME3, "NAME4": data[i].NAME4});
+            }
+            // 在表格中加载数据，datagrid的ID=cslist
+            vum.form.cs_list = datalist.length == 0 ? [{}] : datalist;
+        },
+	   	error: function(request, status, thrown){
+			layer.msg('系统错误，请稍后重试~'); 
+		}
+    });
+	
+	var FID = [[${FID}]];
+	var ID = [[${ID}]];
+	//加载id=fiellist3_list的表格数据
+	$.ajax({
+        type: "GET",
+        url: "/flow/flowprocess?Act=newflowlist&FID="+FID+"&ID="+ID,
+        dataType: "json", //返回的数据类型为json类型
+        success: function(result) {
+        	var total = result.total;
+        	var data = result.rows;
+            //定义数组变量，存放着datagrid各列的ID
+            var datalist = [];
+			
+            //循环向datalist里添加数据
+            for (var i = 0; i < total; i++) {
+                datalist.push({"NAME7": data[i].NAME7, "NAME1": data[i].NAME1, 
+                	"NAME2": data[i].NAME2 =='是' ? true : false, 
+                	"NAME3": data[i].NAME3 =='是' ? true : false, 
+                	"NAME4": data[i].NAME4 =='是' ? true : false, 
+                	"NAME5": data[i].NAME5 =='是' ? true : false, 
+                	"NAME6": data[i].NAME6});
+            }
+          //在表格中加载数据，datagrid的ID=fiellist3_list
+            vum.form.fiellist3_list = datalist;
+        },
+	   	error: function(request, status, thrown){
+			layer.msg('系统错误，请稍后重试~'); 
+		}
+    });
+	
+	//选中表格行号
+	var rowIndex=0;
+	//是否客户点击设置和更新按钮
+	var isTrue=false;
+	//初始化定义数组
+	//是否显示、是否编辑、是否必填、强设设置
+	var xsList=null,bjList=null,btList=null,qzList=null;
+	
+}
+
+
+//提交表单数据
+function doSubmitData(){
+	if(Check(document.RegForm)){
+		window.RegForm.Act.value='Operate';
+		document.RegForm.submit();
+	}
+}
+</SCRIPT>
+<script type="text/javascript" th:inline="javascript">
+var collRow;
+var vm = new Vue({
+    el: '#mangactive',
+    name: 'zr_mangactive',
+    data() {
+        return {
+            htmlLoading:true,//全局加载
+            rowsloadtitle:'数据加载...',
+            
+            activeName: '1',
+            formLabelWidth: '150px',
+            
+            isshow:false,
+            
+            /* LIST1:pcList1,
+            LIST2:pcList2, */
+            form:{
+            	cs_list:[{}],
+            	fiellist3_list:[{}],
+            	txtdefaultvalue:'',
+            },
+            rules:{
+            	NAME: [{
+                    required: true,
+                    message: '活动名称必填',
+                    trigger: 'blur'
+                }],
+            },
+            dialog:false,
+            
+            clId(index) {
+                return (index * 1) + 1
+            },
+            kkId(index) {
+                return (index * 1) + 1
+            },
+            delRow(index, rows) {
+                if (index == 0 && rows.length==1) {
+                	rows.splice((index + 1), 0, {})
+                }
+                rows.splice(index, 1)
+            },
+            addRow(index, rows) {
+            	var row={}
+            	row.NAME1=this.form.txtDuration
+            	row.NAME2=this.form.txtLimitName
+            	row.NAME3=this.$refs.ref1.name
+            	row.NAME4=this.form.txtFrequency
+            	row.NAME5=this.form.selAbnormity
+            	if(row.NAME1 !=null &&row.NAME2 !=null &&row.NAME4 !=null &&row.NAME5 !=null){
+            		if(index == 0 && rows[0].NAME5 == null){
+                		rows.splice(index, 1)
+                	}
+                    rows.splice((index + 1), 0, row)
+            	}else{
+            		layer.msg("请输入正确的超时属性")
+            	}            	
+            },
+        }
+    },
+    created() {
+    	let e = this;
+    	$zrthis = this;
+    	e.form = [[${Activity}]]
+    },
+    mounted(){
+    	let e = this
+        this.$nextTick(() => {
+		    this.htmlLoading = false
+		    this.init_form()
+		    ini_table(this)
+        })
+    },
+    computed: {
+    },
+    methods: {
+    	init_form(){
+    		var e = this
+    	    e.form.CREATEPSN = [[${UserID}]]
+    		e.form.ActivityID = [[${Activity.ID}]]
+    		e.form.OperateProterty = ''
+    		e.form.BDOperateProterty = ''
+    		e.form.UserGroupProterty = ''
+    		e.form.InputType = '1'
+    		e.form.CtlFieldInfoStr = ''
+    		e.form.OverTimeFieldInfo = ''
+    		e.form.SignatureFieldInfoStr = ''
+    		e.form.Act = 'Operate'
+    		e.form.flowtype = [[${flowtype}]]
+    		e.form.formtype = [[${formtype}]]
+    		e.form.TYPE = [[${ActivityType}]]
+    		e.form.row = '0'
+    		e.form.OPENHELP = '1'
+    		e.form.IDDis = [[${IDDis}]]
+    	},
+    	selctClickRow(row, column, event){
+    		let e = this
+    		collRow = row
+    		e.form.txtdefaultvalue = row.NAME6
+    	},
+    	changeInputftl(e){
+    		//this.$forceUpdate()
+    	},
+    	save(){
+    		let e = this;
+    		if(e.form.NAME.indexOf("/") >-1) {
+    		    layer.msg('活动名称不能包含/符号！');
+    		    return false;
+    	    }
+    		fillSelectValueToFieldVue('OperateDestList',e, 'OperateProterty');
+    		fillSelectValueToFieldVue('UserGroupDestList',e, 'UserGroupProterty');
+    	    fillgridOverTimeFieldInfoStr();//超时属性的处理
+    	    fillCtlFieldInfoStr();//可控字段的处理
+    		ZRsave(this.form, 'form', '/flow/flowMaActSer', function(back){
+    			parent.document.getElementById('EditActivity').src=parent.document.getElementById('EditActivity').src
+    			parent.layer.closeAll();
+    		}) 
+    	},
+    	check1(data){
+    		CheckBoxSel(data,'OperateSrcList');
+    	},
+    	check2(data){
+    		CheckBoxSel(data,'OperateDestList');
+    	},
+    	check3(data){
+    		CheckBoxSel(data,'UserGroupSrcList');
+    	},
+    	check4(data){
+    		CheckBoxSel(data,'UserGroupDestList');
+    	},
+    }
+});
+</script>
+</BODY>
+</HTML>

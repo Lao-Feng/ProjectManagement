@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="zr.zrpower.dao.AnalyseStatisticsCwhereDao">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="zr.zrpower.domain.AnalyseStatisticsCwhere" id="analyseStatisticsCwhereMap">
+        <result property="id" column="ID"/>
+        <result property="fid" column="FID"/>
+        <result property="sleft" column="SLEFT"/>
+        <result property="field" column="FIELD"/>
+        <result property="symbol" column="SYMBOL"/>
+        <result property="wherevalue" column="WHEREVALUE"/>
+        <result property="sright" column="SRIGHT"/>
+        <result property="logic" column="LOGIC"/>
+    </resultMap>
+    
+ <sql id="Base_Column_List" >
+`ID`, `FID`, `SLEFT`, `FIELD`, `SYMBOL`, `WHEREVALUE`, `SRIGHT`, `LOGIC`
+  </sql>
+  
+	<select id="queryObject" resultType="zr.zrpower.domain.AnalyseStatisticsCwhere">
+		select
+		 <include refid="Base_Column_List" />
+		 from analyse_statistics_cwhere where ID = #{value}
+	</select>
+	
+	<select id="getMaxNo" resultType="String">
+		select max(id) as max_no from
+		analyse_statistics_cwhere
+	</select>
+
+	<select id="queryList" resultType="zr.zrpower.domain.AnalyseStatisticsCwhere">
+		select 
+		<include refid="Base_Column_List" />
+		from analyse_statistics_cwhere
+        <where>
+            <if test="fid != null and fid != ''">
+				and `fid` = #{fid}
+			</if>
+        </where>
+        <choose>
+            <when test="sidx != null and sidx.trim() != ''">
+                order by ${sidx} ${order}
+            </when>
+			<otherwise>
+                order by ID 
+			</otherwise>
+        </choose>
+		<if test="offset != null and limit != null">
+			limit #{offset}, #{limit}
+		</if>
+	</select>
+	
+ 	<select id="queryTotal" resultType="int">
+		select count(*) from analyse_statistics_cwhere 
+	</select>
+	 
+	<insert id="save" parameterType="zr.zrpower.domain.AnalyseStatisticsCwhere">
+		insert into analyse_statistics_cwhere
+		(
+			`ID`, 
+			`FID`, 
+			`SLEFT`, 
+			`FIELD`, 
+			`SYMBOL`, 
+			`WHEREVALUE`, 
+			`SRIGHT`, 
+			`LOGIC`
+		)
+		values
+		(
+			#{id}, 
+			#{fid}, 
+			#{sleft}, 
+			#{field}, 
+			#{symbol}, 
+			#{wherevalue}, 
+			#{sright}, 
+			#{logic}
+		)
+	</insert>
+	 
+	<update id="update" parameterType="zr.zrpower.domain.AnalyseStatisticsCwhere">
+		update analyse_statistics_cwhere 
+		<set>
+			<if test="fid != null">`FID` = #{fid}, </if>
+			<if test="sleft != null">`SLEFT` = #{sleft}, </if>
+			<if test="field != null">`FIELD` = #{field}, </if>
+			<if test="symbol != null">`SYMBOL` = #{symbol}, </if>
+			<if test="wherevalue != null">`WHEREVALUE` = #{wherevalue}, </if>
+			<if test="sright != null">`SRIGHT` = #{sright}, </if>
+			<if test="logic != null">`LOGIC` = #{logic}</if>
+		</set>
+		where ID = #{id}
+	</update>
+	
+	<delete id="delete">
+		delete from analyse_statistics_cwhere where fid = #{value}
+	</delete>
+	
+	<delete id="deleteBatch">
+		delete from analyse_statistics_cwhere where fid in 
+		<foreach item="id" collection="array" open="(" separator="," close=")">
+			#{id}
+		</foreach>
+	</delete>
+
+</mapper>

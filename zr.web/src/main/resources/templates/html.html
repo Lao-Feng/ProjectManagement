@@ -1,0 +1,206 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>人员档案</title>
+<link href="ZrCollEngine/Res/doc.css" rel="stylesheet" type="text/css">
+</head>
+<body >
+<form name="form1" method="post" enctype="multipart/form-data" action="" >
+	<el-tabs  >
+    <el-tab-pane label="人员基本信息" name="1">
+       <table border="0" cellpadding="3" width="96%">      
+         <tr><td valign="top" align="center">
+        <table width="900" border="0"  bgcolor="#DFDCD7" cellspacing="1" cellpadding="5" id="table1">
+<TR>
+    <TD bgcolor="#E0ECFF" width="247">姓名：</TD>
+    <TD colSpan=2 bgcolor="#FFFFFF"><input type="hidden" name="ID" size="25"><input type="text" name="NAME" size="25"></TD>
+    <TD align=center rowSpan=5 bgcolor="#FFFFFF" width="315"><div><img name="PHOTO" id="PHOTO" title="照片显示" width="94" height="120"></div></TD></TR>
+  <TR>
+    <TD  bgcolor="#E0ECFF" width="247">工号：</TD>
+    <TD colSpan=2 bgcolor="#FFFFFF"><input type="text" id="PGH"  name="PGH" size="25"></TD></TR>
+  <TR>
+    <TD  bgcolor="#E0ECFF" width="247">部门：</TD>
+    <TD colSpan=2 bgcolor="#FFFFFF"><input type="text"  name="DEPT" size="25"></TD></TR>
+  <TR>
+    <TD  bgcolor="#E0ECFF" width="247">性别：</TD>
+    <TD colSpan=2 bgcolor="#FFFFFF"><input type="text" name="XB" size="25"></TD></TR>
+  <TR>
+    <TD  bgcolor="#E0ECFF" width="247">出生日期：</TD>
+    <TD  bgcolor="#FFFFFF" colSpan=2><input type="text" name="CSRQ" size="25"></TD></TR>
+  <TR>
+    <TD  bgcolor="#E0ECFF" width="247"><div id='show1'>照片上传：</div></TD>
+    <TD colSpan=3 bgcolor="#FFFFFF"><div id='show2'><input name="PHOTO" type="file" size="35">（gif/jpeg格式，最大 500 k）</div></TD></TR>
+	<TR>
+    <TD  bgcolor="#E0ECFF" width="247">姓名简拼：</TD>
+    <TD  bgcolor="#FFFFFF" width="518"><input type="text" name="SPELL" size="25"></TD>
+    <TD  bgcolor="#E0ECFF" width="221">归属：</TD>
+    <TD  bgcolor="#FFFFFF" width="315"><input type="text" name="GS" size="25"></TD></TR>
+  <TR>
+    <TD  bgcolor="#E0ECFF" width="247">身份证号码：</TD>
+    <TD  bgcolor="#FFFFFF" width="518"><input type="text" name="SFZHM" size="25"></TD>
+    <TD  bgcolor="#E0ECFF" width="221">民族：</TD>
+    <TD  bgcolor="#FFFFFF" width="315"><input type="text" name="MZ" size="25"></TD></TR>
+  <TR>
+    <TD  bgcolor="#E0ECFF" width="247">婚姻状况：</TD>
+    <TD  bgcolor="#FFFFFF" width="518"><input type="text" name="HYZK" size="25"></TD>
+    <TD  bgcolor="#E0ECFF" width="221">政治面貌：</TD>
+    <TD  bgcolor="#FFFFFF" width="315">
+	<input type="text" name="ZZMM" size="25" style="width: 160"></TD></TR>
+  <TR>
+    <TD  bgcolor="#E0ECFF" width="247">籍贯：</TD>
+    <TD  bgcolor="#FFFFFF" width="518"><input type="text" name="JG" size="25"></TD>
+    <TD  bgcolor="#E0ECFF" width="221">户口所在地：</TD>
+    <TD  bgcolor="#FFFFFF" width="315"><input type="text" name="FKSZD" size="25"></TD></TR>
+  <TR>
+    <TD  bgcolor="#E0ECFF" width="247">第一学历：</TD>
+    <TD  bgcolor="#FFFFFF" width="518"><input type="text" name="XL" size="25"></TD>
+    <TD  bgcolor="#E0ECFF" width="221">最高学历：</TD>
+    <TD  bgcolor="#FFFFFF" width="315"><input type="text" name="XL1" size="25"></TD></TR>
+  <TR>
+    <TD  bgcolor="#E0ECFF" width="247">毕业院校：</TD>
+    <TD  bgcolor="#FFFFFF" width="518"><input type="text" name="BLYS" size="42"></TD>
+    <TD  bgcolor="#E0ECFF" width="221">毕业时间：</TD>
+    <TD  bgcolor="#FFFFFF" width="315">
+	<input type="text" name="BLDATE" size="25"></TD></TR>
+  <TR>
+    <TD bgcolor="#E0ECFF" width="247">参加工作时间：</TD>
+    <TD bgcolor="#FFFFFF" width="518"><input type="text" name="CJGZSJ" size="25"></TD>
+    <TD  bgcolor="#E0ECFF" width="221">进入本单位时间：</TD>
+    <TD  bgcolor="#FFFFFF" width="315"><input type="text" name="JRBDWSJ" size="25"></TD></TR>
+  <TR>
+    <TD  bgcolor="#E0ECFF" width="247">用工类型：</TD>
+    <TD  bgcolor="#FFFFFF" width="518"><input type="text" name="YGLX" size="25"></TD>
+    <TD  bgcolor="#E0ECFF" width="221">职务：</TD>
+    <TD  bgcolor="#FFFFFF" width="315"><input type="text" name="ZW" size="25"></TD></TR>
+  <TR>
+    <TD  bgcolor="#E0ECFF" width="247">办公电话：</TD>
+    <TD  bgcolor="#FFFFFF" width="518"><input type="text" name="JTDH" size="25"></TD>
+    <TD  bgcolor="#E0ECFF" width="221">手机：</TD>
+    <TD  bgcolor="#FFFFFF" width="315"><input type="text" name="SJ" size="25"></TD></TR>
+  <TR>
+    <TD  bgcolor="#E0ECFF" width="247">家庭住址：</TD>
+    <TD bgcolor="#FFFFFF" width="518"><input type="text" name="JTZC" size="40"></TD>
+    <TD bgcolor="#E0ECFF" width="221">职称：</TD>
+    <TD bgcolor="#FFFFFF" width="315"><input type="text" name="ZC" size="25"></TD></TR>
+  <TR>
+    <TD  bgcolor="#E0ECFF" width="247">电子邮件：</TD>
+    <TD  bgcolor="#FFFFFF" width="518"><input type="text" name="DZYJ" size="38"></TD>
+    <TD  bgcolor="#E0ECFF" width="221">本岗位在职时间：</TD>
+    <TD  bgcolor="#FFFFFF" width="315">
+	<input type="text" name="BGDATE" size="25"></TD></TR>
+<TR>
+    <TD  bgcolor="#E0ECFF" width="247">合同期：</TD>
+    <TD bgcolor="#FFFFFF" width="518"><input type="text" name="HTQS" size="15">至<input type="text" name="HTQE" size="15"></TD>
+    <TD bgcolor="#E0ECFF" width="221">专业：</TD>
+    <TD bgcolor="#FFFFFF" width="315">
+	<input type="text" name="ZL" size="25"></TD></TR>
+  <TR>
+    <TD  bgcolor="#E0ECFF" width="247">年休假：</TD>
+    <TD  bgcolor="#FFFFFF" width="518"><input type="text" name="LXJ" size="10">天</TD>
+    <TD  bgcolor="#E0ECFF" width="221">是否在职教育：</TD>
+    <TD  bgcolor="#FFFFFF" width="315">
+	<input type="text"  name="ISZZJY" size="25"></TD></TR>
+</table>
+</td></tr>
+</table>
+</el-tab-pane>
+    
+
+	<el-tab-pane label="其它配置" name="2">
+
+ <table border="0" cellpadding="3" width="96%">      
+         <tr><td valign="top" align="center">
+
+ <table width="900" border="0"  bgcolor="#DFDCD7" cellspacing="1" cellpadding="5" id="table2">   
+ <TR>
+    <TD  bgcolor="#E0ECFF" width="247"> 岗位变动情况：</TD>
+    <TD  colSpan=3  bgcolor="#FFFFFF">
+	<textarea rows="4" name="GWQK"  id="GWQK" cols="90"></textarea></TD></TR>
+<TR>
+    <TD  bgcolor="#E0ECFF" width="247"> 教育背景：</TD>
+    <TD  colSpan=3  bgcolor="#FFFFFF">
+	<textarea rows="4" name="JYBJ"  id="JYBJ" cols="90"></textarea></TD></TR>
+
+ <TR>
+    <TD  bgcolor="#E0ECFF" width="247"> 工作简历：</TD>
+    <TD  colSpan=3  bgcolor="#FFFFFF">
+	<textarea rows="4" name="GZJL"  id="GZJL" cols="90"></textarea></TD></TR>
+<TR>
+    <TD  bgcolor="#E0ECFF" width="247"> 社会关系：</TD>
+    <TD  colSpan=3  bgcolor="#FFFFFF">
+	<textarea rows="4" name="SHGX"  id="SHGX" cols="90"></textarea></TD></TR>
+
+ <TR>
+    <TD  bgcolor="#E0ECFF" width="247"> 奖惩记录：</TD>
+    <TD  colSpan=3  bgcolor="#FFFFFF">
+	<textarea rows="4" name="JCJL"  id="JCJL" cols="90"></textarea></TD></TR>
+<TR>
+    <TD  bgcolor="#E0ECFF" width="247"> 职务情况：</TD>
+    <TD  colSpan=3  bgcolor="#FFFFFF">
+	<textarea rows="4" name="ZWQK"  id="ZWQK" cols="90"></textarea></TD></TR>
+<TR>
+    <TD  bgcolor="#E0ECFF" width="247"> 培训记录：</TD>
+    <TD  colSpan=3  bgcolor="#FFFFFF">
+	<textarea rows="4" name="PXJL"  id="PXJL" cols="90"></textarea></TD></TR>
+<TR>
+    <TD  bgcolor="#E0ECFF" width="247"> 担保记录：</TD>
+    <TD  colSpan=3  bgcolor="#FFFFFF">
+	<textarea rows="4" name="DBJL"  id="DBJL" cols="90"></textarea></TD></TR>
+
+ <TR>
+    <TD  bgcolor="#E0ECFF" width="247"> 劳动合同签订情况：</TD>
+    <TD  colSpan=3  bgcolor="#FFFFFF">
+	<textarea rows="4" name="HTQK"  id="HTQK" cols="90"></textarea></TD></TR>
+<TR>
+    <TD  bgcolor="#E0ECFF" width="247"> 社保缴纳情况：</TD>
+    <TD  colSpan=3  bgcolor="#FFFFFF">
+	<textarea rows="4" name="SBQK"  id="SBQK" cols="90"></textarea></TD></TR>
+ <TR>
+    <TD  bgcolor="#E0ECFF" width="247"> 体检记录：</TD>
+    <TD  colSpan=3  bgcolor="#FFFFFF">
+	<textarea rows="4" name="TJJL"  id="TJJL" cols="90"></textarea></TD></TR>
+<TR>
+    <TD  bgcolor="#E0ECFF" width="247"> 备 注：</TD>
+    <TD  colSpan=3  bgcolor="#FFFFFF">
+	<textarea rows="4" name="BZ"  id="BZ" cols="90"></textarea></TD></TR>
+
+</table>
+         
+
+<p></td></tr>
+</table>
+
+    </el-tab-pane>
+    </el-tabs>
+</form>
+
+<script type="text/javascript">
+
+
+$("#DEPT").combobox({
+onChange: function () {
+var deptid = $("#DEPT").combobox("getValue");
+if (deptid=="010000000000")
+{
+  $("#PGH").textbox('setValue',"ld");
+  $("#GS").combobox('setValue',"01");
+
+}
+
+}
+
+});
+        
+
+//填充高度
+var winHeight = window.innerHeight-50;
+$("#tabs").height(winHeight);
+
+</script>
+</body>
+</html>
+
+
+
+
+

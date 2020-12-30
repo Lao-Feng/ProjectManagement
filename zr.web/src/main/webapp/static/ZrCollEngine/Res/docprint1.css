@@ -1,0 +1,32 @@
+body {
+	margin-left: 40px;
+	margin-top: 30px;
+}
+table {
+	word-break:break-all;
+}
+input {
+	BORDER-RIGHT: #000000 0px solid; BORDER-TOP: #000000 0px solid;
+	BORDER-LEFT: #000000 0px solid; BORDER-BOTTOM: #000000 1px solid;
+}
+
+.h1 {
+	font-family:"宋体"; font-size:23px;
+}
+
+.h7 {
+	font-family:"黑体"; font-size:16px;
+}
+
+
+.k1 {
+	font-family:"宋体"; font-size:28px; line-height:200%; font-weight:bold;
+}
+
+.k6 {
+	font-family:"宋体"; font-size:16px;
+}
+
+.k7 {
+	font-family:"黑体"; font-size:12px; font-weight:bold;
+}

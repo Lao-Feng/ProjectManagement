@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="zr.zrpower.dao.mapper.SecurityMapper">
+  
+  <!-- 增加新菜单信息 -->
+  <insert id="insertMenu" parameterType="java.util.Map">
+	Insert Into BPIP_MENU
+	<trim prefix="(" suffix=")" suffixOverrides=",">
+		<if test="MENUNO != null">
+			MENUNO,
+		</if>
+		<if test="MENUNAME != null">
+			MENUNAME,
+		</if>
+		<if test="ISPOWER != null">
+			ISPOWER,
+		</if>
+		<if test="URL != null">
+			URL,
+		</if>
+		<if test="ISOPEN != null">
+			ISOPEN,
+		</if>
+		<if test="FLAG != null">
+			FLAG,
+		</if>
+		<if test="MNCODE != null">
+			MNCODE,
+		</if>
+	</trim>
+	<trim prefix="values (" suffix=")" suffixOverrides=",">
+		<if test="MENUNO != null">
+			#{MENUNO},
+		</if>
+		<if test="MENUNAME != null">
+			#{MENUNAME},
+		</if>
+		<if test="ISPOWER != null">
+			#{ISPOWER},
+		</if>
+		<if test="URL != null">
+			#{URL},
+		</if>
+		<if test="ISOPEN != null">
+			#{ISOPEN},
+		</if>
+		<if test="FLAG != null">
+			#{FLAG},
+		</if>
+		<if test="MNCODE != null">
+			#{MNCODE},
+		</if>
+	</trim>
+  </insert>
+  
+  <!-- 编辑新菜单信息 -->
+  <update id="updateMenu" parameterType="java.util.Map">
+    update BPIP_MENU
+    <set>
+        <if test="MENUNAME != null">
+			MENUNAME = #{MENUNAME},
+		</if>
+		<if test="ISPOWER != null">
+			ISPOWER = #{ISPOWER},
+		</if>
+		<if test="URL != null">
+			URL = #{URL},
+		</if>
+		<if test="ISOPEN != null">
+			ISOPEN = #{ISOPEN},
+		</if>
+		<if test="FLAG != null">
+			FLAG = #{FLAG},
+		</if>
+		<if test="MNCODE != null">
+			MNCODE = #{MNCODE},
+		</if>
+    </set>
+    Where MENUNO = #{MENUNO}
+  </update>
+  
+  <!-- 添加角色信息 -->
+  <insert id="insertRole" parameterType="java.util.Map">
+	Insert Into BPIP_ROLE
+	<trim prefix="(" suffix=")" suffixOverrides=",">
+		<if test="ROLEID != null">
+			ROLEID,
+		</if>
+		<if test="ROLENAME != null">
+			ROLENAME,
+		</if>
+		<if test="DESCRIPTION != null">
+			DESCRIPTION,
+		</if>
+	</trim>
+	<trim prefix="values (" suffix=")" suffixOverrides=",">
+		<if test="ROLEID != null">
+			#{ROLEID},
+		</if>
+		<if test="ROLENAME != null">
+			#{ROLENAME},
+		</if>
+		<if test="DESCRIPTION != null">
+			#{DESCRIPTION},
+		</if>
+	</trim>
+  </insert>
+  
+  <!-- 编辑角色信息 -->
+  <update id="updateRole" parameterType="java.util.Map">
+    update BPIP_ROLE
+    <set>
+        <if test="ROLENAME != null">
+			ROLENAME = #{ROLENAME},
+		</if>
+		<if test="DESCRIPTION != null">
+			DESCRIPTION = #{DESCRIPTION},
+		</if>
+    </set>
+    Where ROLEID = #{ROLEID}
+  </update>
+</mapper>

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="zr.zrpower.dao.mapper.BpipTablespaceMapper">
+
+	<!-- 信息 -->
+	<select id="queryObject" resultType="zr.zrpower.model.dbmanage.BPIP_TABLESPACE">
+		select * from BPIP_TABLESPACE where ID = #{value}
+	</select>
+    <!-- 以下为菜单数据事务操作 -->
+	<select id="queryList" resultType="zr.zrpower.model.dbmanage.BPIP_TABLESPACE">
+		select * from BPIP_TABLESPACE
+		<where>
+			<if test="ID != null">
+				and ID = #{ID}
+			</if>
+			<if test="CHINESENAME != null and CHINESENAME != ''">
+				and CHINESENAME like concat('%',#{CHINESENAME},'%')
+			</if>
+			<if test="DESCRIPTION != null and DESCRIPTION != ''">
+				and DESCRIPTION like concat('%',#{DESCRIPTION},'%')
+			</if>
+		</where>
+		order by ID asc
+	</select>
+	
+	<select id="getMaxNo" resultType="String">
+	    select max(id) as MAX_NO from BPIP_TABLESPACE
+	</select>
+
+	<insert id="save" parameterType="zr.zrpower.model.dbmanage.BPIP_TABLESPACE" useGeneratedKeys="true" keyProperty="id">
+		insert into BPIP_TABLESPACE
+		(
+		`ID`,
+		`CHINESENAME`,
+		`DESCRIPTION`
+		)
+		values
+		(
+		#{ID},
+		#{CHINESENAME},
+		#{DESCRIPTION}
+		)
+	</insert>
+
+	<update id="update" parameterType="zr.zrpower.model.dbmanage.BPIP_TABLESPACE">
+		update BPIP_TABLESPACE
+		<set>
+			<if test="ID != null">`ID` = #{ID}, </if>
+			<if test="CHINESENAME != null">`CHINESENAME` = #{CHINESENAME}, </if>
+			<if test="DESCRIPTION != null">`DESCRIPTION` = #{DESCRIPTION}</if>
+		</set>
+		where ID = #{ID}
+	</update>
+    
+    <!-- 查询当前表空间是否有表存在 -->
+    <select id="queryTables" resultType="int">
+		select count(TABLEID) as sum_count from BPIP_TABLE where TABLESPACE = #{value}
+	</select>
+	<delete id="delete">
+		delete from BPIP_TABLESPACE where ID = #{value}
+	</delete>
+	
+</mapper>

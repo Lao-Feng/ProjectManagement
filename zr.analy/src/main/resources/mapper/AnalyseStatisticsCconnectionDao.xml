@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper
+	namespace="zr.zrpower.dao.AnalyseStatisticsCconnectionDao">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+	<resultMap
+		type="zr.zrpower.domain.AnalyseStatisticsCconnection"
+		id="analyseStatisticsCconnectionMap">
+		<result property="id" column="ID" />
+		<result property="fid" column="FID" />
+		<result property="mfield" column="MFIELD" />
+		<result property="cfield" column="CFIELD" />
+		<result property="jointype" column="JOINTYPE" />
+	</resultMap>
+
+	<sql id="Base_Column_List">
+		`ID`, `FID`, `MFIELD`, `CFIELD`, `JOINTYPE`
+	</sql>
+
+	<select id="queryObject"
+		resultType="zr.zrpower.domain.AnalyseStatisticsCconnection">
+		select
+		<include refid="Base_Column_List" />
+		from analyse_statistics_cconnection where ID = #{value}
+	</select>
+
+	<select id="getMaxNo" resultType="String">
+		select max(id) as max_no from
+		analyse_statistics_cconnection
+	</select>
+
+	<select id="queryList"
+		resultType="zr.zrpower.domain.AnalyseStatisticsCconnection">
+		select
+		<include refid="Base_Column_List" />
+		from analyse_statistics_cconnection
+		<where>
+			<if test="fid != null and fid != ''">
+				and `fid` = #{fid}
+			</if>
+		</where>
+		<choose>
+			<when test="sidx != null and sidx.trim() != ''">
+				order by ${sidx} ${order}
+			</when>
+			<otherwise>
+				order by ID 
+			</otherwise>
+		</choose>
+		<if test="offset != null and limit != null">
+			limit #{offset}, #{limit}
+		</if>
+	</select>
+
+	<select id="queryTotal" resultType="int">
+		select count(*) from
+		analyse_statistics_cconnection
+	</select>
+
+	<insert id="save"
+		parameterType="zr.zrpower.domain.AnalyseStatisticsCconnection">
+		insert into analyse_statistics_cconnection
+		(
+		`ID`,
+		`FID`,
+		`MFIELD`,
+		`CFIELD`,
+		`JOINTYPE`
+		)
+		values
+		(
+		#{id},
+		#{fid},
+		#{mfield},
+		#{cfield},
+		#{jointype}
+		)
+	</insert>
+
+	<update id="update"
+		parameterType="zr.zrpower.domain.AnalyseStatisticsCconnection">
+		update analyse_statistics_cconnection
+		<set>
+			<if test="fid != null">`FID` = #{fid}, </if>
+			<if test="mfield != null">`MFIELD` = #{mfield}, </if>
+			<if test="cfield != null">`CFIELD` = #{cfield}, </if>
+			<if test="jointype != null">`JOINTYPE` = #{jointype}</if>
+		</set>
+		where ID = #{id}
+	</update>
+
+	<delete id="delete">
+		delete from analyse_statistics_cconnection where fid =
+		#{value}
+	</delete>
+
+	<delete id="deleteBatch">
+		delete from analyse_statistics_cconnection where fid in
+		<foreach item="id" collection="array" open="(" separator=","
+			close=")">
+			#{id}
+		</foreach>
+	</delete>
+
+</mapper>

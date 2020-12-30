@@ -1,0 +1,135 @@
+﻿<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>选择人员</title>
+<script type="text/javascript" th:inline="javascript">
+//作用：全选
+function selectall(){
+    var isdo;
+    if (document.getElementById('alls').checked==true){
+     document.getElementById('alls').checked='checked';
+     isdo = true;
+    }else{
+     document.getElementById('alls').checked='';
+     isdo = false;
+    }
+
+    if(isdo){
+      $("input[type='checkbox']").each(function(index,element){
+       var strValue = $(element).val();
+       if (strValue.length==16){
+              document.getElementById(strValue).checked='checked';
+       }
+      });
+    }else{
+       $("input:checkbox:checked").each(function(index,element){
+       var strValue = $(element).val();
+       if (strValue.length==16){
+              document.getElementById(strValue).checked='';
+       }
+      });
+    }
+}
+
+//作用：部门全选
+function selectallPm(unitid){
+       $("input[type='checkbox']").each(function(index,element){
+       var strValue = $(element).val();
+       if (strValue.length==16){
+         if (strValue.indexOf(unitid) != -1){
+              document.getElementById(strValue).checked='checked';
+         }
+      }
+      });
+}
+
+//作用：取消全选
+function selectnotBM(unitid){
+      $("input[type='checkbox']").each(function(index,element){
+       var strValue = $(element).val();
+       if (strValue.length==16){
+         if (strValue.indexOf(unitid) != -1){
+              document.getElementById(strValue).checked='';
+         }
+      }
+      });
+}
+
+//作用：获取记录
+function GetUserNo(){
+  var selectedstring= "";
+  var strValue= "";
+  $("input:checkbox:checked").each(function(index,element){
+      strValue = $(element).val();
+      if (strValue.length==16){
+      if (selectedstring == ""){
+          selectedstring = strValue;
+      }else{
+          selectedstring = selectedstring  + "," + strValue;
+      }}
+  });
+
+  if (selectedstring != "") {
+      var issms = document.getElementById("issms").value;
+      var smsvalue="";
+      if (issms=="1"){
+         smsvalue = document.getElementById("smsvalue").value;
+      }
+      if (smsvalue.length==0)
+      {smsvalue="no";}
+      
+      dosend_re(selectedstring+"/"+smsvalue, [[${showsid}]]);
+  }else {
+      $.messager.alert('提示','请先选择人员！','info');
+  }
+  return;
+}
+
+function selectOnclick(id){
+    if (document.getElementById(id).checked==true)
+    {document.getElementById(id).checked='';}
+    else
+    {document.getElementById(id).checked='checked';}
+}
+</script>
+</head>
+<input type="hidden" name="setall" value="0">
+<input type="hidden" id="issms" name="issms" th:value="${isSMS}">
+<TABLE border="0" width="95%" cellpadding=0 cellspacing=0>
+     <TR>
+     <TD height="320">
+  <DIV id="divMessage" style='padding-left:0;padding-top:0;width:100%;height:100%;overflow:auto'>
+  <TABLE border="0" width="95%" cellpadding=0 cellspacing=0>
+    <TR>
+       <TD width="95%" height="3"></TD>
+    </TR>
+    <TR>
+      <TD valign="top">
+        <TABLE  border="0" width="95%" cellpadding=0 cellspacing=0>
+          <div th:utext="${UserLst}"></div>
+        </TABLE>
+      </TD>
+    </TR>
+  </TABLE>
+  </DIV>
+  </td>
+  </tr>
+
+  <tr><td height="10"></td></tr>
+  <tr><td height="30" align="center">
+          <center>
+          <table cellspacing="0" cellpadding="0" border='0'><tr>
+                 <td>
+                   <img src="Zrsysmanage/images/PuTreeRoot.gif" valign="absmiddle" WIDTH="17" HEIGHT="17">
+                   <input type="checkbox" id="alls" name="alls" onclick="selectall();">全选&nbsp;
+                 </td>
+         </tr></table>
+         </center>
+    </td>
+  </tr>
+</TABLE>
+<div data-options="region:'south',border:false" style="text-align:center;padding:5px 0 15px;">
+	<a class="easyui-linkbutton" data-options="iconCls:'icon-ok'" href="javascript:void(0)" onclick="Javascript:GetUserNo();" style="width:80px">确定</a>
+	<a class="easyui-linkbutton" data-options="iconCls:'icon-cancel'" href="javascript:void(0)" onclick="Javascript:$('#win').window('close');" style="width:80px">取消</a>
+</div>
+</html>

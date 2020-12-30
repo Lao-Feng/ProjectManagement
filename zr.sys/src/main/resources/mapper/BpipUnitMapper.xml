@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="zr.zrpower.dao.mapper.BpipUnitMapper">
+
+	<!-- 信息 -->
+	<select id="queryObject" resultType="zr.zrpower.model.BPIP_UNIT">
+		select * from BPIP_UNIT
+		where unitid = #{value}
+	</select>
+	<!-- 以下为数据事务操作 -->
+	<select id="queryList" resultType="zr.zrpower.model.BPIP_UNIT">
+		select * from BPIP_UNIT
+		<where>
+			<choose>
+				<when test="PARUNITID != null and PARUNITID != ''">
+					and UNITID != #{PARUNITID}
+					<if test="SUNITID != null and SUNITID != ''">
+						and UNITID like concat('',#{SUNITID},'%')
+					</if>
+					<if test="EUNITID != null and EUNITID != ''">
+						and UNITID like concat('%',#{EUNITID},'')
+					</if>
+				</when>
+				<otherwise>
+					<if test="UNITID != null and UNITID != ''">
+						and UNITID like concat('%',#{UNITID},'')
+					</if>
+				</otherwise>
+			</choose>
+			<if test="ORDERCODE != null and ORDERCODE != ''">
+				and ORDERCODE = #{ORDERCODE}
+			</if>
+			<if test="STATE != null and STATE != ''">
+				and STATE = #{STATE}
+			</if>
+			<if test="UNITNAME != null and UNITNAME != ''">
+				and UNITNAME like concat('%',#{UNITNAME},'%')
+			</if>
+		</where>
+		order by UNITID asc
+	</select>
+
+	<select id="queryTotal" resultType="int">
+		select count(*) from
+		BPIP_UNIT
+	</select>
+
+	<select id="getMaxNo" resultType="String">
+		SELECT MAX(UNITID) AS MAX_NO FROM BPIP_UNIT
+		<where>
+			<if test="stUnitId != null">
+				and UNITID like concat('',#{stUnitId},'%')
+			</if>
+			<if test="enUnitId != null">
+				and UNITID like concat('%',#{enUnitId},'')
+			</if>
+		</where>
+	</select>
+
+	<insert id="save" parameterType="zr.zrpower.model.BPIP_UNIT"
+		useGeneratedKeys="true" keyProperty="unitid">
+		insert into BPIP_UNIT
+		(
+		`UNITID`,
+		`UNITNAME`,
+		`STATE`,
+		`ORDERCODE`
+		)
+		values
+		(
+		#{UNITID},
+		#{UNITNAME},
+		#{STATE},
+		#{ORDERCODE}
+		)
+	</insert>
+
+
+	<update id="update" parameterType="zr.zrpower.model.BPIP_UNIT">
+		update BPIP_UNIT
+		<set>
+			<if test="UNITID != null">`UNITID` = #{UNITID}, </if>
+			<if test="UNITNAME != null">`UNITNAME` = #{UNITNAME}, </if>
+			<if test="STATE != null">`STATE` = #{STATE}, </if>
+			<if test="ORDERCODE != null">`ORDERCODE` = #{ORDERCODE}</if>
+		</set>
+		where UNITID = #{UNITID}
+	</update>
+
+	<!-- 删除前，判断当前是否有下一级 -->
+	<select id="nextCount" resultType="int">
+		Select count(UNITID) as
+		MenuCount From BPIP_UNIT Where UNITID like concat('',#{value},'%')
+	</select>
+	<select id="nextUsers" resultType="int">
+		Select count(USERID) as userCount From BPIP_USER
+		<where>
+			and UNITID=#{value}
+            <![CDATA[ and USERSTATE <>'1']]>
+		</where>
+	</select>
+	<delete id="delete">
+		delete from BPIP_UNIT where UNITID = #{value}
+	</delete>
+
+</mapper>

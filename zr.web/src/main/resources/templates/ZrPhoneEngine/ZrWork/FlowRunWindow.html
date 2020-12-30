@@ -1,0 +1,431 @@
+<!Doctype html>
+<html class="no-js">
+<head>
+  <meta charset="utf-8">
+  <title>流程审批</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <meta name="apple-touch-fullscreen" content="yes">
+  <meta name="x5-fullscreen" content="true">
+  <!-- Set render engine for 360 browser -->
+  <meta name="renderer" content="webkit">
+  <!-- No Baidu Siteapp-->
+  <meta http-equiv="Cache-Control" content="no-siteapp"/>
+  <!-- Add to homescreen for Chrome on Android -->
+  <meta name="mobile-web-app-capable" content="yes">
+   <!-- Add to homescreen for Safari on iOS -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-title" content="流程审批"/>
+  <!-- Tile icon for Win8 (144x144 + tile color) -->
+  <meta name="msapplication-TileImage" content="/static/assets/i/app-icon72x72@2x.png">
+  <meta name="msapplication-TileColor" content="#0e90d2">
+
+  <link rel="icon" type="image/png" href="/static/assets/i/favicon.png">
+  <link rel="icon" sizes="192x192" href="/static/assets/i/app-icon72x72@2x.png">
+  <link rel="apple-touch-icon-precomposed" href="/static/assets/i/app-icon72x72@2x.png">
+  <link rel="stylesheet" href="/static/assets/font_icon/css/font-awesome.css">
+  <link rel="stylesheet" href="/static/assets/css/amazeui.min.css">
+  <link rel="stylesheet" href="/static/assets/css/app.css">
+
+  <script src="/static/assets/js/jquery.min.js"></script>
+  <script src="/static/assets/js/amazeui.min.js"></script>
+  <script src="/static/assets/js/hide-address-bar.js"></script>
+  <script type="text/javascript" src="/static/Zrsysmanage/script/Public.js"></script>
+  <script type="text/javascript" src="/static/ZrPhoneEngine/ZrWork/js/Workflow.js"></script>
+  <link rel="stylesheet" type="text/css" href="/static/ZrPhoneEngine/css/style.css" media="screen" />
+</head>
+<body style="background: white;">
+  <!-- header  start -->
+  <header data-am-widget="header"
+          class="am-header am-header-default am-header-fixed">
+      <div class="am-header-left am-header-nav">
+          <a href="List.html" class="">
+                <i class="am-header-icon am-icon-chevron-left"></i>
+          </a>
+      </div>
+      <h1 class="am-header-title">
+          <a href="#title-link" class="" th:utext="${WindowTitle}">
+            
+          </a>
+      </h1>
+      <div class="am-header-right am-header-nav">
+          <a href="javascript: void(0)" class="am-menu-toggle">
+                <i class="am-menu-toggle-icon am-icon-list"></i>
+          </a>
+      </div>
+  </header>
+  <!-- header  end -->
+
+  <!-- main  start -->
+  <Form name="webform" method="post" action="/flow/flowrunPhone" class="am-form">
+  <div class="main-contor">
+
+<input type="hidden" name="IfPho" value="0"/>                                   <!--1、代表手机访问  0、代表电脑-->
+<input type="hidden" name="Unit" th:value="${Unit}">                               <!--单位编号-->
+<input type="hidden" name="type" value="">                                      <!--提交类型1:保存2:提交-->
+<input type="hidden" name="Identification" th:value="${Identification}">           <!--流程标识-->
+<input type="hidden" name="Workflow_No" th:value="${Workflow_No}">                 <!--流程编号-->
+<input type="hidden" name="RID" th:value="${RID}">                                 <!--关联流程(流程流转ID)-->
+<input type="hidden" name="Node_No_S" th:value="${Node_No_S}">                     <!--当前节点编号-->
+<input type="hidden" name="M_Node_No_E" th:value="${M_Node_No_E}">                 <!--下一节点编号(多分支)-->
+<input type="hidden" name="M_Node_No_S_E" th:value="${M_Node_No_S_E}">             <!--下一节点编号(多分支选择后)-->
+<input type="hidden" name="S_Node_No_E" th:value="${S_Node_No_E}">                 <!--上一节点编号(多分支)-->
+<input type="hidden" name="S_Node_No_S_E" th:value="${S_Node_No_S_E}">             <!--上一节点编号(多分支选择后)-->
+<input type="hidden" name="OptCmd" value="">                                    <!--记录属性按钮命令值-->
+<input type="hidden" name="OptCmd_Name" value="">                               <!--记录属性按钮命令值中文-->
+<input type="hidden" name="UserNo" th:value="${UserNo}">                           <!--当前用户编号-->
+<input type="hidden" name="Execute_No" th:value="${Execute_No}">                   <!--流程运转编号-->
+<input type="hidden" name="ParentID" th:value="${ParentID}">                       <!--父流程ID值或父表单记录值-->
+<input type="hidden" name="ParentID1" th:value="${ParentID1}">                     <!--父流程ID1值或父表单记录值-->
+<input type="hidden" name="FormID" th:value="${FormID}">                           <!--业务表的ID值-->
+<input type="hidden" name="TitleName" th:value="${TitleName}">                     <!--业务表的标题名称-->
+<input type="hidden" name="OtherID" th:value="${OtherID}">                         <!--关联字段的ID值-->
+<input type="hidden" name="Path" value="/flow/openflowrun">                       <!--当前文件的路径-->
+<input type="hidden" name="Do_User_Nos" value="">                               <!--选择的处理人编号-->
+<input type="hidden" name="NeedNewFlow" th:value="${NeedNewFlow}">                 <!--必须新建但还未建的流程名称-->
+<input type="hidden" name="AttMessage" th:value="${AttMessage}">                   <!--当前步骤附件情况提示-->
+<input type="hidden" name="FlowFormPath" th:value="${FlowFormPath}">               <!--流程表单完整路径-->
+<input type="hidden" name="MsgType" value="0">                                  <!--短信提示类别-->
+<input type="hidden" name="ISSAVE1" th:value="${ISSAVE1}">                         <!--前进保存数据-->
+<input type="hidden" name="ISSAVE2" th:value="${ISSAVE2}">                         <!--后退保存数据-->
+<input type="hidden" name="ISLEAVE1" th:value="${ISLEAVE1}">                       <!--前进必填留言-->
+<input type="hidden" name="ISLEAVE2" th:value="${ISLEAVE2}">                       <!--后退必填留言-->
+<input type="hidden" name="ADDFORMPATH" th:value="${ADDFORMPATH}">                 <!--活动处理前填写表单地址-->
+<input type="hidden" name="ADDFORMWIDTH" th:value="${ADDFORMWIDTH}">               <!--活动处理前填写表单宽-->
+<input type="hidden" name="ADDFORMHEIGHT" th:value="${ADDFORMHEIGHT}">             <!--活动处理前填写表单高-->
+<input type="hidden" name="ADDFORMMESSAGE" th:value="${ADDFORMMESSAGE}">           <!--活动处理前非正确填写表单提示-->
+<input type="hidden" name="RECORDID" th:value="${RECORDID}">                       <!--附件ID-->
+<input type="hidden" name="ATTNUM" th:value="${ATTNUM}">                           <!--需要上传附件数-->
+<input type="hidden" name="ATTTYPE" th:value="${ATTTYPE}">                         <!--附件类型-->
+<input Type="hidden" name="ISBRANCH" th:value="${ISBRANCH}">                       <!--多路分支按钮是否在操作按钮上-->
+<input Type="hidden" name="ISWHERE" th:value="${ISWHERE}">                         <!--与当前步骤相关联的线上是否有与字段相关的条件-->
+<input Type="hidden" name="WEBPATH" value="/"> 									<!--web路径-->
+<input Type="hidden" name="SELECTDEPTID" value="">                              <!--自定义指定部门ID或人员ID,多个ID间用逗号分隔,用于选人时指定相应部门下的角色或直接指定人员-->
+
+     <div style="background: white;">
+     <iframe id=CollDataTable name=CollDataTable th:src="@{${FlowFormPath}}" border=0 frameborder=0 width=100% height=300px></iframe>
+     <center>
+         <div id="idea"  style="width:'100%';height:50;overflow:'hidden';display:'${showidea}';">
+            <div class="am-form-group">
+                <label for="doc-ta-1">审核意见</label>
+                <textarea name="DoIdea" rows="2" cols="10" style="width: 90%" ></textarea><!--处理意见-->
+            </div>
+         </div>
+    </center>
+  </div>
+  </div>
+  <!-- main  end -->
+  <!-- button  start -->
+  <!-- 按钮栏  开始 -->
+  <div class="am-modal-actions" id="my-actions" th:utext="${buttonlist}">
+    
+  <div class="am-modal-actions-group">
+    <button class="am-btn am-btn-secondary am-btn-block" data-am-modal-close>取消</button>
+  </div>
+  </div>
+  <!-- button  end -->
+
+  <!-- model frow win start -->
+  <div class="am-modal am-modal-alert" tabindex="-1" id="trun-model">
+  <div class="am-modal-dialog">
+
+    <div id="trun-model-code" class="am-modal-bd" th:utext="${NodeLst}">
+            
+    </div>
+    <div id="trun-model-button" class="am-modal-footer">
+      <span class="am-modal-btn" data-am-modal-cancel>取消</span>
+      <span class="am-modal-btn" data-am-modal-confirm onclick="javascript:FunOk();">提交</span>
+    </div>
+  </div>
+  </div>
+  <!-- model frow win end -->
+
+  <!-- model user win start -->
+  <div class="am-modal am-modal-alert" tabindex="-1" id="user-model">
+  <div class="am-modal-dialog">
+    <div id="user-model-code" class="am-modal-bd">
+    </div>
+    <div id="user-model-button" class="am-modal-footer">
+    </div>
+  </div>
+  </div>
+  <!-- model user win end -->
+
+  <!-- model public win start -->
+  <div class="am-modal am-modal-alert" tabindex="-1" id="public-alert">
+  <div class="am-modal-dialog">
+    <div class="am-modal-hd">提示</div>
+    <div id="public-alert-code" class="am-modal-bd"></div>
+    <div class="am-modal-footer">
+      <span class="am-modal-btn">确定</span>
+    </div>
+  </div>
+  </div>
+  <!-- model public win end -->
+
+  </Form>
+
+<script type="text/javascript">
+//按钮窗口
+$('.am-menu-toggle').on('click', function() {
+	$('#my-actions').modal('open');
+});
+//填充高度
+var winHeight = window.innerHeight-55;
+$("#CollDataTable").height(winHeight);
+</script>
+
+<script type="text/javascript">
+var isSave = "0";
+function showTable(){
+    if (document.getElementById("show1").style.display=='none')
+       {document.getElementById("show1").style.display='';}
+    else
+       {document.getElementById("show1").style.display='none';}
+}
+
+function save_return(PKID,FKID,TITLE){
+   if (PKID==null || PKID.length==0){
+	    $("#public-alert-code").html("保存失败！");
+	    $("#public-alert").modal('open');
+   }else{
+   var strtype = webform.type.value;
+   var strExecute_No = webform.Execute_No.value;
+   var strFormID = webform.FormID.value;
+   var attnum1 = webform.ATTNUM.value;
+   var atttype = webform.ATTTYPE.value;
+   if ((strExecute_No.length==0 && strFormID.length==0) || strExecute_No.length>0)//第一次保存，避免第一次重复增加
+   {
+     webform.FormID.value = PKID;
+     if (FKID.length>4){
+         webform.OtherID.value = FKID;
+     }else{
+	    webform.OtherID.value = PKID;
+     }
+     var par1= webform.ParentID.value;
+     var par2= webform.ParentID1.value;
+     if (par1.length==0){
+        webform.ParentID.value = PKID;
+     }
+     if (par2.length==0){
+        webform.ParentID1.value = PKID;
+     }
+     webform.TitleName.value = TITLE;
+     if (strtype=="1"){//保存流程
+        var DoIdea = webform.DoIdea.value;
+        if (strExecute_No.length==0 || (strExecute_No.length>0 && DoIdea.length>0)){
+           doSave();
+        }
+     }else{
+        doSubmit();
+     }
+   }else{
+    if (strExecute_No.length==0 && strFormID.length>0)
+    {doSave();}
+    else{
+      doSubmit();
+    }
+   }
+   }
+}
+
+function saveColl(type){
+   if (isSave=="1")
+   {return;}
+   isSave=="1";
+   webform.type.value = "";//清空
+   webform.type.value = type;
+   //调用采集引擎保存
+  //前进保存数据
+  var ISSAVE1=webform.ISSAVE1.value;
+  //前进必填留言
+  var ISLEAVE1=webform.ISLEAVE1.value;
+  if (type=="2" && ISLEAVE1=="1")//提交必填留言
+  {
+      var DoIdea = webform.DoIdea.value;
+      if (DoIdea.length==0)
+      {
+         $("#public-alert-code").html("请先填写处理意见!");
+         $("#public-alert").modal('open');
+         return;
+      }
+  }
+  if (type=="2" && ISSAVE1=="0")//提交不保存数据的情况
+  {
+      var atttype = webform.ATTTYPE.value;
+      doSubmit();
+      return;
+  }
+  var isFalse = window.CollDataTable.saveColl();
+  if (isFalse!=true){}
+  return isFalse;
+}
+
+//屏幕JS错误
+function killErrors() {
+   return true;
+}
+window.onerror = killErrors;
+//根据分辨率显示
+function resetup(){
+  var atttype = "${ATTTYPE}";
+  var sheight = window.screen.height;
+  document.getElementById("show1").style.height=sheight-120;
+  if (atttype=="2" || atttype=="3" || atttype=="4" ){
+     if (atttype=="2" || atttype=="3"){
+       document.getElementById("CollDataTable").style.height=sheight-380;
+     }else{
+       document.getElementById("CollDataTable").style.height=sheight-320;
+     }
+  }else{
+    document.getElementById("CollDataTable").style.height=sheight-240;
+  }
+}
+setTimeout("resetup()",300);
+</script>
+<script type="text/javascript">
+//选择分支
+function getFz(){
+	$('#my-actions').modal('close');//关闭按钮
+	$('#trun-model').modal('open');//弹出选择下一流程框
+}
+
+function selectOnclick(id){
+    var length = document.webform.elements.length
+    var recordindex
+    var selectedstring
+    var strValue
+    selectedstring=""
+    for (var i=0; i<length; i++){
+    recordindex  = document.webform.elements[i].name.indexOf("record");
+    if (recordindex  != -1) {
+          strValue = document.webform.elements[i].value;
+          if (strValue==id)
+          {
+            document.webform.elements[i].checked='checked';
+          }else
+          {document.webform.elements[i].checked='';}
+     }
+    }
+}
+
+//确定分支
+function FunOk(){
+  var length = document.webform.elements.length
+  var recordindex
+  var selectedstring
+  var strValue
+  selectedstring=""
+  for (var i=0; i<length; i++){
+    recordindex  = document.webform.elements[i].name.indexOf("record");
+    if (recordindex  != -1) {
+      if (document.webform.elements[i].checked){
+        strValue = document.webform.elements[i].value;
+        intValue = strValue.length;
+        if (selectedstring == ""){
+          selectedstring = strValue;
+        }else{
+          selectedstring = selectedstring  + "," + strValue;
+        }
+      }
+    }
+  }
+  if (selectedstring != "") {
+      webform.M_Node_No_S_E.value = selectedstring;
+      getRY();
+      return selectedstring;
+  }else {
+      $("#public-alert-code").html("请选择流程!");
+      $("#public-alert").modal('open');
+  }
+  return selectedstring;
+}
+
+//选择人
+function getRY(){
+	//$('#trun-model').modal('close');//关闭流程选择
+	$('#user-model').modal('open');//弹出选择下一流程框
+	  var arrlist ="";
+	  var str_NodeNo = webform.M_Node_No_S_E.value;
+	  arrlist = str_NodeNo.split(",")[0].split("/");
+	  str_NodeNo = arrlist[1];//得到处理人类型
+	  var isSelectUser = "0";
+
+	  if (str_NodeNo=="E")//自定义选择办理部门
+	  {
+	     if (SelectDoDept()){
+	        webform.M_Node_No_S_E.value = arrlist[0];
+	        isSelectUser = "1";
+	     }
+	  }
+	  if (str_NodeNo=="F")//自定义选择办理人员
+	  {
+	     if (SelectDoPsn("1")){
+	        webform.M_Node_No_S_E.value = arrlist[0];
+	        isSelectUser = "1";
+	     }
+	  }
+	  if (str_NodeNo=="G")//自定义选择本部门人员及其它部门
+	  {
+	     if (SelectDoDeptPsn()){
+	        webform.M_Node_No_S_E.value = arrlist[0];
+	        isSelectUser = "1";
+	     }
+	  }
+	  if (str_NodeNo=="Q")//自定义选择本部门及下级部门人员
+	  {
+	     if (SelectDoPsn("3")){
+	        webform.M_Node_No_S_E.value = arrlist[0];
+	        isSelectUser = "1";
+	     }
+	  }
+	  if (str_NodeNo!="E" && str_NodeNo!="F" && str_NodeNo!="G"  && str_NodeNo!="Q"){
+	    //选择处理人员
+	    SelectDoUser();
+	  }
+}
+
+//选择人，调用子窗口的方法----提交
+function getChild(){
+	var strValue=iframe0.window.GetUserNo();
+	 var arrlist ="";
+	  var str_NodeNo = webform.M_Node_No_S_E.value;
+	  arrlist = str_NodeNo.split(",")[0].split("/");
+	if(strValue!=""&&typeof(strValue)!="undefined"){
+		var slist = strValue.split("/");
+		  webform.Do_User_Nos.value = slist[0];
+		  webform.MsgType.value = slist[1];
+		  webform.M_Node_No_S_E.value = arrlist[0];
+	      isSelectUser = "1";
+	      if (isSelectUser == "1"){
+		    webform.OptCmd.value="SUBMIT";
+		    webform.OptCmd_Name.value="提交";
+		    webform.submit();
+		    //location.href="dbsxList.html";
+		   }
+	}else{
+		$("#public-alert-code").html("请选择人员！");
+		$("#public-alert").modal('open');
+	}
+}
+
+//选择人，调用子窗口的方法----移交
+function getChild0(){
+	var strValue=iframe0.window.GetUserNo();
+	webform.Do_User_Nos.value = strValue;
+	if(strValue!=""&&typeof(strValue)!="undefined"){
+	   webform.OptCmd.value="DEVOLVE";
+	   webform.OptCmd_Name.value="移交";
+	   webform.submit();
+	   //location.href="dbsxList.html";
+	}else{
+		$("#public-alert-code").html("请选择移交人员！");
+		$("#public-alert").modal('open');
+	}
+}
+</script>
+</body>
+</html>

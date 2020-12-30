@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<TITLE>数据表单引擎</TITLE>
+<!-- 必要连接 -->
+<link href="/static/vue/element-ui/lib/theme-chalk/index.css" rel="stylesheet" type="text/css" \>
+<link href="/static/vue/element-ui/lib/theme-chalk/html.css" rel="stylesheet" type="text/css" \>
+<script src="/static/vue/jquery-1_15.9.1.min.js"></script>
+<script src="/static/vue/vue.min.js" type="text/javascript"></script>
+<script src="/static/vue/element-ui/lib/index.js" type="text/javascript"></script>
+<!-- 用户操作自定义工具js -->
+<script src="/static/vue/ZRcollen.js" type="text/javascript"></script>
+</head>
+<body style="margin: 0px;">
+<div id="zrcollen" class="table" v-loading="htmlLoading">
+   <div class="handle-box" id="zrbutt" v-show="${BUTT} == 1">
+       <el-button-group>
+       <el-button type="primary" icon="el-icon-check" @click="saveColl" size="small" v-if="${coll_READ} != 1">保存</el-button>
+       <el-button type="primary" icon="el-icon-delete" @click="deletedata" size="small" v-if="${coll_READ} != 1">删除</el-button>
+       <el-button type="primary" icon="el-icon-printer" @click="openprint" size="small">打印</el-button>
+	   </el-button-group>
+   </div>
+   <div class="handle-box" id="zriframe" style="height:300px;background: center;padding: 0px;margin:0px">
+       <iframe :src="zrurl" id="CollDataTable" name="CollDataTable" scrolling="auto" frameborder="0" class="frame"></iframe>
+   </div>
+   <div class="handle-box" id="zriatt" style="height:120px;background: center;padding: 0px;margin:0px" v-if="${ATT} == 1">
+       <iframe :src="atturl" id="att" name="att" scrolling="auto" frameborder="0" class="frame"></iframe>
+   </div>
+   
+      
+   <el-dialog title="提示" :visible.sync="ifdialog" :close-on-click-modal="false" :show-close="false" width="300px">
+        <el-container style="">
+            <el-header class="el-dialog-ftl2">
+                <el-button-group>
+                    <el-button type="primary" icon="el-icon-check" @click="loadhost" size="small">确定</el-button>
+                    <el-button type="primary" icon="el-icon-close" @click="ifdialog = false" size="small">取消</el-button>
+                </el-button-group>
+            </el-header>
+            <el-main style="padding: 0px;margin-top: -20px;">
+                                数据提交成功，是否继续?
+            </el-main>
+        </el-container>
+   </el-dialog>
+ 
+</div>
+<script>
+var vm = new Vue({
+    el: '#zrcollen',
+    name: 'zr_coll',
+    data() {
+        return {
+            htmlLoading:true,//全局加载
+            rowsLoading:false,//数据加载
+            rowsloadtitle:'数据加载...',
+            
+            ifdialog:false,
+            
+            zrurl:'',
+            atturl:'',
+            att:false,
+            
+            maxHigth:100,//表格初始化最大高度
+        }
+    },
+    created() {
+        this.init_query_higth()
+    },
+    mounted(){
+        $zrcoll = this
+        this.init_query_higth()
+        this.$nextTick(() => {
+		    this.htmlLoading = false
+		    this.zrurl='/zrcollen/collengine?COLL_AID=${COLL_AID}&coll_PKID=${coll_PKID}&coll_FKID=${coll_FKID}&coll_MODE=${coll_mode}&coll_READ=${coll_READ}'
+		    let TYPE = 1
+		    if(${coll_READ} == 1){
+		        TYPE = 3
+		    }
+		    this.atturl='/zruser/actionuser?Act=loadatt&FLOWID=&DOCID=${coll_PKID}&AID=${COLL_AID}&TYPE='+TYPE;
+        })
+    },
+    methods: {
+        // 初始化高度
+        init_query_higth(){
+            let e = this
+            let zrbuttH = $('#zrbutt').height()
+            let hia = $(document).height()-5
+            if(${BUTT} == 1){
+               hia = hia-zrbuttH-20
+            }
+            if(${ATT} == 1){
+               hia = hia-120
+            }
+            $('#zriframe').height(hia)
+        },
+        //刷新，重新调用
+        loadhost(){
+            let e = this
+            e.ifdialog = false
+            $('#CollDataTable')[0].src=e.zrurl
+        },
+        //示例（保存）：引擎调用iframe嵌套的表单保存方法
+        saveColl() {
+            let e = this
+	        // 调用采集引擎保存
+	        $('#CollDataTable')[0].contentWindow.vm.ZRsaveOrUpdate(function(data){
+		        if(data.code==0){
+		            e.ifdialog = true
+		        }
+	        })
+        },
+        //示例（删除）：调用引擎删除方法
+        deletedata(){
+            let e = this
+	        // 调用采集引擎删除
+	        $('#CollDataTable')[0].contentWindow.ZRdel_collen(function(data){
+		        //自己定义函数
+	        })
+        },
+        //示例（打印）：调用引擎打印方法
+        openprint(){
+            let e = this
+	        // 调用采集引擎打印控件
+	        $('#CollDataTable')[0].contentWindow.ZRprint_collen(function(data){
+		        //自己定义函数
+	        })
+        },
+        //示例（获取表单数据）：调用表单引擎
+        getFormDatas(callback){
+            let e = this
+            $('#CollDataTable')[0].contentWindow.ZRform_datas(function(data){
+		        callback(data)
+	        })
+        },
+    }
+});
+</script>
+<style scoped>
+.table {
+    width: 100%;
+    font-size: 12px;
+}
+.frame {
+    position: relative;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+}
+</style>
+</body>
+</html>

@@ -1,0 +1,183 @@
+/** 滚动条样式 ***/
+::-webkit-scrollbar {
+	width: 6px;
+	height: 6px;
+}
+
+::-webkit-scrollbar-corner {
+	background-color: rgb(83, 83, 83);
+}
+
+::-webkit-scrollbar-thumb {
+	background-color: rgb(204, 204, 204);
+	border-radius: 5px;
+}
+
+::-webkit-scrollbar-track {
+	background: 0 0;
+}
+
+body {
+	background: rgb(240, 240, 240);
+}
+a{ text-decoration:none} 
+/** 字体 ***/
+body td {
+	font-family: 'PingFang SC', "Helvetica Neue", Helvetica,
+		"microsoft yahei", arial, STHeiTi, sans-serif;
+}
+
+[class*=" el-icon-"], [class^=el-icon-] {
+	line-height: inherit;
+}
+
+/** 输入框样式 ***/
+.el-input__inner {
+	height: 32px;
+	line-height: 32px;
+}
+
+.handle-box {
+	background: rgb(255, 255, 255);
+	padding: 5px;
+	margin-bottom: 5px;
+	border-radius: 5px;
+}
+
+.el-input {
+	padding-bottom: 2px;
+}
+/** 分页样式 ***/
+.pagination {
+	margin: 5px 0;
+	text-align: right;
+}
+
+/**** 自定义弹出窗口样式 ***/
+.el-form-item--small.el-form-item {
+	margin-bottom: 15px;
+}
+/*** 查询引擎条件样式 ****/
+.el-form-item--mini.el-form-item {
+	margin-bottom: 2px;
+}
+/**窗口**/
+.el-dialog-ftl {
+	height: 33px;
+	padding: 0px;
+	margin-top: -45px;
+	text-align: right;
+	margin-right: 30px;
+}
+
+.el-dialog-ftl2 {
+	padding: 0px;
+	margin-top: -65px;
+	margin-right: -20px;
+	text-align: right;
+}
+/**单选框**/
+.el-radio {
+	margin-right: 5px;
+	margin-left: 0px;
+}
+
+.el-radio+.el-radio {
+	margin-left: 10px;
+}
+/**多选框**/
+.el-checkbox {
+	margin-right: 15px;
+	margin-left: 10px;
+}
+
+.el-checkbox+.el-checkbox {
+	margin-left: 10px;
+	padding-bottom: 10px;
+}
+
+.el-tree-node__label {
+	font-size: 12px;
+	margin-left: 10px;
+}
+/**内容边框**/
+.container {
+	padding: 10px;
+}
+/**弹出框**/
+.el-dialog__header {
+	padding: 10px 20px 10px;
+	background: rgb(64, 158, 255);
+	text-align: left;
+}
+
+.el-dialog__title {
+	font-size: 15px;
+	color: rgb(255, 255, 255);
+}
+/** 卡片头部样式 **/
+.el-card__header {
+	padding: 10px 20px;
+	font-size: 14px;
+}
+/** 编辑表格样式调整  **/
+.ftl-form-coll-edit {
+	margin-bottom: 0px;
+}
+
+/** 表单引擎数字框 **/
+.el-input-number--small .el-input-number__decrease,
+	.el-input-number--small .el-input-number__increase {
+	width: 32px;
+	height: 30px;
+	line-height: 30px;
+	font-size: 13px;
+}
+
+.el-select-dropdown__item {
+	text-align: left;
+}
+/** 表单引擎表格 **/
+#table1 td {
+	padding: 5px;
+	font-size: 13px;
+}
+
+/**** 表单引擎上传图片样式 *******/
+.avatar-uploader .el-upload {
+	border: 1px dashed #d9d9d9;
+	border-radius: 6px;
+	cursor: pointer;
+	position: relative;
+	overflow: hidden;
+}
+
+.avatar-uploader .el-upload:hover {
+	border-color: #409EFF;
+}
+
+.avatar-uploader-icon {
+	font-size: 28px;
+	color: #8c939d;
+	width: 178px;
+	height: 178px;
+	line-height: 178px;
+	text-align: center;
+}
+
+.avatar {
+	width: 178px;
+	height: 178px;
+	display: block;
+}
+
+/*** 表单form验证 **/
+.el-form-item {
+    margin-bottom: 0px; 
+}
+.el-form--inline .el-form-item {
+    vertical-align: middle;
+}
+.el-radio__label {
+    font-size: 14px; 
+}

@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="zr.zrpower.dao.QueryConfigTableDao">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="zr.zrpower.domain.QueryConfigTable" id="queryConfigTableMap">
+        <result property="id" column="ID"/>
+        <result property="name" column="NAME"/>
+        <result property="maintable" column="MAINTABLE"/>
+        <result property="type" column="TYPE"/>
+        <result property="bid" column="BID"/>
+        <result property="iffirstdata" column="IFFIRSTDATA"/>
+        <result property="ifmulsel" column="IFMULSEL"/>
+        <result property="ifcombtn" column="IFCOMBTN"/>
+        <result property="cid" column="CID"/>
+        <result property="dcode" column="DCODE"/>
+        <result property="qitemtype" column="QITEMTYPE"/>
+        <result property="qtabletype" column="QTABLETYPE"/>
+    </resultMap>
+    
+ <sql id="Base_Column_List" >
+`ID`, `NAME`, `MAINTABLE`, `TYPE`, `BID`, `IFFIRSTDATA`, `IFMULSEL`, `IFCOMBTN`, `CID`, `DCODE`, `QITEMTYPE`, `QTABLETYPE`
+  </sql>
+  
+	<select id="queryObject" resultType="zr.zrpower.domain.QueryConfigTable">
+		select
+		 <include refid="Base_Column_List" />
+		 from query_config_table where ID = #{value}
+	</select>
+	
+	<select id="getMaxNo" resultType="String">
+		select max(id) as max_no from query_config_table
+	</select>
+
+	<select id="queryList" resultType="zr.zrpower.domain.QueryConfigTable">
+		select 
+		<include refid="Base_Column_List" />
+		from query_config_table
+        <where>
+            <if test="projectNumber != null and projectNumber != ''">
+                and `project_number` like concat('%',#{projectNumber},'%')
+            </if>
+        </where>
+        <choose>
+            <when test="sidx != null and sidx.trim() != ''">
+                order by ${sidx} ${order}
+            </when>
+			<otherwise>
+                order by ID 
+			</otherwise>
+        </choose>
+		<if test="offset != null and limit != null">
+			limit #{offset}, #{limit}
+		</if>
+	</select>
+	
+ 	<select id="queryTotal" resultType="int">
+		select count(*) from query_config_table 
+	</select>
+	 
+	<insert id="save" parameterType="zr.zrpower.domain.QueryConfigTable">
+		insert into query_config_table
+		(
+			`ID`, 
+			`NAME`, 
+			`MAINTABLE`, 
+			`TYPE`, 
+			`BID`, 
+			`IFFIRSTDATA`, 
+			`IFMULSEL`, 
+			`IFCOMBTN`, 
+			`CID`, 
+			`DCODE`, 
+			`QITEMTYPE`, 
+			`QTABLETYPE`
+		)
+		values
+		(
+			#{id}, 
+			#{name}, 
+			#{maintable}, 
+			#{type}, 
+			#{bid}, 
+			#{iffirstdata}, 
+			#{ifmulsel}, 
+			#{ifcombtn}, 
+			#{cid}, 
+			#{dcode}, 
+			#{qitemtype}, 
+			#{qtabletype}
+		)
+	</insert>
+	 
+	<update id="update" parameterType="zr.zrpower.domain.QueryConfigTable">
+		update query_config_table 
+		<set>
+			<if test="name != null">`NAME` = #{name}, </if>
+			<if test="maintable != null">`MAINTABLE` = #{maintable}, </if>
+			<if test="type != null">`TYPE` = #{type}, </if>
+			<if test="bid != null">`BID` = #{bid}, </if>
+			<if test="iffirstdata != null">`IFFIRSTDATA` = #{iffirstdata}, </if>
+			<if test="ifmulsel != null">`IFMULSEL` = #{ifmulsel}, </if>
+			<if test="ifcombtn != null">`IFCOMBTN` = #{ifcombtn}, </if>
+			<if test="cid != null">`CID` = #{cid}, </if>
+			<if test="dcode != null">`DCODE` = #{dcode}, </if>
+			<if test="qitemtype != null">`QITEMTYPE` = #{qitemtype}, </if>
+			<if test="qtabletype != null">`QTABLETYPE` = #{qtabletype}</if>
+		</set>
+		where ID = #{id}
+	</update>
+	
+	<delete id="delete">
+		delete from query_config_table where ID = #{value}
+	</delete>
+	
+	<delete id="deleteBatch">
+		delete from query_config_table where ID in 
+		<foreach item="id" collection="array" open="(" separator="," close=")">
+			#{id}
+		</foreach>
+	</delete>
+
+</mapper>

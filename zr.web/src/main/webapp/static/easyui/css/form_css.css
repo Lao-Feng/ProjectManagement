@@ -1,0 +1,1839 @@
+.panel {
+	margin: 0px; border-radius: 0px; border: 0px currentColor; border-image: none; text-align: left; overflow: hidden; -moz-border-radius: 0 0 0 0; -webkit-border-radius: 0 0 0 0;
+}
+.panel-header {
+	border-width: 1px; border-style: solid;
+}
+.panel-body {
+	border-width: 1px; border-style: solid;
+}
+.panel-header {
+	padding: 5px; position: relative;
+}
+.panel-title {
+	background: url("blank.gif") no-repeat;
+}
+.panel-header-noborder {
+	border-width: 0px 0px 1px;
+}
+.panel-body {
+	padding: 0px; overflow: auto; border-top-width: 0px;
+}
+.panel-body-noheader {
+	border-top-width: 1px;
+}
+.panel-body-noborder {
+	border-width: 0px;
+}
+.panel-with-icon {
+	padding-left: 18px;
+}
+.panel-icon {
+	top: 50%; height: 16px; overflow: hidden; margin-top: -8px; position: absolute;
+}
+.panel-tool {
+	top: 50%; height: 16px; overflow: hidden; margin-top: -8px; position: absolute;
+}
+.panel-icon {
+	left: 5px; width: 16px;
+}
+.panel-tool {
+	width: auto; right: 5px;
+}
+.panel-tool a {
+	margin: 0px 0px 0px 2px; width: 16px; height: 16px; vertical-align: top; display: inline-block; opacity: 0.6;
+}
+.panel-tool a:hover {
+	border-radius: 3px; opacity: 1; background-color: rgb(234, 242, 255); -moz-border-radius: 3px 3px 3px 3px; -webkit-border-radius: 3px 3px 3px 3px;
+}
+.panel-loading {
+	padding: 11px 0px 10px 30px;
+}
+.panel-noscroll {
+	overflow: hidden;
+}
+.panel-fit {
+	margin: 0px; padding: 0px; border: 0px currentColor; border-image: none; height: 100%; overflow: hidden;
+}
+.panel-fit body {
+	margin: 0px; padding: 0px; border: 0px currentColor; border-image: none; height: 100%; overflow: hidden;
+}
+.panel-loading {
+	background: url("icons/loading.gif") no-repeat 10px 10px;
+}
+.panel-tool-close {
+	background: url("icons/panel_tools.png") no-repeat -16px 0px;
+}
+.panel-tool-min {
+	background: url("icons/panel_tools.png") no-repeat 0px 0px;
+}
+.panel-tool-max {
+	background: url("icons/panel_tools.png") no-repeat 0px -16px;
+}
+.panel-tool-restore {
+	background: url("icons/panel_tools.png") no-repeat -16px -16px;
+}
+.panel-tool-collapse {
+	/*background: url("icons/panel_tools.png") no-repeat -32px 0px;*/
+}
+.panel-tool-expand {
+	/*background: url("icons/panel_tools.png") no-repeat -32px -16px;*/
+}
+.panel-header {
+	border-color: rgb(149, 184, 231);
+}
+.panel-body {
+	border-color: rgb(149, 184, 231);
+}
+.panel-header {
+	background: linear-gradient(rgb(239, 245, 255) 0px, rgb(224, 236, 255) 100%) repeat-x;
+}
+.panel-body {
+	color: rgb(0, 0, 0); font-size: 12px; background-color: rgb(255, 255, 255);
+}
+.panel-title {
+	height: 16px; color: rgb(14, 45, 95); line-height: 16px; font-size: 12px; font-weight: bold;
+}
+.accordion {
+	border-width: 1px; border-style: solid; overflow: hidden;
+}
+.accordion .accordion-header {
+	border-width: 0px 0px 1px; cursor: pointer;
+}
+.accordion .accordion-body {
+	border-width: 0px 0px 1px;
+}
+.accordion-noborder {
+	border-width: 0px;
+}
+.accordion-noborder .accordion-header {
+	border-width: 0px 0px 1px;
+}
+.accordion-noborder .accordion-body {
+	border-width: 0px 0px 1px;
+}
+.accordion-collapse {
+	/*background: url("icons/accordion_arrows.png") no-repeat 0px 0px;*/
+}
+.accordion-expand {
+	/*background: url("icons/accordion_arrows.png") no-repeat -16px 0px;*/
+}
+.accordion {
+	background: rgb(255, 255, 255); border-color: rgb(149, 184, 231);
+}
+.accordion .accordion-header {
+	background: rgb(224, 236, 255); filter: none;
+}
+.accordion .accordion-header-selected {
+	background: rgb(255, 228, 141);
+}
+.accordion .accordion-header-selected .panel-title {
+	color: rgb(0, 0, 0);
+}
+.window {
+	border-width: 1px; border-style: solid; padding: 5px; overflow: hidden;
+}
+.window .window-header {
+	background: none; padding: 0px 0px 6px;
+}
+.window .window-body {
+	border-width: 0px 1px 1px; border-style: solid;
+}
+.window .window-body-noheader {
+	border-top-width: 1px;
+}
+.window .window-header .panel-icon {
+	top: 50%; margin-top: -11px;
+}
+.window .window-header .panel-tool {
+	top: 50%; margin-top: -11px;
+}
+.window .window-header .panel-icon {
+	left: 1px;
+}
+.window .window-header .panel-tool {
+	right: 1px;
+}
+.window .window-header .panel-with-icon {
+	padding-left: 18px;
+}
+.window-proxy {
+	overflow: hidden; position: absolute;
+}
+.window-proxy-mask {
+	position: absolute; opacity: 0.05;
+}
+.window-mask {
+	left: 0px; top: 0px; width: 100%; height: 100%; overflow: hidden; font-size: 1px; position: absolute; opacity: 0.4;
+}
+.window {
+	border-radius: 5px; position: absolute; -moz-border-radius: 5px 5px 5px 5px; -webkit-border-radius: 5px 5px 5px 5px;
+}
+.window-shadow {
+	border-radius: 5px; position: absolute; -moz-border-radius: 5px 5px 5px 5px; -webkit-border-radius: 5px 5px 5px 5px;
+}
+.window-shadow {
+	background: rgb(204, 204, 204); box-shadow: 2px 2px 3px #cccccc; -moz-box-shadow: 2px 2px 3px #cccccc; -webkit-box-shadow: 2px 2px 3px #cccccc;
+}
+.window {
+	border-color: rgb(149, 184, 231);
+}
+.window .window-body {
+	border-color: rgb(149, 184, 231);
+}
+.window {
+	background: linear-gradient(rgb(239, 245, 255) 0px, rgb(224, 236, 255) 20%) repeat-x;
+}
+.window-proxy {
+	border: 1px dashed rgb(149, 184, 231); border-image: none;
+}
+.window-proxy-mask {
+	background: rgb(204, 204, 204);
+}
+.window-mask {
+	background: rgb(204, 204, 204);
+}
+.dialog-content {
+	overflow: auto;
+}
+.dialog-toolbar {
+	padding: 2px 5px;
+}
+.dialog-tool-separator {
+	margin: 2px 1px; height: 24px; border-right-color: rgb(255, 255, 255); border-left-color: rgb(204, 204, 204); border-right-width: 1px; border-left-width: 1px; border-right-style: solid; border-left-style: solid; float: left;
+}
+.dialog-button {
+	padding: 5px; text-align: right;
+}
+.dialog-button .l-btn {
+	margin-left: 5px;
+}
+.dialog-toolbar {
+	background: rgb(244, 244, 244); border-width: 1px; border-style: solid;
+}
+.dialog-button {
+	background: rgb(244, 244, 244); border-width: 1px; border-style: solid;
+}
+.dialog-toolbar {
+	border-color: rgb(149, 184, 231) rgb(149, 184, 231) rgb(221, 221, 221);
+}
+.dialog-button {
+	border-color: rgb(221, 221, 221) rgb(149, 184, 231) rgb(149, 184, 231);
+}
+.l-btn {
+	margin: 0px; padding: 0px; text-align: center; overflow: hidden; text-decoration: none; vertical-align: middle; display: inline-block; cursor: pointer;
+}
+.l-btn-plain {
+	padding: 1px; border: 0px currentColor; border-image: none;
+}
+.l-btn-left {
+	margin: 0px; padding: 0px; overflow: hidden; vertical-align: top; display: inline-block; position: relative;
+}
+.l-btn-text {
+	margin: 0px 4px; padding: 0px; width: auto; line-height: 24px; font-size: 12px; vertical-align: top; display: inline-block;
+}
+.l-btn-icon {
+	top: 50%; width: 16px; height: 16px; line-height: 16px; font-size: 1px; margin-top: -8px; display: inline-block; position: absolute;
+}
+.l-btn span span .l-btn-empty {
+	margin: 0px; width: 16px; height: 24px; font-size: 1px; vertical-align: top; display: inline-block;
+}
+.l-btn span .l-btn-icon-left {
+	background-position: left; padding: 0px 0px 0px 20px;
+}
+.l-btn span .l-btn-icon-right {
+	background-position: right; padding: 0px 20px 0px 0px;
+}
+.l-btn-icon-left .l-btn-text {
+	margin: 0px 4px 0px 24px;
+}
+.l-btn-icon-left .l-btn-icon {
+	left: 4px;
+}
+.l-btn-icon-right .l-btn-text {
+	margin: 0px 24px 0px 4px;
+}
+.l-btn-icon-right .l-btn-icon {
+	right: 4px;
+}
+.l-btn-icon-top .l-btn-text {
+	margin: 20px 4px 0px;
+}
+.l-btn-icon-top .l-btn-icon {
+	margin: 0px 0px 0px -8px; left: 50%; top: 4px;
+}
+.l-btn-icon-bottom .l-btn-text {
+	margin: 0px 4px 20px;
+}
+.l-btn-icon-bottom .l-btn-icon {
+	margin: 0px 0px 0px -8px; left: 50%; top: auto; bottom: 4px;
+}
+.l-btn-left .l-btn-empty {
+	margin: 0px 4px; width: 16px;
+}
+.l-btn-plain:hover {
+	padding: 0px;
+}
+.l-btn-focus {
+	outline: rgb(0, 0, 255) dotted thin;
+}
+.l-btn-large .l-btn-text {
+	line-height: 40px;
+}
+.l-btn-large .l-btn-icon {
+	width: 32px; height: 32px; line-height: 32px; margin-top: -16px;
+}
+.l-btn-large .l-btn-icon-left .l-btn-text {
+	margin-left: 40px;
+}
+.l-btn-large .l-btn-icon-right .l-btn-text {
+	margin-right: 40px;
+}
+.l-btn-large .l-btn-icon-top .l-btn-text {
+	line-height: 24px; margin-top: 36px; min-width: 32px;
+}
+.l-btn-large .l-btn-icon-top .l-btn-icon {
+	margin: 0px 0px 0px -16px;
+}
+.l-btn-large .l-btn-icon-bottom .l-btn-text {
+	line-height: 24px; margin-bottom: 36px; min-width: 32px;
+}
+.l-btn-large .l-btn-icon-bottom .l-btn-icon {
+	margin: 0px 0px 0px -16px;
+}
+.l-btn-large .l-btn-left .l-btn-empty {
+	margin: 0px 4px; width: 32px;
+}
+.l-btn {
+	background: linear-gradient(rgb(255, 255, 255) 0px, rgb(238, 238, 238) 100%) repeat-x; border-radius: 5px; border: 1px solid rgb(187, 187, 187); border-image: none; color: rgb(68, 68, 68); -moz-border-radius: 5px 5px 5px 5px; -webkit-border-radius: 5px 5px 5px 5px;
+}
+.l-btn:hover {
+	background: rgb(234, 242, 255); border: 1px solid rgb(183, 210, 255); border-image: none; color: rgb(0, 0, 0); filter: none;
+}
+.l-btn-plain {
+	background: none; border: 0px currentColor; border-image: none; filter: none;
+}
+.l-btn-plain:hover {
+	background: rgb(234, 242, 255); border-radius: 5px; border: 1px solid rgb(183, 210, 255); border-image: none; color: rgb(0, 0, 0); -moz-border-radius: 5px 5px 5px 5px; -webkit-border-radius: 5px 5px 5px 5px;
+}
+.l-btn-disabled {
+	background: linear-gradient(rgb(255, 255, 255) 0px, rgb(238, 238, 238) 100%) repeat-x; color: rgb(68, 68, 68); cursor: default; opacity: 0.5;
+}
+.l-btn-disabled:hover {
+	background: linear-gradient(rgb(255, 255, 255) 0px, rgb(238, 238, 238) 100%) repeat-x; color: rgb(68, 68, 68); cursor: default; opacity: 0.5;
+}
+.l-btn-disabled .l-btn-text {
+	
+}
+.l-btn-disabled .l-btn-icon {
+	
+}
+.l-btn-plain-disabled {
+	background: none;
+}
+.l-btn-plain-disabled:hover {
+	background: none;
+}
+.l-btn-selected {
+	background: rgb(221, 221, 221); filter: none;
+}
+.l-btn-selected:hover {
+	background: rgb(221, 221, 221); filter: none;
+}
+.l-btn-plain-selected {
+	background: rgb(221, 221, 221);
+}
+.l-btn-plain-selected:hover {
+	background: rgb(221, 221, 221);
+}
+.textbox {
+	margin: 0px; padding: 0px; border-radius: 5px; border: 1px solid rgb(149, 184, 231); border-image: none; overflow: hidden; vertical-align: middle; display: inline-block; white-space: nowrap; position: relative; background-color: rgb(255, 255, 255); -moz-border-radius: 5px 5px 5px 5px; -webkit-border-radius: 5px 5px 5px 5px;
+}
+.textbox .textbox-text {
+	margin: 0px; padding: 4px; border-radius: 5px; border: 0px currentColor; border-image: none; font-size: 12px; vertical-align: top; outline-style: none; -moz-border-radius: 5px 5px 5px 5px; -webkit-border-radius: 5px 5px 5px 5px; resize: none;
+}
+.textbox .textbox-prompt {
+	color: rgb(170, 170, 170); font-size: 12px;
+}
+.textbox-button {
+	padding: 0px; border-radius: 0px; top: 0px; vertical-align: top; position: absolute; -moz-border-radius: 0 0 0 0; -webkit-border-radius: 0 0 0 0;
+}
+.textbox-button:hover {
+	padding: 0px; border-radius: 0px; top: 0px; vertical-align: top; position: absolute; -moz-border-radius: 0 0 0 0; -webkit-border-radius: 0 0 0 0;
+}
+.textbox-button-right {
+	border-width: 0px 0px 0px 1px;
+}
+.textbox-button-right:hover {
+	border-width: 0px 0px 0px 1px;
+}
+.textbox-button-left {
+	border-width: 0px 1px 0px 0px;
+}
+.textbox-button-left:hover {
+	border-width: 0px 1px 0px 0px;
+}
+.textbox-addon {
+	top: 0px; position: absolute;
+}
+.textbox-icon {
+	background-position: center; width: 18px; height: 20px; overflow: hidden; text-decoration: none; vertical-align: top; display: inline-block; cursor: pointer; opacity: 0.6;
+}
+.textbox-icon-disabled {
+	cursor: default;
+}
+.textbox-icon-readonly {
+	cursor: default;
+}
+.textbox-icon:hover {
+	opacity: 1;
+}
+.textbox-icon-disabled:hover {
+	opacity: 0.6;
+}
+.textbox-focused {
+	box-shadow: 0px 0px 3px 0px #95b8e7; -moz-box-shadow: 0 0 3px 0 #95B8E7; -webkit-box-shadow: 0 0 3px 0 #95B8E7;
+}
+.textbox-invalid {
+	border-color: rgb(255, 168, 168); background-color: rgb(255, 243, 243);
+}
+.filebox .textbox-value {
+	left: -5000px; top: 0px; vertical-align: top; visibility: hidden; position: absolute;
+}
+.combo {
+	border-width: 1px; border-style: solid; margin: 0px; padding: 0px; overflow: hidden; vertical-align: middle; display: inline-block; white-space: nowrap;
+}
+.combo .combo-text {
+	margin: 0px; padding: 0px 2px; border: 0px currentColor; border-image: none; font-size: 12px; vertical-align: baseline;
+}
+.combo-arrow {
+	width: 18px; height: 20px; overflow: hidden; vertical-align: top; display: inline-block; cursor: pointer; opacity: 0.6;
+}
+.combo-arrow-hover {
+	opacity: 1;
+}
+.combo-panel {
+	overflow: auto;height: 200px;
+}
+.combo-arrow {
+	background: url("icons/combo_arrow.png") no-repeat center;
+}
+.combo-panel {
+	background-color: rgb(255, 255, 255);
+}
+.combo {
+	border-color: rgb(149, 184, 231); background-color: rgb(255, 255, 255);
+}
+.combo-arrow {
+	background-color: rgb(224, 236, 255);
+}
+.combo-arrow-hover {
+	background-color: rgb(234, 242, 255);
+}
+.combo-arrow:hover {
+	background-color: rgb(234, 242, 255);
+}
+.textbox-invalid {
+	border-color: rgb(255, 168, 168); background-color: rgb(255, 243, 243);
+}
+.combobox-item {
+	padding: 3px 0px 3px 3px; font-size: 12px;
+}
+.combobox-group {
+	padding: 3px 0px 3px 3px; font-size: 12px;
+}
+.combobox-item-disabled {
+	opacity: 0.5;
+}
+.combobox-gitem {
+	padding-left: 10px;
+}
+.combobox-group {
+	font-weight: bold;
+}
+.combobox-item-hover {
+	color: rgb(0, 0, 0); background-color: rgb(234, 242, 255);
+}
+.combobox-item-selected {
+	color: rgb(0, 0, 0); background-color: rgb(255, 228, 141);
+}
+.layout {
+	margin: 0px; padding: 0px; overflow: hidden; position: relative; z-index: 0;
+}
+.layout-panel {
+	overflow: hidden; position: absolute;
+}
+.layout-panel-east {
+	z-index: 2;
+}
+.layout-panel-west {
+	z-index: 2;
+}
+.layout-panel-north {
+	z-index: 3;
+}
+.layout-panel-south {
+	z-index: 3;
+}
+.layout-expand {
+	padding: 0px; font-size: 1px; position: absolute; z-index: 1; cursor: pointer;
+}
+.layout-expand .panel-header {
+	background: none; overflow: hidden; filter: none;
+}
+.layout-expand .panel-body {
+	background: none; overflow: hidden; filter: none;
+}
+.layout-expand .panel-header {
+	border-bottom-width: 0px;
+}
+.layout-split-proxy-h {
+	font-size: 1px; display: none; position: absolute; z-index: 5;
+}
+.layout-split-proxy-v {
+	font-size: 1px; display: none; position: absolute; z-index: 5;
+}
+.layout-split-proxy-h {
+	width: 5px; cursor: e-resize;
+}
+.layout-split-proxy-v {
+	height: 5px; cursor: n-resize;
+}
+.layout-mask {
+	background: rgb(250, 250, 250); position: absolute; z-index: 4; opacity: 0.1;
+}
+.layout-button-up {
+	background: url("icons/layout_arrows.png") no-repeat -16px -16px;
+}
+.layout-button-down {
+	background: url("icons/layout_arrows.png") no-repeat -16px 0px;
+}
+.layout-button-left {
+	background: url("icons/layout_arrows.png") no-repeat 0px 0px;
+}
+.layout-button-right {
+	background: url("icons/layout_arrows.png") no-repeat 0px -16px;
+}
+.layout-split-proxy-h {
+	background-color: rgb(170, 197, 231);
+}
+.layout-split-proxy-v {
+	background-color: rgb(170, 197, 231);
+}
+.layout-split-north {
+	border-bottom-color: rgb(230, 238, 248); border-bottom-width: 5px; border-bottom-style: solid;
+}
+.layout-split-south {
+	border-top-color: rgb(230, 238, 248); border-top-width: 5px; border-top-style: solid;
+}
+.layout-split-east {
+	border-left-color: rgb(230, 238, 248); border-left-width: 5px; border-left-style: solid;
+}
+.layout-split-west {
+	border-right-color: rgb(230, 238, 248); border-right-width: 5px; border-right-style: solid;
+}
+.layout-expand {
+	background-color: rgb(224, 236, 255);
+}
+.layout-expand-over {
+	background-color: rgb(224, 236, 255);
+}
+.tabs-container {
+	overflow: hidden;
+}
+.tabs-header {
+	border-width: 1px 1px 0px; border-style: solid; padding: 2px 0px 0px; overflow: hidden; position: relative;
+}
+.tabs-header-plain {
+	background: none; border: 0px currentColor; border-image: none;
+}
+.tabs-scroller-left {
+	border-width: 1px; border-style: solid; top: auto; width: 18px; bottom: 0px; font-size: 1px; display: none; position: absolute; cursor: pointer;
+}
+.tabs-scroller-right {
+	border-width: 1px; border-style: solid; top: auto; width: 18px; bottom: 0px; font-size: 1px; display: none; position: absolute; cursor: pointer;
+}
+.tabs-scroller-left {
+	left: 0px;
+}
+.tabs-scroller-right {
+	right: 0px;
+}
+.tabs-tool {
+	border-width: 1px; border-style: solid; padding: 1px; bottom: 0px; overflow: hidden; position: absolute;
+}
+.tabs-header-plain .tabs-tool {
+	padding: 0px 1px;
+}
+.tabs-wrap {
+	margin: 0px; padding: 0px; left: 0px; width: 100%; overflow: hidden; position: relative;
+}
+.tabs-scrolling {
+	margin-right: 18px; margin-left: 18px;
+}
+.tabs-disabled {
+	opacity: 0.3;
+}
+.tabs {
+	border-width: 0px 0px 1px; border-style: solid; margin: 0px; padding: 0px 0px 0px 4px; width: 50000px; height: 26px; list-style-type: none;
+}
+.tabs li {
+	margin: 0px 4px -1px 0px; padding: 0px; border: 0px currentColor; border-image: none; float: left; display: inline-block; position: relative;
+}
+.tabs li a.tabs-inner {
+	border-width: 1px; border-style: solid; margin: 0px; padding: 0px 10px; border-radius: 5px 5px 0px 0px; height: 25px; text-align: center; line-height: 25px; text-decoration: none; display: inline-block; white-space: nowrap; -moz-border-radius: 5px 5px 0 0; -webkit-border-radius: 5px 5px 0 0;
+}
+.tabs li.tabs-selected a.tabs-inner {
+	font-weight: bold;
+}
+.tabs li.tabs-selected a.tabs-inner:hover {
+	cursor: default; pointer: default;
+}
+.tabs li a.tabs-close {
+	padding: 0px; top: 50%; height: 12px; overflow: hidden; font-size: 1px; margin-top: -6px; display: block; position: absolute;
+}
+.tabs-p-tool {
+	padding: 0px; top: 50%; height: 12px; overflow: hidden; font-size: 1px; margin-top: -6px; display: block; position: absolute;
+}
+.tabs li a.tabs-close {
+	width: 12px; right: 5px; opacity: 0.6;
+}
+.tabs-p-tool {
+	right: 16px;
+}
+.tabs-p-tool a {
+	margin: 0px; width: 12px; height: 12px; font-size: 1px; display: inline-block; opacity: 0.6;
+}
+.tabs li a.tabs-close:hover {
+	cursor: pointer; opacity: 1;
+}
+.tabs-p-tool a:hover {
+	cursor: pointer; opacity: 1;
+}
+.tabs-with-icon {
+	padding-left: 18px;
+}
+.tabs-icon {
+	left: 10px; top: 50%; width: 16px; height: 16px; margin-top: -8px; position: absolute;
+}
+.tabs-title {
+	font-size: 12px;
+}
+.tabs-closable {
+	padding-right: 8px;
+}
+.tabs-panels {
+	border-width: 0px 1px 1px; border-style: solid; margin: 0px; padding: 0px; overflow: hidden;
+}
+.tabs-header-bottom {
+	border-width: 0px 1px 1px; padding: 0px 0px 2px;
+}
+.tabs-header-bottom .tabs {
+	border-width: 1px 0px 0px;
+}
+.tabs-header-bottom .tabs li {
+	margin: -1px 4px 0px 0px;
+}
+.tabs-header-bottom .tabs li a.tabs-inner {
+	border-radius: 0px 0px 5px 5px; -moz-border-radius: 0 0 5px 5px; -webkit-border-radius: 0 0 5px 5px;
+}
+.tabs-header-bottom .tabs-tool {
+	top: 0px;
+}
+.tabs-header-bottom .tabs-scroller-left {
+	top: 0px; bottom: auto;
+}
+.tabs-header-bottom .tabs-scroller-right {
+	top: 0px; bottom: auto;
+}
+.tabs-panels-top {
+	border-width: 1px 1px 0px;
+}
+.tabs-header-left {
+	border-width: 1px 0px 1px 1px; padding: 0px; float: left;
+}
+.tabs-header-right {
+	border-width: 1px 1px 1px 0px; padding: 0px; float: right;
+}
+.tabs-header-left .tabs-wrap {
+	height: 100%;
+}
+.tabs-header-right .tabs-wrap {
+	height: 100%;
+}
+.tabs-header-left .tabs {
+	border-width: 0px 1px 0px 0px; padding: 4px 0px 0px 4px; height: 100%;
+}
+.tabs-header-right .tabs {
+	border-width: 0px 0px 0px 1px; padding: 4px 4px 0px 0px; height: 100%;
+}
+.tabs-header-left .tabs li {
+	width: 100%; display: block; position: relative;
+}
+.tabs-header-right .tabs li {
+	width: 100%; display: block; position: relative;
+}
+.tabs-header-left .tabs li {
+	margin: 0px -1px 4px 0px; left: auto; right: 0px; float: right;
+}
+.tabs-header-right .tabs li {
+	margin: 0px 0px 4px -1px; left: 0px; right: auto; float: left;
+}
+.tabs-header-left .tabs li a.tabs-inner {
+	border-radius: 5px 0px 0px 5px; text-align: left; display: block; -moz-border-radius: 5px 0 0 5px; -webkit-border-radius: 5px 0 0 5px;
+}
+.tabs-header-right .tabs li a.tabs-inner {
+	border-radius: 0px 5px 5px 0px; text-align: left; display: block; -moz-border-radius: 0 5px 5px 0; -webkit-border-radius: 0 5px 5px 0;
+}
+.tabs-panels-right {
+	border-width: 1px 1px 1px 0px; float: right;
+}
+.tabs-panels-left {
+	border-width: 1px 0px 1px 1px; float: left;
+}
+.tabs-header-noborder {
+	border: 0px currentColor; border-image: none;
+}
+.tabs-panels-noborder {
+	border: 0px currentColor; border-image: none;
+}
+.tabs-header-plain {
+	background: none; border: 0px currentColor; border-image: none;
+}
+.tabs-scroller-left {
+	background: url("icons/tabs_icons.png") no-repeat 1px rgb(224, 236, 255);
+}
+.tabs-scroller-right {
+	background: url("icons/tabs_icons.png") no-repeat -15px rgb(224, 236, 255);
+}
+.tabs li a.tabs-close {
+	background: url("icons/tabs_icons.png") no-repeat -34px;
+}
+.tabs li a.tabs-inner:hover {
+	background: rgb(234, 242, 255); color: rgb(0, 0, 0); filter: none;
+}
+.tabs li.tabs-selected a.tabs-inner {
+	background: linear-gradient(rgb(239, 245, 255) 0px, rgb(255, 255, 255) 100%) repeat-x; color: rgb(14, 45, 95);
+}
+.tabs-header-bottom .tabs li.tabs-selected a.tabs-inner {
+	background: linear-gradient(rgb(255, 255, 255) 0px, rgb(239, 245, 255) 100%) repeat-x;
+}
+.tabs-header-left .tabs li.tabs-selected a.tabs-inner {
+	background: linear-gradient(to right, rgb(239, 245, 255) 0px, rgb(255, 255, 255) 100%) repeat-y;
+}
+.tabs-header-right .tabs li.tabs-selected a.tabs-inner {
+	background: linear-gradient(to right, rgb(255, 255, 255) 0px, rgb(239, 245, 255) 100%) repeat-y;
+}
+.tabs li a.tabs-inner {
+	background: linear-gradient(rgb(239, 245, 255) 0px, rgb(224, 236, 255) 100%) repeat-x; color: rgb(14, 45, 95);
+}
+.tabs-header {
+	background-color: rgb(224, 236, 255);
+}
+.tabs-tool {
+	background-color: rgb(224, 236, 255);
+}
+.tabs-header-plain {
+	background: none;
+}
+.tabs-header {
+	border-color: rgb(149, 184, 231);
+}
+.tabs-scroller-left {
+	border-color: rgb(149, 184, 231);
+}
+.tabs-scroller-right {
+	border-color: rgb(149, 184, 231);
+}
+.tabs-tool {
+	border-color: rgb(149, 184, 231);
+}
+.tabs {
+	border-color: rgb(149, 184, 231);
+}
+.tabs-panels {
+	border-color: rgb(149, 184, 231);
+}
+.tabs li a.tabs-inner {
+	border-color: rgb(149, 184, 231);
+}
+.tabs li.tabs-selected a.tabs-inner {
+	border-color: rgb(149, 184, 231);
+}
+.tabs-header-bottom .tabs li.tabs-selected a.tabs-inner {
+	border-color: rgb(149, 184, 231);
+}
+.tabs-header-left .tabs li.tabs-selected a.tabs-inner {
+	border-color: rgb(149, 184, 231);
+}
+.tabs-header-right .tabs li.tabs-selected a.tabs-inner {
+	border-color: rgb(149, 184, 231);
+}
+.tabs-p-tool a:hover {
+	background-color: rgb(234, 242, 255);
+}
+.tabs li a.tabs-close:hover {
+	background-color: rgb(234, 242, 255);
+}
+.tabs-scroller-over {
+	background-color: rgb(234, 242, 255);
+}
+.tabs li.tabs-selected a.tabs-inner {
+	border-bottom-color: rgb(255, 255, 255); border-bottom-width: 1px; border-bottom-style: solid;
+}
+.tabs-header-bottom .tabs li.tabs-selected a.tabs-inner {
+	border-top-color: rgb(255, 255, 255); border-top-width: 1px; border-top-style: solid;
+}
+.tabs-header-left .tabs li.tabs-selected a.tabs-inner {
+	border-right-color: rgb(255, 255, 255); border-right-width: 1px; border-right-style: solid;
+}
+.tabs-header-right .tabs li.tabs-selected a.tabs-inner {
+	border-left-color: rgb(255, 255, 255); border-left-width: 1px; border-left-style: solid;
+}
+.datagrid .panel-body {
+	overflow: hidden; position: relative;
+}
+.datagrid-view {
+	overflow: hidden; position: relative;
+}
+.datagrid-view1 {
+	top: 0px; overflow: hidden; position: absolute;
+}
+.datagrid-view2 {
+	top: 0px; overflow: hidden; position: absolute;
+}
+.datagrid-view1 {
+	left: 0px;
+}
+.datagrid-view2 {
+	right: 0px;
+}
+.datagrid-mask {
+	left: 0px; top: 0px; width: 100%; height: 100%; display: none; position: absolute; opacity: 0.3;
+}
+.datagrid-mask-msg {
+	border-width: 2px; border-style: solid; padding: 10px 5px 10px 30px; top: 50%; width: auto; height: 16px; margin-top: -20px; display: none; position: absolute;
+}
+.datagrid-sort-icon {
+	padding: 0px;
+}
+.datagrid-toolbar {
+	border-width: 0px 0px 1px; border-style: solid; padding: 1px 2px; height: auto;
+}
+.datagrid-btn-separator {
+	margin: 2px 1px; height: 24px; border-right-color: rgb(255, 255, 255); border-left-color: rgb(204, 204, 204); border-right-width: 1px; border-left-width: 1px; border-right-style: solid; border-left-style: solid; float: left;
+}
+.datagrid .datagrid-pager {
+	border-width: 1px 0px 0px; border-style: solid; margin: 0px; display: block;
+}
+.datagrid .datagrid-pager-top {
+	border-width: 0px 0px 1px;
+}
+.datagrid-header {
+	border-width: 0px 0px 1px; border-style: solid; overflow: hidden; cursor: default;
+}
+.datagrid-header-inner {
+	width: 10000px; float: left;
+}
+.datagrid-header-row {
+	height: 25px;
+}
+.datagrid-row {
+	height: 25px;
+}
+.datagrid-header td {
+	border-width: 0px 1px 1px 0px; border-style: dotted; margin: 0px; padding: 0px;
+}
+.datagrid-body td {
+	border-width: 0px 1px 1px 0px; border-style: dotted; margin: 0px; padding: 0px;
+}
+.datagrid-footer td {
+	border-width: 0px 1px 1px 0px; border-style: dotted; margin: 0px; padding: 0px;
+}
+.datagrid-cell {
+	margin: 0px; padding: 0px 4px; height: 18px; line-height: 18px; overflow: hidden; font-size: 12px; white-space: nowrap; -ms-word-wrap: normal;
+}
+.datagrid-cell-group {
+	margin: 0px; padding: 0px 4px; height: 18px; line-height: 18px; overflow: hidden; font-size: 12px; white-space: nowrap; -ms-word-wrap: normal;
+}
+.datagrid-header-rownumber {
+	margin: 0px; padding: 0px 4px; height: 18px; line-height: 18px; overflow: hidden; font-size: 12px; white-space: nowrap; -ms-word-wrap: normal;
+}
+.datagrid-cell-rownumber {
+	margin: 0px; padding: 0px 4px; height: 18px; line-height: 18px; overflow: hidden; font-size: 12px; white-space: nowrap; -ms-word-wrap: normal;
+}
+.datagrid-header .datagrid-cell {
+	height: auto;
+}
+.datagrid-header .datagrid-cell span {
+	font-size: 12px;
+}
+.datagrid-cell-group {
+	text-align: center;
+}
+.datagrid-header-rownumber {
+	margin: 0px; padding: 0px; width: 25px; text-align: center;
+}
+.datagrid-cell-rownumber {
+	margin: 0px; padding: 0px; width: 25px; text-align: center;
+}
+.datagrid-body {
+	margin: 0px; padding: 0px; overflow: auto; -ms-zoom: 1;
+}
+.datagrid-view1 .datagrid-body-inner {
+	padding-bottom: 20px;
+}
+.datagrid-view1 .datagrid-body {
+	overflow: hidden;
+}
+.datagrid-footer {
+	overflow: hidden;
+}
+.datagrid-footer-inner {
+	border-width: 1px 0px 0px; border-style: solid; width: 10000px; float: left;
+}
+.datagrid-row-editing .datagrid-cell {
+	height: auto;
+}
+.datagrid-header-check {
+	padding: 0px; width: auto; height: 18px; text-align: center; overflow: hidden; font-size: 1px;
+}
+.datagrid-cell-check {
+	padding: 0px; width: auto; height: 18px; text-align: center; overflow: hidden; font-size: 1px;
+}
+.datagrid-header-check input {
+	margin: 0px; padding: 0px; width: 15px; height: 18px;
+}
+.datagrid-cell-check input {
+	margin: 0px; padding: 0px; width: 15px; height: 18px;
+}
+.datagrid-resize-proxy {
+	top: 0px; width: 1px; height: 10000px; display: none; position: absolute; cursor: e-resize;
+}
+.datagrid-body .datagrid-editable {
+	margin: 0px; padding: 0px;
+}
+.datagrid-body .datagrid-editable table {
+	width: 100%; height: 100%;
+}
+.datagrid-body .datagrid-editable td {
+	margin: 0px; padding: 0px; border: 0px currentColor; border-image: none;
+}
+.datagrid-view .datagrid-editable-input {
+	margin: 0px; padding: 2px 4px; border-radius: 0px; border: 1px solid rgb(149, 184, 231); border-image: none; font-size: 12px; outline-style: none; -moz-border-radius: 0 0 0 0; -webkit-border-radius: 0 0 0 0;
+}
+.datagrid-sort-desc .datagrid-sort-icon {
+	background: url("icons/datagrid_icons.png") no-repeat -16px; padding: 0px 13px 0px 0px;
+}
+.datagrid-sort-asc .datagrid-sort-icon {
+	background: url("icons/datagrid_icons.png") no-repeat 0px; padding: 0px 13px 0px 0px;
+}
+.datagrid-row-collapse {
+	background: url("icons/datagrid_icons.png") no-repeat -48px;
+}
+.datagrid-row-expand {
+	background: url("icons/datagrid_icons.png") no-repeat -32px;
+}
+.datagrid-mask-msg {
+	background: url("icons/loading.gif") no-repeat 5px rgb(255, 255, 255);
+}
+.datagrid-header {
+	background: linear-gradient(rgb(249, 249, 249) 0px, rgb(239, 239, 239) 100%) repeat-x;
+}
+.datagrid-td-rownumber {
+	background: linear-gradient(rgb(249, 249, 249) 0px, rgb(239, 239, 239) 100%) repeat-x;
+}
+.datagrid-cell-rownumber {
+	color: rgb(0, 0, 0);
+}
+.datagrid-resize-proxy {
+	background: rgb(170, 197, 231);
+}
+.datagrid-mask {
+	background: rgb(204, 204, 204);
+}
+.datagrid-mask-msg {
+	border-color: rgb(149, 184, 231);
+}
+.datagrid-toolbar {
+	background: rgb(244, 244, 244);
+}
+.datagrid-pager {
+	background: rgb(244, 244, 244);
+}
+.datagrid-header {
+	border-color: rgb(221, 221, 221);
+}
+.datagrid-toolbar {
+	border-color: rgb(221, 221, 221);
+}
+.datagrid-pager {
+	border-color: rgb(221, 221, 221);
+}
+.datagrid-footer-inner {
+	border-color: rgb(221, 221, 221);
+}
+.datagrid-header td {
+	border-color: rgb(204, 204, 204);
+}
+.datagrid-body td {
+	border-color: rgb(204, 204, 204);
+}
+.datagrid-footer td {
+	border-color: rgb(204, 204, 204);
+}
+.datagrid-htable {
+	color: rgb(0, 0, 0); border-collapse: separate;
+}
+.datagrid-btable {
+	color: rgb(0, 0, 0); border-collapse: separate;
+}
+.datagrid-ftable {
+	color: rgb(0, 0, 0); border-collapse: separate;
+}
+.datagrid-row-alt {
+	background: rgb(250, 250, 250);
+}
+.datagrid-row-over {
+	background: rgb(234, 242, 255); color: rgb(0, 0, 0); cursor: default;
+}
+.datagrid-header td.datagrid-header-over {
+	background: rgb(234, 242, 255); color: rgb(0, 0, 0); cursor: default;
+}
+.datagrid-row-selected {
+	background: rgb(255, 228, 141); color: rgb(0, 0, 0);
+}
+.datagrid-row-editing .textbox {
+	border-radius: 0px; -moz-border-radius: 0 0 0 0; -webkit-border-radius: 0 0 0 0;
+}
+.datagrid-row-editing .textbox-text {
+	border-radius: 0px; -moz-border-radius: 0 0 0 0; -webkit-border-radius: 0 0 0 0;
+}
+.propertygrid .datagrid-view1 .datagrid-body td {
+	border-width: 0px 1px 0px 0px; padding-bottom: 1px;
+}
+.propertygrid .datagrid-group {
+	border-width: 0px 0px 1px; border-style: solid; height: 21px; overflow: hidden;
+}
+.propertygrid .datagrid-group span {
+	font-weight: bold;
+}
+.propertygrid .datagrid-view1 .datagrid-body td {
+	border-color: rgb(221, 221, 221);
+}
+.propertygrid .datagrid-view1 .datagrid-group {
+	border-color: rgb(224, 236, 255);
+}
+.propertygrid .datagrid-view2 .datagrid-group {
+	border-color: rgb(221, 221, 221);
+}
+.propertygrid .datagrid-group {
+	background: rgb(224, 236, 255);
+}
+.propertygrid .datagrid-view1 .datagrid-body {
+	background: rgb(224, 236, 255);
+}
+.propertygrid .datagrid-view1 .datagrid-row-over {
+	background: rgb(224, 236, 255);
+}
+.propertygrid .datagrid-view1 .datagrid-row-selected {
+	background: rgb(224, 236, 255);
+}
+.pagination {
+	-ms-zoom: 1;
+}
+.pagination table {
+	height: 30px; float: left;
+}
+.pagination td {
+	border: 0px currentColor; border-image: none;
+}
+.pagination-btn-separator {
+	margin: 3px 1px; height: 24px; border-right-color: rgb(255, 255, 255); border-left-color: rgb(204, 204, 204); border-right-width: 1px; border-left-width: 1px; border-right-style: solid; border-left-style: solid; float: left;
+}
+.pagination .pagination-num {
+	border-width: 1px; border-style: solid; margin: 0px 2px; padding: 2px; width: 2em; height: auto;
+}
+.pagination-page-list {
+	border-width: 1px; border-style: solid; margin: 0px 6px; padding: 1px 2px; width: auto; height: auto;
+}
+.pagination-info {
+	margin: 0px 6px 0px 0px; padding: 0px; height: 30px; line-height: 30px; font-size: 12px; float: right;
+}
+.pagination span {
+	font-size: 12px;
+}
+.pagination-link .l-btn-text {
+	margin: 0px; width: 24px; text-align: center;
+}
+.pagination-first {
+	background: url("icons/pagination_icons.png") no-repeat 0px;
+}
+.pagination-prev {
+	background: url("icons/pagination_icons.png") no-repeat -16px;
+}
+.pagination-next {
+	background: url("icons/pagination_icons.png") no-repeat -32px;
+}
+.pagination-last {
+	background: url("icons/pagination_icons.png") no-repeat -48px;
+}
+.pagination-load {
+	background: url("icons/pagination_icons.png") no-repeat -64px;
+}
+.pagination-loading {
+	background: url("icons/loading.gif") no-repeat center;
+}
+.pagination-page-list {
+	border-color: rgb(149, 184, 231);
+}
+.pagination .pagination-num {
+	border-color: rgb(149, 184, 231);
+}
+.calendar {
+	border-width: 1px; border-style: solid; padding: 1px; overflow: hidden;
+}
+.calendar table {
+	width: 100%; height: 100%; font-size: 12px; border-collapse: separate; table-layout: fixed;
+}
+.calendar table td {
+	font-size: 12px;
+}
+.calendar table th {
+	font-size: 12px;
+}
+.calendar-noborder {
+	border: 0px currentColor; border-image: none;
+}
+.calendar-header {
+	height: 22px; position: relative;
+}
+.calendar-title {
+	height: 22px; text-align: center;
+}
+.calendar-title span {
+	padding: 0px 3px; border-radius: 5px; top: 2px; height: 18px; line-height: 18px; font-size: 12px; display: inline-block; position: relative; cursor: pointer; -moz-border-radius: 5px 5px 5px 5px; -webkit-border-radius: 5px 5px 5px 5px;
+}
+.calendar-prevmonth {
+	border-radius: 5px; top: 50%; width: 14px; height: 14px; font-size: 1px; margin-top: -7px; position: absolute; cursor: pointer; -moz-border-radius: 5px 5px 5px 5px; -webkit-border-radius: 5px 5px 5px 5px;
+}
+.calendar-nextmonth {
+	border-radius: 5px; top: 50%; width: 14px; height: 14px; font-size: 1px; margin-top: -7px; position: absolute; cursor: pointer; -moz-border-radius: 5px 5px 5px 5px; -webkit-border-radius: 5px 5px 5px 5px;
+}
+.calendar-prevyear {
+	border-radius: 5px; top: 50%; width: 14px; height: 14px; font-size: 1px; margin-top: -7px; position: absolute; cursor: pointer; -moz-border-radius: 5px 5px 5px 5px; -webkit-border-radius: 5px 5px 5px 5px;
+}
+.calendar-nextyear {
+	border-radius: 5px; top: 50%; width: 14px; height: 14px; font-size: 1px; margin-top: -7px; position: absolute; cursor: pointer; -moz-border-radius: 5px 5px 5px 5px; -webkit-border-radius: 5px 5px 5px 5px;
+}
+.calendar-prevmonth {
+	background: url("icons/calendar_arrows.png") no-repeat -18px -2px; left: 20px;
+}
+.calendar-nextmonth {
+	background: url("icons/calendar_arrows.png") no-repeat -34px -2px; right: 20px;
+}
+.calendar-prevyear {
+	background: url("icons/calendar_arrows.png") no-repeat -1px -2px; left: 3px;
+}
+.calendar-nextyear {
+	background: url("icons/calendar_arrows.png") no-repeat -49px -2px; right: 3px;
+}
+.calendar-body {
+	position: relative;
+}
+.calendar-body th {
+	text-align: center;
+}
+.calendar-body td {
+	text-align: center;
+}
+.calendar-day {
+	padding: 1px; border-radius: 5px; border: 0px currentColor; border-image: none; cursor: pointer; -moz-border-radius: 5px 5px 5px 5px; -webkit-border-radius: 5px 5px 5px 5px;
+}
+.calendar-other-month {
+	opacity: 0.3;
+}
+.calendar-disabled {
+	cursor: default; opacity: 0.6;
+}
+.calendar-menu {
+	padding: 5px; left: 0px; top: 0px; width: 180px; height: 150px; overflow: hidden; font-size: 12px; display: none; position: absolute;
+}
+.calendar-menu-year-inner {
+	text-align: center; padding-bottom: 5px;
+}
+.calendar-menu-year {
+	border-width: 1px; border-style: solid; margin: 0px; padding: 2px; width: 40px; text-align: center; font-size: 12px; font-weight: bold;
+}
+.calendar-menu-prev {
+	border-radius: 5px; width: 21px; height: 21px; vertical-align: top; display: inline-block; cursor: pointer; -moz-border-radius: 5px 5px 5px 5px; -webkit-border-radius: 5px 5px 5px 5px;
+}
+.calendar-menu-next {
+	border-radius: 5px; width: 21px; height: 21px; vertical-align: top; display: inline-block; cursor: pointer; -moz-border-radius: 5px 5px 5px 5px; -webkit-border-radius: 5px 5px 5px 5px;
+}
+.calendar-menu-prev {
+	background: url("icons/calendar_arrows.png") no-repeat 2px 2px; margin-right: 10px;
+}
+.calendar-menu-next {
+	background: url("icons/calendar_arrows.png") no-repeat -45px 2px; margin-left: 10px;
+}
+.calendar-menu-month {
+	border-radius: 5px; text-align: center; font-weight: bold; cursor: pointer; -moz-border-radius: 5px 5px 5px 5px; -webkit-border-radius: 5px 5px 5px 5px;
+}
+.calendar-body th {
+	color: rgb(77, 77, 77);
+}
+.calendar-menu-month {
+	color: rgb(77, 77, 77);
+}
+.calendar-day {
+	color: rgb(0, 0, 0);
+}
+.calendar-sunday {
+	color: rgb(204, 34, 34);
+}
+.calendar-saturday {
+	color: rgb(0, 238, 0);
+}
+.calendar-today {
+	color: rgb(0, 0, 255);
+}
+.calendar-menu-year {
+	border-color: rgb(149, 184, 231);
+}
+.calendar {
+	border-color: rgb(149, 184, 231);
+}
+.calendar-header {
+	background: rgb(224, 236, 255);
+}
+.calendar-body {
+	background: rgb(255, 255, 255);
+}
+.calendar-menu {
+	background: rgb(255, 255, 255);
+}
+.calendar-body th {
+	background: rgb(244, 244, 244); padding: 2px 0px;
+}
+.calendar-hover {
+	color: rgb(0, 0, 0); background-color: rgb(234, 242, 255);
+}
+.calendar-nav-hover {
+	color: rgb(0, 0, 0); background-color: rgb(234, 242, 255);
+}
+.calendar-menu-hover {
+	color: rgb(0, 0, 0); background-color: rgb(234, 242, 255);
+}
+.calendar-hover {
+	padding: 0px; border: 1px solid rgb(183, 210, 255); border-image: none;
+}
+.calendar-selected {
+	padding: 0px; border: 1px solid rgb(255, 171, 63); border-image: none; color: rgb(0, 0, 0); background-color: rgb(255, 228, 141);
+}
+.datebox-calendar-inner {
+	height: 180px;
+}
+.datebox-button {
+	padding: 2px 5px; height: 18px; text-align: center;
+}
+.datebox-button a {
+	font-size: 12px; font-weight: bold; text-decoration: none; opacity: 0.6;
+}
+.datebox-button a:hover {
+	opacity: 1;
+}
+.datebox-current {
+	float: left;
+}
+.datebox-close {
+	float: left;
+}
+.datebox-close {
+	float: right;
+}
+.datebox .combo-arrow {
+	background-position: center; background-image: url("icons/datebox_arrow.png");
+}
+.datebox-button {
+	background-color: rgb(244, 244, 244);
+}
+.datebox-button a {
+	color: rgb(68, 68, 68);
+}
+.numberbox {
+	margin: 0px; padding: 0px 2px; border: 1px solid rgb(149, 184, 231); border-image: none; vertical-align: middle;
+}
+.textbox {
+	padding: 0px;
+}
+.spinner {
+	border-width: 1px; border-style: solid; margin: 0px; padding: 0px; overflow: hidden; vertical-align: middle; display: inline-block; white-space: nowrap;
+}
+.spinner .spinner-text {
+	margin: 0px; padding: 0px 2px; border: 0px currentColor; border-image: none; font-size: 12px; vertical-align: baseline;
+}
+.spinner-arrow {
+	margin: 0px; padding: 0px; width: 18px; overflow: hidden; vertical-align: top; display: inline-block; opacity: 1; background-color: rgb(224, 236, 255);
+}
+.spinner-arrow-up {
+	width: 100%; height: 50%; font-size: 1px; display: block; opacity: 0.6;
+}
+.spinner-arrow-down {
+	width: 100%; height: 50%; font-size: 1px; display: block; opacity: 0.6;
+}
+.spinner-arrow-hover {
+	opacity: 1; background-color: rgb(234, 242, 255);
+}
+.spinner-arrow-up:hover {
+	opacity: 1; background-color: rgb(234, 242, 255);
+}
+.spinner-arrow-down:hover {
+	opacity: 1; background-color: rgb(234, 242, 255);
+}
+.textbox-icon-disabled .spinner-arrow-up:hover {
+	opacity: 0.6; background-color: rgb(224, 236, 255);
+}
+.textbox-icon-disabled .spinner-arrow-down:hover {
+	opacity: 0.6; background-color: rgb(224, 236, 255);
+}
+.spinner .textbox-icon-disabled {
+	opacity: 0.6;
+}
+.spinner-arrow-up {
+	background: url("icons/spinner_arrows.png") no-repeat 1px;
+}
+.spinner-arrow-down {
+	background: url("icons/spinner_arrows.png") no-repeat -15px;
+}
+.spinner {
+	border-color: rgb(149, 184, 231);
+}
+.progressbar {
+	border-width: 1px; border-style: solid; border-radius: 5px; overflow: hidden; position: relative; -moz-border-radius: 5px 5px 5px 5px; -webkit-border-radius: 5px 5px 5px 5px;
+}
+.progressbar-text {
+	text-align: center; position: absolute;
+}
+.progressbar-value {
+	border-radius: 5px 0px 0px 5px; width: 0px; overflow: hidden; position: relative; -moz-border-radius: 5px 0 0 5px; -webkit-border-radius: 5px 0 0 5px;
+}
+.progressbar {
+	border-color: rgb(149, 184, 231);
+}
+.progressbar-text {
+	color: rgb(0, 0, 0); font-size: 12px;
+}
+.progressbar-value .progressbar-text {
+	color: rgb(0, 0, 0); background-color: rgb(255, 228, 141);
+}
+.searchbox {
+	border-width: 1px; border-style: solid; margin: 0px; padding: 0px; overflow: hidden; vertical-align: middle; display: inline-block; white-space: nowrap;
+}
+.searchbox .searchbox-text {
+	margin: 0px; padding: 0px 2px; border: 0px currentColor; border-image: none; font-size: 12px; vertical-align: top;
+}
+.searchbox .searchbox-prompt {
+	color: rgb(204, 204, 204); font-size: 12px;
+}
+.searchbox-button {
+	width: 18px; height: 20px; overflow: hidden; vertical-align: top; display: inline-block; cursor: pointer; opacity: 0.6;
+}
+.searchbox-button-hover {
+	opacity: 1;
+}
+.searchbox .l-btn-plain {
+	padding: 0px; border-radius: 0px; border: 0px currentColor; border-image: none; vertical-align: top; opacity: 0.6; -moz-border-radius: 0 0 0 0; -webkit-border-radius: 0 0 0 0;
+}
+.searchbox .l-btn-plain:hover {
+	padding: 0px; border-radius: 0px; border: 0px currentColor; border-image: none; opacity: 1; -moz-border-radius: 0 0 0 0; -webkit-border-radius: 0 0 0 0;
+}
+.searchbox a.m-btn-plain-active {
+	border-radius: 0px; -moz-border-radius: 0 0 0 0; -webkit-border-radius: 0 0 0 0;
+}
+.searchbox .m-btn-active {
+	border-width: 0px 1px 0px 0px; border-radius: 0px; -moz-border-radius: 0 0 0 0; -webkit-border-radius: 0 0 0 0;
+}
+.searchbox .textbox-button-right {
+	border-width: 0px 0px 0px 1px;
+}
+.searchbox .textbox-button-left {
+	border-width: 0px 1px 0px 0px;
+}
+.searchbox-button {
+	background: url("icons/searchbox_button.png") no-repeat center;
+}
+.searchbox {
+	border-color: rgb(149, 184, 231); background-color: rgb(255, 255, 255);
+}
+.searchbox .l-btn-plain {
+	background: rgb(224, 236, 255);
+}
+.searchbox .l-btn-plain-disabled {
+	opacity: 0.5;
+}
+.searchbox .l-btn-plain-disabled:hover {
+	opacity: 0.5;
+}
+.textbox-invalid {
+	border-color: rgb(255, 168, 168); background-color: rgb(255, 243, 243);
+}
+.slider-disabled {
+	opacity: 0.5;
+}
+.slider-h {
+	height: 22px;
+}
+.slider-v {
+	width: 22px;
+}
+.slider-inner {
+	border-width: 1px; border-style: solid; border-radius: 5px; top: 7px; height: 6px; position: relative;
+}
+.slider-handle {
+	top: 50%; width: 20px; height: 20px; margin-top: -10px; margin-left: -10px; display: block; position: absolute;
+}
+.slider-tip {
+	top: -22px; line-height: 12px; font-size: 12px; display: inline-block; white-space: nowrap; position: absolute;
+}
+.slider-rule {
+	top: 15px; position: relative;
+}
+.slider-rule span {
+	border-width: 0px 0px 0px 1px; border-style: solid; height: 5px; font-size: 0px; display: inline-block; position: absolute;
+}
+.slider-rulelabel {
+	top: 20px; position: relative;
+}
+.slider-rulelabel span {
+	font-size: 12px; display: inline-block; position: absolute;
+}
+.slider-v .slider-inner {
+	left: 7px; top: 0px; width: 6px; float: left;
+}
+.slider-v .slider-handle {
+	left: 50%; margin-top: -10px;
+}
+.slider-v .slider-tip {
+	left: -10px; margin-top: -6px;
+}
+.slider-v .slider-rule {
+	left: 16px; top: 0px; float: left;
+}
+.slider-v .slider-rule span {
+	border-width: 1px 0px 0px; border-style: solid; width: 5px; border-left-color: currentColor;
+}
+.slider-v .slider-rulelabel {
+	left: 23px; top: 0px; float: left;
+}
+.slider-handle {
+	background: url("icons/slider_handle.png") no-repeat;
+}
+.slider-inner {
+	background: rgb(224, 236, 255); border-color: rgb(149, 184, 231);
+}
+.slider-rule span {
+	border-color: rgb(149, 184, 231);
+}
+.slider-rulelabel span {
+	color: rgb(0, 0, 0);
+}
+.menu {
+	border-width: 1px; border-style: solid; margin: 0px; padding: 2px; overflow: hidden; position: absolute;
+}
+.menu-item {
+	border-width: 1px; border-style: solid; margin: 0px; padding: 0px; overflow: hidden; white-space: nowrap; position: relative; cursor: pointer;
+}
+.menu-text {
+	height: 20px; line-height: 20px; padding-left: 28px; float: left;
+}
+.menu-icon {
+	left: 2px; top: 50%; width: 16px; height: 16px; margin-top: -8px; position: absolute;
+}
+.menu-rightarrow {
+	top: 50%; width: 16px; height: 16px; right: 0px; margin-top: -8px; position: absolute;
+}
+.menu-line {
+	left: 26px; top: 0px; height: 2000px; font-size: 1px; position: absolute;
+}
+.menu-sep {
+	margin: 3px 0px 3px 25px; font-size: 1px;
+}
+.menu-active {
+	border-radius: 5px; -moz-border-radius: 5px 5px 5px 5px; -webkit-border-radius: 5px 5px 5px 5px;
+}
+.menu-item-disabled {
+	cursor: default; opacity: 0.5;
+}
+.menu-text {
+	font-size: 12px;
+}
+.menu-text span {
+	font-size: 12px;
+}
+.menu-shadow {
+	background: rgb(204, 204, 204); border-radius: 5px; position: absolute; box-shadow: 2px 2px 3px #cccccc; -moz-border-radius: 5px 5px 5px 5px; -webkit-border-radius: 5px 5px 5px 5px; -moz-box-shadow: 2px 2px 3px #cccccc; -webkit-box-shadow: 2px 2px 3px #cccccc;
+}
+.menu-rightarrow {
+	background: url("icons/menu_arrows.png") no-repeat -32px;
+}
+.menu-line {
+	border-right-color: rgb(255, 255, 255); border-left-color: rgb(204, 204, 204); border-right-width: 1px; border-left-width: 1px; border-right-style: solid; border-left-style: solid;
+}
+.menu-sep {
+	border-top-color: rgb(204, 204, 204); border-bottom-color: rgb(255, 255, 255); border-top-width: 1px; border-bottom-width: 1px; border-top-style: solid; border-bottom-style: solid;
+}
+.menu {
+	border-color: rgb(221, 221, 221); color: rgb(68, 68, 68); background-color: rgb(250, 250, 250);
+}
+.menu-content {
+	background: rgb(255, 255, 255);
+}
+.menu-item {
+	border-color: transparent; _border-color: #fafafa;
+}
+.menu-active {
+	background: rgb(234, 242, 255); border-color: rgb(183, 210, 255); color: rgb(0, 0, 0);
+}
+.menu-active-disabled {
+	background: none; border-color: transparent; color: rgb(68, 68, 68);
+}
+.m-btn-downarrow {
+	top: 50%; width: 16px; height: 16px; right: 0px; font-size: 1px; margin-top: -8px; display: inline-block; position: absolute;
+}
+.s-btn-downarrow {
+	top: 50%; width: 16px; height: 16px; right: 0px; font-size: 1px; margin-top: -8px; display: inline-block; position: absolute;
+}
+.m-btn-active {
+	background: rgb(234, 242, 255); border: 1px solid rgb(183, 210, 255); border-image: none; color: rgb(0, 0, 0); filter: none;
+}
+.s-btn-active {
+	background: rgb(234, 242, 255); border: 1px solid rgb(183, 210, 255); border-image: none; color: rgb(0, 0, 0); filter: none;
+}
+.m-btn-plain-active {
+	background: none; border-width: 1px; border-style: solid; padding: 0px; border-radius: 5px; -moz-border-radius: 5px 5px 5px 5px; -webkit-border-radius: 5px 5px 5px 5px;
+}
+.s-btn-plain-active {
+	background: none; border-width: 1px; border-style: solid; padding: 0px; border-radius: 5px; -moz-border-radius: 5px 5px 5px 5px; -webkit-border-radius: 5px 5px 5px 5px;
+}
+.m-btn .l-btn-left .l-btn-text {
+	margin-right: 20px;
+}
+.m-btn .l-btn-icon-right .l-btn-text {
+	margin-right: 40px;
+}
+.m-btn .l-btn-icon-right .l-btn-icon {
+	right: 20px;
+}
+.m-btn .l-btn-icon-top .l-btn-text {
+	margin-right: 4px; margin-bottom: 14px;
+}
+.m-btn .l-btn-icon-bottom .l-btn-text {
+	margin-right: 4px; margin-bottom: 34px;
+}
+.m-btn .l-btn-icon-bottom .l-btn-icon {
+	top: auto; bottom: 20px;
+}
+.m-btn .l-btn-icon-top .m-btn-downarrow {
+	left: 50%; top: auto; bottom: 0px; margin-left: -8px;
+}
+.m-btn .l-btn-icon-bottom .m-btn-downarrow {
+	left: 50%; top: auto; bottom: 0px; margin-left: -8px;
+}
+.m-btn-line {
+	font-size: 1px; display: none; position: absolute;
+}
+.m-btn .l-btn-left .m-btn-line {
+	border-width: 0px 0px 0px 1px; border-style: solid; border-color: rgb(170, 197, 231); width: 16px; height: 500px; right: 0px;
+}
+.m-btn .l-btn-icon-top .m-btn-line {
+	border-width: 1px 0px 0px; left: 0px; width: 500px; height: 16px; bottom: 0px;
+}
+.m-btn .l-btn-icon-bottom .m-btn-line {
+	border-width: 1px 0px 0px; left: 0px; width: 500px; height: 16px; bottom: 0px;
+}
+.m-btn-large .l-btn-icon-right .l-btn-text {
+	margin-right: 56px;
+}
+.m-btn-large .l-btn-icon-bottom .l-btn-text {
+	margin-bottom: 50px;
+}
+.m-btn-downarrow {
+	background: url("icons/menu_arrows.png") no-repeat 0px;
+}
+.s-btn-downarrow {
+	background: url("icons/menu_arrows.png") no-repeat 0px;
+}
+.m-btn-plain-active {
+	border-color: rgb(183, 210, 255); color: rgb(0, 0, 0); background-color: rgb(234, 242, 255);
+}
+.s-btn-plain-active {
+	border-color: rgb(183, 210, 255); color: rgb(0, 0, 0); background-color: rgb(234, 242, 255);
+}
+.s-btn:hover .m-btn-line {
+	display: inline-block;
+}
+.s-btn-active .m-btn-line {
+	display: inline-block;
+}
+.s-btn-plain-active .m-btn-line {
+	display: inline-block;
+}
+.l-btn:hover .s-btn-downarrow {
+	border-width: 0px 0px 0px 1px; border-style: solid; border-color: rgb(170, 197, 231);
+}
+.s-btn-active .s-btn-downarrow {
+	border-width: 0px 0px 0px 1px; border-style: solid; border-color: rgb(170, 197, 231);
+}
+.s-btn-plain-active .s-btn-downarrow {
+	border-width: 0px 0px 0px 1px; border-style: solid; border-color: rgb(170, 197, 231);
+}
+.messager-body {
+	padding: 10px; overflow: hidden;
+}
+.messager-button {
+	text-align: center; padding-top: 10px;
+}
+.messager-button .l-btn {
+	width: 70px;
+}
+.messager-icon {
+	margin: 0px 10px 10px 0px; width: 32px; height: 32px; float: left;
+}
+.messager-error {
+	background: url("icons/messager_icons.png") no-repeat -64px 0px;
+}
+.messager-info {
+	background: url("icons/messager_icons.png") no-repeat 0px 0px;
+}
+.messager-question {
+	background: url("icons/messager_icons.png") no-repeat -32px 0px;
+}
+.messager-warning {
+	background: url("icons/messager_icons.png") no-repeat -96px 0px;
+}
+.messager-progress {
+	padding: 10px;
+}
+.messager-p-msg {
+	margin-bottom: 5px;
+}
+.messager-body .messager-input {
+	padding: 1px 0px; border: 1px solid rgb(149, 184, 231); border-image: none; width: 100%;
+}
+.tree {
+	margin: 0px; padding: 0px; list-style-type: none;
+}
+.tree li {
+	white-space: nowrap;
+}
+.tree li ul {
+	margin: 0px; padding: 0px; list-style-type: none;
+}
+.tree-node {
+	height: 18px; white-space: nowrap; cursor: pointer;
+}
+.tree-hit {
+	cursor: pointer;
+}
+.tree-expanded {
+	width: 16px; height: 18px; overflow: hidden; vertical-align: top; display: inline-block;
+}
+.tree-collapsed {
+	width: 16px; height: 18px; overflow: hidden; vertical-align: top; display: inline-block;
+}
+.tree-folder {
+	width: 16px; height: 18px; overflow: hidden; vertical-align: top; display: inline-block;
+}
+.tree-file {
+	width: 16px; height: 18px; overflow: hidden; vertical-align: top; display: inline-block;
+}
+.tree-checkbox {
+	width: 16px; height: 18px; overflow: hidden; vertical-align: top; display: inline-block;
+}
+.tree-indent {
+	width: 16px; height: 18px; overflow: hidden; vertical-align: top; display: inline-block;
+}
+.tree-expanded {
+	background: url("icons/tree_icons.png") no-repeat -18px 0px;
+}
+.tree-expanded-hover {
+	background: url("icons/tree_icons.png") no-repeat -50px 0px;
+}
+.tree-collapsed {
+	background: url("icons/tree_icons.png") no-repeat 0px 0px;
+}
+.tree-collapsed-hover {
+	background: url("icons/tree_icons.png") no-repeat -32px 0px;
+}
+.tree-lines .tree-expanded {
+	background: url("icons/tree_icons.png") no-repeat -144px 0px;
+}
+.tree-lines .tree-root-first .tree-expanded {
+	background: url("icons/tree_icons.png") no-repeat -144px 0px;
+}
+.tree-lines .tree-collapsed {
+	background: url("icons/tree_icons.png") no-repeat -128px 0px;
+}
+.tree-lines .tree-root-first .tree-collapsed {
+	background: url("icons/tree_icons.png") no-repeat -128px 0px;
+}
+.tree-lines .tree-node-last .tree-expanded {
+	background: url("icons/tree_icons.png") no-repeat -80px 0px;
+}
+.tree-lines .tree-root-one .tree-expanded {
+	background: url("icons/tree_icons.png") no-repeat -80px 0px;
+}
+.tree-lines .tree-node-last .tree-collapsed {
+	background: url("icons/tree_icons.png") no-repeat -64px 0px;
+}
+.tree-lines .tree-root-one .tree-collapsed {
+	background: url("icons/tree_icons.png") no-repeat -64px 0px;
+}
+.tree-line {
+	background: url("icons/tree_icons.png") no-repeat -176px 0px;
+}
+.tree-join {
+	background: url("icons/tree_icons.png") no-repeat -192px 0px;
+}
+.tree-joinbottom {
+	background: url("icons/tree_icons.png") no-repeat -160px 0px;
+}
+.tree-folder {
+	background: url("icons/tree_icons.png") no-repeat -208px 0px;
+}
+.tree-folder-open {
+	background: url("icons/tree_icons.png") no-repeat -224px 0px;
+}
+.tree-file {
+	background: url("icons/tree_icons.png") no-repeat -240px 0px;
+}
+.tree-loading {
+	background: url("icons/loading.gif") no-repeat center;
+}
+.tree-checkbox0 {
+	background: url("icons/tree_icons.png") no-repeat -208px -18px;
+}
+.tree-checkbox1 {
+	background: url("icons/tree_icons.png") no-repeat -224px -18px;
+}
+.tree-checkbox2 {
+	background: url("icons/tree_icons.png") no-repeat -240px -18px;
+}
+.tree-title {
+	padding: 0px 2px; height: 18px; line-height: 18px; font-size: 12px; text-decoration: none; vertical-align: top; display: inline-block; white-space: nowrap;
+}
+.tree-node-proxy {
+	border-width: 1px; border-style: solid; padding: 0px 2px 0px 20px; line-height: 20px; font-size: 12px; z-index: 9900000;
+}
+.tree-dnd-icon {
+	left: 2px; top: 50%; width: 16px; height: 18px; margin-top: -9px; display: inline-block; position: absolute;
+}
+.tree-dnd-yes {
+	background: url("icons/tree_icons.png") no-repeat -256px 0px;
+}
+.tree-dnd-no {
+	background: url("icons/tree_icons.png") no-repeat -256px -18px;
+}
+.tree-node-top {
+	border-top-color: red; border-top-width: 1px; border-top-style: dotted;
+}
+.tree-node-bottom {
+	border-bottom-color: red; border-bottom-width: 1px; border-bottom-style: dotted;
+}
+.tree-node-append .tree-title {
+	border: 1px dotted red; border-image: none;
+}
+.tree-editor {
+	padding: 1px 2px; border: 1px solid rgb(204, 204, 204); border-image: none; top: 0px; width: 80px; height: 14px !important; line-height: 14px; font-size: 12px; position: absolute;
+}
+.tree-node-proxy {
+	border-color: rgb(149, 184, 231); color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);
+}
+.tree-node-hover {
+	background: rgb(234, 242, 255); color: rgb(0, 0, 0);
+}
+.tree-node-selected {
+	background: rgb(255, 228, 141); color: rgb(0, 0, 0);
+}
+.validatebox-invalid {
+	border-color: rgb(255, 168, 168); color: rgb(0, 0, 0); background-color: rgb(255, 243, 243);
+}
+.tooltip {
+	border-width: 1px; border-style: solid; padding: 5px; border-radius: 5px; display: none; position: absolute; z-index: 9900000; opacity: 1; -moz-border-radius: 5px 5px 5px 5px; -webkit-border-radius: 5px 5px 5px 5px;
+}
+.tooltip-content {
+	font-size: 12px;
+}
+.tooltip-arrow-outer {
+	border: 6px solid transparent; width: 0px; height: 0px; line-height: 0; font-size: 0px; position: absolute; _border-color: tomato;
+}
+.tooltip-arrow {
+	border: 6px solid transparent; width: 0px; height: 0px; line-height: 0; font-size: 0px; position: absolute; _border-color: tomato;
+}
+.tooltip-right .tooltip-arrow-outer {
+	margin: -6px 0px 0px -13px; left: 0px; top: 50%;
+}
+.tooltip-right .tooltip-arrow {
+	margin: -6px 0px 0px -12px; left: 0px; top: 50%;
+}
+.tooltip-left .tooltip-arrow-outer {
+	margin: -6px -13px 0px 0px; top: 50%; right: 0px;
+}
+.tooltip-left .tooltip-arrow {
+	margin: -6px -12px 0px 0px; top: 50%; right: 0px;
+}
+.tooltip-top .tooltip-arrow-outer {
+	margin: 0px 0px -13px -6px; left: 50%; bottom: 0px;
+}
+.tooltip-top .tooltip-arrow {
+	margin: 0px 0px -12px -6px; left: 50%; bottom: 0px;
+}
+.tooltip-bottom .tooltip-arrow-outer {
+	margin: -13px 0px 0px -6px; left: 50%; top: 0px;
+}
+.tooltip-bottom .tooltip-arrow {
+	margin: -12px 0px 0px -6px; left: 50%; top: 0px;
+}
+.tooltip {
+	border-color: rgb(149, 184, 231); color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);
+}
+.tooltip-right .tooltip-arrow-outer {
+	border-right-color: rgb(149, 184, 231);
+}
+.tooltip-right .tooltip-arrow {
+	border-right-color: rgb(255, 255, 255);
+}
+.tooltip-left .tooltip-arrow-outer {
+	border-left-color: rgb(149, 184, 231);
+}
+.tooltip-left .tooltip-arrow {
+	border-left-color: rgb(255, 255, 255);
+}
+.tooltip-top .tooltip-arrow-outer {
+	border-top-color: rgb(149, 184, 231);
+}
+.tooltip-top .tooltip-arrow {
+	border-top-color: rgb(255, 255, 255);
+}
+.tooltip-bottom .tooltip-arrow-outer {
+	border-bottom-color: rgb(149, 184, 231);
+}
+.tooltip-bottom .tooltip-arrow {
+	border-bottom-color: rgb(255, 255, 255);
+}
+
+
+.easyui-radio {
+      position: relative;
+      vertical-align: middle;
+      display: inline-block;
+      overflow: hidden;
+      white-space: nowrap;
+      margin: 0;
+      padding: 0;
+      -moz-border-radius: 5px 5px 5px 5px;
+      -webkit-border-radius: 5px 5px 5px 5px;
+      border-radius: 5px 5px 5px 5px;
+      display:block;
+    }

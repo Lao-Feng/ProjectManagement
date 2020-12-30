@@ -1,0 +1,30 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title></title>
+<script type="text/javascript">
+function reclose(){
+    var type = "${type}";
+    var rvalue = "${svalue}";
+    if (type=="1"){
+       submitFinishRe(rvalue);
+    }
+    if (type=="2"){
+       UntreadFinishRe(rvalue);
+    }
+}
+
+setTimeout("reclose()",2000);
+</script>
+</head>
+<body>
+<TABLE border="0" width="95%" cellpadding=0 cellspacing=0>
+     <TR>
+      <TD height="60" align="center" valign="middle">
+      <font color="#FF0000">
+      	系统提示：正在处理，请等待！
+      </font>
+      </td></tr>
+</TABLE>
+</body>
+</html>

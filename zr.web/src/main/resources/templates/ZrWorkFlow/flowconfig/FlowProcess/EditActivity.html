@@ -1,0 +1,349 @@
+﻿<HTML>
+ <head>
+ <title>WEB流程设计器</title>
+ <meta name="keyword" content="">
+ <meta name="description" content="">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=9,chrome=1">
+    <meta name="author" content="leipi.org">
+    <link href="/static/ZrWorkFlow/flowconfig/Public/css/bootstrap/css/bootstrap.css?2025" rel="stylesheet" type="text/css" />
+    <!--[if lte IE 6]>
+    <link rel="stylesheet" type="text/css" href="/static/ZrWorkFlow/flowconfig/Public/css/bootstrap/css/bootstrap-ie6.css?2025">
+    <![endif]-->
+    <!--[if lte IE 7]>
+    <link rel="stylesheet" type="text/css" href="/static/ZrWorkFlow/flowconfig/Public/css/bootstrap/css/ie.css?2025">
+    <![endif]-->
+    <link href="/static/ZrWorkFlow/flowconfig/Public/css/site.css?2025" rel="stylesheet" type="text/css" />
+<!-- 必要连接 -->
+<link href="/static/vue/element-ui/lib/theme-chalk/index.css" rel="stylesheet" type="text/css">
+<link href="/static/vue/element-ui/lib/theme-chalk/html.css" rel="stylesheet" type="text/css">
+<script src="/static/vue/jquery-1_15.9.1.min.js"></script>
+<script src="/static/vue/vue.min.js" type="text/javascript"></script>
+<script src="/static/vue/element-ui/lib/index.js" type="text/javascript"></script>
+
+    <script type="text/javascript">
+        var _root='http://www.zrpower.cn/index.php?s=/',_controller = 'flowdesign';
+    </script>
+
+<link rel="stylesheet" type="text/css" href="/static/ZrWorkFlow/flowconfig/Public/js/flowdesign/flowdesign.css"/>
+<!--select 2-->
+<link rel="stylesheet" type="text/css" href="/static/ZrWorkFlow/flowconfig/Public/js/jquery.multiselect2side/css/jquery.multiselect2side.css"/>
+<style type="text/css">
+.container {
+    padding: 0px;
+}
+.process-flag{
+    background-color: rgba(228, 20, 20, 0);
+    color: rgb(64, 158, 255);
+    font-size: 30px;
+    width: 100%;
+    margin-top: 10px;
+    margin-left: -16px;
+    margin-bottom: 5px;
+}
+.layui-layer-title {
+    background-color: rgb(64, 158, 255);
+    color: rgb(255, 255, 255);
+}
+.process-step {
+    min-width: auto;
+}
+</style>
+</head>
+<body style="margin: 0px;">
+<div id="zrflowmain"  v-loading="htmlLoading">
+
+<FORM id=Form1 name=Form1 action="/flow/flowdesign" method=post>
+<INPUT type=hidden name="tmp_save">
+<input type="hidden" name="ObjectFile" value="/flow/openflowcfg?Act=EditActivity">
+<input type="hidden" name="type" th:value="${flow_Type}"/>
+<input type="hidden" name="formtype" th:value="${flow_formtype}"/>
+<INPUT type="hidden" name="Workflow_No" th:value="${Workflow_No}"/>
+
+<div style="display:none;">
+<button class="btn btn-info" type="button" id="leipi_save">保存设计</button>
+</div>
+<!--contextmenu div-->
+<div id="processMenu" style="display:none;">
+  <ul>
+    <li id="OpenActivityCopy"><i class="el-icon-document-copy"></i>&nbsp;<span class="_label">复制</span></li>
+    <li id="SetupActivity"><i class="el-icon-set-up"></i>&nbsp;<span class="_label">属性设置</span></li>
+    <li id="DeleteRelLine"><i class="el-icon-close"></i>&nbsp;<span class="_label">删除</span></li>
+
+  </ul>
+</div>
+<!--end div-->
+<div class="container mini-layout" id="flowdesign_canvas" style="width: 100%;height: 100%;min-height: 1000px;">
+</div>
+</FORM>
+</div>
+<script type="text/javascript" src="/static/ZrWorkFlow/flowconfig/Public/js/jquery-1.7.2.min.js?2025"></script>
+<script type="text/javascript" src="/static/ZrWorkFlow/flowconfig/Public/css/bootstrap/js/bootstrap.min.js?2025"></script>
+<script type="text/javascript" src="/static/ZrWorkFlow/flowconfig/Public/js/jquery-ui/jquery-ui-1.9.2-min.js?2025" ></script>
+<script type="text/javascript" src="/static/ZrWorkFlow/flowconfig/Public/js/jsPlumb/jquery.jsPlumb-1.3.16-all-min.js?2025"></script>
+<script type="text/javascript" src="/static/ZrWorkFlow/flowconfig/Public/js/jquery.contextmenu.r2.js?2025"></script>
+<!--select 2-->
+<script type="text/javascript" src="/static/ZrWorkFlow/flowconfig/Public/js/jquery.multiselect2side/js/jquery.multiselect2side.js?2025" ></script>
+<!--flowdesign-->
+<script type="text/javascript" src="/static/ZrWorkFlow/flowconfig/Public/js/flowdesign/leipi.flowdesign.v3.js?2025"></script>
+
+<SCRIPT type="text/javascript" src="/static/ZrWorkFlow/js/Control.js"></SCRIPT>
+<SCRIPT type="text/javascript" src="/static/vue/layer/layer.js"></SCRIPT>
+<SCRIPT type="text/javascript" src="/static/vue/script/systype.js"></SCRIPT>
+
+<script type="text/javascript" th:inline="javascript">
+var the_flow_id = '4';
+
+function callbackSuperDialog(selectValue){
+     var aResult = selectValue.split('@leipi@');
+     $('#'+window._viewField).val(aResult[0]);
+     $('#'+window._hidField).val(aResult[1]);
+    //document.getElementById(window._hidField).value = aResult[1];
+}
+
+$(function(){
+    var alertModal = $('#alertModal'),attributeModal =  $("#attributeModal");
+    //消息提示
+    mAlert = function(messages,s) {
+        if(!messages) messages = "";
+        if(!s) s = 2000;
+        alertModal.find(".modal-body").html(messages);
+        alertModal.modal('toggle');
+        setTimeout(function(){alertModal.modal("hide")},s);
+    }
+
+    //属性设置
+    attributeModal.on("hidden", function() {
+        $(this).removeData("modal");//移除数据，防止缓存
+    });
+    ajaxModal = function(url,fn) {
+        url += url.indexOf('?') ? '&' : '?';
+        url += '_t='+ new Date().getTime();
+        attributeModal.find(".modal-body").html('<img src="ZrWorkFlow/flowconfig/Public/images/loading.gif"/>');
+        attributeModal.modal({
+            remote:url
+        });
+
+        //加载完成执行
+        if(fn){
+            attributeModal.on('shown',fn);
+        }
+    }
+
+    /*
+    jsp 命名习惯 单词用下划线_隔开
+    js 命名习惯：首字母小写 + 其它首字线大写
+    */
+    /*步骤数据*/
+    var strProcessData = [[${PData}]];
+    var processData = $.parseJSON(strProcessData);
+    if(strProcessData!=null&&processData.total>0){
+    	$.each(processData.list, function (i, perm) {
+    		
+    		if(processData.list[i].icon=='icon-play'){//开始
+    			processData.list[i].style = 'width:40px;height:56px;'+processData.list[i].css;
+    			processData.list[i].icon = 'el-icon-video-play';
+    		}else if(processData.list[i].icon=='icon-ok'){//结束
+    			processData.list[i].style = 'width:40px;height:56px;'+processData.list[i].css;
+    			processData.list[i].icon = 'el-icon-video-pause';
+    		}else{
+    			processData.list[i].style = 'width:100px;max-height:100px;'+processData.list[i].css;
+    			processData.list[i].icon = 'el-icon-s-custom';
+    		}
+        });
+    }
+    /*创建流程设计器*/
+    var _canvas = $("#flowdesign_canvas").Flowdesign({
+                      "processData":processData
+
+                      /*画面右键*/
+                      ,canvasMenus:{
+
+                      }
+                      /*步骤右键*/
+                      ,processMenus: {
+                          "OpenActivityCopy":function(t) {
+                              var activeId = _canvas.getActiveId();//右键当前的ID
+                              if (activeId.indexOf('S')<0 && activeId.indexOf('E')<0 && activeId.indexOf('Z')<0)
+                              {
+                              	 var Workflow_No = [[${Workflow_No}]];
+                                 OpenActivityCopy(activeId,Workflow_No);
+                              }else{
+                                   layer.alert('开始、结束、子流程不能复制！', {icon: 7});
+                              }
+                          },
+                          "SetupActivity":function(t)
+                          {
+                              var activeId = _canvas.getActiveId();
+                              if (activeId.indexOf('S')<0 && activeId.indexOf('E')<0  && activeId.indexOf('Z')<0)
+                              {
+                                 SetupActivity(activeId);
+                              }else
+                              {
+                                   layer.alert('开始、结束、子流程不能设置属性！', {icon: 7});
+
+                              }
+                          },
+                          "DeleteRelLine":function(t)
+                          {
+                              var activeId = _canvas.getActiveId();
+                              if (activeId.indexOf('S')<0 && activeId.indexOf('E')<0 )
+                              {
+
+			            _canvas.delProcess(activeId);
+
+                              }else
+                              {
+                                   layer.alert('开始或结束不能删除！', {icon: 7});
+                              }
+                          }
+                      }
+
+                      ,fnDbClick:function(){
+                          //和 pmAttribute 一样
+                          var activeId = _canvas.getActiveId();//右键当前的ID
+                          if (activeId.indexOf('S')<0 && activeId.indexOf('E')<0  && activeId.indexOf('Z')<0)
+                          {
+                             SetupActivity(activeId);
+                          }else
+                          {
+                                   layer.alert('开始、结束、子流程不能设置属性！', {icon: 7});
+                           }
+                      }
+                  });
+
+    /*保存*/
+    $("#leipi_save").bind('click',function(){
+        var processInfo = _canvas.getProcessInfo();//连接信息
+                var temstr="";
+                var tempdata = "";
+
+                var test= new Array();
+                var test1= new Array();
+                test = processInfo.split("},");
+                for (i=0;i<test.length ;i++ ) {
+
+                   temstr= test[i];
+                   temstr=repl(temstr,"{\"","");
+                   temstr=repl(temstr,"\":top\":","/");
+                   temstr=repl(temstr,"\"left\":","/");
+                   temstr=repl(temstr,"\"process_to\":[\"","/");
+                   temstr=repl(temstr,"\"]","");
+                   temstr=repl(temstr,",/","/");
+                   temstr=repl(temstr,"\"","");
+                   temstr=repl(temstr,",process_to:[]","/");
+                   temstr=repl(temstr,"}}","");
+                   temstr=repl(temstr,"S","");
+                   temstr=repl(temstr,"E","");
+                   temstr=repl(temstr,"Z","");
+                   test1 = temstr.split("/");
+
+                   temstr= "n1/"+test1[0]+"/步骤/"+test1[3]+"/3/"+test1[2]+"px/"+test1[1]+"px";
+
+                   if (i==0)
+                   {
+                      tempdata = temstr;
+                   }else
+                   {
+                      tempdata = tempdata + "&"+temstr;
+                   }
+                }
+                //alert(tempdata);
+
+                document.all.item('tmp_save').value=tempdata;
+                __doPostBack('Designer1$btnSave','');
+    });
+});
+
+function __doPostBack(eventTarget, eventArgument) {
+		var theform;
+		if (window.navigator.appName.toLowerCase().indexOf("microsoft") > -1) {
+			theform = document.Form1;
+		}
+		else {
+			theform = document.forms["Form1"];
+		}
+		theform.submit();
+	}
+
+   function repl(s,y,t)
+    {
+     var i;
+     var s2=s;
+     var y2=y;
+     var t2=t;
+
+     while(s2.indexOf(y2)>=0)
+     {
+     i = s2.indexOf(y2);
+     s2 = s2.substring(0, i) + t2 + s2.substring(i + y2.length, s2.length);
+     }
+     return s2;
+    }
+
+//设置活动属性
+function SetupActivity(WorkFlowItemobj)
+{
+             var theform;
+             if (window.navigator.appName.toLowerCase().indexOf("microsoft") > -1) {
+		theform = document.Form1;
+             }
+             else {
+                theform = document.forms["Form1"];
+             }
+             if (WorkFlowItemobj.indexOf("temp")!=-1)
+             {
+                imgArr = OpenSetup2('/flow/openflowcfg?Act=ManageActivity&ID=&FID='+theform.Workflow_No.value+'&TYPE='+"&flowtype="+theform.type.value+"&formtype="+theform.formtype.value);
+             }else
+             {
+                imgArr = OpenSetup2('/flow/openflowcfg?Act=ManageActivity&ID='+WorkFlowItemobj+'&FID='+theform.Workflow_No.value+'&TYPE=&flowtype='+theform.type.value+'&formtype='+theform.formtype.value);
+             }
+}
+
+//保存数据
+function btnSave_onclick()
+{
+   document.getElementById("leipi_save").click();
+}
+
+//弹出新窗体1(属性设置)
+function OpenSetup1(url){
+
+    OpenSetupHtmlA(url);
+
+}
+function OpenSetupHtmlA(mFileUrl){
+	var index =parent.layer.open({
+        type: 2,
+        title: "连接线属性设置",
+        area: ['880px', '475px'],
+        fix: false, //不固定
+        maxmin: false,
+        content: mFileUrl
+    });
+}
+function OpenSetup2(mFileUrl){
+	var index =parent.layer.open({
+        type: 2,
+        title: "流程步骤属性设置",
+        area: ['880px', '500px'],
+        fix: false, //不固定
+        maxmin: false,
+        content: mFileUrl
+    });
+}
+function OpenSetup3(mFileUrl){
+	var index =parent.layer.open({
+        type: 2,
+        title: "流程连接线删除",
+        area: ['200px', '100px'],
+        fix: false, //不固定
+        maxmin: false,
+        content: mFileUrl
+    });
+}
+</script>
+
+</body>
+</html>

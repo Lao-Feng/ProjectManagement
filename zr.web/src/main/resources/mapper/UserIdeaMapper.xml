@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="zr.zrpower.dao.mapper.UserIdeaMapper">
+  <!-- 增加新意见信息 -->
+  <insert id="addUserIdea" parameterType="java.util.Map">
+	Insert Into BPIP_USER_IDEA
+	<trim prefix="(" suffix=")" suffixOverrides=",">
+		<if test="ID != null">
+			ID,
+		</if>
+		<if test="USER_NO != null">
+			USER_NO,
+		</if>
+		<if test="CONTENT != null">
+			CONTENT,
+		</if>
+	</trim>
+	<trim prefix="values (" suffix=")" suffixOverrides=",">
+		<if test="ID != null">
+			#{ID},
+		</if>
+		<if test="USER_NO != null">
+			#{USER_NO},
+		</if>
+		<if test="CONTENT != null">
+			#{CONTENT},
+		</if>
+	</trim>
+  </insert>
+
+  <!-- 编辑意见信息 -->
+  <update id="editUserIdea" parameterType="java.util.Map">
+    update BPIP_USER_IDEA
+    <set>
+        <if test="USER_NO != null">
+			USER_NO = #{USER_NO},
+		</if>
+		<if test="CONTENT != null">
+			CONTENT = #{CONTENT},
+		</if>
+    </set>
+    Where ID = #{ID}
+  </update>
+</mapper>

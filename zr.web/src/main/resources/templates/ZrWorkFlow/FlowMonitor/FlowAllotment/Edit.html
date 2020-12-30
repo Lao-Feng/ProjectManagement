@@ -1,0 +1,137 @@
+<HTML>
+<HEAD>
+<TITLE>流程委托</TITLE>
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="/static/vue/element-ui/lib/theme-chalk/index.css" >
+<link rel="stylesheet" type="text/css" href="/static/vue/element-ui/lib/theme-chalk/html.css" >
+<script type="text/javascript" src="/static/vue/jquery-1_15.9.1.min.js"></script>
+<script type="text/javascript" src="/static/vue/vue.min.js" ></script>
+<script type="text/javascript" src="/static/vue/element-ui/lib/index.js" type="text/javascript"></script>
+<script type="text/javascript" src="/static/vue/layer/layer.js"></script>
+<script type="text/javascript" src="/static/vue/ZRutils.js"></script>
+<script type="text/javascript" src="/static/vue/ZRicon.js"></script>
+<SCRIPT type="text/javascript" src="/static/ZrWorkFlow/js/Workflow.js"></SCRIPT>
+</HEAD>
+<body style="margin:0px;background:white;">
+	<div id="list" class="table" v-loading="htmlLoading">
+	    <br>
+	    <el-form :model="form" ref="form" :rules="rules">
+         <el-form-item label="流程名称：" prop="NAME" :label-width="formLabelWidth">
+              <el-input v-model="form.NAME" placeholder="流程名称" style="width:98%" readonly></el-input>
+        </el-form-item>
+        <el-form-item label="当前步骤：" :label-width="formLabelWidth">
+              <el-input v-model="form.CURRACTIVITYNAME" placeholder="当前步骤" style="width:98%" readonly></el-input>
+        </el-form-item>
+        <el-form-item label="被分配人:" :label-width="formLabelWidth">
+            <div style="height: 200px;overflow: auto;">
+                <el-tree :data="user_tree" ref="user_tree" accordion show-checkbox check-strictly node-key="userid" :props="proe_user" check-on-click-node @check="on_user_onclick"></el-tree>
+            </div>
+        </el-form-item>
+        <div style="text-align:center;margin-top: 5px;">
+	     <el-button type="primary" icon="el-icon-check" size="small" onclick="OkUser();">确定</el-button>
+         <el-button type="primary" icon="el-icon-close" size="small" onclick="parent.layer.closeAll();">取消</el-button>
+	</div>
+	</div>
+
+    <div v-show="false">
+<FORM action="/flow/actionflowentruscarry" method="post" id="RegForm" name="RegForm" >
+<input type="hidden" name="DOPSN" id="DOPSN" value=''>
+<input type="hidden"  name="ID" id="ID" th:value='${ID}'>
+<input type="hidden" name="UserID" th:value="${USERID}">
+<input type="hidden" name="UNIT" th:value="${UNITID}">
+<input type="hidden" name="Act" value="edit1">
+<input type="hidden" name="NAME" th:value="${FLOWNAME}">
+<input type="hidden" name="CURRACTIVITYNAME" th:value="${CNAME}">
+<input type="hidden" name="InFile_Person" id="InFile_Person" value="">
+</FORM>
+    </div>
+<script type="text/javascript">
+/**
+ * 选择用户tree，返回值
+ * @returns
+ */
+function on_user_onclick(data, keys){
+	if (keys.checkedKeys.length > 0) {
+		$thisvue.$refs.user_tree.setCheckedKeys([data.userid]);
+		if(data.userid.length==16){
+			$("#InFile_Person").val(data.userid)
+		}
+	}
+}
+function OkUser(){
+	if($("#InFile_Person").val() == ""){
+		layer.msg('被分配人还没有选！');
+		return false;
+	}
+
+	$.ajax({
+		url:"/flow/actionflowentruscarry",
+		type:'post',
+		dataType:'json',
+		data:$('#RegForm').serialize(),// 要提交的表单
+		success:function (data) {
+			if(data.strReturn == 1){
+				parent.vm2.init_flowlist();
+				parent.layer.closeAll();
+			}else{
+				parent.layer.closeAll();
+			}
+		}
+	});
+}
+</script>    
+<script type="text/javascript" th:inline="javascript">
+var vh = $(document).height();
+var $thisvue;
+var vm2 = new Vue({
+    el: '#list',
+    name: 'flow_list',
+    data() {
+        return {
+            htmlLoading:true,//全局加载
+            rowsloadtitle:'数据加载...',
+            
+            formLabelWidth:'100px',
+
+            user_tree: [],
+            proe_user: {
+                children: 'list',
+                label: 'name'
+            },
+            
+            cellRow:null,
+            tableHeight:vh-90,
+            
+            form:{
+            	CURRACTIVITYNAME:[[${CNAME}]],
+            	NAME:[[${FLOWNAME}]]
+            },
+            rules:{
+            	NAME: [{
+                    required: true,
+                    message: '名称必填',
+                    trigger: 'blur'
+                }],
+            },
+        }
+    },
+    created() {
+    	let e = this;
+    	$thisvue = this
+    	$flow = this
+    	ZRqueryUserList()
+    },
+    mounted(){
+    	this.$nextTick(() => {
+		    this.htmlLoading = false
+        })
+    },
+    computed: {},
+    methods: {
+    }
+});
+</script>
+
+</BODY>
+</HTML>

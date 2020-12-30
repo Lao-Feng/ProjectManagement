@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="zr.zrpower.dao.mapper.BpipRoleMapper">
+
+	<!-- 信息 -->
+	<select id="queryObject" resultType="zr.zrpower.model.BPIP_ROLE">
+		select * from BPIP_ROLE where roleid = #{value}
+	</select>
+    <!-- 数据事务操作 -->
+	<select id="queryList" resultType="zr.zrpower.model.BPIP_ROLE">
+		select * from BPIP_ROLE
+		<where>
+			<if test="rolename != null and rolename != ''">
+				and rolename like concat('%',#{rolename},'%')
+			</if>
+			<if test="roleid != null and roleid != ''">
+				and roleid = #{roleid}
+			</if>
+			<if test="description != null and description != ''">
+				and description like concat('%',#{description},'%')
+			</if>
+		</where>
+		order by roleid asc
+	</select>
+	
+	<insert id="saveBpipRole" parameterType="zr.zrpower.model.BPIP_ROLE" useGeneratedKeys="true" keyProperty="roleid">
+		insert into BPIP_ROLE
+		(
+		`ROLEID`,
+		`ROLENAME`,
+		`DESCRIPTION`
+		)
+		values
+		(
+		#{ROLEID},
+		#{ROLENAME},
+		#{DESCRIPTION}
+		)
+	</insert>
+
+	<update id="update" parameterType="zr.zrpower.model.BPIP_ROLE">
+		update BPIP_ROLE
+		<set>
+			<if test="ROLEID != null">`ROLEID` = #{ROLEID}, </if>
+			<if test="ROLENAME != null">`ROLENAME` = #{ROLENAME}, </if>
+			<if test="DESCRIPTION != null">`DESCRIPTION` = #{DESCRIPTION}</if>
+		</set>
+		where ROLEID = #{ROLEID}
+	</update>
+    
+	<delete id="delete">
+		delete from BPIP_ROLE where ROLEID = #{value}
+	</delete>
+	<!-- 删除角色权限菜单 -->
+	<delete id="deleteRoleMenu">
+		Delete From BPIP_ROLE_RERMISSISSON Where ROLEID=#{value}
+	</delete>
+	<!-- 删除角色用户授权 -->
+	<delete id="deleteRoleUser">
+		Delete From BPIP_USER_ROLE Where ROLEID=#{value}
+	</delete>
+	
+	<!-- 操作角色对应的菜单权限 -->
+	<insert id="saveRoleMenu" parameterType="zr.zrpower.model.BPIP_ROLE_RERMISSISSON">
+		insert into BPIP_ROLE_RERMISSISSON
+		(
+		`ROLEID`,
+		`MENUNO`
+		)
+		values
+		(
+		#{ROLEID},
+		#{MENUNO}
+		)
+	</insert>
+	<!-- 得到角色对应的菜单 -->
+	<select id="getRoleMenusList" resultType="zr.zrpower.model.BPIP_ROLE_RERMISSISSON">
+		select * from BPIP_ROLE_RERMISSISSON
+		<where>
+			<if test="roleid != null and roleid != ''">
+				and roleid = #{roleid}
+			</if>
+		</where>
+		order by MENUNO asc
+	</select>
+	
+	<!-- 添加角色用户list数据绑定 -->
+	<insert id="saveBatch" parameterType="zr.zrpower.model.BPIP_ROLE">
+      INSERT INTO BPIP_USER_ROLE(USERID,ROLEID,UNITID)
+      VALUES
+      <foreach collection="roleUserList" item="perm" separator=",">
+      (#{perm.USERID},#{perm.ROLEID},#{perm.UNITID})
+      </foreach>
+     </insert>
+
+</mapper>

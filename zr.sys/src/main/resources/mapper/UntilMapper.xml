@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="zr.zrpower.dao.mapper.UntilMapper">
+
+	<!-- 根据userID查询用户权限菜单信息 -->
+	<select id="userMenuList" resultType="zr.zrpower.model.BPIP_MENU">
+		select * from BPIP_MENU 
+		<where>
+			<if test="flag != null and flag != ''">
+				and FLAG = #{flag}
+			</if>
+			<if test="menuNo != null and menuNo != ''">
+				and MENUNO like concat('',#{menuNo},'')
+			</if>
+			<if test="len != null and len != ''">
+				and MENUNO in (
+				  select distinct substr(MENUNO,1,#{len}) from BPIP_ROLE_RERMISSISSON 
+				  <where>
+                    <if test="userId != null and userId != ''">
+                        ROLEID in (select ROLEID from BPIP_USER_ROLE where USERID=#{userId})
+                    </if>
+                  </where>
+                  )
+			</if>
+		</where>
+		order by MNCODE,MENUNO
+	</select>
+	
+	<!-- 更新在线时间 -->
+	<update id="updateonline" parameterType="java.lang.String">
+        Update BPIP_USER Set LoginTime=LoginTime+1 Where UserID=#{userId}
+    </update>
+
+</mapper>

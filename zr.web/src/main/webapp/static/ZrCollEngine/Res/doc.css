@@ -1,0 +1,134 @@
+body{
+    BACKGROUND-COLOR:#ffffff;
+	margin:0px;
+	text-align: center;
+	scrollbar-face-color: #BCBCBC;
+	scrollbar-highlight-color: #ffffff;
+	scrollbar-shadow-color: #ffffff;
+	scrollbar-3dlight-color: #cccccc;
+	scrollbar-arrow-color: #666666;
+	scrollbar-track-color: #EFEFEF;
+	scrollbar-darkshadow-color: #b2b2b2;
+	scrollbar-base-color: #000000;
+	font-family: "宋体";
+	font-size: 13px;
+
+}
+
+.menu{
+	font-size:12px;
+}
+
+/*标题样式*/
+td{
+	font-family: "宋体";
+	font-size: 13px;
+}
+
+
+input {
+	/* border: #cccccc 1px solid; */
+	/* font-size:13px; */
+	background-color: #FFFFFF;
+}
+input1 {
+	border-top: #000000 0px solid;
+	border-right: #000000 0px solid;
+	border-bottom: #000000 1px solid;
+	border-left: #000000 0px solid;
+	font-family: "仿宋_GB2312";
+	font-size:18px;
+	background-color:#E0CA7E;
+	font-weight: bold;
+}
+.h1 {
+	font-family:"宋体"; font-size:23px;
+}
+.h2 {
+	font-family:"宋体"; font-size:30px; font-weight:bold;
+}
+.h3 {
+	font-family:"宋体"; font-size:20px;
+}
+.h4 {
+	font-family:"宋体"; font-size:14px;
+}
+.h5 {
+	font-family:"宋体"; font-size:15px;
+}
+.h6 {
+	font-family:"宋体"; font-size:16px;
+}
+
+
+.k1 {
+	font-family:"宋体"; font-size:25px; line-height:200%; font-weight:bold;
+}
+.k2 {
+	font-family:"宋体"; font-size:19px;
+}
+}
+.k3 {
+	font-family:"黑体"; font-size:25px; line-height:200%;font-weight:bold;
+}
+.k4 {
+	font-family:"黑体"; font-size:25px; line-height:200%; font-weight:bold;
+}
+
+.k6 {
+	font-family:"宋体"; font-size:16px;
+}
+
+/*--------能填写项加亮边框-------*/
+ .Border_Add_Light{/**编辑**/
+  position: relative;
+  border: 1px solid rgb(149, 184, 231);
+  background-color: #fff;
+  vertical-align: middle;
+  display: inline-block;
+  overflow: hidden;
+  white-space: nowrap;
+  margin: 0;
+  padding: 0;
+  -moz-border-radius: 5px 5px 5px 5px;
+  -webkit-border-radius: 5px 5px 5px 5px;
+  border-radius: 5px 5px 5px 5px;
+  height: 21px;
+ }
+ 
+  .Border_bt_Light{/**编辑  必填写**/
+  position: relative;
+  border: 1px solid #ffa8a8;
+  background-color: #fff;
+  vertical-align: middle;
+  display: inline-block;
+  overflow: hidden;
+  white-space: nowrap;
+  margin: 0;
+  padding: 0;
+  -moz-border-radius: 5px 5px 5px 5px;
+  -webkit-border-radius: 5px 5px 5px 5px;
+  border-radius: 5px 5px 5px 5px;
+  height: 22px;
+ }
+ 
+   .Border_re_Light{/**不可编辑**/
+     position: relative;
+  border: 1px solid rgb(192, 192, 192);
+  background-color: #fff;
+  vertical-align: middle;
+  display: inline-block;
+  overflow: hidden;
+  white-space: nowrap;
+  margin: 0;
+  padding: 0;
+  -moz-border-radius: 5px 5px 5px 5px;
+  -webkit-border-radius: 5px 5px 5px 5px;
+  border-radius: 5px 5px 5px 5px;
+  height: 22px;
+ }
+
+.MustAsterisk
+{
+  color: red;
+}

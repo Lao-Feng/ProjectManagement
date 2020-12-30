@@ -1,0 +1,163 @@
+<HTML>
+<HEAD>
+<TITLE></TITLE>
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="/static/vue/element-ui/lib/theme-chalk/index.css" >
+<link rel="stylesheet" type="text/css" href="/static/vue/element-ui/lib/theme-chalk/html.css" >
+<script type="text/javascript" src="/static/vue/jquery-1_15.9.1.min.js"></script>
+<script type="text/javascript" src="/static/vue/vue.min.js" ></script>
+<script type="text/javascript" src="/static/vue/element-ui/lib/index.js" type="text/javascript"></script>
+<script type="text/javascript" src="/static/vue/layer/layer.js"></script>
+
+</HEAD>
+<body style="margin: 0px; background: white; padding: 10px">
+	<div id="wfuser" class="table" v-loading="htmlLoading">
+		<input type="hidden" id="setall" name="setall" value="0"> 
+		<input type="hidden" id="IsNote" name="IsNote" th:value="${IsNote}">
+		<font class='titleFont'>选择办理人员→[<span th:text="${Name}"></span>]
+		</font>
+		<TABLE border="0" width="95%" cellpadding=0 cellspacing=0 th:utext="${UserLst}"></TABLE>
+		<div style="text-align: center; padding: 5px 0 15px;">
+			<el-button type="primary" icon="el-icon-check" size="medium"
+				onclick="Javascript:GetUserNo()" style="width:80px;">确定</el-button>
+			<el-button type="primary" icon="el-icon-close" size="medium"
+				onclick="javascript:parent.layer.closeAll()" style="width:80px;">取消</el-button>
+		</div>
+	</div>		
+<script type="text/javascript" th:inline="javascript">
+var $thisvue3;
+var vm3 = new Vue({
+    el: '#wfuser',
+    name: 'flow_wfuser',
+    data() {
+        return {
+            htmlLoading:true,//全局加载
+            rowsloadtitle:'数据加载...',
+            
+            radio:'',
+            
+        }
+    },
+    created() {
+    	let e = this;
+    	$thisvue3 = this
+    },
+    mounted(){
+    	this.$nextTick(() => {
+		    this.htmlLoading = false
+        })
+    },
+    computed: {
+    },
+    methods: {
+    }
+});
+</script>
+<script type="text/javascript" th:inline="javascript">
+//var index = parent.layer.getFrameIndex(window.name);
+//作用：获取记录
+function GetUserNo(){
+  var selectedstring="";
+  var strValue="";
+  var strMsg="0";
+  var IsNote = document.getElementById("IsNote").value;
+  strMsg=IsNote;
+  var strAstrategy = [[${Astrategy}]];
+  if (strAstrategy=="1"){
+  	  $("input:radio:checked").each(function(index,element){
+      strValue = $(element).val();
+      //-短信提示---
+      if (strValue == "2"){strMsg="1"}
+      if (strValue == "3"){strMsg="0"}
+      //-----------
+      if (strValue.length==16){
+      if (selectedstring == ""){
+          selectedstring = strValue;
+      }else{
+          selectedstring = selectedstring  + "," + strValue;
+      }}
+  });
+  }else{
+   //-短信提示---
+   $("input:radio:checked").each(function(index,element){
+      strValue = $(element).val();
+      if (strValue == "2"){strMsg="1"}
+      if (strValue == "3"){strMsg="0"}
+  });
+  //-----------
+
+  $("input:checkbox:checked").each(function(index,element){
+      strValue = $(element).val();
+      if (strValue.length==16){
+      if (selectedstring == ""){
+          selectedstring = strValue;
+      }else{
+          selectedstring = selectedstring  + "," + strValue;
+      }}
+  });
+  }
+
+  //读取是否发送短信提示------------
+    if (IsNote=="4"){
+       strMsg = document.getElementById("msgtype1").value;
+    }
+    //-----------------------------
+
+  if (selectedstring == "") {
+         layer.msg('请先选择办理人员！');
+         return;
+  }
+  //返回
+
+   var strtype = [[${TYPE}]];
+   if (strtype=="1"){
+        parent.SPsnRe1(selectedstring,strMsg);
+    }else{
+    	parent.SPsnUpRe1(selectedstring,strMsg);
+    }
+}
+
+function selectOnclick(id){
+    if (document.getElementById(id).checked==true)
+    {document.getElementById(id).checked='';}
+    else
+    {document.getElementById(id).checked='checked';}
+}
+
+function DeptOnclick(id){
+    var isdo;
+    if (document.getElementById(id).checked==true)
+    {
+     document.getElementById(id).checked='checked';
+     isdo = true;
+     }
+    else
+    {
+     document.getElementById(id).checked='';
+     isdo = false;
+    }
+
+    if (isdo){
+      $("input[type='checkbox']").each(function(index,element){
+       var strValue = $(element).val();
+       if (strValue.length==16){
+         if (strValue.indexOf(id) != -1){
+              document.getElementById(strValue).checked='checked';
+         }
+      }
+      });
+    }else{
+       $("input:checkbox:checked").each(function(index,element){
+       var strValue = $(element).val();
+       if (strValue.length==16){
+         if (strValue.indexOf(id) != -1){
+              document.getElementById(strValue).checked='';
+         }
+      }
+      });
+    }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="zr.zrpower.dao.CollDocConfigDao">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="zr.zrpower.domain.CollDocConfig" id="collDocConfigMap">
+        <result property="id" column="ID"/>
+        <result property="docname" column="DOCNAME"/>
+        <result property="templaet" column="TEMPLAET"/>
+        <result property="otherfield" column="OTHERFIELD"/>
+        <result property="maintable" column="MAINTABLE"/>
+        <result property="doctype" column="DOCTYPE"/>
+        <result property="dcode" column="DCODE"/>
+    </resultMap>
+    
+ <sql id="Base_Column_List" >
+`ID`, `DOCNAME`, `TEMPLAET`, `OTHERFIELD`, `MAINTABLE`, `DOCTYPE`, `DCODE`
+  </sql>
+  
+	<select id="queryObject" resultType="zr.zrpower.domain.CollDocConfig">
+		select
+		 <include refid="Base_Column_List" />
+		 from coll_doc_config where ID = #{value}
+	</select>
+	
+	<select id="getMaxNo" resultType="String">
+		select max(id) as max_no from coll_doc_config
+	</select>
+
+	<select id="queryList" resultType="zr.zrpower.domain.CollDocConfig">
+		select 
+		<include refid="Base_Column_List" />
+		from coll_doc_config
+        <where>
+            <if test="docname != null and docname != ''">
+                and `docname` like concat('%',#{docname},'%')
+            </if>
+        </where>
+        <choose>
+            <when test="sidx != null and sidx.trim() != ''">
+                order by ${sidx} ${order}
+            </when>
+			<otherwise>
+                order by ID 
+			</otherwise>
+        </choose>
+		<if test="offset != null and limit != null">
+			limit #{offset}, #{limit}
+		</if>
+	</select>
+	
+ 	<select id="queryTotal" resultType="int">
+		select count(*) from coll_doc_config 
+	</select>
+	 
+	<insert id="save" parameterType="zr.zrpower.domain.CollDocConfig">
+		insert into coll_doc_config
+		(
+			`ID`, 
+			`DOCNAME`, 
+			`TEMPLAET`, 
+			`OTHERFIELD`, 
+			`MAINTABLE`, 
+			`DOCTYPE`, 
+			`DCODE`
+		)
+		values
+		(
+			#{id}, 
+			#{docname}, 
+			#{templaet}, 
+			#{otherfield}, 
+			#{maintable}, 
+			#{doctype}, 
+			#{dcode}
+		)
+	</insert>
+	 
+	<update id="update" parameterType="zr.zrpower.domain.CollDocConfig">
+		update coll_doc_config 
+		<set>
+			<if test="docname != null">`DOCNAME` = #{docname}, </if>
+			<if test="templaet != null">`TEMPLAET` = #{templaet}, </if>
+			<if test="otherfield != null">`OTHERFIELD` = #{otherfield}, </if>
+			<if test="maintable != null">`MAINTABLE` = #{maintable}, </if>
+			<if test="doctype != null">`DOCTYPE` = #{doctype}, </if>
+			<if test="dcode != null">`DCODE` = #{dcode}</if>
+		</set>
+		where ID = #{id}
+	</update>
+	
+	<delete id="delete">
+		delete from coll_doc_config where ID = #{value}
+	</delete>
+	
+	<delete id="deleteBatch">
+		delete from coll_doc_config where ID in 
+		<foreach item="id" collection="array" open="(" separator="," close=")">
+			#{id}
+		</foreach>
+	</delete>
+	
+	<!-- 引擎配置 业务数据查询 -->
+	<select id="getTable" resultType="zr.zrpower.model.dbmanage.BPIP_TABLE">
+		select ${fields} from BPIP_TABLE 
+		<where>
+            <foreach item="value" collection="wheres" open="(" separator="and" close=")">
+			     ${value}
+		    </foreach>
+        </where>
+	</select>
+	<select id="getTableFields" resultType="zr.zrpower.model.dbmanage.BPIP_FIELD">
+		select ${fields} from BPIP_FIELD
+		<where>
+            <foreach item="value" collection="wheres" open="(" separator="and" close=")">
+			     ${value}
+		    </foreach>
+        </where>
+	</select>
+
+</mapper>

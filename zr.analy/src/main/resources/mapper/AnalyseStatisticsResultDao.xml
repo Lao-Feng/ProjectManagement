@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="zr.zrpower.dao.AnalyseStatisticsResultDao">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="zr.zrpower.domain.AnalyseStatisticsResult" id="analyseStatisticsResultMap">
+        <result property="id" column="ID"/>
+        <result property="fid" column="FID"/>
+        <result property="field1" column="FIELD1"/>
+        <result property="field2" column="FIELD2"/>
+        <result property="field3" column="FIELD3"/>
+        <result property="field4" column="FIELD4"/>
+        <result property="field5" column="FIELD5"/>
+        <result property="field6" column="FIELD6"/>
+        <result property="field7" column="FIELD7"/>
+        <result property="field8" column="FIELD8"/>
+        <result property="field9" column="FIELD9"/>
+        <result property="field10" column="FIELD10"/>
+        <result property="field11" column="FIELD11"/>
+        <result property="field12" column="FIELD12"/>
+        <result property="field13" column="FIELD13"/>
+        <result property="field14" column="FIELD14"/>
+        <result property="field15" column="FIELD15"/>
+        <result property="field16" column="FIELD16"/>
+        <result property="field17" column="FIELD17"/>
+        <result property="field18" column="FIELD18"/>
+        <result property="field19" column="FIELD19"/>
+        <result property="field20" column="FIELD20"/>
+        <result property="field21" column="FIELD21"/>
+        <result property="field22" column="FIELD22"/>
+        <result property="field23" column="FIELD23"/>
+        <result property="field24" column="FIELD24"/>
+        <result property="field25" column="FIELD25"/>
+        <result property="field26" column="FIELD26"/>
+        <result property="field27" column="FIELD27"/>
+        <result property="field28" column="FIELD28"/>
+        <result property="field29" column="FIELD29"/>
+        <result property="field30" column="FIELD30"/>
+        <result property="field31" column="FIELD31"/>
+        <result property="field32" column="FIELD32"/>
+        <result property="field33" column="FIELD33"/>
+        <result property="field34" column="FIELD34"/>
+        <result property="field35" column="FIELD35"/>
+        <result property="field36" column="FIELD36"/>
+        <result property="field37" column="FIELD37"/>
+        <result property="field38" column="FIELD38"/>
+        <result property="field39" column="FIELD39"/>
+        <result property="field40" column="FIELD40"/>
+        <result property="field41" column="FIELD41"/>
+        <result property="field42" column="FIELD42"/>
+        <result property="field43" column="FIELD43"/>
+        <result property="field44" column="FIELD44"/>
+        <result property="field45" column="FIELD45"/>
+        <result property="field46" column="FIELD46"/>
+        <result property="field47" column="FIELD47"/>
+        <result property="field48" column="FIELD48"/>
+        <result property="field49" column="FIELD49"/>
+        <result property="field50" column="FIELD50"/>
+        <result property="suserno" column="SUSERNO"/>
+    </resultMap>
+    
+ <sql id="Base_Column_List" >
+`ID`, `FID`, `FIELD1`, `FIELD2`, `FIELD3`, `FIELD4`, `FIELD5`, `FIELD6`, `FIELD7`, `FIELD8`, `FIELD9`, `FIELD10`, `FIELD11`, `FIELD12`, `FIELD13`, `FIELD14`, `FIELD15`, `FIELD16`, `FIELD17`, `FIELD18`, `FIELD19`, `FIELD20`, `FIELD21`, `FIELD22`, `FIELD23`, `FIELD24`, `FIELD25`, `FIELD26`, `FIELD27`, `FIELD28`, `FIELD29`, `FIELD30`, `FIELD31`, `FIELD32`, `FIELD33`, `FIELD34`, `FIELD35`, `FIELD36`, `FIELD37`, `FIELD38`, `FIELD39`, `FIELD40`, `FIELD41`, `FIELD42`, `FIELD43`, `FIELD44`, `FIELD45`, `FIELD46`, `FIELD47`, `FIELD48`, `FIELD49`, `FIELD50`, `SUSERNO`
+  </sql>
+  
+	<select id="queryObject" resultType="zr.zrpower.domain.AnalyseStatisticsResult">
+		select
+		 <include refid="Base_Column_List" />
+		 from analyse_statistics_result where ID = #{value}
+	</select>
+	
+	<select id="getMaxNo" resultType="String">
+		select max(id) as max_no from
+		analyse_statistics_result
+	</select>
+
+	<select id="queryList" resultType="zr.zrpower.domain.AnalyseStatisticsResult">
+		select 
+		<include refid="Base_Column_List" />
+		from analyse_statistics_result
+        <where>
+            <if test="fid != null and fid != ''">
+				and `fid` = #{fid}
+			</if>
+        </where>
+        <choose>
+            <when test="sidx != null and sidx.trim() != ''">
+                order by ${sidx} ${order}
+            </when>
+			<otherwise>
+                order by ID 
+			</otherwise>
+        </choose>
+		<if test="offset != null and limit != null">
+			limit #{offset}, #{limit}
+		</if>
+	</select>
+	
+ 	<select id="queryTotal" resultType="int">
+		select count(*) from analyse_statistics_result 
+	</select>
+	 
+	<insert id="save" parameterType="zr.zrpower.domain.AnalyseStatisticsResult">
+		insert into analyse_statistics_result
+		(
+			`ID`, 
+			`FID`, 
+			`FIELD1`, 
+			`FIELD2`, 
+			`FIELD3`, 
+			`FIELD4`, 
+			`FIELD5`, 
+			`FIELD6`, 
+			`FIELD7`, 
+			`FIELD8`, 
+			`FIELD9`, 
+			`FIELD10`, 
+			`FIELD11`, 
+			`FIELD12`, 
+			`FIELD13`, 
+			`FIELD14`, 
+			`FIELD15`, 
+			`FIELD16`, 
+			`FIELD17`, 
+			`FIELD18`, 
+			`FIELD19`, 
+			`FIELD20`, 
+			`FIELD21`, 
+			`FIELD22`, 
+			`FIELD23`, 
+			`FIELD24`, 
+			`FIELD25`, 
+			`FIELD26`, 
+			`FIELD27`, 
+			`FIELD28`, 
+			`FIELD29`, 
+			`FIELD30`, 
+			`FIELD31`, 
+			`FIELD32`, 
+			`FIELD33`, 
+			`FIELD34`, 
+			`FIELD35`, 
+			`FIELD36`, 
+			`FIELD37`, 
+			`FIELD38`, 
+			`FIELD39`, 
+			`FIELD40`, 
+			`FIELD41`, 
+			`FIELD42`, 
+			`FIELD43`, 
+			`FIELD44`, 
+			`FIELD45`, 
+			`FIELD46`, 
+			`FIELD47`, 
+			`FIELD48`, 
+			`FIELD49`, 
+			`FIELD50`, 
+			`SUSERNO`
+		)
+		values
+		(
+			#{id}, 
+			#{fid}, 
+			#{field1}, 
+			#{field2}, 
+			#{field3}, 
+			#{field4}, 
+			#{field5}, 
+			#{field6}, 
+			#{field7}, 
+			#{field8}, 
+			#{field9}, 
+			#{field10}, 
+			#{field11}, 
+			#{field12}, 
+			#{field13}, 
+			#{field14}, 
+			#{field15}, 
+			#{field16}, 
+			#{field17}, 
+			#{field18}, 
+			#{field19}, 
+			#{field20}, 
+			#{field21}, 
+			#{field22}, 
+			#{field23}, 
+			#{field24}, 
+			#{field25}, 
+			#{field26}, 
+			#{field27}, 
+			#{field28}, 
+			#{field29}, 
+			#{field30}, 
+			#{field31}, 
+			#{field32}, 
+			#{field33}, 
+			#{field34}, 
+			#{field35}, 
+			#{field36}, 
+			#{field37}, 
+			#{field38}, 
+			#{field39}, 
+			#{field40}, 
+			#{field41}, 
+			#{field42}, 
+			#{field43}, 
+			#{field44}, 
+			#{field45}, 
+			#{field46}, 
+			#{field47}, 
+			#{field48}, 
+			#{field49}, 
+			#{field50}, 
+			#{suserno}
+		)
+	</insert>
+	 
+	<update id="update" parameterType="zr.zrpower.domain.AnalyseStatisticsResult">
+		update analyse_statistics_result 
+		<set>
+			<if test="fid != null">`FID` = #{fid}, </if>
+			<if test="field1 != null">`FIELD1` = #{field1}, </if>
+			<if test="field2 != null">`FIELD2` = #{field2}, </if>
+			<if test="field3 != null">`FIELD3` = #{field3}, </if>
+			<if test="field4 != null">`FIELD4` = #{field4}, </if>
+			<if test="field5 != null">`FIELD5` = #{field5}, </if>
+			<if test="field6 != null">`FIELD6` = #{field6}, </if>
+			<if test="field7 != null">`FIELD7` = #{field7}, </if>
+			<if test="field8 != null">`FIELD8` = #{field8}, </if>
+			<if test="field9 != null">`FIELD9` = #{field9}, </if>
+			<if test="field10 != null">`FIELD10` = #{field10}, </if>
+			<if test="field11 != null">`FIELD11` = #{field11}, </if>
+			<if test="field12 != null">`FIELD12` = #{field12}, </if>
+			<if test="field13 != null">`FIELD13` = #{field13}, </if>
+			<if test="field14 != null">`FIELD14` = #{field14}, </if>
+			<if test="field15 != null">`FIELD15` = #{field15}, </if>
+			<if test="field16 != null">`FIELD16` = #{field16}, </if>
+			<if test="field17 != null">`FIELD17` = #{field17}, </if>
+			<if test="field18 != null">`FIELD18` = #{field18}, </if>
+			<if test="field19 != null">`FIELD19` = #{field19}, </if>
+			<if test="field20 != null">`FIELD20` = #{field20}, </if>
+			<if test="field21 != null">`FIELD21` = #{field21}, </if>
+			<if test="field22 != null">`FIELD22` = #{field22}, </if>
+			<if test="field23 != null">`FIELD23` = #{field23}, </if>
+			<if test="field24 != null">`FIELD24` = #{field24}, </if>
+			<if test="field25 != null">`FIELD25` = #{field25}, </if>
+			<if test="field26 != null">`FIELD26` = #{field26}, </if>
+			<if test="field27 != null">`FIELD27` = #{field27}, </if>
+			<if test="field28 != null">`FIELD28` = #{field28}, </if>
+			<if test="field29 != null">`FIELD29` = #{field29}, </if>
+			<if test="field30 != null">`FIELD30` = #{field30}, </if>
+			<if test="field31 != null">`FIELD31` = #{field31}, </if>
+			<if test="field32 != null">`FIELD32` = #{field32}, </if>
+			<if test="field33 != null">`FIELD33` = #{field33}, </if>
+			<if test="field34 != null">`FIELD34` = #{field34}, </if>
+			<if test="field35 != null">`FIELD35` = #{field35}, </if>
+			<if test="field36 != null">`FIELD36` = #{field36}, </if>
+			<if test="field37 != null">`FIELD37` = #{field37}, </if>
+			<if test="field38 != null">`FIELD38` = #{field38}, </if>
+			<if test="field39 != null">`FIELD39` = #{field39}, </if>
+			<if test="field40 != null">`FIELD40` = #{field40}, </if>
+			<if test="field41 != null">`FIELD41` = #{field41}, </if>
+			<if test="field42 != null">`FIELD42` = #{field42}, </if>
+			<if test="field43 != null">`FIELD43` = #{field43}, </if>
+			<if test="field44 != null">`FIELD44` = #{field44}, </if>
+			<if test="field45 != null">`FIELD45` = #{field45}, </if>
+			<if test="field46 != null">`FIELD46` = #{field46}, </if>
+			<if test="field47 != null">`FIELD47` = #{field47}, </if>
+			<if test="field48 != null">`FIELD48` = #{field48}, </if>
+			<if test="field49 != null">`FIELD49` = #{field49}, </if>
+			<if test="field50 != null">`FIELD50` = #{field50}, </if>
+			<if test="suserno != null">`SUSERNO` = #{suserno}</if>
+		</set>
+		where ID = #{id}
+	</update>
+	
+	<delete id="delete">
+		delete from analyse_statistics_result where fid = #{value}
+	</delete>
+	
+	<delete id="deleteBatch">
+		delete from analyse_statistics_result where ID in 
+		<foreach item="id" collection="array" open="(" separator="," close=")">
+			#{id}
+		</foreach>
+	</delete>
+
+</mapper>

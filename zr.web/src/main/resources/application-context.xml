@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+	    http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
+	    http://www.springframework.org/schema/context
+	    http://www.springframework.org/schema/context/spring-context-4.2.xsd
+	    http://www.springframework.org/schema/tx
+	    http://www.springframework.org/schema/tx/spring-tx-4.2.xsd
+	    http://www.springframework.org/schema/aop
+	    http://www.springframework.org/schema/aop/spring-aop-4.2.xsd">
+
+	<!-- 加载SpringBoot配置文件 -->
+	<context:property-placeholder location="classpath:database.properties,classpath:redis.properties" />
+
+	<!-- 启动AspectJ支持，通知Spring使用cglib而不是jdk的来生成代理方法  -->
+	<aop:aspectj-autoproxy proxy-target-class="true"/>
+
+	<!-- 数据源 : dbcp数据库连接池 -->
+	<!-- 参数说明：
+	initialSize: 连接初始值，连接池启动时创建的连接数量的初始值，默认值是0
+	minIdle: 最小空闲值，当空闲的连接数少于阀值时，连接池就会预申请去一些连接，以免洪峰来时来不及申请，默认值是0
+	maxIdle: 最大空闲值，当经过一个高峰时间后，连接池将已经用不到的连接释放一部分，一直减少到maxIdle为止 ，0时无限制，默认值是8
+	defaultAutoCommit: 默认的SQL语句自动提交状态(开启或关闭)设置由连接池本身设置(false由连接池定)，
+					        不设置该值setAutoCommit方法不被调用 
+	-->
+	<!-- <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+		<property name="driverClassName" value="${db.driver}" />
+		<property name="url" 		value="${db.url}" />
+		<property name="username" 	value="${db.username}" />
+		<property name="password" 	value="${db.password}" />
+		<property name="initialSize" value="${db.initialSize}" />
+		<property name="minIdle" value="${db.minIdle}" />
+		<property name="maxIdle" value="${db.maxIdle}" />
+		<property name="defaultAutoCommit" value="${db.defaultAutoCommit}" />
+	</bean> -->
+
+	<!-- 数据源 : c3p0数据库连接池 -->
+	<!-- 参数说明：
+	initialPoolSize: 初始化时获取的连接数，取值应在minPoolSize与maxPoolSize之间。Default: 3
+	minPoolSize: 连接池中保留的最小连接数。Default: 3
+	maxPoolSize: 连接池中保留的最大连接数。Default: 15
+	maxIdleTime: 最大空闲时间,60秒内未使用则连接被丢弃。若为0则永不丢弃。Default: 0
+	acquireIncrement: 当连接池中的连接耗尽的时候c3p0一次同时获取的连接数。Default: 3
+	maxStatements: JDBC的标准参数，用以控制数据源内加载的PreparedStatements数量。但由于预缓存的statements
+				         属于单个connection而不是整个连接池。 所以设置这个参数需要考虑到多方面的因素。 
+				         如果maxStatements与maxStatementsPerConnection均为0，则缓存被关闭。Default: 0
+	idleConnectionTestPeriod: 每60秒检查所有连接池中的空闲连接。Default: 0
+	acquireRetryAttempts: 定义在从数据库获取新连接失败后重复尝试的次数。Default: 30
+	-->
+	<!-- <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
+		<property name="driverClass" value="${db.driver}" />
+		<property name="jdbcUrl" 	 value="${db.url}" />
+		<property name="user" 		 value="${db.username}" />
+		<property name="password" 	 value="${db.password}" />
+		<property name="initialPoolSize" value="${db.initialSize}" />
+		<property name="minPoolSize" value="${db.minIdle}" />
+		<property name="maxPoolSize" value="${db.maxIdle}" />
+		<property name="acquireIncrement" value="${db.acquireIncrement}" />
+		<property name="maxStatements" value="${db.maxStatements}" />
+		<property name="idleConnectionTestPeriod" value="${db.idleConnectionTestPeriod}" />
+		<property name="acquireRetryAttempts" value="${db.acquireRetryAttempts}" />
+	</bean> -->
+
+	<!-- 数据源 : druid数据库连接池 -->
+	<!-- 参数说明：
+	filters: 配置监控统计拦截的filters
+	initialSize: 初始化时建立物理连接的个数。初始化发生在显示调用init方法，或者第一次getConnection时
+	maxActive: 最大连接池数量。Default: 8
+	minIdle: 最小连接池数量
+	maxWait: 获取连接时最大等待时间，单位毫秒
+	timeBetweenEvictionRunsMillis: 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒
+	minEvictableIdleTimeMillis: 配置一个连接在池中最小生存的时间，单位是毫秒
+	poolPreparedStatements: 是否缓存preparedStatement，也就是PSCache。
+							PSCache对支持游标的数据库性能提升巨大，比如说oracle。在Mysql下建议关闭
+	maxOpenPreparedStatements: 要启用PSCache，必须配置大于0，当大于0时，poolPreparedStatements自动触发修改为true
+	-->
+	<bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">
+		<property name="driverClassName" value="${db.driver}" />
+		<property name="url" 		 value="${db.url}" />
+		<property name="username" 	 value="${db.username}" />
+		<property name="password" 	 value="${db.password}" />
+		<property name="filters" 	 value="stat" />
+		<property name="initialSize" value="${db.initialSize}" />
+		<property name="maxActive"   value="${db.maxActive}" />
+		<property name="minIdle" 	 value="${db.minIdle}" />
+		<property name="maxWait" 	 value="${db.maxWait}" />
+		<!-- 这里配置提交方式，默认就是TRUE，可以不用配置 -->
+        <property name="defaultAutoCommit" value="true" />
+		<property name="timeBetweenEvictionRunsMillis" value="${db.timeBetweenEvictionRunsMillis}" />
+		<property name="minEvictableIdleTimeMillis"    value="${db.minEvictableIdleTimeMillis}" />
+		<property name="testWhileIdle" value="true" />
+		<property name="testOnBorrow"  value="false" />
+		<property name="testOnReturn"  value="false" />
+		<property name="poolPreparedStatements" value="true" />
+		<property name="maxOpenPreparedStatements" value="50" />
+	</bean>
+
+	<!-- 2. MyBatis的SqlSession的工厂: SqlSessionFactoryBean dataSource:引用数据源 MyBatis定义数据源，同意加载配置 -->
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource"></property>
+		<property name="configLocation" value="classpath:config/mybatis-config.xml" />
+		<!-- 自动扫描mapping.xml文件 -->
+		<property name="mapperLocations" value="classpath*:/mapper/*.xml" />
+		<property name="configurationProperties">
+			<props>
+				<prop key="cacheEnabled">true</prop>
+				<prop key="lazyLoadingEnabled">false</prop>
+				<prop key="aggressiveLazyLoading">true</prop>
+			</props>
+		</property>
+	</bean>
+
+	<!-- 3. MyBatis自动扫描加载Sql映射文件/接口 : MapperScannerConfigurer sqlSessionFactory 
+		basePackage:指定sql映射文件/接口所在的包（自动扫描） -->
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="basePackage" value="zr.zrpower.dao" /> <!-- , zr.zrpower.dao.mapper -->
+		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
+	</bean>
+
+	<!-- 4. 事务管理 : DataSourceTransactionManager dataSource:引用上面定义的数据源 -->
+	<bean id="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+
+	<!-- 5. 使用声明式事务 transaction-manager：引用上面定义的事务管理器 -->
+	<tx:annotation-driven transaction-manager="txManager" />
+
+	<!-- 配置事务传播特性 -->
+	<tx:advice id="tx_advice" transaction-manager="txManager">
+		<tx:attributes>
+			<!-- 增加方法事务 -->
+			<tx:method name="save*" 	propagation="REQUIRED" rollback-for="Exception" />
+			<tx:method name="add*" 		propagation="REQUIRED" rollback-for="Exception" />
+			<tx:method name="insert*" 	propagation="REQUIRED" rollback-for="Exception" />
+			<!-- 修改方法事务 -->
+			<tx:method name="update*" 	propagation="REQUIRED" rollback-for="Exception" />
+			<tx:method name="edit*" 	propagation="REQUIRED" rollback-for="Exception" />
+			<tx:method name="modify*" 	propagation="REQUIRED" rollback-for="Exception" />
+			<!-- 删除方法事务 -->
+			<tx:method name="del*" 		propagation="REQUIRED" rollback-for="Exception" />
+			<!-- 查询方法事务 -->
+			<tx:method name="fetch*" 	propagation="REQUIRED" rollback-for="Exception" />
+			<tx:method name="find*" 	propagation="REQUIRED" rollback-for="Exception" />
+			<tx:method name="get*" 		propagation="REQUIRED" rollback-for="Exception" />
+			<tx:method name="select*" 	propagation="REQUIRED" rollback-for="Exception" />
+			<!-- 其他方法事务 -->
+			<tx:method name="*" 		propagation="REQUIRED" rollback-for="Exception" />
+		</tx:attributes>
+	</tx:advice>
+
+	<!-- 配置参与事务的类及方法 -->
+	<aop:config>
+		<aop:pointcut id="serviceDBMethod" expression="execution(* zr.zrpower.service.impl.*.*(..))" />
+		<aop:advisor pointcut-ref="serviceDBMethod" advice-ref="tx_advice" />
+	</aop:config>
+
+	<!-- SpringMVC上传文件时，需要配置MultipartResolver处理器 -->
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="defaultEncoding" value="UTF-8" />
+		<!-- 指定所上传文件的总大小不能超过5MB。注意maxUploadSize属性的限制不是针对单个文件，而是所有文件的容量之和 -->
+		<!-- <property name="maxUploadSize" value="5000000" /> -->
+	</bean>
+	<!-- SpringMVC在超出上传文件限制时，会抛出org.springframework.web.multipart.MaxUploadSizeExceededException -->
+
+	<!-- 该异常是SpringMVC在检查上传的文件信息时抛出来的，而且此时还没有进入到Controller方法中 -->
+	<bean id="exceptionResolver" class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+		<property name="exceptionMappings">
+			<props>
+				<!-- 遇到MaxUploadSizeExceededException异常时，自动跳转到/WEB-INF/views/error.jsp页面 -->
+				<prop key="org.springframework.web.multipart.MaxUploadSizeExceededException">error</prop>
+			</props>
+		</property>
+	</bean>
+</beans>

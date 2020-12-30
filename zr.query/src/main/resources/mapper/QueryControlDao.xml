@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="zr.zrpower.dao.QueryControlDao">
+	<!-- 执行查询SQL语句，返回Integer -->
+  <select id="selectIntExecSQL" parameterType="java.lang.String" resultType="java.lang.Integer">
+      ${execSQL}
+  </select>
+  
+  <!-- 执行查询SQL语句，返回String -->
+  <select id="selectStrExecSQL" parameterType="java.lang.String" resultType="java.lang.String">
+      ${execSQL}
+  </select>
+  
+  <!-- 执行查询SQL语句，返回Map<String, Object>数据 -->
+  <select id="selectMapExecSQL" parameterType="java.lang.String" resultType="java.util.Map">
+      ${execSQL}
+  </select>
+  
+  <!-- 执行查询SQL语句，返回List<Map<String, Object>>数据 -->
+  <select id="selectListMapExecSQL" parameterType="java.lang.String" resultType="java.util.Map">
+  	  ${execSQL}
+  </select>
+  
+  <!-- 执行增加SQL语句 -->
+  <insert id="insertExecSQL" parameterType="java.lang.String">
+      ${execSQL}
+  </insert>
+  
+  <!-- 执行修改SQL语句 -->
+  <update id="updateExecSQL" parameterType="java.lang.String">
+  	  ${execSQL}
+  </update>
+  
+  <!-- 执行删除SQL语句 -->
+  <delete id="deleteExecSQL" parameterType="java.lang.String">
+  	  ${execSQL}
+  </delete>
+  
+
+</mapper>

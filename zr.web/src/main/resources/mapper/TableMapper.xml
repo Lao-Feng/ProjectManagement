@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="zr.zrpower.dao.mapper.TableMapper">
+  <!-- 动态创建数据表 -->
+  <update id="createTable" parameterType="java.lang.String">
+  	${execSQL}
+  </update>
+  
+  <!-- 动态修改数据表 -->
+  <update id="updateTable" parameterType="java.lang.String">
+  	${execSQL}
+  </update>
+  
+  <!-- 增加表名表信息 -->
+  <insert id="insertTable" parameterType="java.util.Map">
+    Insert Into BPIP_TABLE (TABLEID, TABLENAME, CHINESENAME, 
+      TABLESPACE, DESCRIPTION, TABLETYPE, PRIMARYKEY, TITLE
+      )
+    Values (#{TABLEID}, #{TABLENAME}, #{CHINESENAME}, #{TABLESPACE}, 
+      #{DESCRIPTION}, #{TABLETYPE}, #{PRIMARYKEY}, #{TITLE}
+      )
+  </insert>
+  
+  <!-- 增加字段名表信息 -->
+  <insert id="insertField" parameterType="java.util.Map">
+	Insert Into BPIP_FIELD
+	<trim prefix="(" suffix=")" suffixOverrides=",">
+		<if test="FIELDID != null">
+			FIELDID,
+		</if>
+		<if test="TABLEID != null">
+			TABLEID,
+		</if>
+		<if test="FIELDNAME != null">
+			FIELDNAME,
+		</if>
+		<if test="FIELDTAG != null">
+			FIELDTAG,
+		</if>
+		<if test="CHINESENAME != null">
+			CHINESENAME,
+		</if>
+		<if test="FIELDTYPE != null">
+			FIELDTYPE,
+		</if>
+		<if test="FIELDLENGTH != null">
+			FIELDLENGTH,
+		</if>
+		<if test="ISNULL != null">
+			ISNULL,
+		</if>
+		<if test="DICTTABLE != null">
+			DICTTABLE,
+		</if>
+		<if test="DESCRIPTION != null">
+			DESCRIPTION,
+		</if>
+		<if test="TAGEXT != null">
+			TAGEXT,
+		</if>
+		<if test="AUTO1 != null">
+			AUTO1,
+		</if>
+		<if test="AUTO2 != null">
+			AUTO2,
+		</if>
+		<if test="AUTO3 != null">
+			AUTO3,
+		</if>
+		<if test="BLOBSIZE != null">
+			BLOBSIZE,
+		</if>
+		<if test="QFIELD != null">
+			QFIELD,
+		</if>
+		<if test="ISKEY != null">
+			ISKEY,
+		</if>
+	</trim>
+	<trim prefix="values (" suffix=")" suffixOverrides=",">
+		<if test="FIELDID != null">
+			#{FIELDID},
+		</if>
+		<if test="TABLEID != null">
+			#{TABLEID},
+		</if>
+		<if test="FIELDNAME != null">
+			#{FIELDNAME},
+		</if>
+		<if test="FIELDTAG != null">
+			#{FIELDTAG},
+		</if>
+		<if test="CHINESENAME != null">
+			#{CHINESENAME},
+		</if>
+		<if test="FIELDTYPE != null">
+			#{FIELDTYPE},
+		</if>
+		<if test="FIELDLENGTH != null">
+			#{FIELDLENGTH},
+		</if>
+		<if test="ISNULL != null">
+			#{ISNULL},
+		</if>
+		<if test="DICTTABLE != null">
+			#{DICTTABLE},
+		</if>
+		<if test="DESCRIPTION != null">
+			#{DESCRIPTION},
+		</if>
+		<if test="TAGEXT != null">
+			#{TAGEXT},
+		</if>
+		<if test="AUTO1 != null">
+			#{AUTO1},
+		</if>
+		<if test="AUTO2 != null">
+			#{AUTO2},
+		</if>
+		<if test="AUTO3 != null">
+			#{AUTO3},
+		</if>
+		<if test="BLOBSIZE != null">
+			#{BLOBSIZE},
+		</if>
+		<if test="QFIELD != null">
+			#{QFIELD},
+		</if>
+		<if test="ISKEY != null">
+			#{ISKEY},
+		</if>
+	</trim>
+  </insert>
+
+  <!-- 编辑表名表信息 -->
+  <update id="editTable" parameterType="java.util.Map">
+    update BPIP_TABLE
+    <set>
+        <if test="TABLEID != null">
+			TABLEID = #{TABLEID},
+		</if>
+		<if test="TABLENAME != null">
+			TABLENAME = #{TABLENAME},
+		</if>
+		<if test="CHINESENAME != null">
+			CHINESENAME = #{CHINESENAME},
+		</if>
+		<if test="TABLESPACE != null">
+			TABLESPACE = #{TABLESPACE},
+		</if>
+		<if test="DESCRIPTION != null">
+			DESCRIPTION = #{DESCRIPTION},
+		</if>
+		<if test="TABLETYPE != null">
+			TABLETYPE = #{TABLETYPE},
+		</if>
+		<if test="PRIMARYKEY != null">
+			PRIMARYKEY = #{PRIMARYKEY},
+		</if>
+		<if test="TITLE != null">
+			TITLE = #{TITLE},
+		</if>
+    </set>
+    Where TABLEID = #{TABLEID}
+  </update>
+  
+  <!-- 编辑字段名表信息 -->
+  <update id="editField" parameterType="java.util.Map">
+    update BPIP_FIELD
+    <set>
+        <if test="FIELDID != null">
+			FIELDID = #{FIELDID},
+		</if>
+		<if test="TABLEID != null">
+			TABLEID = #{TABLEID},
+		</if>
+		<if test="FIELDNAME != null">
+			FIELDNAME = #{FIELDNAME},
+		</if>
+		<if test="FIELDTAG != null">
+			FIELDTAG = #{FIELDTAG},
+		</if>
+		<if test="CHINESENAME != null">
+			CHINESENAME = #{CHINESENAME},
+		</if>
+		<if test="FIELDTYPE != null">
+			FIELDTYPE = #{FIELDTYPE},
+		</if>
+		<if test="FIELDLENGTH != null">
+			FIELDLENGTH = #{FIELDLENGTH},
+		</if>
+		<if test="ISNULL != null">
+			ISNULL = #{ISNULL},
+		</if>
+		<if test="DICTTABLE != null">
+			DICTTABLE = #{DICTTABLE},
+		</if>
+		<if test="DESCRIPTION != null">
+			DESCRIPTION = #{DESCRIPTION},
+		</if>
+		<if test="TAGEXT != null">
+			TAGEXT = #{TAGEXT},
+		</if>
+		<if test="AUTO1 != null">
+			AUTO1 = #{AUTO1},
+		</if>
+		<if test="AUTO2 != null">
+			AUTO2 = #{AUTO2},
+		</if>
+		<if test="AUTO3 != null">
+			AUTO3 = #{AUTO3},
+		</if>
+		<if test="BLOBSIZE != null">
+			BLOBSIZE = #{BLOBSIZE},
+		</if>
+		<if test="QFIELD != null">
+			QFIELD = #{QFIELD},
+		</if>
+		<if test="ISKEY != null">
+			ISKEY = #{ISKEY},
+		</if>
+    </set>
+    Where FIELDID = #{FIELDID}
+  </update>
+</mapper>

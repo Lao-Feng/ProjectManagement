@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="zr.zrpower.dao.mapper.BpipMenuButtonsMapper">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="zr.zrpower.model.BpipMenuButtons" id="bpipMenuButtonsMap">
+        <result property="id" column="id"/>
+        <result property="menuId" column="menu_id"/>
+        <result property="name" column="name"/>
+        <result property="perms" column="perms"/>
+        <result property="icon" column="icon"/>
+    </resultMap>
+    
+ <sql id="Base_Column_List" >
+`id`, `menu_id`, `name`, `perms`, `icon`
+  </sql>
+  
+	<select id="queryObject" resultType="zr.zrpower.model.BpipMenuButtons">
+		select
+		 <include refid="Base_Column_List" />
+		 from bpip_menu_buttons where id = #{value}
+	</select>
+
+	<select id="queryList" resultType="zr.zrpower.model.BpipMenuButtons">
+		select 
+		<include refid="Base_Column_List" />
+		from bpip_menu_buttons
+        <where>
+            <if test="projectNumber != null and projectNumber != ''">
+                and `menu_id` = #{menuId}
+            </if>
+        </where>
+        order by id desc
+	</select>
+	
+ 	<select id="queryTotal" resultType="int">
+		select count(*) from bpip_menu_buttons 
+	</select>
+	 
+	<insert id="save" parameterType="zr.zrpower.model.BpipMenuButtons" useGeneratedKeys="true" keyProperty="id">
+		insert into bpip_menu_buttons
+		(
+			`menu_id`, 
+			`name`, 
+			`perms`, 
+			`icon`
+		)
+		values
+		(
+			#{menuId}, 
+			#{name}, 
+			#{perms}, 
+			#{icon}
+		)
+	</insert>
+	 
+	<update id="update" parameterType="zr.zrpower.model.BpipMenuButtons">
+		update bpip_menu_buttons 
+		<set>
+			<if test="menuId != null">`menu_id` = #{menuId}, </if>
+			<if test="name != null">`name` = #{name}, </if>
+			<if test="perms != null">`perms` = #{perms}, </if>
+			<if test="icon != null">`icon` = #{icon}</if>
+		</set>
+		where id = #{id}
+	</update>
+	
+	<delete id="delete">
+		delete from bpip_menu_buttons where id = #{value}
+	</delete>
+	
+	<delete id="deleteBatch">
+		delete from bpip_menu_buttons where id in 
+		<foreach item="id" collection="array" open="(" separator="," close=")">
+			#{id}
+		</foreach>
+	</delete>
+
+</mapper>

@@ -1,0 +1,30 @@
+package ${package}.service;
+
+import ${package}.bean.${className}Bean;
+
+import java.util.List;
+import java.util.Map;
+
+/**
+ * ${comments}
+ * 
+ * @author ${author}
+ * @email ${email}
+ * @date ${datetime}
+ */
+public interface ${className}Service {
+	
+	${className}Bean queryObject(${pk.attrType} ${pk.attrrname})  throws Exception;
+	
+	List<${className}Bean> queryList(Map<String, Object> map)  throws Exception;
+	
+	int queryTotal(Map<String, Object> map)  throws Exception;
+	
+	void save(${className}Bean ${classname})  throws Exception;
+	
+	void update(${className}Bean ${classname}) throws Exception;
+	
+	void delete(${pk.attrType} ${pk.attrrname}) throws Exception;
+	
+	void deleteBatch(${pk.attrType}[] ${pk.attrrname}s) throws Exception;
+}

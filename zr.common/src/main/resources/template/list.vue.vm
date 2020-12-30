@@ -1,0 +1,218 @@
+<template>
+    <div class="table">
+        <div class="crumbs">
+            <el-breadcrumb separator="/">
+                <el-breadcrumb-item><i class="el-icon-lx-cascades"></i> ${comments}</el-breadcrumb-item>
+            </el-breadcrumb>
+        </div>
+        <div class="container">
+            <div class="handle-box">
+                <el-input v-model="select_word" placeholder="筛选项目" class="handle-input mr10"></el-input>
+                <el-button type="primary" icon="el-icon-search" @click="query">查询</el-button>
+                <el-button-group>
+                    <el-button type="primary" icon="el-icon-plus" @click="add">新增</el-button>
+                    <el-button type="primary" icon="el-icon-edit" @click="update">修改</el-button>
+                    <el-button type="primary" icon="el-icon-delete" @click="del">删除</el-button>
+                </el-button-group>
+
+            </div>
+            <el-table :data="data" border class="table" ref="multipleTable" @selection-change="handleSelectionChange">
+                <el-table-column type="selection" width="55" align="center" @selection-change="handleSelectionChange"></el-table-column>
+				#foreach($column in $columns)
+					#if($column.columnName == $pk.columnName)
+                        <el-table-column prop="${column.attrrname}" label="${column.comments}" v-if="false"></el-table-column>
+					#else
+                        <el-table-column prop="${column.attrrname}" label="${column.comments}" width="150"></el-table-column>
+					#end
+				#end
+
+            </el-table>
+            <div class="pagination">
+                <el-pagination background @current-change="handleCurrentChange" :page-size="limit" layout="total,prev, pager, next" :total="totalCount">
+                </el-pagination>
+            </div>
+        </div>
+
+        <el-dialog :title="dialogtitle" :visible.sync="dialogForm" width="500px">
+            <el-form :model="${classname}" ref="${classname}" :rules="rules">
+				#foreach($column in $columns)
+					#if($column.columnName != $pk.columnName)
+                        <el-form-item label="${column.comments}" :label-width="formLabelWidth">
+                            <el-input v-model="${classname}.${column.attrrname}" placeholder="${column.comments}"></el-input>
+                        </el-form-item>
+					#end
+				#end
+            </el-form>
+            <div slot="footer" class="dialog-footer">
+                <el-button @click="dialogForm = false">取 消</el-button>
+                <el-button type="primary" @click="saveOrUpdate('${classname}')">确 定</el-button>
+            </div>
+        </el-dialog>
+
+    </div>
+
+	#set($saveJs='
+e.$refs[formName].validate((valid)=>{
+  if(valid){
+      var obj = e.'+${classname}+';
+      aytSubmit(e,"POST",url,JSON.stringify(obj),"e.dialogForm = !1;e.getData();");
+  }else{
+      return false;
+  }
+});
+')
+
+</template>
+<script>
+    import {aytSubmit, aytTable} from '../js/untils.js';
+
+    export default {
+        name: 'basetable',
+        data() {
+            return {
+                tableData: [], //显示数据集
+                cur_page: 1, //第几页
+                limit: 10, //每页多少条
+                sidx: '', //排序字段
+                order: 'desc', //排序类型
+                totalCount: 0, //总数据
+                totalPage: 0, //总页数
+                total: 0,
+
+                dialogtitle: '${comments}',
+                dialogForm: false, //弹出窗口
+                formLabelWidth: '90px',
+
+                multipleSelection: [], //数据json集合
+                select_word: '', //检索框
+			    ${classname}: {},
+                rules: {
+//                    code: [{
+//                        required: true,
+//                        message: '部门编码必填',
+//                        trigger: 'blur'
+//                    }]
+                },
+                idx: -1 //排序
+            }
+        },
+        created() {
+            this.getData();
+        },
+        computed: {
+            data() {
+                return this.tableData.filter((d) => {
+                    return d;
+                })
+            }
+        },
+        methods: {
+            // 分页导航
+            handleCurrentChange(val) {
+                this.cur_page = val;
+                this.getData();
+            },
+            // 获取数据
+            getData() {
+                var e = this;
+                var data = {
+                    page: e.cur_page,
+                    limit: e.limit, //每页多少条
+                    sidx: e.sidx, //排序字段
+                    order: e.order, //排序类型
+                    dictName: e.select_word//检索条件
+                };
+                var url = e.HOME + "/${pathName}/list";
+                aytTable(e,"POST",url,data,"json");
+            },
+            //删除
+            del() {
+                var e = this;
+                const length = e.multipleSelection.length;
+                if (length > 0) { //表示有选中
+                    e.$confirm('确定呀删除选中的数据, 是否继续?', '提示', {
+                        confirmButtonText: '确定',
+                        cancelButtonText: '取消',
+                        type: 'warning'
+                    }).then(_ => {
+                        let Id = [];
+                        for (let i = 0; i < length; i++) {
+                            Id.push(e.multipleSelection[i].${pk.attrrname});
+                        }
+                        aytSubmit(e,"POST",e.HOME + '/${pathName}/delete',JSON.stringify(Id),'e.getData();');
+                    }).catch(_ => {});
+                } else {
+                    e.$message.error("请选择要删除的行!");
+                }
+            },
+            //选择的值
+            handleSelectionChange(val) {
+                this.multipleSelection = val;
+            },
+            //保存数据
+            saveOrUpdate(formName) {
+                var e = this;
+                var url = e.${classname}.${pk.attrrname} == null ? e.HOME + "/${pathName}/save" : e.HOME + "/${pathName}/update";
+				$saveJs
+
+            },
+            //查询、刷新
+            query() {
+                this.dialogForm = false;
+                this.getData();
+            },
+            //弹出新增窗口
+            add() {
+                var e = this;
+                e.dialogtitle = '新增${comments}';
+                e.dialogForm = true;
+                e.${classname} = {};
+            },
+            //弹出修改
+            update() {
+                var e = this;
+                const length = e.multipleSelection.length;
+                if (length > 0) { //表示有选中
+                    var Id = this.multipleSelection[0].${pk.attrrname};
+                    e.dialogtitle = '修改${comments}';
+                    e.dialogForm = true;
+                    $.get(e.HOME+"/${pathName}/info/" + ${pk.attrrname}, function (r) {
+                        r = JSON.parse(r);
+                        e.${classname} = r.${classname};
+                    });
+                } else {
+                    e.$message.error("请选择要编辑的行!");
+                }
+            }
+        }
+    }
+</script>
+
+<style scoped>
+    .handle-box {
+        margin-bottom: 20px;
+    }
+
+    .handle-select {
+        width: 120px;
+    }
+
+    .handle-input {
+        width: 300px;
+        display: inline-block;
+    }
+
+    .del-dialog-cnt {
+        font-size: 16px;
+        text-align: center
+    }
+
+    .table {
+        width: 100%;
+        font-size: 14px;
+    }
+
+    .red {
+        color: #ff0000;
+    }
+</style>

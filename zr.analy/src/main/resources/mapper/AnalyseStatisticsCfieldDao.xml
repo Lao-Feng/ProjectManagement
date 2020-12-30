@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="zr.zrpower.dao.AnalyseStatisticsCfieldDao">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="zr.zrpower.domain.AnalyseStatisticsCfield" id="analyseStatisticsCfieldMap">
+        <result property="id" column="ID"/>
+        <result property="fid" column="FID"/>
+        <result property="sfieldname" column="SFIELDNAME"/>
+        <result property="sfieldshowname" column="SFIELDSHOWNAME"/>
+        <result property="expressions" column="EXPRESSIONS"/>
+        <result property="distinction" column="DISTINCTION"/>
+        <result property="isshow" column="ISSHOW"/>
+        <result property="savefield" column="SAVEFIELD"/>
+        <result property="expressionswhere" column="EXPRESSIONSWHERE"/>
+        <result property="addsign" column="ADDSIGN"/>
+        <result property="radixpoint" column="RADIXPOINT"/>
+        <result property="showcode" column="SHOWCODE"/>
+        <result property="tableid" column="TABLEID"/>
+        <result property="cplanarfield" column="CPLANARFIELD"/>
+        <result property="cjoin" column="CJOIN"/>
+        <result property="cplanarespecial" column="CPLANARESPECIAL"/>
+    </resultMap>
+    
+ <sql id="Base_Column_List" >
+`ID`, `FID`, `SFIELDNAME`, `SFIELDSHOWNAME`, `EXPRESSIONS`, `DISTINCTION`, `ISSHOW`, `SAVEFIELD`, `EXPRESSIONSWHERE`, `ADDSIGN`, `RADIXPOINT`, `SHOWCODE`, `TABLEID`, `CPLANARFIELD`, `CJOIN`, `CPLANARESPECIAL`
+  </sql>
+  
+	<select id="queryObject" resultType="zr.zrpower.domain.AnalyseStatisticsCfield">
+		select
+		 <include refid="Base_Column_List" />
+		 from analyse_statistics_cfield where ID = #{value}
+	</select>
+	
+	<select id="getMaxNo" resultType="String">
+		select max(id) as max_no from
+		analyse_statistics_cfield
+	</select>
+	
+	<select id="getIdList" resultType="String">
+		select id from analyse_statistics_cfield where fid=#{value}
+	</select>
+
+	<select id="queryList" resultType="zr.zrpower.domain.AnalyseStatisticsCfield">
+		select 
+		<include refid="Base_Column_List" />
+		from analyse_statistics_cfield
+        <where>
+            <if test="fid != null and fid != ''">
+				and `fid` = #{fid}
+			</if>
+        </where>
+        <choose>
+            <when test="sidx != null and sidx.trim() != ''">
+                order by ${sidx} ${order}
+            </when>
+			<otherwise>
+                order by ID 
+			</otherwise>
+        </choose>
+		<if test="offset != null and limit != null">
+			limit #{offset}, #{limit}
+		</if>
+	</select>
+	
+ 	<select id="queryTotal" resultType="int">
+		select count(*) from analyse_statistics_cfield 
+	</select>
+	 
+	<insert id="save" parameterType="zr.zrpower.domain.AnalyseStatisticsCfield">
+		insert into analyse_statistics_cfield
+		(
+			`ID`, 
+			`FID`, 
+			`SFIELDNAME`, 
+			`SFIELDSHOWNAME`, 
+			`EXPRESSIONS`, 
+			`DISTINCTION`, 
+			`ISSHOW`, 
+			`SAVEFIELD`, 
+			`EXPRESSIONSWHERE`, 
+			`ADDSIGN`, 
+			`RADIXPOINT`, 
+			`SHOWCODE`, 
+			`TABLEID`, 
+			`CPLANARFIELD`, 
+			`CJOIN`, 
+			`CPLANARESPECIAL`
+		)
+		values
+		(
+			#{id}, 
+			#{fid}, 
+			#{sfieldname}, 
+			#{sfieldshowname}, 
+			#{expressions}, 
+			#{distinction}, 
+			#{isshow}, 
+			#{savefield}, 
+			#{expressionswhere}, 
+			#{addsign}, 
+			#{radixpoint}, 
+			#{showcode}, 
+			#{tableid}, 
+			#{cplanarfield}, 
+			#{cjoin}, 
+			#{cplanarespecial}
+		)
+	</insert>
+	 
+	<update id="update" parameterType="zr.zrpower.domain.AnalyseStatisticsCfield">
+		update analyse_statistics_cfield 
+		<set>
+			<if test="fid != null">`FID` = #{fid}, </if>
+			<if test="sfieldname != null">`SFIELDNAME` = #{sfieldname}, </if>
+			<if test="sfieldshowname != null">`SFIELDSHOWNAME` = #{sfieldshowname}, </if>
+			<if test="expressions != null">`EXPRESSIONS` = #{expressions}, </if>
+			<if test="distinction != null">`DISTINCTION` = #{distinction}, </if>
+			<if test="isshow != null">`ISSHOW` = #{isshow}, </if>
+			<if test="savefield != null">`SAVEFIELD` = #{savefield}, </if>
+			<if test="expressionswhere != null">`EXPRESSIONSWHERE` = #{expressionswhere}, </if>
+			<if test="addsign != null">`ADDSIGN` = #{addsign}, </if>
+			<if test="radixpoint != null">`RADIXPOINT` = #{radixpoint}, </if>
+			<if test="showcode != null">`SHOWCODE` = #{showcode}, </if>
+			<if test="tableid != null">`TABLEID` = #{tableid}, </if>
+			<if test="cplanarfield != null">`CPLANARFIELD` = #{cplanarfield}, </if>
+			<if test="cjoin != null">`CJOIN` = #{cjoin}, </if>
+			<if test="cplanarespecial != null">`CPLANARESPECIAL` = #{cplanarespecial}</if>
+		</set>
+		where ID = #{id}
+	</update>
+	
+	<delete id="delete">
+		delete from analyse_statistics_cfield where fid = #{value}
+	</delete>
+	
+	<delete id="deleteBatch">
+		delete from analyse_statistics_cfield where fid in 
+		<foreach item="id" collection="array" open="(" separator="," close=")">
+			#{id}
+		</foreach>
+	</delete>
+
+</mapper>

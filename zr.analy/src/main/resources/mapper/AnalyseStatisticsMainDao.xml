@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="zr.zrpower.dao.AnalyseStatisticsMainDao">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="zr.zrpower.domain.AnalyseStatisticsMain" id="analyseStatisticsMainMap">
+        <result property="id" column="ID"/>
+        <result property="statisticsname" column="STATISTICSNAME"/>
+        <result property="sdesc" column="SDESC"/>
+        <result property="tableid" column="TABLEID"/>
+        <result property="timestype" column="TIMESTYPE"/>
+        <result property="planartable" column="PLANARTABLE"/>
+        <result property="planarfield" column="PLANARFIELD"/>
+        <result property="cplanarfield" column="CPLANARFIELD"/>
+        <result property="wherevalue" column="WHEREVALUE"/>
+        <result property="exceltemplate" column="EXCELTEMPLATE"/>
+        <result property="planarfieldname" column="PLANARFIELDNAME"/>
+        <result property="wismatch" column="WISMATCH"/>
+        <result property="cjoin" column="CJOIN"/>
+        <result property="isunit" column="ISUNIT"/>
+        <result property="sinputtype" column="SINPUTTYPE"/>
+        <result property="sinputpage" column="SINPUTPAGE"/>
+        <result property="isagv" column="ISAGV"/>
+        <result property="issum" column="ISSUM"/>
+        <result property="isshowtype" column="ISSHOWTYPE"/>
+        <result property="showlink" column="SHOWLINK"/>
+        <result property="timetemplate" column="TIMETEMPLATE"/>
+        <result property="codetable" column="CODETABLE"/>
+        <result property="tbutton" column="TBUTTON"/>
+        <result property="isnumber" column="ISNUMBER"/>
+        <result property="addfield" column="ADDFIELD"/>
+        <result property="dcode" column="DCODE"/>
+        <result property="iszero" column="ISZERO"/>
+    </resultMap>
+    
+ <sql id="Base_Column_List" >
+`ID`, `STATISTICSNAME`, `SDESC`, `TABLEID`, `TIMESTYPE`, `PLANARTABLE`, `PLANARFIELD`, `CPLANARFIELD`, `WHEREVALUE`, `EXCELTEMPLATE`, `PLANARFIELDNAME`, `WISMATCH`, `CJOIN`, `ISUNIT`, `SINPUTTYPE`, `SINPUTPAGE`, `ISAGV`, `ISSUM`, `ISSHOWTYPE`, `SHOWLINK`, `TIMETEMPLATE`, `CODETABLE`, `TBUTTON`, `ISNUMBER`, `ADDFIELD`, `DCODE`, `ISZERO`
+  </sql>
+  
+	<select id="queryObject" resultType="zr.zrpower.domain.AnalyseStatisticsMain">
+		select
+		 <include refid="Base_Column_List" />
+		 from analyse_statistics_main where ID = #{value}
+	</select>
+	
+	<select id="getMaxNo" resultType="String">
+		select max(id) as max_no from
+		analyse_statistics_main
+	</select>
+
+	<select id="queryList" resultType="zr.zrpower.domain.AnalyseStatisticsMain">
+		select 
+		<include refid="Base_Column_List" />
+		from analyse_statistics_main
+        <where>
+            <if test="tableid != null and tableid != ''">
+				and `tableid` = #{tableid}
+			</if>
+        </where>
+        <choose>
+            <when test="sidx != null and sidx.trim() != ''">
+                order by ${sidx} ${order}
+            </when>
+			<otherwise>
+                order by ID 
+			</otherwise>
+        </choose>
+		<if test="offset != null and limit != null">
+			limit #{offset}, #{limit}
+		</if>
+	</select>
+	
+ 	<select id="queryTotal" resultType="int">
+		select count(*) from analyse_statistics_main 
+	</select>
+	 
+	<insert id="save" parameterType="zr.zrpower.domain.AnalyseStatisticsMain">
+		insert into analyse_statistics_main
+		(
+			`ID`, 
+			`STATISTICSNAME`, 
+			`SDESC`, 
+			`TABLEID`, 
+			`TIMESTYPE`, 
+			`PLANARTABLE`, 
+			`PLANARFIELD`, 
+			`CPLANARFIELD`, 
+			`WHEREVALUE`, 
+			`EXCELTEMPLATE`, 
+			`PLANARFIELDNAME`, 
+			`WISMATCH`, 
+			`CJOIN`, 
+			`ISUNIT`, 
+			`SINPUTTYPE`, 
+			`SINPUTPAGE`, 
+			`ISAGV`, 
+			`ISSUM`, 
+			`ISSHOWTYPE`, 
+			`SHOWLINK`, 
+			`TIMETEMPLATE`, 
+			`CODETABLE`, 
+			`TBUTTON`, 
+			`ISNUMBER`, 
+			`ADDFIELD`, 
+			`DCODE`, 
+			`ISZERO`
+		)
+		values
+		(
+			#{id}, 
+			#{statisticsname}, 
+			#{sdesc}, 
+			#{tableid}, 
+			#{timestype}, 
+			#{planartable}, 
+			#{planarfield}, 
+			#{cplanarfield}, 
+			#{wherevalue}, 
+			#{exceltemplate}, 
+			#{planarfieldname}, 
+			#{wismatch}, 
+			#{cjoin}, 
+			#{isunit}, 
+			#{sinputtype}, 
+			#{sinputpage}, 
+			#{isagv}, 
+			#{issum}, 
+			#{isshowtype}, 
+			#{showlink}, 
+			#{timetemplate}, 
+			#{codetable}, 
+			#{tbutton}, 
+			#{isnumber}, 
+			#{addfield}, 
+			#{dcode}, 
+			#{iszero}
+		)
+	</insert>
+	 
+	<update id="update" parameterType="zr.zrpower.domain.AnalyseStatisticsMain">
+		update analyse_statistics_main 
+		<set>
+			<if test="statisticsname != null">`STATISTICSNAME` = #{statisticsname}, </if>
+			<if test="sdesc != null">`SDESC` = #{sdesc}, </if>
+			<if test="tableid != null">`TABLEID` = #{tableid}, </if>
+			<if test="timestype != null">`TIMESTYPE` = #{timestype}, </if>
+			<if test="planartable != null">`PLANARTABLE` = #{planartable}, </if>
+			<if test="planarfield != null">`PLANARFIELD` = #{planarfield}, </if>
+			<if test="cplanarfield != null">`CPLANARFIELD` = #{cplanarfield}, </if>
+			<if test="wherevalue != null">`WHEREVALUE` = #{wherevalue}, </if>
+			<if test="exceltemplate != null">`EXCELTEMPLATE` = #{exceltemplate}, </if>
+			<if test="planarfieldname != null">`PLANARFIELDNAME` = #{planarfieldname}, </if>
+			<if test="wismatch != null">`WISMATCH` = #{wismatch}, </if>
+			<if test="cjoin != null">`CJOIN` = #{cjoin}, </if>
+			<if test="isunit != null">`ISUNIT` = #{isunit}, </if>
+			<if test="sinputtype != null">`SINPUTTYPE` = #{sinputtype}, </if>
+			<if test="sinputpage != null">`SINPUTPAGE` = #{sinputpage}, </if>
+			<if test="isagv != null">`ISAGV` = #{isagv}, </if>
+			<if test="issum != null">`ISSUM` = #{issum}, </if>
+			<if test="isshowtype != null">`ISSHOWTYPE` = #{isshowtype}, </if>
+			<if test="showlink != null">`SHOWLINK` = #{showlink}, </if>
+			<if test="timetemplate != null">`TIMETEMPLATE` = #{timetemplate}, </if>
+			<if test="codetable != null">`CODETABLE` = #{codetable}, </if>
+			<if test="tbutton != null">`TBUTTON` = #{tbutton}, </if>
+			<if test="isnumber != null">`ISNUMBER` = #{isnumber}, </if>
+			<if test="addfield != null">`ADDFIELD` = #{addfield}, </if>
+			<if test="dcode != null">`DCODE` = #{dcode}, </if>
+			<if test="iszero != null">`ISZERO` = #{iszero}</if>
+		</set>
+		where ID = #{id}
+	</update>
+	
+	<delete id="delete">
+		delete from analyse_statistics_main where ID = #{value}
+	</delete>
+	
+	<delete id="deleteBatch">
+		delete from analyse_statistics_main where ID in 
+		<foreach item="id" collection="array" open="(" separator="," close=")">
+			#{id}
+		</foreach>
+	</delete>
+
+</mapper>

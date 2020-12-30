@@ -1,0 +1,134 @@
+<HTML>
+<HEAD>
+	<TITLE>添加附件</TITLE>
+	<META http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+	<link rel="stylesheet" type="text/css" href="/static/layui/css/unitls.css"/>
+	<link rel="stylesheet" type="text/css" href="/static/layui/css/layui.css"/>
+	<link rel="stylesheet" type="text/css" href="/static/layui/css/modules/layer/default/layer.css"/>
+	
+	<script type="text/javascript" src="/static/layui/jquery.min.js"></script>
+  <script type="text/javascript" src="/static/layui/layui.js"></script>
+  <script type="text/javascript" src="/static/layui/lay/modules/layer.js"></script>
+
+  <script type="text/javascript" src="/static/layui/jquery.unitls.min.js"></script>
+	<style type="text/css">
+	.layui-input{
+	   height: 30px;
+	}
+	</style>
+<script type="text/javascript">
+function Check(theForm){
+  if (RegForm.DOCID.value == ""){
+	  parent.layer.open({
+	  		title: '操作提示',
+	  		content: '请先保存数据后再上传附件！'
+		});
+      return (false);
+  }
+  if ($("input[name='flFile_Name']").val() == ""){
+	  parent.layer.open({
+	  		title: '操作提示',
+	  		content: '选择上传文件！'
+		});
+      return (false);
+  }
+  document.getElementById("pTitle").value = $("input[name='flFile_Name']").val();
+
+  return true;
+}
+
+function Del_File(RegForm){
+  if (RegForm.attlist.value=='') {
+	  parent.layer.open({
+	  		title: '操作提示',
+	  		content: '选请选择要删除的文件！'
+		});
+  } else {
+	  layer.open({
+		  	title: '删除文件',
+		  	btn: ['确定', '取消'],
+		  	content: '确定是否删除该文件？',
+		  	yes: function(){
+		  		layer.closeAll();
+		  		location.href="/user/actionuser?Act=deleteatt&ID="+RegForm.attlist.value+"&FLOWID="+RegForm.FLOWID.value+"&DOCID="+RegForm.DOCID.value+"&AID="+RegForm.AID.value+"&TYPE="+RegForm.TYPE.value;
+  	  		},
+        	btn2: function(){
+        		layer.closeAll();
+        	},
+	  	  	zIndex: layer.zIndex, //重点1
+	  	  	success: function(layero){
+	    		layer.setTop(layero); //重点2
+	  	  	}
+	  });
+  }
+}
+
+function insertTitle(tValue){
+    document.getElementById("pTitle").value = tValue;
+}
+</script>
+</HEAD>
+<BODY class="BodyMain1" topmargin="0" leftmargin="0" rightmargin="0" bottommargin="0" marginwidth="0" marginheight="0">
+<FORM method="post" name="RegForm" enctype="multipart/form-data" action="/system/actionsysattmanage" onsubmit="return Check(this)" class="layui-form">
+  <input type="hidden" name="FLOWID" th:value="${FLOWID}">
+  <input type="hidden" name="DOCID" th:value="${DOCID}">
+  <input type="hidden" name="AID" th:value="${AID}">
+  <input type="hidden" name="TYPE" th:value="${TYPE}">
+  <input type="hidden" name="ATTNUM" th:value="${ATTNUM}">
+  <input type="hidden" name="pTitle" id="pTitle" value="">
+  <div th:if="${TYPE == '3'}">
+  <TABLE border="0" width="100%">
+       <TR>
+         <TD width="20%" align="right"><FONT face=仿宋_GB2312 size=2>浏览附件：</font></TD>
+         <TD width="48%"><FONT face=仿宋_GB2312 size=2 color="red" th:utext="${LIST2}"></font></TD>
+         <TD></TD>
+       </TR>
+  </TABLE>
+  </div>
+  <div th:if="${TYPE != '3'}">
+  <TABLE border="0" width="100%">
+    <TR>
+      <TD width="20%" align="right"><font size="2">添加附件：</font></TD>
+      <TD width="48%"><input name="flFile_Name" id="flFile_Name" class="layui-input easyui-filebox" data-options="buttonText:'选择文件',prompt:'选择上传文件'" style="width:60%;height:30px;"></TD>
+      <TD>
+        <table cellspacing="0" cellpadding="0" border='0'>
+        	<tr>
+            	<a class="layui-btn layui-btn-sm" href="javascript:;" onclick="javascript:if(Check(document.RegForm)){document.RegForm.submit();}" style="width:120px;">上传附件</a>
+        	</tr>
+        </table>
+       </TD>
+    </TR>
+    <TR>
+      <TD width="20%" align="right"><font size="2">已传附件：</font></TD>
+      <TD width="48%">
+      <div class="layui-input-inline" style="width: 400px;">
+         <div th:utext="${LIST1}"></div>
+      </div>
+      </TD>
+      <TD>
+        <table cellspacing="0" cellpadding="0" border='0'>
+        	<tr>
+            	<a class="layui-btn layui-btn-sm" href="javascript:;" onclick="javascript:Del_File(document.RegForm);" style="width:120px;margin-top: 5px;">删除附件</a>
+        	</tr>
+        </table>
+     </TD>
+    </TR>
+    <TR>
+      <TD width="20%" align="right"><font size="2">浏览附件：</font></TD>
+      <TD width="48%"><font size="2" th:utext="${LIST2}"></font></TD>
+      <TD></TD>
+    </TR>
+  </TABLE>
+  </div>
+</FORM>
+<script type="text/javascript">
+var element,form;
+layui.use(['element','form'], function(){
+    element = layui.element;
+    form = layui.form;
+});
+
+</script>
+</BODY>
+</HTML>

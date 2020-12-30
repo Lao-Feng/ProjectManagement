@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="zr.zrpower.dao.mapper.BpipUserRoleMapper">
+
+    <!-- 数据事务操作 -->
+	<select id="queryList" resultType="zr.zrpower.model.BPIP_USER_ROLE">
+		select * from BPIP_USER_ROLE
+		<where>
+			<if test="userId != null and userId != ''">
+				and userid = #{userId}
+			</if>
+			<if test="roleId != null and roleId != ''">
+				and roleid = #{roleId}
+			</if>
+		</where>
+		order by userid asc
+	</select>
+	
+	<insert id="save" parameterType="zr.zrpower.model.BPIP_USER_ROLE" useGeneratedKeys="true" keyProperty="userid">
+		insert into BPIP_USER_ROLE
+		(
+		`ROLEID`,
+		`USERID`,
+		`UNITID`
+		)
+		values
+		(
+		#{ROLEID},
+		#{USERID},
+		#{UNITID}
+		)
+	</insert>
+
+    
+	<delete id="delete">
+		delete from BPIP_USER_ROLE where ROLEID = #{value}
+	</delete>
+	
+	<delete id="delUserRole">
+		delete from BPIP_USER_ROLE where USERID = #{value}
+	</delete>
+	
+
+</mapper>

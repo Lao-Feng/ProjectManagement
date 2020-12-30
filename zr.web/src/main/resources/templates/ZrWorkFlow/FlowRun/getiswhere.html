@@ -1,0 +1,31 @@
+<HTML>
+<HEAD>
+<TITLE></TITLE>
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script type="text/javascript">
+function reclose(){
+    var s1 = document.getiswhere.s1.value;
+    var s2 = document.getiswhere.s2.value;
+    var s3 = document.getiswhere.s3.value;
+    var s4 = document.getiswhere.s4.value;
+    var revalue = s1+"^"+s2+"^"+s3+"^"+s4;
+
+    $('#win').window('close');
+    setiswhere(revalue);
+}
+
+setTimeout("reclose();",600);
+</script>
+</HEAD>
+<FORM method="post" name="getiswhere" action="">
+<input Type="hidden" name="s1" th:value="${s1}">
+<input Type="hidden" name="s2" th:value="${s2}">
+<input Type="hidden" name="s3" th:value="${s3}">
+<input Type="hidden" name="s4" th:value="${s4}">
+<br>
+<center>
+<Font class="WriteSign">提示：正在读取数据...</font>
+<center>
+</FORM>
+</HTML>

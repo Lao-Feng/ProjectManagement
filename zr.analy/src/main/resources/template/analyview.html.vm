@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<TITLE>数据统计引擎</TITLE>
+<!-- 必要连接 -->
+<link href="/static/vue/element-ui/lib/theme-chalk/index.css" rel="stylesheet" type="text/css" \>
+<link href="/static/vue/element-ui/lib/theme-chalk/html.css" rel="stylesheet" type="text/css" \>
+<link href="/static/vue/element-ui/excl/handsontable.full.min.css" rel="stylesheet" type="text/css" \> 
+<script src="/static/vue/jquery-1_15.9.1.min.js"></script>
+<script src="/static/vue/vue.min.js" type="text/javascript"></script>
+<script src="/static/vue/element-ui/lib/index.js" type="text/javascript"></script>
+<script src="/static/vue/element-ui/excl/handsontable.full.min.js" type="text/javascript"></script>
+<!-- 用户操作自定义工具js -->
+<script src="/static/vue/ZRanaly.js" type="text/javascript"></script>
+</head>
+<body style="margin: 0px;">
+<div id="zranaly" class="table" v-loading="htmlLoading">
+   <el-form :inline="true" :model="query" ref="query" class="demo-form-inline" label-width="80px">
+       <div class="handle-box" id="zrbutt">
+           <!-- 固定报表 --> 
+           <el-form-item label="统计条件" v-if="$hidden_type">
+               <el-checkbox-group v-model="query.type" @change="ZRanaly_query_type">
+                   <el-checkbox label="1">年报</el-checkbox>
+                   <el-checkbox label="2">季度报</el-checkbox>
+                   <el-checkbox label="3">月报</el-checkbox>
+                   <el-checkbox label="4">周报</el-checkbox>
+                   <el-checkbox label="5">日报</el-checkbox>
+                   <el-checkbox label="6">自定义日期</el-checkbox>
+               </el-checkbox-group>
+           </el-form-item>
+           <el-form-item label="年度" v-if="$hidden_year1">
+               <el-select v-model="query.year1" placeholder="请选择" style="width:100px;">
+                   <el-option v-for="item in $zrYears" :key="item.value" :label="item.label" :value="item.value"></el-option>
+               </el-select>年
+           </el-form-item>
+           <el-select v-model="query.Quarter" v-if="$hidden_quarter" placeholder="请选择" style="width:100px;">
+               <el-option v-for="item in $zrQuarters" :key="item.value" :label="item.label" :value="item.value"></el-option>
+           </el-select>
+           <el-select v-model="query.Month" v-if="$hidden_month" placeholder="请选择" style="width:100px;">
+               <el-option v-for="item in $zrMonths" :key="item.value" :label="item.label" :value="item.value"></el-option>
+           </el-select>
+           <el-select v-model="query.Week" v-if="$hidden_week" placeholder="请选择" style="width:100px;">
+               <el-option v-for="item in $zrWeeks" :key="item.value" :label="item.label" :value="item.value"></el-option>
+           </el-select>
+           
+           <el-form-item label="比较" v-if="$hidden_year2">
+               <el-select v-model="query.year2" placeholder="请选择" style="width:100px;">
+                   <el-option v-for="item in $zrYears" :key="item.value" :label="item.label" :value="item.value"></el-option>
+               </el-select>年
+           </el-form-item>
+           <el-select v-model="query.Quarter2" v-if="$hidden_quarter2" placeholder="请选择" style="width:100px;">
+               <el-option v-for="item in $zrQuarters" :key="item.value" :label="item.label" :value="item.value"></el-option>
+           </el-select>
+           <el-select v-model="query.Month2" v-if="$hidden_month2" placeholder="请选择" style="width:100px;">
+               <el-option v-for="item in $zrMonths" :key="item.value" :label="item.label" :value="item.value"></el-option>
+           </el-select>
+           
+           <el-date-picker v-model="query.date1" v-if="$hidden_date1" type="date" placeholder="选择日期" value-format="yyyy-MM-dd"></el-date-picker>
+           <el-date-picker v-model="query.date2" v-if="$hidden_date2" type="daterange" range-separator="至" start-placeholder="选择日期(起)" end-placeholder="选择日期(止)" value-format="yyyy-MM-dd" size="small"></el-date-picker>
+           
+	       <el-form-item label="选择" v-if="$hidden_code">
+               <el-select v-model="query.code" placeholder="请选择" style="width:150px;">
+                   <el-option v-for="item in codelist" :key="item.CODE" :label="item.NAME" :value="item.CODE+'/'+item.NAME"></el-option>
+               </el-select>
+           </el-form-item>
+	       
+	       <el-button-group>
+              <el-button type="primary" icon="el-icon-refresh" v-if="hidden.SINPUTTYPE != 1" @click="zranalyData" size="small">{{hidden.exclbut}}</el-button>
+              <el-button type="primary" icon="el-icon-document" v-if="hidden.excl" @click="zranalyExcl" size="small">导出excl</el-button>
+	       </el-button-group>
+       </div>
+           
+       
+   </el-form>
+   
+   <div class="handle-box" id="zriframe" v-loading="dataLoading" style="height:300px;background: center;padding: 0px;margin:0px;margin-top:-5px">
+       <!-- excl code -->
+       <div id="zrexcl" ></div>
+   </div>
+
+</div>
+<script>
+var vm = new Vue({
+    el: '#zranaly',
+    name: 'zr_analy',
+    data() {
+        return {
+            htmlLoading:true,//全局加载
+            dataLoading:false,//数据加载
+            rowsLoading:false,//数据加载
+            rowsloadtitle:'数据加载...',
+            
+            query:{//统计条件
+                type:[],
+                year1:'',
+                year2:'',
+                Quarter:'',
+                Quarter2:'',
+                Month:'',
+                Month2:'',
+                Week:'',
+                date1:'',
+                date2:[],
+                code:'',
+            },
+            hidden:{//隐藏的初始值
+                #foreach($hidd in $hidden)
+                ${hidd}
+                #end
+            },
+            codelist:[],//字典
+            maxHigth:100,//表格初始化最大高度
+        }
+    },
+    created() {
+        this.init_html_higth()
+        #if($codelist != 0)
+        this.codelist = ${codelist}
+        #end
+    },
+    mounted(){
+        $zranaly = this
+        this.init_html_higth()
+        this.$nextTick(() => {
+		    this.htmlLoading = false
+		    ZRanaly_init_show()
+		    this.init_html_heads()		    
+        })
+    },
+    methods: {
+        // 初始化高度
+        init_html_higth(){
+            let e = this
+            let zrbuttH = $('#zrbutt').height()
+            let hia = $(document).height()-5
+            let divW = $(document).width()
+            $('#zrexcl').width(divW)
+            hia = hia-zrbuttH-20
+            $('#zriframe').height(hia)
+        },
+        // 初始化表头
+        init_html_heads(){
+            let e = this
+            let heads = ${headData}
+            let widths = ${headWidth}
+            let spans = ${headSpan}
+            $zrheads = heads
+            $zrwidths = widths
+            $spans = spans
+	        $headlen = heads.length
+            e.zranalyData()         
+        },
+        //示例（统计）：引擎调用获取统计数据
+        zranalyData() {
+            let e = this
+            let data = e.hidden
+	        ZRanaly_list(data,function(backdata){
+	            //回调函数
+	        });
+        },
+        //示例（导出到excl）：调用引擎删除方法
+        zranalyExcl(){
+            let e = this
+            ZRexp_analy_excel()
+        },
+    }
+});
+</script>
+<style scoped>
+
+.table {
+    width: 100%;
+}
+.frame {
+    position: relative;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+}
+tr{height:30px;} 
+td{text-align: center;}
+.handsontable .htDimmed {
+    font-size: 12px;
+    text-align: center;
+    vertical-align: middle;
+}
+</style>
+</body>
+</html>

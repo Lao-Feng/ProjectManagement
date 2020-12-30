@@ -1,0 +1,27 @@
+   <!-- 选择单位 -->
+   <el-dialog title="选择单位" :visible.sync="dialog_unit" :close-on-click-modal="false" :show-close="false" width="300px">
+        <el-container style="">
+            <el-header class="el-dialog-ftl2">
+                <el-button-group>
+                    <el-button type="primary" icon="el-icon-close" @click="dialog_unit = false" size="small"></el-button>
+                </el-button-group>
+            </el-header>
+            <el-main style="padding: 0px;margin-top: -20px;">
+                <el-tree :data="unit_tree" ref="unit_tree"  accordion show-checkbox check-strictly node-key="unitid" :props="unit_proe" check-on-click-node @check="on_unit_onclick"></el-tree>
+            </el-main>
+        </el-container>
+   </el-dialog>
+   
+   <!-- 选择用户 -->
+   <el-dialog title="选择用户" :visible.sync="dialog_user" :close-on-click-modal="false" :show-close="false" width="300px">
+        <el-container style="">
+            <el-header class="el-dialog-ftl2">
+                <el-button-group>
+                    <el-button type="primary" icon="el-icon-close" @click="dialog_user = false" size="small"></el-button>
+                </el-button-group>
+            </el-header>
+            <el-main style="padding: 0px;margin-top: -20px;">
+                <el-tree :data="user_tree" ref="user_tree" accordion show-checkbox check-strictly node-key="userid" :props="proe_user" check-on-click-node @check="on_user_onclick"></el-tree>
+            </el-main>
+        </el-container>
+   </el-dialog>

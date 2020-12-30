@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="zr.zrpower.dao.CollConfigOperateFieldDao">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="zr.zrpower.domain.CollConfigOperateField" id="collConfigOperateFieldMap">
+        <result property="id" column="ID"/>
+        <result property="fid" column="FID"/>
+        <result property="field" column="FIELD"/>
+        <result property="isdisplay" column="ISDISPLAY"/>
+        <result property="isedit" column="ISEDIT"/>
+        <result property="ismustfill" column="ISMUSTFILL"/>
+        <result property="default1" column="DEFAULT1"/>
+        <result property="isforce" column="ISFORCE"/>
+    </resultMap>
+    
+ <sql id="Base_Column_List" >
+`ID`, `FID`, `FIELD`, `ISDISPLAY`, `ISEDIT`, `ISMUSTFILL`, `DEFAULT1`, `ISFORCE`
+  </sql>
+  
+	<select id="queryObject" resultType="zr.zrpower.domain.CollConfigOperateField">
+		select
+		 <include refid="Base_Column_List" />
+		 from coll_config_operate_field where ID = #{value}
+	</select>
+	
+	<select id="getMaxNo" resultType="String">
+		select max(id) as max_no from coll_config_operate_field
+	</select>
+
+	<select id="queryList" resultType="zr.zrpower.domain.CollConfigOperateField">
+		select 
+		<include refid="Base_Column_List" />
+		from coll_config_operate_field
+        <where>
+            <if test="fid != null and fid != ''">
+                and `fid` = #{fid}
+            </if>
+        </where>
+        <choose>
+            <when test="sidx != null and sidx.trim() != ''">
+                order by ${sidx} ${order}
+            </when>
+			<otherwise>
+                order by ID 
+			</otherwise>
+        </choose>
+		<if test="offset != null and limit != null">
+			limit #{offset}, #{limit}
+		</if>
+	</select>
+	
+ 	<select id="queryTotal" resultType="int">
+		select count(*) from coll_config_operate_field 
+	</select>
+	 
+	<insert id="save" parameterType="zr.zrpower.domain.CollConfigOperateField">
+		insert into coll_config_operate_field
+		(
+			`ID`, 
+			`FID`, 
+			`FIELD`, 
+			`ISDISPLAY`, 
+			`ISEDIT`, 
+			`ISMUSTFILL`, 
+			`DEFAULT1`, 
+			`ISFORCE`
+		)
+		values
+		(
+			#{id}, 
+			#{fid}, 
+			#{field}, 
+			#{isdisplay}, 
+			#{isedit}, 
+			#{ismustfill}, 
+			#{default1}, 
+			#{isforce}
+		)
+	</insert>
+	 
+	<update id="update" parameterType="zr.zrpower.domain.CollConfigOperateField">
+		update coll_config_operate_field 
+		<set>
+			<if test="fid != null">`FID` = #{fid}, </if>
+			<if test="field != null">`FIELD` = #{field}, </if>
+			<if test="isdisplay != null">`ISDISPLAY` = #{isdisplay}, </if>
+			<if test="isedit != null">`ISEDIT` = #{isedit}, </if>
+			<if test="ismustfill != null">`ISMUSTFILL` = #{ismustfill}, </if>
+			<if test="default1 != null">`DEFAULT1` = #{default1}, </if>
+			<if test="isforce != null">`ISFORCE` = #{isforce}</if>
+		</set>
+		where ID = #{id}
+	</update>
+	
+	<delete id="delete">
+		delete from coll_config_operate_field where fid = #{value}
+	</delete>
+	
+	<delete id="deleteBatch">
+		delete from coll_config_operate_field where ID in 
+		<foreach item="id" collection="array" open="(" separator="," close=")">
+			#{id}
+		</foreach>
+	</delete>
+
+</mapper>

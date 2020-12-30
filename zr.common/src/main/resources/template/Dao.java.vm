@@ -1,0 +1,14 @@
+package ${package}.dao;
+import zr.zrpower.dao.BaseDao;
+import ${package}.domain.${className};
+
+/**
+ * ${comments}
+ * 数据库mybaits映射Mapper类
+ * @author ${author}
+ * @email ${email}
+ * @date ${datetime}
+ */
+public interface ${className}Dao extends BaseDao<${className}> {
+	
+}

@@ -1,0 +1,846 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="zr.zrpower.dao.mapper.FlowDAOMapper">
+  <!-- 增加流程分类实体 -->
+  <insert id="insertPackage" parameterType="java.util.Map">
+	Insert Into FLOW_CONFIG_PACKAGE
+	<trim prefix="(" suffix=")" suffixOverrides=",">
+		<if test="ID != null">
+			ID,
+		</if>
+		<if test="IDENTIFICATION != null">
+			IDENTIFICATION,
+		</if>
+		<if test="NAME != null">
+			NAME,
+		</if>
+		<if test="DESC1 != null">
+			DESC1,
+		</if>
+		<if test="STATUS != null">
+			STATUS,
+		</if>
+		<if test="ICO != null">
+			ICO,
+		</if>
+		<if test="CREATEPSN != null">
+			CREATEPSN,
+		</if>
+		<if test="CREATEDATE != null">
+			CREATEDATE,
+		</if>
+		<if test="FID != null">
+			FID,
+		</if>
+	</trim>
+	<trim prefix="values (" suffix=")" suffixOverrides=",">
+		<if test="ID != null">
+			#{ID},
+		</if>
+		<if test="IDENTIFICATION != null">
+			#{IDENTIFICATION},
+		</if>
+		<if test="NAME != null">
+			#{NAME},
+		</if>
+		<if test="DESC1 != null">
+			#{DESC1},
+		</if>
+		<if test="STATUS != null">
+			#{STATUS},
+		</if>
+		<if test="ICO != null">
+			#{ICO},
+		</if>
+		<if test="CREATEPSN != null">
+			#{CREATEPSN},
+		</if>
+		<if test="CREATEDATE != null">
+			#{CREATEDATE},
+		</if>
+		<if test="FID != null">
+			#{FID},
+		</if>
+	</trim>
+  </insert>
+
+  <!-- 编辑流程分类实体 -->
+  <update id="editPackage" parameterType="java.util.Map">
+    update FLOW_CONFIG_PACKAGE
+    <set>
+		<if test="IDENTIFICATION != null">
+			IDENTIFICATION = #{IDENTIFICATION},
+		</if>
+		<if test="NAME != null">
+			NAME = #{NAME},
+		</if>
+		<if test="DESC1 != null">
+			DESC1 = #{DESC1},
+		</if>
+		<if test="STATUS != null">
+			STATUS = #{STATUS},
+		</if>
+		<if test="ICO != null">
+			ICO = #{ICO},
+		</if>
+		<if test="CREATEPSN != null">
+			CREATEPSN = #{CREATEPSN},
+		</if>
+		<if test="CREATEDATE != null">
+			CREATEDATE = #{CREATEDATE},
+		</if>
+		<if test="FID != null">
+			FID = #{FID},
+		</if>
+    </set>
+    Where ID = #{ID}
+  </update>
+
+  <!-- 增加流程按钮表数据实体类 -->
+  <insert id="insertButton" parameterType="java.util.Map">
+	Insert Into FLOW_BASE_BUTTON
+	<trim prefix="(" suffix=")" suffixOverrides=",">
+		<if test="ID != null">
+			ID,
+		</if>
+		<if test="NAME != null">
+			NAME,
+		</if>
+		<if test="TYPE != null">
+			TYPE,
+		</if>
+		<if test="PROPERTY != null">
+			PROPERTY,
+		</if>
+		<if test="ICO != null">
+			ICO,
+		</if>
+		<if test="POSITION != null">
+			POSITION,
+		</if>
+		<if test="BNAME != null">
+			BNAME,
+		</if>
+		<if test="CODE != null">
+			CODE,
+		</if>
+		<if test="ROLEIDS != null">
+			ROLEIDS,
+		</if>
+	</trim>
+	<trim prefix="values (" suffix=")" suffixOverrides=",">
+		<if test="ID != null">
+			#{ID},
+		</if>
+		<if test="NAME != null">
+			#{NAME},
+		</if>
+		<if test="TYPE != null">
+			#{TYPE},
+		</if>
+		<if test="PROPERTY != null">
+			#{PROPERTY},
+		</if>
+		<if test="ICO != null">
+			#{ICO},
+		</if>
+		<if test="POSITION != null">
+			#{POSITION},
+		</if>
+		<if test="BNAME != null">
+			#{BNAME},
+		</if>
+		<if test="CODE != null">
+			#{CODE},
+		</if>
+		<if test="ROLEIDS != null">
+			#{ROLEIDS},
+		</if>
+	</trim>
+  </insert>
+
+  <!-- 编辑流程按钮表数据实体类 -->
+  <update id="editButton" parameterType="java.util.Map">
+    update FLOW_BASE_BUTTON
+    <set>
+		<if test="NAME != null">
+			NAME = #{NAME},
+		</if>
+		<if test="TYPE != null">
+			TYPE = #{TYPE},
+		</if>
+		<if test="PROPERTY != null">
+			PROPERTY = #{PROPERTY},
+		</if>
+		<if test="ICO != null">
+			ICO = #{ICO},
+		</if>
+		<if test="POSITION != null">
+			POSITION = #{POSITION},
+		</if>
+		<if test="BNAME != null">
+			BNAME = #{BNAME},
+		</if>
+		<if test="CODE != null">
+			CODE = #{CODE},
+		</if>
+		<if test="ROLEIDS != null">
+			ROLEIDS = #{ROLEIDS},
+		</if>
+    </set>
+    Where ID = #{ID}
+  </update>
+
+  <!-- 删除流程按钮表数据实体类 -->
+  <delete id="deleteButton" parameterType="java.lang.String">
+  	delete From FLOW_BASE_BUTTON Where ID = #{ID}
+  </delete>
+
+  <!-- 增加过程表数据实体类 -->
+  <insert id="insertFLOW_CONFIG_PROCESS" parameterType="java.util.Map">
+	Insert Into FLOW_CONFIG_PROCESS
+	<trim prefix="(" suffix=")" suffixOverrides=",">
+		<if test="ID != null">
+			ID,
+		</if>
+		<if test="IDENTIFICATION != null">
+			IDENTIFICATION,
+		</if>
+		<if test="NAME != null">
+			NAME,
+		</if>
+		<if test="DESC1 != null">
+			DESC1,
+		</if>
+		<if test="FLOWPACKAGE != null">
+			FLOWPACKAGE,
+		</if>
+		<if test="DOCID != null">
+			DOCID,
+		</if>
+		<if test="DOCIDPHO != null">
+			DOCIDPHO,
+		</if>
+		<if test="STATUS != null">
+			STATUS,
+		</if>
+		<if test="CREATEPSN != null">
+			CREATEPSN,
+		</if>
+		<if test="CREATEDATE != null">
+			CREATEDATE,
+		</if>
+		<if test="CODE != null">
+			CODE,
+		</if>
+		<if test="ICO != null">
+			ICO,
+		</if>
+		<if test="TYPE != null">
+			TYPE,
+		</if>
+		<if test="CNUM != null">
+			CNUM,
+		</if>
+		<if test="FORMTYPE != null">
+			FORMTYPE,
+		</if>
+		<if test="ISDELETEFORM != null">
+			ISDELETEFORM,
+		</if>
+		<if test="DCODE != null">
+			DCODE,
+		</if>
+	</trim>
+	<trim prefix="values (" suffix=")" suffixOverrides=",">
+		<if test="ID != null">
+			#{ID},
+		</if>
+		<if test="IDENTIFICATION != null">
+			#{IDENTIFICATION},
+		</if>
+		<if test="NAME != null">
+			#{NAME},
+		</if>
+		<if test="DESC1 != null">
+			#{DESC1},
+		</if>
+		<if test="FLOWPACKAGE != null">
+			#{FLOWPACKAGE},
+		</if>
+		<if test="DOCID != null">
+			#{DOCID},
+		</if>
+		<if test="DOCIDPHO != null">
+			#{DOCIDPHO},
+		</if>
+		<if test="STATUS != null">
+			#{STATUS},
+		</if>
+		<if test="CREATEPSN != null">
+			#{CREATEPSN},
+		</if>
+		<if test="CREATEDATE != null">
+			#{CREATEDATE},
+		</if>
+		<if test="CODE != null">
+			#{CODE},
+		</if>
+		<if test="ICO != null">
+			#{ICO},
+		</if>
+		<if test="TYPE != null">
+			#{TYPE},
+		</if>
+		<if test="CNUM != null">
+			#{CNUM},
+		</if>
+		<if test="FORMTYPE != null">
+			#{FORMTYPE},
+		</if>
+		<if test="ISDELETEFORM != null">
+			#{ISDELETEFORM},
+		</if>
+		<if test="DCODE != null">
+			#{DCODE},
+		</if>
+	</trim>
+  </insert>
+
+  <!-- 编辑过程表数据实体类 -->
+  <update id="editFLOW_CONFIG_PROCESS" parameterType="java.util.Map">
+    update FLOW_CONFIG_PROCESS
+    <set>
+		<if test="IDENTIFICATION != null">
+			IDENTIFICATION= #{IDENTIFICATION},
+		</if>
+		<if test="NAME != null">
+			NAME = #{NAME},
+		</if>
+		<if test="DESC1 != null">
+			DESC1 = #{DESC1},
+		</if>
+		<if test="FLOWPACKAGE != null">
+			FLOWPACKAGE = #{FLOWPACKAGE},
+		</if>
+		<if test="DOCID != null">
+			DOCID = #{DOCID},
+		</if>
+		<if test="DOCIDPHO != null">
+			DOCIDPHO = #{DOCIDPHO},
+		</if>
+		<if test="STATUS != null">
+			STATUS = #{STATUS},
+		</if>
+		<if test="CREATEPSN != null">
+			CREATEPSN = #{CREATEPSN},
+		</if>
+		<if test="CREATEDATE != null">
+			CREATEDATE = #{CREATEDATE},
+		</if>
+		<if test="CODE != null">
+			CODE = #{CODE},
+		</if>
+		<if test="ICO != null">
+			ICO = #{ICO},
+		</if>
+		<if test="TYPE != null">
+			TYPE = #{TYPE},
+		</if>
+		<if test="CNUM != null">
+			CNUM = #{CNUM},
+		</if>
+		<if test="FORMTYPE != null">
+			FORMTYPE = #{FORMTYPE},
+		</if>
+		<if test="ISDELETEFORM != null">
+			ISDELETEFORM = #{ISDELETEFORM},
+		</if>
+		<if test="DCODE != null">
+			DCODE = #{DCODE},
+		</if>
+    </set>
+    Where ID = #{ID}
+  </update>
+
+  <!-- 删除过程表数据实体类 -->
+  <delete id="deleteFLOW_CONFIG_PROCESS" parameterType="java.lang.String">
+  	delete From FLOW_CONFIG_PROCESS Where ID = #{ID}
+  </delete>
+
+  <!-- 增加过程流程组表数据实体类 -->
+  <insert id="insertFLOW_CONFIG_PROSESS_GROUP" parameterType="java.util.Map">
+	Insert Into FLOW_CONFIG_PROSESS_GROUP
+	<trim prefix="(" suffix=")" suffixOverrides=",">
+		<if test="ID != null">
+			ID,
+		</if>
+		<if test="PROSESSID != null">
+			PROSESSID,
+		</if>
+		<if test="GROUPID != null">
+			GROUPID,
+		</if>
+		<if test="TYPE != null">
+			TYPE,
+		</if>
+		<if test="ISDEPT != null">
+			ISDEPT,
+		</if>
+	</trim>
+	<trim prefix="values (" suffix=")" suffixOverrides=",">
+		<if test="ID != null">
+			#{ID},
+		</if>
+		<if test="PROSESSID != null">
+			#{PROSESSID},
+		</if>
+		<if test="GROUPID != null">
+			#{GROUPID},
+		</if>
+		<if test="TYPE != null">
+			#{TYPE},
+		</if>
+		<if test="ISDEPT != null">
+			#{ISDEPT},
+		</if>
+	</trim>
+  </insert>
+
+  <!-- 编辑过程流程组表数据实体类 -->
+  <update id="editFLOW_CONFIG_PROSESS_GROUP" parameterType="java.util.Map">
+    update FLOW_CONFIG_PROSESS_GROUP
+    <set>
+		<if test="PROSESSID != null">
+			PROSESSID = #{PROSESSID},
+		</if>
+		<if test="GROUPID != null">
+			GROUPID = #{GROUPID},
+		</if>
+		<if test="TYPE != null">
+			TYPE = #{TYPE},
+		</if>
+		<if test="ISDEPT != null">
+			ISDEPT = #{ISDEPT},
+		</if>
+    </set>
+    Where ID = #{ID}
+  </update>
+
+  <!-- 增加活动依赖转发(关系)表数据实体类 -->
+  <insert id="insertFLOW_CONFIG_ACTIVITY_CONNE" parameterType="java.util.Map">
+	Insert Into FLOW_CONFIG_ACTIVITY_CONNE
+	<trim prefix="(" suffix=")" suffixOverrides=",">
+		<if test="ID != null">
+			ID,
+		</if>
+		<if test="FID != null">
+			FID,
+		</if>
+		<if test="CID != null">
+			CID,
+		</if>
+		<if test="SID != null">
+			SID,
+		</if>
+		<if test="EID != null">
+			EID,
+		</if>
+		<if test="NAME != null">
+			NAME,
+		</if>
+		<if test="DESC1 != null">
+			DESC1,
+		</if>
+		<if test="WHERE1 != null">
+			WHERE1,
+		</if>
+		<if test="TYPE != null">
+			TYPE,
+		</if>
+		<if test="ISNEED != null">
+			ISNEED,
+		</if>
+		<if test="ISATT != null">
+			ISATT,
+		</if>
+	</trim>
+	<trim prefix="values (" suffix=")" suffixOverrides=",">
+		<if test="ID != null">
+			#{ID},
+		</if>
+		<if test="FID != null">
+			#{FID},
+		</if>
+		<if test="CID != null">
+			#{CID},
+		</if>
+		<if test="SID != null">
+			#{SID},
+		</if>
+		<if test="EID != null">
+			#{EID},
+		</if>
+		<if test="NAME != null">
+			#{NAME},
+		</if>
+		<if test="DESC1 != null">
+			#{DESC1},
+		</if>
+		<if test="WHERE1 != null">
+			#{WHERE1},
+		</if>
+		<if test="TYPE != null">
+			#{TYPE},
+		</if>
+		<if test="ISNEED != null">
+			#{ISNEED},
+		</if>
+		<if test="ISATT != null">
+			#{ISATT},
+		</if>
+	</trim>
+  </insert>
+
+  <!-- 编辑活动依赖转发(关系)表数据实体类 -->
+  <update id="editFLOW_CONFIG_ACTIVITY_CONNE" parameterType="java.util.Map">
+    update FLOW_CONFIG_ACTIVITY_CONNE
+    <set>
+		<if test="FID != null">
+			FID = #{FID},
+		</if>
+		<if test="CID != null">
+			CID = #{CID},
+		</if>
+		<if test="SID != null">
+			SID = #{SID},
+		</if>
+		<if test="EID != null">
+			EID = #{EID},
+		</if>
+		<if test="NAME != null">
+			NAME = #{NAME},
+		</if>
+		<if test="DESC1 != null">
+			DESC1 = #{DESC1},
+		</if>
+		<if test="WHERE1 != null">
+			WHERE1 = #{WHERE1},
+		</if>
+		<if test="TYPE != null">
+			TYPE = #{TYPE},
+		</if>
+		<if test="ISNEED != null">
+			ISNEED = #{ISNEED},
+		</if>
+		<if test="ISATT != null">
+			ISATT = #{ISATT},
+		</if>
+    </set>
+    Where ID = #{ID}
+  </update>
+
+  <!-- 增加时间限制表数据实体类 -->
+  <insert id="insertFLOW_CONFIG_TIME" parameterType="java.util.Map">
+	Insert Into FLOW_CONFIG_TIME
+	<trim prefix="(" suffix=")" suffixOverrides=",">
+		<if test="ID != null">
+			ID,
+		</if>
+		<if test="FID != null">
+			FID,
+		</if>
+		<if test="DAY != null">
+			DAY,
+		</if>
+		<if test="NAME != null">
+			NAME,
+		</if>
+		<if test="ABNORMITYID != null">
+			ABNORMITYID,
+		</if>
+		<if test="FREQUENCY != null">
+			FREQUENCY,
+		</if>
+	</trim>
+	<trim prefix="values (" suffix=")" suffixOverrides=",">
+		<if test="ID != null">
+			#{ID},
+		</if>
+		<if test="FID != null">
+			#{FID},
+		</if>
+		<if test="DAY != null">
+			#{DAY},
+		</if>
+		<if test="NAME != null">
+			#{NAME},
+		</if>
+		<if test="ABNORMITYID != null">
+			#{ABNORMITYID},
+		</if>
+		<if test="FREQUENCY != null">
+			#{FREQUENCY},
+		</if>
+	</trim>
+  </insert>
+
+  <!-- 编辑时间限制表数据实体类 -->
+  <update id="editFLOW_CONFIG_TIME" parameterType="java.util.Map">
+    update FLOW_CONFIG_TIME
+    <set>
+		<if test="FID != null">
+			FID = #{FID},
+		</if>
+		<if test="DAY != null">
+			DAY = #{DAY},
+		</if>
+		<if test="NAME != null">
+			NAME = #{NAME},
+		</if>
+		<if test="ABNORMITYID != null">
+			ABNORMITYID = #{ABNORMITYID},
+		</if>
+		<if test="FREQUENCY != null">
+			FREQUENCY = #{FREQUENCY},
+		</if>
+    </set>
+    Where ID = #{ID}
+  </update>
+
+  <!-- 增加活动按钮关系表数据实体类 -->
+  <insert id="insertFLOW_CONFIG_ACTIVITY_BUTTON" parameterType="java.util.Map">
+	Insert Into FLOW_CONFIG_ACTIVITY_BUTTON
+	<trim prefix="(" suffix=")" suffixOverrides=",">
+		<if test="ID != null">
+			ID,
+		</if>
+		<if test="FID != null">
+			FID,
+		</if>
+		<if test="BUTTONID != null">
+			BUTTONID,
+		</if>
+		<if test="BWHERE != null">
+			BWHERE,
+		</if>
+	</trim>
+	<trim prefix="values (" suffix=")" suffixOverrides=",">
+		<if test="ID != null">
+			#{ID},
+		</if>
+		<if test="FID != null">
+			#{FID},
+		</if>
+		<if test="BUTTONID != null">
+			#{BUTTONID},
+		</if>
+		<if test="BWHERE != null">
+			#{BWHERE},
+		</if>
+	</trim>
+  </insert>
+
+  <!-- 编辑活动按钮关系表数据实体类 -->
+  <update id="editFLOW_CONFIG_ACTIVITY_BUTTON" parameterType="java.util.Map">
+    update FLOW_CONFIG_ACTIVITY_BUTTON
+    <set>
+		<if test="FID != null">
+			FID = #{FID},
+		</if>
+		<if test="BUTTONID != null">
+			BUTTONID = #{BUTTONID},
+		</if>
+		<if test="BWHERE != null">
+			BWHERE = #{BWHERE},
+		</if>
+    </set>
+    Where ID = #{ID}
+  </update>
+
+  <!-- 增加活动可操作字段表数据实体类 -->
+  <insert id="insertCOLL_CONFIG_OPERATE_FIELD" parameterType="java.util.Map">
+	Insert Into COLL_CONFIG_OPERATE_FIELD
+	<trim prefix="(" suffix=")" suffixOverrides=",">
+		<if test="ID != null">
+			ID,
+		</if>
+		<if test="FID != null">
+			FID,
+		</if>
+		<if test="FIELD != null">
+			FIELD,
+		</if>
+		<if test="ISDISPLAY != null">
+			ISDISPLAY,
+		</if>
+		<if test="ISEDIT != null">
+			ISEDIT,
+		</if>
+		<if test="ISMUSTFILL != null">
+			ISMUSTFILL,
+		</if>
+		<if test="DEFAULT1 != null">
+			DEFAULT1,
+		</if>
+		<if test="ISFORCE != null">
+			ISFORCE,
+		</if>
+	</trim>
+	<trim prefix="values (" suffix=")" suffixOverrides=",">
+		<if test="ID != null">
+			#{ID},
+		</if>
+		<if test="FID != null">
+			#{FID},
+		</if>
+		<if test="FIELD != null">
+			#{FIELD},
+		</if>
+		<if test="ISDISPLAY != null">
+			#{ISDISPLAY},
+		</if>
+		<if test="ISEDIT != null">
+			#{ISEDIT},
+		</if>
+		<if test="ISMUSTFILL != null">
+			#{ISMUSTFILL},
+		</if>
+		<if test="DEFAULT1 != null">
+			#{DEFAULT1},
+		</if>
+		<if test="ISFORCE != null">
+			#{ISFORCE},
+		</if>
+	</trim>
+  </insert>
+
+  <!-- 编辑活动可操作字段表数据实体类 -->
+  <update id="editCOLL_CONFIG_OPERATE_FIELD" parameterType="java.util.Map">
+    update FLOW_CONFIG_ACTIVITY_BUTTON
+    <set>
+		<if test="FID != null">
+			FID = #{FID},
+		</if>
+		<if test="FIELD != null">
+			FIELD = #{FIELD},
+		</if>
+		<if test="ISDISPLAY != null">
+			ISDISPLAY = #{ISDISPLAY},
+		</if>
+		<if test="ISEDIT != null">
+			ISEDIT = #{ISEDIT},
+		</if>
+		<if test="ISMUSTFILL != null">
+			ISMUSTFILL = #{ISMUSTFILL},
+		</if>
+		<if test="DEFAULT1 != null">
+			DEFAULT1 = #{DEFAULT1},
+		</if>
+		<if test="ISFORCE != null">
+			ISFORCE = #{ISFORCE},
+		</if>
+    </set>
+    Where ID = #{ID}
+  </update>
+
+  <!-- 增加活动流程组表数据实体类 -->
+  <insert id="insertFLOW_CONFIG_ACTIVITY_GROUP" parameterType="java.util.Map">
+	Insert Into FLOW_CONFIG_ACTIVITY_GROUP
+	<trim prefix="(" suffix=")" suffixOverrides=",">
+		<if test="ID != null">
+			ID,
+		</if>
+		<if test="ACTIVITYID != null">
+			ACTIVITYID,
+		</if>
+		<if test="GROUPID != null">
+			GROUPID,
+		</if>
+	</trim>
+	<trim prefix="values (" suffix=")" suffixOverrides=",">
+		<if test="ID != null">
+			#{ID},
+		</if>
+		<if test="ACTIVITYID != null">
+			#{ACTIVITYID},
+		</if>
+		<if test="GROUPID != null">
+			#{GROUPID},
+		</if>
+	</trim>
+  </insert>
+
+  <!-- 编辑活动流程组表数据实体类 -->
+  <update id="editFLOW_CONFIG_ACTIVITY_GROUP" parameterType="java.util.Map">
+    update FLOW_CONFIG_ACTIVITY_GROUP
+    <set>
+		<if test="ACTIVITYID != null">
+			ACTIVITYID = #{ACTIVITYID},
+		</if>
+		<if test="GROUPID != null">
+			GROUPID = #{GROUPID},
+		</if>
+    </set>
+    Where ID = #{ID}
+  </update>
+
+  <!-- 增加流程权限委托管理表数据实体类 -->
+  <insert id="insertFLOW_CONFIG_ENTRUST" parameterType="java.util.Map">
+	Insert Into FLOW_CONFIG_ENTRUST
+	<trim prefix="(" suffix=")" suffixOverrides=",">
+		<if test="ID != null">
+			ID,
+		</if>
+		<if test="SUSERNO != null">
+			SUSERNO,
+		</if>
+		<if test="IUSERNO != null">
+			IUSERNO,
+		</if>
+		<if test="SDATE != null">
+			SDATE,
+		</if>
+		<if test="EDATE != null">
+			EDATE,
+		</if>
+	</trim>
+	<trim prefix="values (" suffix=")" suffixOverrides=",">
+		<if test="ID != null">
+			#{ID},
+		</if>
+		<if test="SUSERNO != null">
+			#{SUSERNO},
+		</if>
+		<if test="IUSERNO != null">
+			#{IUSERNO},
+		</if>
+		<if test="SDATE != null">
+			#{SDATE},
+		</if>
+		<if test="EDATE != null">
+			#{EDATE},
+		</if>
+	</trim>
+  </insert>
+
+  <!-- 编辑流程权限委托管理表数据实体类类 -->
+  <update id="editFLOW_CONFIG_ENTRUST" parameterType="java.util.Map">
+    update FLOW_CONFIG_ENTRUST
+    <set>
+		<if test="SUSERNO != null">
+			SUSERNO = #{SUSERNO},
+		</if>
+		<if test="IUSERNO != null">
+			IUSERNO = #{IUSERNO},
+		</if>
+		<if test="SDATE != null">
+			SDATE = #{SDATE},
+		</if>
+		<if test="EDATE != null">
+			EDATE = #{EDATE},
+		</if>
+    </set>
+    Where ID = #{ID}
+  </update>
+</mapper>

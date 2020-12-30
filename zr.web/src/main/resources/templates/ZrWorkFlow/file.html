@@ -1,0 +1,144 @@
+<HTML>
+<HEAD>
+	<TITLE>添加附件</TITLE>
+	<META http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+	<link rel="stylesheet" type="text/css" href="/static/vue/element-ui/unitls.css"/>
+	
+	    <link rel="stylesheet" type="text/css" href="/static/vue/element-ui/lib/theme-chalk/index.css" >
+<link rel="stylesheet" type="text/css" href="/static/vue/element-ui/lib/theme-chalk/html.css" >
+<script type="text/javascript" src="/static/vue/jquery-1_15.9.1.min.js"></script>
+<script type="text/javascript" src="/static/vue/vue.min.js" ></script>
+<script type="text/javascript" src="/static/vue/element-ui/lib/index.js" type="text/javascript"></script>
+<script type="text/javascript" src="/static/vue/layer/layer.js"></script>
+
+  <script type="text/javascript" src="/static/vue/script/jquery.unitls.min.js"></script>
+<script type="text/javascript">
+function Check(theForm){
+  if (RegForm.DOCID.value == ""){
+	  layer.msg('请先保存数据后再上传附件！');
+      return (false);
+  }
+  if ($("input[name='flFile_Name']").val() == ""){
+	  layer.msg('选择上传文件！');
+      return (false);
+  }
+  document.getElementById("pTitle").value = $("input[name='flFile_Name']").val();
+
+  return true;
+}
+
+function Del_File(RegForm){
+  if ($thisvue.attlist=='') {
+	  layer.msg('选请选择要删除的文件！');
+  } else {
+	  layer.open({
+		  	title: '删除文件',
+		  	btn: ['确定', '取消'],
+		  	content: '确定是否删除该文件？',
+		  	yes: function(){
+		  		layer.closeAll();
+		  		location.href="/zruser/actionuser?Act=deleteatt&ID="+$thisvue.attlist+"&FLOWID="+RegForm.FLOWID.value+"&DOCID="+RegForm.DOCID.value+"&AID="+RegForm.AID.value+"&TYPE="+RegForm.TYPE.value;
+  	  		},
+        	btn2: function(){
+        		layer.closeAll();
+        	},
+	  	  	zIndex: layer.zIndex, //重点1
+	  	  	success: function(layero){
+	    		layer.setTop(layero); //重点2
+	  	  	}
+	  });
+  }
+}
+
+function insertTitle(tValue){
+    document.getElementById("pTitle").value = tValue;
+}
+</script>
+</HEAD>
+<BODY class="BodyMain1" topmargin="0" leftmargin="0" rightmargin="0" bottommargin="0" marginwidth="0" marginheight="0">
+<div id="upfile">
+<FORM method="post" name="RegForm" enctype="multipart/form-data" action="/system/actionsysattmanage" onsubmit="return Check(this)" class="layui-form">
+  <input type="hidden" name="FLOWID" th:value="${FLOWID}">
+  <input type="hidden" name="DOCID" th:value="${DOCID}">
+  <input type="hidden" name="AID" th:value="${AID}">
+  <input type="hidden" name="TYPE" th:value="${TYPE}">
+  <input type="hidden" name="ATTNUM" th:value="${ATTNUM}">
+  <input type="hidden" name="pTitle" id="pTitle" value="">
+  <div th:if="${TYPE == '3'}">
+  <TABLE border="0" width="100%">
+       <TR>
+         <TD width="20%" align="right"><FONT face=仿宋_GB2312 size=2>浏览附件：</font></TD>
+         <TD width="48%"><FONT face=仿宋_GB2312 size=2 color="red" th:utext="${LIST2}"></font></TD>
+         <TD></TD>
+       </TR>
+  </TABLE>
+  </div>
+  <div th:if="${TYPE != '3'}">
+  <TABLE border="0" width="100%">
+    <TR>
+      <TD width="20%" align="right"><font size="2">添加附件：</font></TD>
+      <TD width="48%"><input name="flFile_Name" id="flFile_Name" class="easyui-filebox" data-options="buttonText:'选择文件',prompt:'选择上传文件'" style="width:60%;height:30px;"></TD>
+      <TD>
+        <table cellspacing="0" cellpadding="0" border='0'>
+        	<tr>
+        	 <el-button type="primary" icon="el-icon-upload2" size="medium" onclick="javascript:if(Check(document.RegForm)){document.RegForm.submit();}" style="width:100px;">上传附件</el-button>
+
+        	</tr>
+        </table>
+       </TD>
+    </TR>
+    <TR>
+      <TD width="20%" align="right"><font size="2">已传附件：</font></TD>
+      <TD width="48%">
+      <div style="width: 400px;">
+         <div th:utext="${LIST1}"></div>
+      </div>
+      </TD>
+      <TD>
+        <table cellspacing="0" cellpadding="0" border='0'>
+        	<tr>
+            	<el-button type="primary" icon="el-icon-delete" size="medium" onclick="javascript:Del_File(document.RegForm);" style="width:100px;">删除附件</el-button>
+        	</tr>
+        </table>
+     </TD>
+    </TR>
+    <TR>
+      <TD width="20%" align="right"><font size="2">浏览附件：</font></TD>
+      <TD width="48%"><font size="2" th:utext="${LIST2}"></font></TD>
+      <TD></TD>
+    </TR>
+  </TABLE>
+  </div>
+</FORM>
+</div>
+<script type="text/javascript">
+var $thisvue;
+var vm2 = new Vue({
+    el: '#upfile',
+    name: 'upfile',
+    data() {
+        return {
+            htmlLoading:true,//全局加载
+            rowsloadtitle:'数据加载...',
+            
+            attlist:'',
+        }
+    },
+    created() {
+    	let e = this;
+    	$thisvue = this;
+    },
+    mounted(){
+    	this.$nextTick(() => {
+		    this.htmlLoading = false
+        })
+    },
+    computed: {
+    },
+    methods: {
+    }
+});
+</script>
+</BODY>
+</HTML>

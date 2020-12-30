@@ -1,0 +1,68 @@
+<FORM action="" method="post" id="RegForm" name="RegForm">
+	<input type="hidden" id="nodeId" name="nodeId" value="">
+	<input type="hidden" id="Act" name="Act" value="getunitmain">
+	<div class="easyui-layout" style="width:100%;height:320px;">
+		<div data-options="region:'west',split:true" title="系统单位/机构" style="width:260px;">
+		   <div class="easyui-panel2" style="padding:5px">
+	        <ul id="tremen" class="easyui-tree" data-options="url:'/dictdata/actionJson?method=unitname&unitid=0',method:'get',animate:true"></ul>
+	      </div>
+		</div>
+		<div data-options="region:'center',title:'用户列表',iconCls:'icon-ok'">
+                <center>
+                <br><br>
+				<input type="hidden" id="ids" name="ids" value="1">
+                	选择单位或部门：<br><br>
+                <input type="text" id="depts" name="depts"  style="width:200px" disabled="disabled" value=""><br><br>
+                	内勤人员：<br><br>
+                <input type="text" id="rnames" name="rnames" style="width:200px"  disabled="disabled"  value="">
+                </center>
+		</div>
+	</div>
+    <div data-options="region:'south',border:false" style="text-align:center;padding:5px 0 15px;">
+	  <a class="easyui-linkbutton" data-options="iconCls:'icon-ok'" href="javascript:void(0)" onclick="Javascript:selectOK();" style="width:80px">确定</a>
+	  <a class="easyui-linkbutton" data-options="iconCls:'icon-cancel'" href="javascript:void(0)" onclick="Javascript:$('#win').window('close');" style="width:80px">取消</a>
+    </div>
+</FORM>
+<script type="text/javascript" th:inline="javascript">
+//树的单击事件
+$(function(){
+   $("#tremen").tree({
+     onClick:function(node){
+           var unitid=node.id;
+           document.getElementById("nodeId").value=unitid;
+           var url="/flow/openflowcfg";
+			 $.ajax({
+				   url:url,
+				   type: "POST",
+                   dataType:'json',
+				   data:$('#RegForm').serialize(),// 要提交的表单
+				   success: function(data) {
+	                   document.getElementById("ids").value=data.DeptInside;
+	                   document.getElementById("depts").value=data.UNITNAME;
+	                   document.getElementById("rnames").value=data.DeptInsideName;
+				   }
+			 });
+     }
+   });
+});
+
+function selectOK(){
+    var s1 = document.getElementById("ids").value;
+    if (s1=="1"){
+       $.messager.alert('提示','请先选择单位或部门~','info');
+       return false;
+    }
+    if (s1=="0"){
+       $.messager.alert('提示','选择的单位或部门下没有设置部门内勤,请联系管理员设置!','info');
+       return false;
+    }
+    $('#win').window('close');
+    //回调
+    var strtype = [[${TYPE}]];
+    if (strtype=="1"){
+        SPsnRe(s1);
+    }else{
+        SPsnUpRe(s1);
+    }
+}
+</script>

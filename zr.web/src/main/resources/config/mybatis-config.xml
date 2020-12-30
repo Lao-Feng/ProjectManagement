@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <settings>
+    	<!-- 设置MyBatis让SQL返回接口包含Null值数据 -->
+    	<setting name="callSettersOnNulls" value="true" />
+    	<!-- 设置MyBatis缓存SQL返回值数据 -->
+    	<setting name="cacheEnabled" value="true"/>
+        <!-- 打印查询语句 
+        http://blog.csdn.net/gao36951/article/details/53641432
+        -->
+        <setting name="logImpl" value="STDOUT_LOGGING" />
+    </settings>
+
+</configuration>

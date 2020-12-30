@@ -1,0 +1,70 @@
+.dialog-button {
+	border-color: rgb(221, 221, 221) rgb(149, 184, 231) rgb(149, 184, 231);
+	padding: 5px; 
+}
+.dialog-button {
+	background: rgb(244, 244, 244); border-width: 1px; border-style: solid;
+	padding: 5px; 
+}
+.l-btn {
+	background: linear-gradient(rgb(255, 255, 255) 0px, rgb(238, 238, 238) 100%) repeat-x; border-radius: 5px; border: 1px solid rgb(187, 187, 187); border-image: none; color: rgb(68, 68, 68); -moz-border-radius: 5px 5px 5px 5px; -webkit-border-radius: 5px 5px 5px 5px;
+}
+.l-btn:hover {
+	background: rgb(234, 242, 255); border: 1px solid rgb(183, 210, 255); border-image: none; color: rgb(0, 0, 0); filter: none;
+}
+.l-btn-plain {
+	background: none; border: 0px currentColor; border-image: none; filter: none;
+}
+.l-btn-plain:hover {
+	background: rgb(234, 242, 255); border-radius: 5px; border: 1px solid rgb(183, 210, 255); border-image: none; color: rgb(0, 0, 0); -moz-border-radius: 5px 5px 5px 5px; -webkit-border-radius: 5px 5px 5px 5px;
+}
+.l-btn-disabled {
+	background: linear-gradient(rgb(255, 255, 255) 0px, rgb(238, 238, 238) 100%) repeat-x; color: rgb(68, 68, 68); cursor: default; opacity: 0.5;
+}
+.l-btn-disabled:hover {
+	background: linear-gradient(rgb(255, 255, 255) 0px, rgb(238, 238, 238) 100%) repeat-x; color: rgb(68, 68, 68); cursor: default; opacity: 0.5;
+}.l-btn {
+	margin: 0px; padding: 0px; text-align: center; overflow: hidden; text-decoration: none; vertical-align: middle; display: inline-block; cursor: pointer;
+}
+.l-btn-plain {
+	padding: 1px; border: 0px currentColor; border-image: none;
+}
+.l-btn-left {
+	margin: 0px; padding: 0px; overflow: hidden; vertical-align: top; display: inline-block; position: relative;
+}
+.l-btn-text {
+	margin: 0px 4px; padding: 0px; width: auto; line-height: 24px; font-size: 12px; vertical-align: top; display: inline-block;
+}
+.l-btn-icon {
+	top: 50%; width: 16px; height: 16px; line-height: 16px; font-size: 1px; margin-top: -8px; display: inline-block; position: absolute;
+}
+.l-btn span span .l-btn-empty {
+	margin: 0px; width: 16px; height: 24px; font-size: 1px; vertical-align: top; display: inline-block;
+}
+.l-btn span .l-btn-icon-left {
+	background-position: left; padding: 0px 0px 0px 20px;
+}
+.l-btn span .l-btn-icon-right {
+	background-position: right; padding: 0px 20px 0px 0px;
+}
+.textbox {
+	margin: 0px; padding: 0px; border-radius: 5px; border: 1px solid rgb(149, 184, 231); border-image: none; overflow: hidden; vertical-align: middle; display: inline-block; white-space: nowrap; position: relative; background-color: rgb(255, 255, 255); -moz-border-radius: 5px 5px 5px 5px; -webkit-border-radius: 5px 5px 5px 5px;
+}
+.textbox .textbox-text {
+	margin: 0px; padding: 4px; border-radius: 5px; border: 0px currentColor; border-image: none; font-size: 12px; vertical-align: top; outline-style: none; -moz-border-radius: 5px 5px 5px 5px; -webkit-border-radius: 5px 5px 5px 5px; resize: none;
+}
+.textbox .textbox-prompt {
+	color: rgb(170, 170, 170); font-size: 12px;
+}
+.textbox-button {
+	padding: 0px; border-radius: 0px; top: 0px; vertical-align: top; position: absolute; -moz-border-radius: 0 0 0 0; -webkit-border-radius: 0 0 0 0;
+}
+.textbox-button:hover {
+	padding: 0px; border-radius: 0px; top: 0px; vertical-align: top; position: absolute; -moz-border-radius: 0 0 0 0; -webkit-border-radius: 0 0 0 0;
+}
+.textbox-button-right {
+	border-width: 0px 0px 0px 1px;
+}
+.textbox-button-right:hover {
+	border-width: 0px 0px 0px 1px;
+}

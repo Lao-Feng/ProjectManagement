@@ -1,0 +1,73 @@
+<div class="easyui-layout" style="width:100%;height:250px;">
+	<div data-options="region:'west',split:true" title="系统单位/机构" style="width:250px;">
+	   <div class="easyui-panel2" style="padding:5px">
+        <ul id="tremen" class="easyui-tree" data-options="url:'/dictdata/actionJson?method=unitname&unitid=0',method:'get',animate:true"></ul>
+      </div>
+	</div>
+	<div data-options="region:'center',title:'用户列表',iconCls:'icon-ok'">
+		<table id="datalist" class="easyui-datagrid"
+				data-options="rownumbers:true,checkbox:true,singleSelect:true,border:false,fit:true,fitColumns:true">
+			<thead>
+				<tr>
+				    <th data-options="field:'ck',checkbox:true" width="100">选择</th>
+					<th data-options="field:'code',hidden:true" width="100">用户编码</th>
+					<th data-options="field:'name',align:'left'" width="100">用户名称</th>
+					<th data-options="field:'LOGINID',align:'left',hidden:true" width="100">登陆名称</th>
+					<th data-options="field:'LOGINTIME',align:'left',hidden:true" width="50">登陆次数</th>
+					<th data-options="field:'USERSTATE',align:'center'" width="50">状态</th>
+				</tr>
+			</thead>
+		</table>
+	</div>
+</div>
+<script type="text/javascript" th:inline="javascript">
+//定义选择的表
+var table = [[${UNITID}]];
+
+//树的单击事件
+$(function(){
+   $("#tremen").tree({
+       onClick:function(node){
+           table=node.id;
+           getReload(table);
+       }
+   });
+
+   $('#datalist').datagrid({
+       url:'/dictdata/actionJson?method=userlist&tabid='+table+'&_t='+new Date().getTime(),
+   });
+
+   //表格单击
+   $('#datalist').datagrid({
+	   //单击事件
+	   onClickRow:function(rowIndex,rowData){
+	      var row = $('#datalist').datagrid('getSelected');
+	      if(row){
+	    	  var id=row.code;
+              var name=row.name;
+              document.RegForm.eval([[${ID}]]).value = id;
+              document.RegForm.eval([[${NAME}]]).value = name;
+	          
+	          $('#win1').window('close');//关闭窗口
+		  }
+	   }
+	});
+});
+
+//局部刷新表格
+function getReload(tabId){
+	$('#datalist').datagrid({
+        url:'/dictdata/actionJson?method=userlist&tabid='+tabId+'&_t='+new Date().getTime(),
+    });
+}
+
+//设置隐藏列JS
+function hideCoum(){
+   $('#datalist').datagrid('hideColumn', 'code');
+   $('#datalist').datagrid('hideColumn', 'LOGINID');
+   $('#datalist').datagrid('hideColumn', 'LOGINTIME');
+}
+setTimeout("hideCoum();", 300);
+
+//关闭窗口$('#win').window('close');
+</script>

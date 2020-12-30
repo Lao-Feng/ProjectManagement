@@ -1,0 +1,200 @@
+ <head>
+ 	<title>WEB流程设计器</title>
+ 	<meta name="keyword" content=""/>
+ 	<meta name="description" content=""/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=9,chrome=1"/>
+    <meta name="author" content="leipi.org"/>
+    <link rel="stylesheet" type="text/css" href="/static/ZrWorkFlow/flowconfig/Public/css/bootstrap/css/bootstrap.css?2025"/>
+    <!--[if lte IE 6]>
+    <link rel="stylesheet" type="text/css" href="/static/ZrWorkFlow/flowconfig/Public/css/bootstrap/css/bootstrap-ie6.css?2025"/>
+    <![endif]-->
+    <!--[if lte IE 7]>
+    <link rel="stylesheet" type="text/css" href="/static/ZrWorkFlow/flowconfig/Public/css/bootstrap/css/ie.css?2025"/>
+    <![endif]-->
+    <link rel="stylesheet" type="text/css" href="/static/ZrWorkFlow/flowconfig/Public/css/site.css?2025"/>
+    <link href="/static/vue/element-ui/lib/theme-chalk/index.css" rel="stylesheet" type="text/css">
+<link href="/static/vue/element-ui/lib/theme-chalk/html.css" rel="stylesheet" type="text/css">
+<script src="/static/vue/jquery-1_15.9.1.min.js"></script>
+<script src="/static/vue/vue.min.js" type="text/javascript"></script>
+<script src="/static/vue/element-ui/lib/index.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        var _root='http://www.zrpower.cn/index.php?s=/',_controller = 'flowdesign';
+    </script>
+
+<link rel="stylesheet" type="text/css" href="/static/ZrWorkFlow/flowconfig/Public/js/flowdesign/flowdesign.css"/>
+<!--select 2-->
+<link rel="stylesheet" type="text/css" href="/static/ZrWorkFlow/flowconfig/Public/js/jquery.multiselect2side/css/jquery.multiselect2side.css"/>
+<SCRIPT type="text/javascript" src="/static/vue/script/jquery-2.0.3.min.js"></SCRIPT>
+<SCRIPT type="text/javascript" src="/static/vue/layer/layer.js"></SCRIPT>
+<SCRIPT type="text/javascript" src="/static/vue/script/systype.js"></SCRIPT>
+<style type="text/css">
+.container {
+    padding: 0px;
+}
+.process-flag{
+    background-color: rgba(228, 20, 20, 0);
+    color: rgba(78, 104, 130, 0.28);
+    font-size: 50px;
+    width: 100%;
+    margin-top: 20px;
+    margin-left: -25px;
+    margin-bottom: 10px;
+}
+.layui-layer-title {
+    background-color: rgb(64, 158, 255);
+    color: rgb(255, 255, 255);
+}
+</style>
+</head>
+<body style="margin: 0px;">
+<div id="zrflowmain"  v-loading="htmlLoading">
+<!--contextmenu div-->
+<div id="processMenu" style="display:none;">
+  <ul>
+    <li id="openflow"><i class="el-icon-monitor"></i>&nbsp;<span class="_label">打开流程</span></li>
+    <li id="opensubpackage"><i class="el-icon-folder"></i>&nbsp;<span class="_label">打开子包</span></li>
+    <li id="packagecopy"><i class="el-icon-document-copy"></i>&nbsp;<span class="_label">复制分类</span></li>
+    <li id="packagedelete"><i class="el-icon-close"></i>&nbsp;<span class="_label">删除分类</span></li>
+    <li id="pmAttribute"><i class="el-icon-set-up"></i>&nbsp;<span class="_label">属性</span></li>
+  </ul>
+</div>
+<!--end div-->
+<div class="container mini-layout" id="flowdesign_canvas"></div>
+</div>
+<script type="text/javascript" src="/static/ZrWorkFlow/flowconfig/Public/js/jquery-1.7.2.min.js?2025"></script>
+<script type="text/javascript" src="/static/ZrWorkFlow/flowconfig/Public/css/bootstrap/js/bootstrap.min.js?2025"></script>
+<script type="text/javascript" src="/static/ZrWorkFlow/flowconfig/Public/js/jquery-ui/jquery-ui-1.9.2-min.js?2025"></script>
+<script type="text/javascript" src="/static/ZrWorkFlow/flowconfig/Public/js/jsPlumb/jquery.jsPlumb-1.3.16-all-min.js?2025"></script>
+<script type="text/javascript" src="/static/ZrWorkFlow/flowconfig/Public/js/jquery.contextmenu.r2.js?2025"></script>
+<!--select 2-->
+<script type="text/javascript" src="/static/ZrWorkFlow/flowconfig/Public/js/jquery.multiselect2side/js/jquery.multiselect2side.js?2025"></script>
+<!--flowdesign-->
+<script type="text/javascript" src="/static/ZrWorkFlow/flowconfig/Public/js/flowdesign/leipi.flowdesign.v3.js?2025"></script>
+<SCRIPT type="text/javascript" src="/static/ZrWorkFlow/js/ControlPackage.js"></SCRIPT>
+<SCRIPT type="text/javascript" src="/static/Zrsysmanage/script/Public.js"></SCRIPT>
+
+<script type="text/javascript" th:inline="javascript">
+var the_flow_id = '4';
+
+function callbackSuperDialog(selectValue){
+     var aResult = selectValue.split('@leipi@');
+     $('#'+window._viewField).val(aResult[0]);
+     $('#'+window._hidField).val(aResult[1]);
+    //document.getElementById(window._hidField).value = aResult[1];
+}
+
+$(function(){
+    var alertModal = $('#alertModal'), attributeModal =  $("#attributeModal");
+    //消息提示
+    mAlert = function(messages,s){
+        if(!messages) messages = "";
+        if(!s) s = 2000;
+        alertModal.find(".modal-body").html(messages);
+        alertModal.modal('toggle');
+        setTimeout(function(){alertModal.modal("hide")},s);
+    }
+
+    //属性设置
+    attributeModal.on("hidden", function() {
+        $(this).removeData("modal");//移除数据，防止缓存
+    });
+
+    ajaxModal = function(url,fn){
+        url += url.indexOf('?') ? '&' : '?';
+        url += '_t='+ new Date().getTime();
+        attributeModal.find(".modal-body").html('<img src="/static/ZrWorkFlow/flowconfig/Public/images/loading.gif"/>');
+        attributeModal.modal({
+            remote:url
+        });
+        //加载完成执行
+        if(fn){
+            attributeModal.on('shown',fn);
+        }
+    }
+
+    /*
+     jsp 命名习惯 单词用下划线_隔开
+     js 命名习惯：首字母小写 + 其它首字线大写
+    */
+    /*步骤数据*/
+    var strProcessData = [[${PData}]];
+    var processData = $.parseJSON(strProcessData);
+    var wh = $(document).width();
+    var gs = parseInt(wh/150);
+    if(strProcessData!=null&&processData.total>0){
+    	var top = 10;
+    	$.each(processData.list, function (i, perm) {
+    		var lf= (i*150) >0 ? (i*150) : 10;
+    		if(parseInt((i+1)/gs)==0){
+    			processData.list[i].style = 'width:100px;height:100px;color:#0e76a8;left:'+lf+'px;top:10px;';//line-height: 100px;
+    		}else{
+    			top = 150*parseInt((i+1)/gs);
+    			lf = parseInt((i+1)%gs)>=1 ? parseInt((i+1)%gs)*150 :10;
+    			processData.list[i].style = 'width:100px;height:100px;color:#0e76a8;left:'+lf+'px;top:'+top+'px;';//line-height: 100px;
+    		}
+    		processData.list[i].icon = 'el-icon-folder-opened';
+        });
+    }
+    /*创建流程设计器*/
+    var _canvas = $("#flowdesign_canvas").Flowdesign({
+                      "processData":processData
+                      /*画面右键*/
+                      ,canvasMenus:{
+                      }
+                      /*步骤右键*/
+                      ,processMenus: {
+                          "openflow":function(t){
+                              var activeId = _canvas.getActiveId();//右键当前的ID
+                              OpenFlow(activeId);
+                          },
+                          "opensubpackage":function(t){
+                              var activeId = _canvas.getActiveId();//右键当前的ID
+                              OpenSubPackage(activeId);
+                          },
+                          "packagecopy":function(t){
+                              var activeId = _canvas.getActiveId();//右键当前的ID
+                              OpenFlowPackageCopy(activeId);
+                          },
+                          "packagedelete":function(t){
+                              var activeId = _canvas.getActiveId();//右键当前的ID
+                              DeletePackage(activeId);
+                          },
+                          "pmAttribute":function(t){
+                              var activeId = _canvas.getActiveId();//右键当前的ID
+                              SetupProperty(activeId);
+                          },
+                      }
+                      ,fnDbClick:function(){
+                          //和 pmAttribute 一样
+                          var activeId = _canvas.getActiveId();//右键当前的ID
+                          OpenFlow(activeId);
+                      }
+                  });
+});
+var vm = new Vue({
+    el: '#zrflowmain',
+    name: 'zr_flowmain',
+    data() {
+        return {
+            htmlLoading:true,//全局加载
+            rowsloadtitle:'数据加载...',
+            dialog:false,
+        }
+    },
+    created() {
+    },
+    mounted(){
+        this.$nextTick(() => {
+		    this.htmlLoading = false
+        })
+    },
+    computed: {
+    },
+    methods: {
+    }
+});
+</script>
+</body>
+</html>

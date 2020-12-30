@@ -1,0 +1,91 @@
+<HTML>
+<HEAD>
+<TITLE>流程引擎设计</TITLE>
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<!-- 必要连接 -->
+<link href="/static/vue/element-ui/lib/theme-chalk/index.css" rel="stylesheet" type="text/css">
+<link href="/static/vue/element-ui/lib/theme-chalk/html.css" rel="stylesheet" type="text/css">
+<script src="/static/vue/jquery-1_15.9.1.min.js"></script>
+<script src="/static/vue/vue.min.js" type="text/javascript"></script>
+<script src="/static/vue/element-ui/lib/index.js" type="text/javascript"></script>
+</head>
+<body style="margin:0px;">
+	<div id="zrflowmain" class="table" v-loading="htmlLoading">
+	    <div style="background: rgb(64, 158, 255);">
+	        <el-button-group >
+               <el-button type="primary" size="small" icon="el-icon-refresh" @click="zrflow_load">刷新</el-button>
+               <el-button type="primary" size="small" icon="el-icon-folder-opened" @click="zrflow_add">添加流程包</el-button>
+               <el-button type="primary" size="small" icon="el-icon-monitor" @click="zrflow_about">关于</el-button>
+            </el-button-group>
+	    </div>
+	    <div>
+	        <iframe id="Package" name="Package" :src="mianUrl1" width="100%" style="border: 0px"></iframe>
+	    </div>
+	    
+	    <!-- 关于 -->
+        <el-dialog title="关于流程" :visible.sync="dialog" :show-close="false" width="300px">
+           <el-container>
+             <el-header class="el-dialog-ftl2">
+                <el-button type="primary" size="small" icon="el-icon-close" @click="dialog = false"></el-button>
+            </el-header>
+            <el-main style="padding: 0px;margin-top: -10px;">
+                <p>工作流引擎，版本：7.0。<br />警告: 本计算机程序受著作权法和国际公约的保护，未经授权擅自复制或散布本程序的部分或全部，将承受严厉的民事和刑事处罚，对已知的违反者将给予法律范围内的全面制裁。
+                </p>
+            </el-main>
+          </el-container>
+       </el-dialog>
+            
+	</div>
+<script type="text/javascript" th:inline="javascript">
+var fid = [[${FID}]];
+var vm = new Vue({
+    el: '#zrflowmain',
+    name: 'zr_flowmain',
+    data() {
+        return {
+            htmlLoading:true,//全局加载
+            rowsloadtitle:'数据加载...',
+            
+            mianUrl1:'/flow/openflowcfg?Act=PackageList&FID='+fid,//url
+            dialog:false,
+        }
+    },
+    created() {
+        this.init_query_higth()
+    },
+    mounted(){
+        this.$nextTick(() => {
+		    this.htmlLoading = false
+        })
+    },
+    computed: {
+    },
+    methods: {
+        // 初始化高度
+        init_query_higth(){
+            let e = this
+            $("#Package").width($(document).width())
+            $("#Package").height($(document).height()-36)
+        },
+        //刷新，
+        zrflow_load(){
+        	let e = this
+        	document.getElementById('Package').src=e.mianUrl1
+		},
+		//添加流程包
+        zrflow_add(){
+        	let e = this
+        	window.Package.AddPackage(''+[[${FID}]]+'');
+		},
+		//关于介绍
+        zrflow_about(){
+        	let e = this
+        	e.dialog = true
+		},
+    }
+});
+</script>	
+</BODY>
+</HTML>

@@ -1,0 +1,297 @@
+<!Doctype html>
+<html class="no-js">
+<head>
+  <meta charset="utf-8">
+  <title>南方智软科技</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <meta name="apple-touch-fullscreen" content="yes">
+  <meta name="x5-fullscreen" content="true">
+  <!-- Set render engine for 360 browser -->
+  <meta name="renderer" content="webkit">
+  <!-- No Baidu Siteapp-->
+  <meta http-equiv="Cache-Control" content="no-siteapp"/>
+  <!-- Add to homescreen for Chrome on Android -->
+  <meta name="mobile-web-app-capable" content="yes">
+   <!-- Add to homescreen for Safari on iOS -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-title" content="Amaze UI"/>
+  <!-- Tile icon for Win8 (144x144 + tile color) -->
+  <meta name="msapplication-TileImage" content="/static/assets/i/app-icon72x72@2x.png">
+  <meta name="msapplication-TileColor" content="#0e90d2">
+
+  <link rel="icon" type="image/png" href="/static/assets/i/favicon.png">
+  <link rel="icon" sizes="192x192" href="/static/assets/i/app-icon72x72@2x.png">
+  <link rel="apple-touch-icon-precomposed" href="/static/assets/i/app-icon72x72@2x.png">
+  <link rel="stylesheet" href="/static/assets/font_icon/css/font-awesome.css">
+  <link rel="stylesheet" href="/static/assets/css/amazeui.min.css">
+  <link rel="stylesheet" href="/static/assets/css/app.css">
+  <link rel="stylesheet" href="/static/assets/css/amazeui.datetimepicker.css"/>
+
+  <script type="text/javascript" src="/static/assets/js/jquery.min.js"></script>
+  <script type="text/javascript" src="/static/assets/js/amazeui.min.js"></script>
+  <script type="text/javascript" src="/static/assets/js/amazeui.datetimepicker.min.js"></script>
+  <script type="text/javascript" src="/static/assets/js/locales/amazeui.datetimepicker.zh-CN.js"></script>
+</head>
+<body>
+  <!-- header  start -->
+  <header data-am-widget="header" class="am-header am-header-default am-header-fixed">
+      <div class="am-header-left am-header-nav">
+          <a href="javascript:history.go(-1);" class="">
+                <i class="am-header-icon am-icon-chevron-left"></i>
+          </a>
+      </div>
+      <h1 class="am-header-title" id="m_t">
+          <a href="#title-link" class="">
+            查询引擎
+          </a>
+      </h1>
+      <div class="am-header-right am-header-nav">
+          <a href="javascript: void(0)" class="am-menu-toggle">
+                <i class="am-menu-toggle-icon am-icon-search"></i>
+          </a>
+      </div>
+  </header>
+  <!-- header  end -->
+  <!-- main  start -->
+  <div class="main-contor">
+      <!-- 侧边栏内容   开始 -->
+  <nav data-am-widget="menu" class="am-menu  am-menu-offcanvas1"  data-am-menu-offcanvas>
+    <div class="am-offcanvas" >
+      <div class="am-offcanvas-bar">
+      <ul class="am-menu-nav am-avg-sm-1">
+          <li class="am-parent">
+            <a href="##" class="" >文本</a>
+              <ul class="am-menu-sub am-collapse  am-avg-sm-1 ">
+                  <li class="">
+                     <input type="text" class="am-form-field" id="doc-vld-name" minlength="3" placeholder="输入文本" />
+                  </li>
+              </ul>
+          </li>
+          <li class="am-parent">
+            <a href="##" class="" >日期</a>
+              <ul class="am-menu-sub am-collapse  am-avg-sm-1 ">
+                  <li class="">
+                     <input type="text" class="am-form-field" placeholder="日历组件" id="my-end" readonly/><!-- data-am-datepicker -->
+                  </li>
+                <script type="text/javascript">
+                $(function() {
+                	$('#my-end').datepicker('open');
+                	//$("[class='am-datepicker am-datepicker-dropdown']").attr('top','50%');
+                });
+                </script>
+                  <li class="">
+                      <input type="text" class="am-form-field" id='datetime' placeholder="时间组件" readonly>
+                <script type="text/javascript">
+                $(function() {
+                   $('#datetime').datetimepicker({
+                	  format: 'yyyy-mm-dd hh:ii:ss',
+                      autoclose:true,
+                      language:'zh-CN'
+                   });
+                });
+                </script>
+                  </li>
+              </ul>
+          </li>
+          <li class="am-parent">
+            <a href="##" class="" >下拉</a>
+              <ul class="am-menu-sub am-collapse  am-avg-sm-1 ">
+                  <li class="">
+                     <select data-am-selected>
+                      <option value="a">Apple</option>
+                      <option value="b" selected>Banana</option>
+                    </select>
+                  </li>
+                </ul>
+          </li>
+          <li class="am-parent">
+            <a href="##" class="" >多选</a>
+              <ul class="am-menu-sub am-collapse  am-avg-sm-1 ">
+                  <li class="">
+                     <label class="am-checkbox"><input type="checkbox" value="" data-am-ucheck> 没有选中</label>
+                     <label class="am-checkbox"><input type="checkbox" checked="checked" value="" data-am-ucheck checked>已选中</label>
+                  </li>
+                </ul>
+          </li>
+          <li class="am-parent">
+            <a href="##" class="" >单选</a>
+              <ul class="am-menu-sub am-collapse  am-avg-sm-1 ">
+                 <li class="">
+                    <label class="am-radio"><input type="radio" name="radio1" value="" data-am-ucheck>没选中</label>
+                    <label class="am-radio"><input type="radio" name="radio1" value="" data-am-ucheck checked>已选中</label>
+                  </li>
+              </ul>
+          </li>
+          <li class="am-parent">
+              <ul class="am-pagination">
+                <li  class="am-disabled"><a href="#">&laquo;</a></li>
+                <li class="am-active"><a href="#">1</a></li>
+                <li><a href="#">2</a></li>
+                <li><a href="#">3</a></li>
+                <li><a href="#">&raquo;</a></li>
+              </ul>
+          </li>
+      </ul>
+      </div>
+    </div>
+  </nav>
+  <!-- 左边栏查询   结束 -->
+
+  <!-- 内容栏目  开始 -->
+  <div data-am-widget="slider" class="am-slider am-slider-b1" data-am-slider='{&quot;controlNav&quot;:false}' >
+  <ul class="am-slides">
+      <li>
+        <table class="am-table am-table-striped am-table-hover" width="">
+        <thead>
+        <tr>
+            <th>网站名称</th>
+            <th>网址</th>
+            <th>创建时间</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr class="tr_row">
+            <td>Amaze UI</td>
+            <td>amazeui.org</td>
+            <td>2012-10-01</td>
+        </tr>
+        <tr class="tr_row">
+            <td>Amaze UI</td>
+            <td>amazeui.org</td>
+            <td>2012-10-01</td>
+        </tr>
+        <tr class="tr_row">
+            <td>Amaze UI(Active)</td>
+            <td>amazeui.org</td>
+            <td>2012-10-01</td>
+        </tr>
+        <tr class="tr_row">
+            <td>Amaze UI</td>
+            <td>amazeui.org</td>
+            <td>2012-10-01</td>
+        </tr>
+        <tr class="tr_row">
+            <td>Amaze UI</td>
+            <td>amazeui.org</td>
+            <td>2012-10-01</td>
+        </tr>
+        <tr class="tr_row">
+            <td>Amaze UI</td>
+            <td>amazeui.org</td>
+            <td>2012-10-01</td>
+        </tr>
+        <tr class="tr_row">
+            <td>Amaze UI</td>
+            <td>amazeui.org</td>
+            <td>2012-10-01</td>
+        </tr>
+        <tr class="tr_row">
+            <td>Amaze UI(Active)</td>
+            <td>amazeui.org</td>
+            <td>2012-10-01</td>
+        </tr>
+        <tr class="tr_row">
+            <td>Amaze UI</td>
+            <td>amazeui.org</td>
+            <td>2012-10-01</td>
+        </tr>
+        <tr class="tr_row">
+            <td>Amaze UI</td>
+            <td>amazeui.org</td>
+            <td>2012-10-01</td>
+        </tr>
+        <tr class="tr_row">
+            <td>Amaze UI</td>
+            <td>amazeui.org</td>
+            <td>2012-10-01</td>
+        </tr>
+        <tr class="tr_row">
+            <td>Amaze UI</td>
+            <td>amazeui.org</td>
+            <td>2012-10-01</td>
+        </tr>
+        <tr class="tr_row">
+            <td>Amaze UI(Active)</td>
+            <td>amazeui.org</td>
+            <td>2012-10-01</td>
+        </tr>
+        <tr class="tr_row">
+            <td>Amaze UI</td>
+            <td>amazeui.org</td>
+            <td>2012-10-01</td>
+        </tr>
+        <tr class="tr_row">
+            <td>Amaze UI</td>
+            <td>amazeui.org</td>
+            <td>2012-10-01</td>
+        </tr>
+       </tbody>
+      </table>
+      </li>
+      <li>
+        <ul class="am-list m-widget-list am-list-border">
+         <li>
+          <a href="/iframe?page=ZrPhoneEngine/query_model.html" data-rel="一般查询示例">
+          <span class="widget-name">一般查询示例</span></a>
+         </li>
+        <li>
+        <a href="##" data-rel="数据操作式查询示例">
+        <span class="widget-name">数据操作式查询示例</span></a>
+        </li>
+        <li>
+        <a href="##" data-rel="条件与结果分离查询示例">
+        <span class="widget-name">条件与结果分离查询示例</span></a>
+       </li>
+      </ul>
+      </li>
+  </ul>
+  </div>
+  <!-- 内容栏目  结束 -->
+
+  <!-- 按钮栏  开始 -->
+  <div class="am-modal-actions" id="my-actions">
+  <div class="am-modal-actions-group">
+    <ul class="am-list">
+      <li style="display: inherit;" class="am-modal-actions-header">...</li>
+      <li><a href="#"><span class="am-icon-wechat"></span>新增</a></li>
+      <li class="am-modal-actions-danger">
+        <a href="#"><i class="am-icon-twitter"></i>删除</a>
+      </li>
+    </ul>
+  </div>
+  <div class="am-modal-actions-group">
+    <button class="am-btn am-btn-secondary am-btn-block" data-am-modal-close>取消</button>
+  </div>
+</div>
+  <!-- 按钮栏  结束 -->
+  </div>
+  <!-- main  end -->
+<script type="text/javascript">
+//停止列表自动播放
+$(function() {
+  $('.am-slider').flexslider('stop');
+});
+</script>
+<script type="text/javascript" src="/static/assets/js/hide-address-bar.js"></script>
+<script type="text/javascript">
+    //去除侧边框闪退
+	$('.am-menu-toggle').on('click', function() {
+		$(".am-offcanvas").on("open.offcanvas.amui",
+				function(e) {
+				    $(window).off('resize.offcanvas.amui');
+					$(window).unbind("resize.offcanvas.amui orientationchange.offcanvas.amui");
+		});
+		$(".am-offcanvas").offCanvas('open');//
+	});
+	//表格单击事件
+	$('.tr_row').on('click', function() {
+		$('#my-actions').modal('open');
+	});
+	//alert("屏幕分辨率是"+window.screen.width+"*"+window.screen.height);
+  </script>
+</body>
+</html>

@@ -1,0 +1,131 @@
+<!-- 
+//演示用----默认给session赋值-------
+SessionUser su = new SessionUser();
+su.setName("设计员");
+su.setLCODE("0001");
+su.setUnitID("010000000000");
+su.setUnitName("局长室");
+su.setUserID("0100000000000002");
+su.setFace("1");
+su.setUserPageSize(28);
+session.setAttribute("userinfo",su);
+ -->
+<!Doctype html>
+<html class="no-js">
+<head>
+  <meta charset="utf-8">
+  <title>南方智软科技</title>
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0,user-scalable=no,minimal-ui">
+  <meta name="apple-touch-fullscreen" content="yes">
+  <meta name="x5-fullscreen" content="true">
+  <meta name="browsermode" content="application">
+  <!-- Set render engine for 360 browser -->
+  <meta name="renderer" content="webkit">
+  <!-- No Baidu Siteapp-->
+  <meta http-equiv="Cache-Control" content="no-siteapp"/>
+  <!-- Add to homescreen for Chrome on Android -->
+  <meta name="mobile-web-app-capable" content="yes">
+   <!-- Add to homescreen for Safari on iOS -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  <meta name="apple-mobile-web-app-title" content="南方智软"/>
+  <!-- Tile icon for Win8 (144x144 + tile color) -->
+  <meta name="msapplication-TileImage" content="/static/assets/i/app-icon72x72@2x.png">
+  <meta name="msapplication-TileColor" content="#0e90d2">
+  <meta name="full-screen" content="yes">
+  <meta name="browsermode" content="application">
+  <meta name="HandheldFriendly" content="true">
+  <meta name="apple-mobile-web-app-title" content="南方智软">
+
+  <link rel="icon" type="image/png" href="/static/assets/i/favicon.png">
+  <link rel="icon" sizes="192x192" href="/static/assets/i/app-icon72x72@2x.png">
+  <link rel="apple-touch-icon-precomposed" href="/static/assets/i/app-icon72x72@2x.png">
+  <link rel="stylesheet" href="/static/assets/font_icon/css/font-awesome.css">
+  <link rel="stylesheet" href="/static/assets/css/app.css">
+  <link rel="stylesheet" href="/static/assets/css/amazeui.min.css">
+</head>
+<body>
+  <!-- header  start -->
+  <header data-am-widget="header" class="am-header am-header-default am-header-fixed">
+      <div class="am-header-left am-header-nav">
+          <a href="#left-link" class="">
+                <i class="am-header-icon am-icon-home"></i>
+          </a>
+      </div>
+      <h1 class="am-header-title">
+          <a href="#title-link" class="">
+            客户端APP展示
+          </a>
+      </h1>
+      <div class="am-header-right am-header-nav">
+          <a href="#right-link" class="">
+                <i class="am-header-icon am-icon-bars"></i>
+          </a>
+      </div>
+  </header>
+  <!-- header  end -->
+
+  <!-- main  start -->
+  <div class="main-contor">
+  <ul data-am-widget="gallery" class="am-gallery am-gallery-default am-no-layout" data-am-gallery="{ pureview: true }" >
+      <li>
+        <div class="am-main-item">
+            <a href="/query/QueryPageSerPhone?ID=00000001" class="am-icon-btn am-primary am-icon-search"></a>
+            <h3 class="am-main-title">查询引擎</h3>
+        </div>
+        <div class="am-main-item">
+            <a href="/statistics/statisticsenginephone?ID=00000002" class="am-icon-btn am-secondary am-icon-bar-chart"></a>
+            <h3 class="am-main-title">统计引擎</h3>
+        </div>
+        <div class="am-main-item">
+            <a href="/iframe?page=ZrPhoneEngine/coll.html" class="am-icon-btn am-success am-icon-file-word-o"></a>
+            <h3 class="am-main-title">表单引擎</h3>
+        </div>
+      </li>
+      <li>
+        <div class="am-main-item"><!--  data-am-modal="{target: '#my-alert'}" -->
+            <a href="/iframe?page=ZrPhoneEngine/ZrWork/List.html" class="am-icon-btn am-success am-icon-cogs"></a>
+            <h3 class="am-main-title">流程引擎</h3>
+        </div>
+        <div class="am-main-item">
+            <a href="/iframe?page=ZrPhoneEngine/demo/from.html" class="am-icon-btn am-warning am-icon-edit"></a>
+            <h3 class="am-main-title">From样式</h3>
+        </div>
+        <div class="am-main-item" >
+            <a href="/iframe?page=ZrPhoneEngine/help.html" class="am-icon-btn am-danger am-icon-file-text-o"></a>
+            <h3 class="am-main-title" id="p_o">帮助文档</h3>
+        </div>
+      </li>
+  </ul>
+  </div>
+  <div class="am-modal am-modal-alert" tabindex="-1" id="my-alert">
+  <div class="am-modal-dialog">
+    <div class="am-modal-hd"><i class="am-icon-spinner am-icon-spin"></i></div>
+    <div class="am-modal-bd">努力更新中....</div>
+    <div class="am-modal-footer">
+      <span class="am-modal-btn">谢谢</span>
+    </div>
+  </div>
+</div>
+<!-- main  end -->
+
+<!--在这里编写你的代码-->
+
+<!--[if (gte IE 9)|!(IE)]><!-->
+<script src="/static/assets/js/jquery.min.js"></script>
+<!--<![endif]-->
+<!--[if lte IE 8 ]>
+<script src="http://libs.baidu.com/jquery/1.11.3/jquery.min.js"></script>
+<script src="http://cdn.staticfile.org/modernizr/2.8.3/modernizr.js"></script>
+<script src="/static/assets/js/amazeui.ie8polyfill.min.js"></script>
+<![endif]-->
+<script type="text/javascript" src="/static/assets/js/amazeui.min.js"></script>
+<script type="text/javascript" src="/static/assets/js/hide-address-bar.js"></script>
+<script type="text/javascript" src="/static/assets/js/screenfull.min.js"></script>
+<script type="text/javascript">
+
+</script>
+</body>
+</html>

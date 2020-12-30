@@ -1,0 +1,134 @@
+<!Doctype html>
+<html>
+<head>
+    <title></title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" type="text/css" href="/static/vue/element-ui/lib/theme-chalk/index.css" >
+<link rel="stylesheet" type="text/css" href="/static/vue/element-ui/lib/theme-chalk/html.css" >
+<script type="text/javascript" src="/static/vue/jquery-1_15.9.1.min.js"></script>
+<script type="text/javascript" src="/static/vue/vue.min.js" ></script>
+<script type="text/javascript" src="/static/vue/element-ui/lib/index.js" type="text/javascript"></script>
+<script type="text/javascript" src="/static/vue/layer/layer.js"></script>
+<script type="text/javascript" src="/static/vue/ZRutils.js"></script>
+<script type="text/javascript" src="/static/vue/ZRicon.js"></script>
+<style type="text/css">
+table {
+   font-size: 12px;
+}
+.container {
+    padding: 10px;
+}
+</style>
+</head>
+<body style="margin:0px;">
+	<div id="list" class="table" v-loading="htmlLoading">
+	    <div style="background: rgb(64, 158, 255);">
+	        <el-button-group >
+	           <el-button type="primary" size="small" icon="el-icon-plus" onclick="doAdd()">新增</el-button>
+               <el-button type="primary" size="small" icon="el-icon-edit" onclick="doEdit()">编辑</el-button>
+            </el-button-group>
+	    </div>
+	    <el-table :data="data" highlight-current-row @row-click="onclick" :height="tableHeight">
+              <el-table-column type="index" fixed width="35"></el-table-column>
+              <el-table-column prop="ID" label="ID" v-if="false"></el-table-column>
+              <el-table-column prop="BNAME" label="按钮名称" width="150"></el-table-column>
+              <el-table-column prop="NAME" label="按钮运转名称" width="150"></el-table-column>
+              <el-table-column prop="TYPE" label="按钮类别" width="100"></el-table-column>
+              <el-table-column prop="POSITION" label="按钮布局分类" width="150"></el-table-column>
+              <el-table-column prop="ICO" label="按钮图标" width="150">
+                  <template slot-scope="scope">
+                     <template v-for="(item,index) in ZRicon_list" :key="index">
+                        <i v-if="scope.row.ICO ===item" :class="item" style="color:blue"></i>
+                    </template>
+                  </template>
+              </el-table-column>
+              <el-table-column prop="CODE" label="排序" width="100"></el-table-column>
+              <el-table-column prop="PROPERTY" label="HTML/TXT值" ></el-table-column>
+        </el-table>
+	</div>    
+<script type="text/javascript" th:inline="javascript">
+var vh = $(document).height();
+var $thisvue;
+var vm2 = new Vue({
+    el: '#list',
+    name: 'flow_list',
+    data() {
+        return {
+            htmlLoading:true,//全局加载
+            rowsloadtitle:'数据加载...',
+
+            rows:[],
+            cellRow:null,
+            tableHeight:vh-33,
+        }
+    },
+    created() {
+    	let e = this;
+    	$thisvue = this
+    	e.init_flowlist()
+    },
+    mounted(){
+    	this.$nextTick(() => {
+		    this.htmlLoading = false
+        })
+    },
+    computed: {
+    	data() {
+            return this.rows
+        }
+    },
+    methods: {
+    	init_flowlist(){
+    		let e = this
+    		let url ='/flow/flowbutton?Act=getList'
+    		$.get(url,{},function(json){
+    			e.rows=json.rows //JSON.parse(json)
+    		})
+    	},
+    	onclick(row, column, event) {
+            this.cellRow = row
+        },
+    }
+});
+</script>
+<script type="text/javascript">
+	
+
+	function doSearch(){
+		$('#dt').datagrid('reload');
+	}
+
+	function doAdd(){
+		var url = '/flow/openflowcfg?Act=addbutton';
+		//$.get(url,{},function(src){
+			var index =layer.open({
+		        type: 2,
+		        title: "新增按钮",
+		        area: ['600px', '410px'],
+		        fix: false, //不固定
+		        maxmin: false,
+		        content: url
+		    });
+		//})
+    }
+
+	function doEdit(){
+        if ($thisvue.cellRow!=null) {
+        	var url = "/flow/openflowcfg?Act=editbutton&ID="+$thisvue.cellRow.ID;
+    		//$.get(url,{},function(src){
+    			var index =layer.open({
+    		        type: 2,
+    		        title: "编辑按钮",
+    		        area: ['600px', '410px'],
+    		        fix: false, //不固定
+    		        maxmin: false,
+    		        content: url
+    		    });
+    		//})
+        }else{
+       	 	layer.msg('请选择要编辑的按钮！');
+        }
+	}
+    </script>
+</body>
+</html>

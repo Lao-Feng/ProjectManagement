@@ -1,0 +1,82 @@
+<form name="recordfrm" action="WfIdeaList.html">
+<div class="easyui-layout" style="width:416px;height:205px;">
+	<table id="idealist" class="easyui-datagrid" data-options="">
+		<thead>
+			<tr>
+				<th data-options="field:'ID',hidden:true" width="50">编号</th>
+				<th data-options="field:'CONTENT',align:'left'" width="280">意见</th>
+			</tr>
+		</thead>
+	</table>
+</div>
+</form>
+<div data-options="region:'south',border:false" style="text-align:center;padding:5px 0 15px;">
+	<a class="easyui-linkbutton" data-options="iconCls:'icon-ok'" href="javascript:void(0)" onclick="javascript:selectidea();" style="width:80px">确定</a>
+	<a class="easyui-linkbutton" data-options="iconCls:'icon-cancel'" href="javascript:void(0)" onclick="javascript:$('#win').window('close');" style="width:80px">取消</a>
+</div>
+<div id="win1" ></div>
+
+<script type="text/javascript" th:inline="javascript">
+var url = '/dictdata/actionJson?method=flowidea&userid='+[[${USERID}]];
+$('#idealist').attr("data-options", "toolbar:toolbar_a,rownumbers:true,url:'"+url+"',method:'get',border:false,singleSelect:true,fit:true,fitColumns:true");
+</script>
+
+<script type="text/javascript">
+//选择意见窗口工具栏
+var toolbar_a = ['-',{
+	text:'新增意见',
+	iconCls:'icon-add',
+	handler:function(){addidea();}
+},'-',{
+	text:'删除意见',
+	iconCls:'icon-cancel',
+	handler:function(){deleteidea();}
+},'-'];
+
+function addidea(){
+   var mFileUrl = webform.WEBPATH.value;
+       mFileUrl = mFileUrl + "/flow/openflowcfg?Act=addflowidea";
+       $('#win1').window({
+        width: 300,
+        height: 130,
+        modal: true,
+        collapsible:false,
+        href: mFileUrl,
+        title: "增加个人意见"
+   });
+}
+
+function deleteidea(){
+    var row = $('#idealist').datagrid('getSelected');
+	if (row){
+    	$.messager.confirm('提示','确定要删除吗?',function(r){
+        if (r){
+           //---------
+           var url="/user/actionuseridea?ID="+row.ID+"&Act=delete";
+	       $.ajax({
+		   cache: true,
+		   type: "POST",
+		   url:url,
+		   data:"",// 你的formid
+		   async: false,
+		   error: function(request) {},
+		   success: function(data) {
+		       getReloadidea();//刷新表格
+		   }
+	       });
+           //---------
+        }
+    	});
+    }else{
+      	$.messager.alert('提示','请先选择待删除的意见。','info');
+    }
+}
+
+//局部刷新表格
+function getReloadidea(){
+    var userid = webform.UserNo.value;
+    $('#idealist').datagrid({
+        url:'/dictdata/actionJson?method=flowidea&userid='+userid,
+    });
+}
+</script>

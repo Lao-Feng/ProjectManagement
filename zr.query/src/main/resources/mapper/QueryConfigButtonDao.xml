@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="zr.zrpower.dao.QueryConfigButtonDao">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+	<resultMap type="zr.zrpower.domain.QueryConfigButton"
+		id="queryConfigButtonMap">
+		<result property="id" column="ID" />
+		<result property="name" column="NAME" />
+		<result property="ico" column="ICO" />
+		<result property="pathorjs" column="PATHORJS" />
+		<result property="runname" column="RUNNAME" />
+		<result property="roleids" column="ROLEIDS" />
+		<result property="fid" column="FID" />
+		<result property="bcode" column="BCODE" />
+	</resultMap>
+
+	<sql id="Base_Column_List">
+		`ID`, `NAME`, `ICO`, `PATHORJS`, `RUNNAME`, `ROLEIDS`, `FID`, `BCODE`
+	</sql>
+	
+	<select id="getMaxNo" resultType="String">
+		select max(id) as max_no from query_config_button
+	</select>
+
+	<select id="queryObject"
+		resultType="zr.zrpower.domain.QueryConfigButton">
+		select
+		<include refid="Base_Column_List" />
+		from query_config_button where ID = #{value}
+	</select>
+
+	<select id="queryList"
+		resultType="zr.zrpower.domain.QueryConfigButton">
+		select
+		<include refid="Base_Column_List" />
+		from query_config_button
+		<where>
+			<if test="projectNumber != null and projectNumber != ''">
+				and `project_number` like concat('%',#{projectNumber},'%')
+			</if>
+		</where>
+		<choose>
+			<when test="sidx != null and sidx.trim() != ''">
+				order by ${sidx} ${order}
+			</when>
+			<otherwise>
+				order by ID desc
+			</otherwise>
+		</choose>
+		<if test="offset != null and limit != null">
+			limit #{offset}, #{limit}
+		</if>
+	</select>
+
+	<select id="queryTotal" resultType="int">
+		select count(*) from
+		query_config_button
+	</select>
+
+	<insert id="save"
+		parameterType="zr.zrpower.domain.QueryConfigButton">
+		insert into query_config_button
+		(
+		`ID`,
+		`NAME`,
+		`ICO`,
+		`PATHORJS`,
+		`RUNNAME`,
+		`ROLEIDS`,
+		`FID`,
+		`BCODE`
+		)
+		values
+		(
+		#{id},
+		#{name},
+		#{ico},
+		#{pathorjs},
+		#{runname},
+		#{roleids},
+		#{fid},
+		#{bcode}
+		)
+	</insert>
+
+	<update id="update"
+		parameterType="zr.zrpower.domain.QueryConfigButton">
+		update query_config_button
+		<set>
+			<if test="name != null">`NAME` = #{name}, </if>
+			<if test="ico != null">`ICO` = #{ico}, </if>
+			<if test="pathorjs != null">`PATHORJS` = #{pathorjs}, </if>
+			<if test="runname != null">`RUNNAME` = #{runname}, </if>
+			<if test="roleids != null">`ROLEIDS` = #{roleids}, </if>
+			<if test="fid != null">`FID` = #{fid}, </if>
+			<if test="bcode != null">`BCODE` = #{bcode}</if>
+		</set>
+		where ID = #{id}
+	</update>
+
+	<delete id="delete">
+		delete from query_config_button where ID = #{value}
+	</delete>
+
+	<delete id="deleteBatch">
+		delete from query_config_button where ID in
+		<foreach item="id" collection="array" open="(" separator=","
+			close=")">
+			#{id}
+		</foreach>
+	</delete>
+
+</mapper>

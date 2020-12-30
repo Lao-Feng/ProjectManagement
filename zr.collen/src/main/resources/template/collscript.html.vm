@@ -1,0 +1,107 @@
+var vm = new Vue({
+    el: '#zrcollen',
+    name: 'zr_script',
+    data() {
+        return {
+            htmlLoading:true,//全局加载
+            rowsLoading:false,//数据加载
+            rowsloadtitle:'数据加载...',
+            
+            tabs_active:'1',//选项卡
+            
+            form:{//表单
+                #foreach($column in $forms)
+                #if($column !='')
+                ${column}
+                #end
+                #end
+            },
+            rules: {//验证
+                #foreach($column in $rules)
+                #if($column !='')
+                ${column}
+                #end
+                #end
+            },
+            
+            checkLists:[],//多选组字段，用于解析为字符串,隔开
+            
+            dialog_unit:false,//单位
+            unit_tree: [],
+            unit_proe: {
+                children: 'list',
+                label: 'unitname'
+            },
+            
+            dialog_user:false,//用户
+            user_tree: [],
+            proe_user: {
+                children: 'list',
+                label: 'name'
+            },
+            
+            imageLists:[],//图片组字段，用于解析为字符串,隔开
+            image:{
+                #foreach($column in $images)
+                ${column}:'',
+                #end
+            },
+        }
+    },
+    created() {
+        $zrcoll = this
+        this.init_form_data()//初始化form控件
+        ZRcollenUserList()//加载单位、单位和用户数据
+    },
+    mounted(){
+        $zrcoll = this
+        this.$nextTick(() => {
+		    this.htmlLoading = false
+        })
+    },
+    methods: {
+        //初始化form表单控件
+        init_form_data(){
+            let e = this
+            e.checkLists=[]//数组字段，用于解析为字符串,隔开
+            #foreach($column in $lists)
+            #if($column !='')
+            e.checkLists.push('${column}')
+            #end
+            #end
+            
+            e.imageLists=[]//图片组字段
+            #foreach($column in $images)
+            #if($column !='')
+            e.imageLists.push('${column}')
+            #end
+            #end
+            
+            #foreach($column in $imagesurl)
+            e.image.${column.field} = 'data:image/jpeg;base64,${column.url}'
+            #end
+        },
+        /**
+         * 表单提交调用
+         * @param callback 回调函数
+         * @returns json
+         */
+        ZRsaveOrUpdate(callback){
+            let e = this
+            let obj = e.form
+            ZRsave_collen(obj, function (data) {
+                //查找是否有数组字段的数据,封装[]
+        	    if(e.checkLists!=null&&e.checkLists.length>0){
+        		    for(let i =0;i<e.checkLists.length;i++){
+        			    e.form[e.checkLists[i]] = e.form[e.checkLists[i]].split(',');
+        		    }
+        	    }
+                callback(data)
+            })
+        },
+        selectDept(){
+            selectDept();
+        }
+    }
+});
+

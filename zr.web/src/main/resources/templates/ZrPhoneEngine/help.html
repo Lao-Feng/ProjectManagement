@@ -1,0 +1,153 @@
+<!Doctype html>
+<html class="no-js">
+<head>
+  <meta charset="utf-8">
+  <title>南方智软科技</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <meta name="apple-touch-fullscreen" content="yes">
+  <meta name="x5-fullscreen" content="true">
+  <!-- Set render engine for 360 browser -->
+  <meta name="renderer" content="webkit">
+  <!-- No Baidu Siteapp-->
+  <meta http-equiv="Cache-Control" content="no-siteapp"/>
+  <!-- Add to homescreen for Chrome on Android -->
+  <meta name="mobile-web-app-capable" content="yes">
+   <!-- Add to homescreen for Safari on iOS -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-title" content="Amaze UI"/>
+  <!-- Tile icon for Win8 (144x144 + tile color) -->
+  <meta name="msapplication-TileImage" content="/static/assets/i/app-icon72x72@2x.png">
+  <meta name="msapplication-TileColor" content="#0e90d2">
+
+  <link rel="icon" type="image/png" href="/static/assets/i/favicon.png">
+  <link rel="icon" sizes="192x192" href="/static/assets/i/app-icon72x72@2x.png">
+  <link rel="apple-touch-icon-precomposed" href="/static/assets/i/app-icon72x72@2x.png">
+  <link rel="stylesheet" href="/static/assets/font_icon/css/font-awesome.css">
+  <link rel="stylesheet" href="/static/assets/css/amazeui.min.css">
+  <link rel="stylesheet" href="/static/assets/css/app.css">
+</head>
+<body>
+  <!-- header  start -->
+  <header data-am-widget="header" class="am-header am-header-default am-header-fixed">
+      <div class="am-header-left am-header-nav">
+          <a href="javascript:history.go(-1);" class="">
+                <i class="am-header-icon am-icon-chevron-left"></i>
+          </a>
+      </div>
+      <h1 class="am-header-title">
+          <a href="#title-link" class="">
+            帮助文档
+          </a>
+      </h1>
+  </header>
+  <!-- header  end -->
+
+  <!-- main  start -->
+  <div class="main-contor">
+   <section data-am-widget="accordion" class="am-accordion am-accordion-gapped" data-am-accordion='{  }'>
+      <dl class="am-accordion-item am-active">
+        <dt class="am-accordion-title">升级文档</dt>
+        <dd class="am-accordion-bd am-collapse am-in">
+          <div class="am-accordion-content">
+             1、引入三大引擎jar包<br/>
+                ZRpowerAnalyseEngine.jar<br/>
+                ZRpowerCollEngine.jar<br/>
+                ZRpowerQueryEngine.jar<br/>
+
+             2、配置APP调用web.xml文档<br/>
+                            更新目录/WebRoot/WEB-INF/web.xml<br/>
+              &lt;servlet&gt;<br/>
+              &lt;servlet-name&gt;QueryPageSerPhone&lt;/servlet-name&gt;<br/>
+              &lt;servlet-class&gt;zr.zrpower.anqueryflow.action.QueryPageSer&lt;/servlet-class&gt;<br/>
+              &lt;/servlet&gt;<br/>
+              &lt;servlet-mapping&gt;<br/>
+                &lt;servlet-name&gt;QueryPageSerPhone&lt;/servlet-name&gt;<br/>
+                &lt;url-pattern&gt;/query/QueryPageSerPhone&lt;/url-pattern&gt;<br/>
+              &lt;/servlet-mapping&gt;<br/>
+              <br/>
+              &lt;!-- ftl  add 2017-121-25 satart --&gt;<br/>
+              &lt;servlet&gt;<br/>
+                &lt;servlet-name&gt;StatisticsEnginePhone&lt;/servlet-name&gt;<br/>
+                &lt;servlet-class&gt;zr.zrpower.anqueryflow.action.StatisticsEnginePhone&lt;/servlet-class&gt;<br/>
+              &lt;/servlet&gt;<br/>
+              &lt;servlet-mapping&gt;<br/>
+                &lt;servlet-name&gt;StatisticsEnginePhone&lt;/servlet-name&gt;<br/>
+                &lt;url-pattern&gt;/statistics/statisticsenginephone&lt;/url-pattern&gt;<br/>
+              &lt;/servlet-mapping&gt;<br/>
+              &lt;servlet&gt;<br/>
+                &lt;servlet-name&gt;collenginephone&lt;/servlet-name&gt;<br/>
+                &lt;servlet-class&gt;zr.zrpower.anqueryflow.action.CollectionEnginePhone&lt;/servlet-class&gt;<br/>
+              &lt;/servlet&gt;<br/>
+              &lt;servlet-mapping&gt;<br/>
+                &lt;servlet-name&gt;collenginephone&lt;/servlet-name&gt;<br/>
+                &lt;url-pattern&gt;/collect/collenginephone&lt;/url-pattern&gt;<br/>
+              &lt;/servlet-mapping&gt;<br/>
+              &lt;!-- ftl  add 2017-121-25 end --&gt;<br/>
+             3、更新src文件的Java<br/>
+                               更新目录zr.zrpower.anqueryflow.action<br/>
+               CollectionEnginePhone.java<br/>
+               QueryPageSer.java<br/>
+               StatisticsEnginePhone.java<br/>
+             4、更新APP web网页及js程序  <br/>
+                              更新目录为/WebRoot/assets中全部文件<br/>
+                              更新目录为/WebRoot/ZrPhoneEngine中全部文件<br/>
+          </div>
+        </dd>
+      </dl>
+      <dl class="am-accordion-item">
+        <dt class="am-accordion-title">查询引擎配置</dt>
+        <dd class="am-accordion-bd am-collapse ">
+          <div class="am-accordion-content">
+          查询引擎【/query/QueryPageSerPhone?ID=00000001】
+          </div>
+        </dd>
+      </dl>
+      <dl class="am-accordion-item">
+        <dt class="am-accordion-title">报表引擎配置</dt>
+        <dd class="am-accordion-bd am-collapse ">
+          <div class="am-accordion-content">
+          报表引擎【/statistics/statisticsenginephone?ID=00000001】
+          </div>
+        </dd>
+      </dl>
+      <dl class="am-accordion-item">
+        <dt class="am-accordion-title">表单引擎配置</dt>
+        <dd class="am-accordion-bd am-collapse ">
+          <div class="am-accordion-content">
+          新增表单示例【ZrPhoneEngine/coll_model.html?ID=00000005&DOCID=&READONLY=】<br/>
+          查阅表单示例【ZrPhoneEngine/coll_view.html?ID=00000005&DOCID=P5201000000002011010097&READONLY=1】
+          </div>
+        </dd>
+      </dl>
+
+      <dl class="am-accordion-item">
+        <dt class="am-accordion-title">流程引擎配置</dt>
+        <dd class="am-accordion-bd am-collapse ">
+          <div class="am-accordion-content">
+          待办事项【ZrPhoneEngine/ZrWork/List.html】
+          </div>
+        </dd>
+      </dl>
+  </section>
+  </div>
+  <!-- main  end -->
+
+<!--在这里编写你的代码-->
+
+<!--[if (gte IE 9)|!(IE)]><!-->
+<script src="/static/assets/js/jquery.min.js"></script>
+<!--<![endif]-->
+<!--[if lte IE 8 ]>
+<script src="http://libs.baidu.com/jquery/1.11.3/jquery.min.js"></script>
+<script src="http://cdn.staticfile.org/modernizr/2.8.3/modernizr.js"></script>
+<script src="/static/assets/js/amazeui.ie8polyfill.min.js"></script>
+<![endif]-->
+<script type="text/javascript" src="/static/assets/js/amazeui.min.js"></script>
+<script type="text/javascript" src="/static/assets/js/hide-address-bar.js"></script>
+
+</body>
+</html>

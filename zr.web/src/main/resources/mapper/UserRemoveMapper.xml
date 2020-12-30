@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="zr.zrpower.dao.mapper.UserRemoveMapper">
+
+  <!-- 增加新调动用户信息 -->
+  <insert id="addID" parameterType="java.util.Map">
+	Insert Into BPIP_USER_REMOVE
+	<trim prefix="(" suffix=")" suffixOverrides=",">
+		<if test="ID != null">
+			ID,
+		</if>
+		<if test="MOVETIME != null">
+			MOVETIME,
+		</if>
+		<if test="USERID != null">
+			USERID,
+		</if>
+		<if test="BEFOREUNIT != null">
+			BEFOREUNIT,
+		</if>
+		<if test="AFTERUNIT != null">
+			AFTERUNIT,
+		</if>
+		<if test="MOVEREASON != null">
+			MOVEREASON,
+		</if>
+	</trim>
+	<trim prefix="values (" suffix=")" suffixOverrides=",">
+		<if test="ID != null">
+			#{ID},
+		</if>
+		<if test="MOVETIME != null">
+			#{MOVETIME},
+		</if>
+		<if test="USERID != null">
+			#{USERID},
+		</if>
+		<if test="BEFOREUNIT != null">
+			#{BEFOREUNIT},
+		</if>
+		<if test="AFTERUNIT != null">
+			#{AFTERUNIT},
+		</if>
+		<if test="MOVEREASON != null">
+			#{MOVEREASON},
+		</if>
+	</trim>
+  </insert>
+  
+</mapper>

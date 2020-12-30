@@ -1,0 +1,98 @@
+package ${package}.service.impl;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import zr.zrpower.common.db.DBEngine;
+import zr.zrpower.common.util.SysPreperty;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import org.springframework.beans.BeanUtils;
+import ${package}.domain.${className};
+import ${package}.dao.${className}Dao;
+import ${package}.bean.${className}Bean;
+import ${package}.service.${className}Service;
+
+
+@Service("${classname}Service")
+public class ${className}ServiceImpl implements ${className}Service {
+    /** The QueryConfigServiceImpl Logger. */
+	private static final Logger LOGGER = LoggerFactory.getLogger(${className}ServiceImpl.class);
+	private DBEngine dbEngine;
+	private static int clients = 0;
+	String DataBaseType = SysPreperty.getProperty().DataBaseType;// 数据库类型
+	
+	
+	@Autowired
+	private ${className}Dao ${classname}Dao;
+	
+	/**
+	 * 构造方法
+	 */
+	public ${className}ServiceImpl() {
+		dbEngine = new DBEngine(SysPreperty.getProperty().MainDataSource, 
+				SysPreperty.getProperty().IsConvert);
+		dbEngine.initialize();
+		if (clients < 1) {
+			// clients something todo
+		}
+		clients = 1;
+	}
+	
+	@Override
+	public ${className}Bean queryObject(${pk.attrType} ${pk.attrrname}) throws Exception{
+	${className}Bean ${classname}Bean = null;
+		${className} ${classname} =  ${classname}Dao.queryObject(id);
+			if( ${classname} != null ) {
+			${classname}Bean = new ${className}Bean();
+			BeanUtils.copyProperties( ${classname}, ${classname}Bean );
+		}
+		return ${classname}Bean;
+	}
+	
+	@Override
+	public List<${className}Bean> queryList(Map<String, Object> map) throws Exception{
+		List<${className}Bean> ${classname}Beans = new ArrayList<>();
+		List<${className}> list = ${classname}Dao.queryList( map );
+		for( ${className} ${classname} : list ) {
+			${className}Bean ${classname}Bean = new ${className}Bean();
+			BeanUtils.copyProperties( ${classname}, ${classname}Bean );
+			${classname}Beans.add( ${classname}Bean );
+		}
+		return ${classname}Beans;
+	}
+	
+	@Override
+	public int queryTotal(Map<String, Object> map) throws Exception{
+		return ${classname}Dao.queryTotal(map);
+	}
+	
+	@Override
+	public void save(${className}Bean ${classname}Bean) throws Exception{
+		${className} ${classname} = new ${className}();
+		BeanUtils.copyProperties( ${classname}Bean, ${classname} );
+		${classname}Dao.save(${classname});
+	}
+	
+	@Override
+	public void update(${className}Bean ${classname}Bean) throws Exception{
+	${className} ${classname} = new ${className}();
+		BeanUtils.copyProperties( ${classname}Bean, ${classname} );
+		${classname}Dao.update(${classname});
+	}
+	
+	@Override
+	public void delete(${pk.attrType} ${pk.attrrname}) throws Exception{
+		${classname}Dao.delete(${pk.attrrname});
+	}
+	
+	@Override
+	public void deleteBatch(${pk.attrType}[] ${pk.attrrname}s) throws Exception{
+		${classname}Dao.deleteBatch(${pk.attrrname}s);
+	}
+	
+}

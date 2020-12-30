@@ -1,0 +1,412 @@
+<HTML>
+<HEAD>
+<TITLE>流程审批</TITLE>
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css"
+	href="/static/vue/element-ui/lib/theme-chalk/index.css">
+<link rel="stylesheet" type="text/css"
+	href="/static/vue/element-ui/lib/theme-chalk/html.css">
+<script type="text/javascript" src="/static/vue/jquery-1_15.9.1.min.js"></script>
+<script type="text/javascript" src="/static/vue/vue.min.js"></script>
+<script type="text/javascript" src="/static/vue/element-ui/lib/index.js"
+	type="text/javascript"></script>
+<script type="text/javascript" src="/static/vue/layer/layer.js"></script>
+<script type="text/javascript" src="/static/vue/ZRutils.js"></script>
+<script type="text/javascript" src="/static/vue/ZRicon.js"></script>
+
+<SCRIPT type="text/javascript" src="/static/vue/script/Public.js"></SCRIPT>
+<SCRIPT type="text/javascript" src="/static/ZrWorkFlow/js/Workflow.js"></SCRIPT>
+<style type="text/css">
+table {
+	font-size: 12px;
+}
+.el-card__header{
+    background: rgb(64, 158, 255);
+    color: rgb(255, 255, 255);
+}
+.container {
+	padding: 10px;
+}
+.el-main{
+    padding: 0px;
+}
+.ftl>.el-card__body{
+    padding: 0px;
+}
+.WriteSign{
+    color: red;
+}
+</style>
+</head>
+
+</HEAD>
+<body style="margin: 0px;background: white;overflow:hidden;">
+	<div id="list" class="table" v-loading="htmlLoading">
+		<el-container> 
+		<!-- 流程步骤 --> 
+		<el-aside style="width: 200px;"> 
+		<el-card class="box-card" shadow="never" style="height: 100%;">
+		<div slot="header" class="clearfix">
+			<span>流程流转记录</span>
+		</div>
+		<table cellSpacing="0" cellPadding="0" border="0">
+			<tr>
+				<td>
+					<div th:utext="${FlowDoLog}"></div> <br>
+					<div th:utext="${FlowActivityLink}"></div>
+				</td>
+			</tr>
+		</table>
+		</el-card>
+		</el-aside> 
+		
+		<!-- 填写表单 --> 
+		<el-main>
+		<el-card class="box-card ftl" shadow="never" style="height: 100%;">
+		<div slot="header" class="clearfix">
+			<span th:text="${WindowTitle}"></span>
+		</div>
+		<div style="padding:0px;">
+		<center>
+             <iframe id=CollDataTable name=CollDataTable src="" border=0 frameborder=0  scrolling="auto" width="100%" height="500px"></iframe>
+        </center>
+                     <iframe id=att name=att th:src="@{/zruser/actionuser?Act=loadatt&TYPE=1(FLOWID=${Identification},DOCID=${RECORDID},AID=${CollActivityID})}" border=0 frameborder=0 width=100% height="120px">
+                         </iframe>
+                     <br>
+                     <center>
+	                      	<span th:if="${ISBRANCH == '1'}">
+	                      		<span th:utext="${ButtonList1}"></span>
+	                      	</span>
+	                      	<span th:unless="${ISBRANCH == '1'}">
+	                      		<span th:utext="${ButtonList2}"></span>
+	                      	</span>
+	                      	<!--得到流程创建人的按钮-->
+	                      	<span th:utext="${ButtonList3}"></span>
+	                        <span th:if="${TakeBack == '1'}">
+	                            <!--收回按钮-->
+	                            <a class="layui-btn" href="javascript:;" style="color: white;font-weight: bold;" onclick="javascript:TakeBack();">收回</a>
+	                        </span>
+	                        <span th:if="${FlowState == '4'}">
+	                           <!--得到已经分配过的公共类型的按钮-->
+	                           <span th:utext="${ButtonList4}"></span>
+	                        </span>
+	                        <span>
+	                        <el-button type="primary" icon="el-icon-check" size="small" onclick="Javascript:saveColl('1');">保存修改</el-button>
+	                        <el-button type="primary" icon="el-icon-check" size="small" onclick="Javascript:editsetup();" style="width:120px">设置为可修改</el-button>
+	                        <el-button type="primary" icon="el-icon-check" size="small" onclick="Javascript:doDelete();" style="width:80px">删除</el-button>
+	                        <el-button type="primary" icon="el-icon-check" size="small" onclick="Javascript:doInit();" style="width:100px">初始化流程</el-button>
+	                        </span>
+	                        <!--得到公共类型的按钮-->
+	                        <span th:utext="${ButtonList5}"></span>
+                     </center>
+                </div>     
+		</el-card>
+		</el-main> 
+		
+	<div v-show="false">
+<Form name="webform" method="post" action="/flow/flowrun" style="height: 0px;">
+<input type="hidden" name="Unit" th:value="${Unit}">                               <!--单位编号-->
+<input type="hidden" name="type" value="">                                      <!--提交类型1:保存2:提交-->
+<input type="hidden" name="Identification" th:value="${Identification}">           <!--流程标识-->
+<input type="hidden" name="Workflow_No" th:value="${Workflow_No}">                 <!--流程编号-->
+<input type="hidden" name="RID" th:value="${RID}">                                 <!--关联流程(流程流转ID)-->
+<input type="hidden" name="Node_No_S" th:value="${Node_No_S}">                     <!--当前节点编号-->
+<input type="hidden" name="M_Node_No_E" th:value="${M_Node_No_E}">                 <!--下一节点编号(多分支)-->
+<input type="hidden" name="M_Node_No_S_E" th:value="${M_Node_No_S_E}">             <!--下一节点编号(多分支选择后)-->
+<input type="hidden" name="S_Node_No_E" th:value="${S_Node_No_E}">                 <!--上一节点编号(多分支)-->
+<input type="hidden" name="S_Node_No_S_E" th:value="${S_Node_No_S_E}">             <!--上一节点编号(多分支选择后)-->
+<input type="hidden" name="OptCmd" value="">                                    <!--记录属性按钮命令值-->
+<input type="hidden" name="OptCmd_Name" value="">                               <!--记录属性按钮命令值中文-->
+<input type="hidden" name="UserNo" th:value="${UserNo}">                           <!--当前用户编号-->
+<input type="hidden" name="Execute_No" th:value="${Execute_No}">                   <!--流程运转编号-->
+<input type="hidden" name="ParentID" th:value="${ParentID}">                       <!--父流程ID值或父表单记录值-->
+<input type="hidden" name="ParentID1" th:value="${ParentID1}">                     <!--父流程ID1值或父表单记录值-->
+<input type="hidden" name="FormID" th:value="${FormID}">                           <!--业务表的ID值-->
+<input type="hidden" name="TitleName" th:value="${TitleName}">                     <!--业务表的标题名称-->
+<input type="hidden" name="OtherID" th:value="${OtherID}">                         <!--关联字段的ID值-->
+<input type="hidden" name="Path" value="/flow/openflowrun1">                      <!--当前文件的路径-->
+<input type="hidden" name="Do_User_Nos" value="">                               <!--选择的处理人编号-->
+<input type="hidden" name="NeedNewFlow" th:value="${NeedNewFlow}">                 <!--必须新建但还未建的流程名称-->
+<input type="hidden" name="AttMessage" th:value="${AttMessage}">                   <!--当前步骤附件情况提示-->
+<input type="hidden" name="FlowFormPath" th:value="${FlowFormPath}">               <!--流程表单完整路径-->
+<input type="hidden" name="MsgType" value="0">                                  <!--短信提示类别-->
+<input type="hidden" name="ISSAVE1" th:value="${ISSAVE1}">                         <!--前进保存数据-->
+<input type="hidden" name="ISSAVE2" th:value="${ISSAVE2}">                         <!--后退保存数据-->
+<input type="hidden" name="ISLEAVE1" th:value="${ISLEAVE1}">                       <!--前进必填留言-->
+<input type="hidden" name="ISLEAVE2" th:value="${ISLEAVE2}">                       <!--后退必填留言-->
+<input type="hidden" name="ADDFORMPATH" th:value="${ADDFORMPATH}">                 <!--活动处理前填写表单地址-->
+<input type="hidden" name="ADDFORMWIDTH" th:value="${ADDFORMWIDTH}">               <!--活动处理前填写表单宽-->
+<input type="hidden" name="ADDFORMHEIGHT" th:value="${ADDFORMHEIGHT}">             <!--活动处理前填写表单高-->
+<input type="hidden" name="ADDFORMMESSAGE" th:value="${ADDFORMMESSAGE}">           <!--活动处理前非正确填写表单提示-->
+<input type="hidden" name="RECORDID" th:value="${RECORDID}">                       <!--附件ID-->
+<input type="hidden" name="ATTNUM" th:value="${ATTNUM}">                           <!--需要上传附件数-->
+<input type="hidden" name="ATTTYPE" th:value="${ATTTYPE}">                         <!--附件类型-->
+<input Type="hidden" name="ISBRANCH" th:value="${ISBRANCH}">                       <!--多路分支按钮是否在操作按钮上-->
+<input Type="hidden" name="ISWHERE" th:value="${ISWHERE}">                         <!--与当前步骤相关联的线上是否有与字段相关的条件-->
+<input Type="hidden" name="WEBPATH" value="/"> <!--web路径-->
+<input Type="hidden" name="SELECTDEPTID" value="">                              <!--自定义指定部门ID或人员ID,多个ID间用逗号分隔,用于选人时指定相应部门下的角色或直接指定人员-->
+<input Type="hidden" name="DoIdea" value="">
+</Form>		
+</div>
+</el-container>
+	</div>
+	<script type="text/javascript" th:inline="javascript">
+var vh = $(document).height();
+var $thisvue;
+var vm2 = new Vue({
+    el: '#list',
+    name: 'flow_list',
+    data() {
+        return {
+            htmlLoading:true,//全局加载
+            rowsloadtitle:'数据加载...',
+
+            rows:[],
+            cellRow:null,
+            tableHeight:vh-48,
+            
+            form:{
+            	DoIdea:'',//处理意见
+            }
+        }
+    },
+    created() {
+    	let e = this;
+    	$thisvue = this
+    },
+    mounted(){
+    	this.$nextTick(() => {
+		    this.htmlLoading = false
+        })
+    },
+    computed: {
+    	data() {
+            return this.rows
+        }
+    },
+    methods: {
+    	changeIdea(){
+    		let e = this;
+    		$('#DoIdea').val(e.form.DoIdea);
+    	}
+    }
+});
+</script>
+<script type="text/javascript" th:inline="javascript">
+$("#backgroundId").attr("background", [[${ImagePath}]]+"menu_title_back1.jpg");
+$("#imgsrc").attr("src", [[${ImagePath}]]+"menu_a_03.gif");
+$("#idea").attr("style", "width:'100%';height:50px;overflow:'hidden';display:"+[[${showidea}]]);
+</script>
+<script type="text/javascript" th:inline="javascript">
+var isSave = "0";
+function save_return(PKID,FKID,TITLE){
+   if (PKID==null || PKID.length==0)
+   {layer.msg("保存失败！");
+   }else{
+   var strtype = webform.type.value;
+   var strExecute_No = webform.Execute_No.value;
+   var strFormID = webform.FormID.value;
+
+   var attnum1 = webform.ATTNUM.value;
+   var atttype = webform.ATTTYPE.value;
+   if (atttype=="2" || atttype=="3")//可上传附件
+   {
+    var attnum2 = document.getElementById('att').contentWindow.document.RegForm.ATTNUM.value;
+    if (attnum2<attnum1)//附件没有上传完
+    {
+      var attnum3 = attnum1-attnum2;
+      webform.AttMessage.value ="请先上传附件!\r\n"+"已上传"+attnum2+"个,还需上传"+attnum3+"个。";
+    }else{
+        webform.AttMessage.value ="";
+    }
+   }
+
+   if ((strExecute_No.length==0 && strFormID.length==0) || strExecute_No.length>0)//第一次保存，避免第一次重复增加
+   {
+     webform.FormID.value = PKID;
+     if (FKID.length>4)
+     {
+         webform.OtherID.value = FKID;
+     }else
+     {
+	 webform.OtherID.value = PKID;
+     }
+     var par1= webform.ParentID.value;
+     var par2= webform.ParentID1.value;
+     if (par1.length==0)
+     {
+        webform.ParentID.value = PKID;
+     }
+     if (par2.length==0)
+     {
+        webform.ParentID1.value = PKID;
+     }
+
+     webform.TitleName.value = TITLE;
+     if (strtype=="1")
+     {//保存流程
+        var DoIdea = webform.DoIdea.value;
+        if (strExecute_No.length==0 || (strExecute_No.length>0 && DoIdea.length>0))
+        {
+         doSave();
+        }
+     }else{
+     doSubmit();
+     }
+   }else{
+	   $thisvue.htmlLoading=false;
+    if (strExecute_No.length==0 && strFormID.length>0)
+    {doSave();}
+    else
+    {
+      doSubmit();
+    }
+   }
+   $thisvue.htmlLoading=false;
+   }
+   $thisvue.htmlLoading=false;
+}
+//设置为可修改状态
+function editsetup(){
+   var path=[[${FlowFormPath1}]];
+   window.CollDataTable.location=path;
+}
+
+function saveColl(type){
+   if (isSave=="1")
+   {return;}
+   isSave=="1";
+   webform.type.value = "";//清空
+   webform.type.value = type;
+   //调用采集引擎保存
+
+  //前进保存数据
+  var ISSAVE1=webform.ISSAVE1.value;
+  //前进必填留言
+  var ISLEAVE1=webform.ISLEAVE1.value;
+  if (type=="2" && ISLEAVE1=="1")//提交必填留言
+  {
+      var DoIdea = webform.DoIdea.value;
+      if (DoIdea.length==0)
+      {
+         layer.msg("请先填写处理意见!");
+         return;
+      }
+  }
+  if (type=="2" && ISSAVE1=="0")//提交不保存数据的情况
+  {
+      var atttype = webform.ATTTYPE.value;
+      if (atttype=="2" || atttype=="3")//可上传附件
+      {
+        var attnum1 = webform.ATTNUM.value;
+        var attnum2 = document.att.document.RegForm.ATTNUM.value;
+        if (attnum2<attnum1)//附件没有上传完
+        {
+          var attnum3 = attnum1-attnum2;
+          webform.AttMessage.value ="请先上传附件!\r\n"+"已上传"+attnum2+"个,还需上传"+attnum3+"个。";
+        }
+        else
+        {
+          webform.AttMessage.value ="";
+        }
+      }
+      doSubmit();
+      return;
+  }
+//调用采集引擎保存
+$thisvue.htmlLoading=true;
+  $('#CollDataTable')[0].contentWindow.vm.ZRsaveOrUpdate(function(data){
+      if(data.code==0){
+    	  save_return(data.id,'','')
+      }else{
+    	  $thisvue.htmlLoading=false;
+    	  layer.msg("提交流程失败!");
+      }
+  })
+}
+
+//弹出最大窗体(打开流程)
+function OpenCaseFlowWindow(strURL){
+	var OtherID = document.webform.OtherID.value;
+	  var ParentID = document.webform.ParentID.value;
+	  var ParentID1 = document.webform.ParentID1.value;
+	var url = url;
+	if(strURL.indexOf("OtherID=")==-1)
+	  {
+		url=strURL+"&OtherID="+OtherID+"&ParentID="+ParentID+"&ParentID1="+ParentID1+"&type=1";
+	  }
+	//$.get(url,{},function(src){
+		var index =layer.open({
+	        type: 2,
+	        title: "流程步骤",
+	        area: ['800px', '800px'],
+	        fix: false, //不固定
+	        maxmin: false,
+	        content: url
+	    });
+	//})
+}
+
+function closeFload()
+{
+  var ISSAVE = webform.ISSAVE.value;
+  var Execute_No = webform.Execute_No.value;
+  //需刷新父窗口
+  if (ISSAVE == "1")
+  {
+  if (Execute_No =="" || Execute_No.lentgh()==0)
+  {
+       var atttype = webform.ATTTYPE.value;
+       if (atttype=="1")
+       {
+          //刷新流转过程中的上一个窗口
+          window.opener.location.reload();
+       }
+       else
+       {
+          //刷新总台上的页面
+          window.opener.location.reload();
+          window.opener.parent.flowLeft.location.reload();
+       }
+  }
+  else
+  {
+        //刷新流转过程中的上一个窗口
+        window.opener.location.reload();
+  }
+  }
+}
+//屏幕JS错误
+function killErrors() {
+   return true;
+}
+
+window.onerror = killErrors;
+//根据分辨率显示
+function resetup(){
+  var atttype = webform.ATTTYPE.value;
+  var sheight = document.body.clientHeight;
+  if (atttype=="2" || atttype=="3" || atttype=="4" )
+  {
+     if (atttype=="2" || atttype=="3")
+     {
+       sheight = sheight-250;
+     } else {
+       sheight = sheight-200;
+     }
+  } else {
+    sheight = sheight-163;
+  }
+  
+  if (sheight<350){sheight=350;}
+  
+  $("#CollDataTable").attr("height",sheight);
+  $("#CollDataTable").attr("src", [[${FlowFormPath}]]);
+}
+
+setTimeout("resetup()",200);
+</script>
+</BODY>
+</HTML>

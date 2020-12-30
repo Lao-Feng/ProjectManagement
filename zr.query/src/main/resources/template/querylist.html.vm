@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<TITLE>数据查询引擎配置</TITLE>
+<!-- 必要连接 -->
+<link href="/static/vue/element-ui/lib/theme-chalk/index.css" rel="stylesheet" type="text/css" \>
+<link href="/static/vue/element-ui/lib/theme-chalk/html.css" rel="stylesheet" type="text/css" \>
+<script src="/static/vue/jquery-1_15.9.1.min.js"></script>
+<script src="/static/vue/vue.min.js" type="text/javascript"></script>
+<script src="/static/vue/element-ui/lib/index.js" type="text/javascript"></script>
+<script src="/static/vue/ZRquery.js" type="text/javascript"></script>
+<!-- 用户操作自定义工具js -->
+<script src="/static/vue/ZRutils.js" type="text/javascript"></script>
+</head>
+<body>
+<div id="zrquery" class="table" v-loading="htmlLoading">
+   <div id="qtop" class="handle-box" v-show="show_inpt">
+       <el-form ref="form" :model="form" label-width="100px" inline size="mini">
+       #foreach($column in $items)
+       #if($column.type =='TEXT')
+           #if($column.showtype =='text')
+           <el-form-item label="${column.name}">
+	       <el-input v-model="form.${column.field}" placeholder="${column.name}" style="width:200px" clearable size="small"></el-input>
+	       </el-form-item>
+	       #end
+	       #if($column.showtype =='select')
+	       <el-form-item label="${column.name}">
+	       <el-select v-model="form.${column.field}" placeholder="${column.name}" style="width:200px" clearable size="small">
+	           #foreach($temp in $column.values)
+               <el-option label="${temp.name}" value="${temp.value}"></el-option>
+               #end
+           </el-select>
+	       </el-form-item>
+	       #end
+	       #if($column.showtype =='radio')
+	       <el-form-item label="${column.name}">
+	       <el-select v-model="form.${column.field}" placeholder="${column.name}" style="width:200px" clearable size="small">
+	           #foreach($temp in $column.values)
+               <el-option label="${temp.name}" value="${temp.value}"></el-option>
+               #end
+           </el-select>
+	       </el-form-item>
+	       #end
+	       #if($column.showtype =='check')
+	       <el-form-item label="${column.name}">
+	       <el-select v-model="form.${column.field}" placeholder="${column.name}" style="width:200px" clearable size="small">
+	           #foreach($temp in $column.values)
+               <el-option label="${temp.name}" value="${temp.value}"></el-option>
+               #end
+           </el-select>
+	       </el-form-item>
+	       #end
+	       #if($column.showtype =='dict')
+	       <el-form-item label="${column.name}">
+	       <el-select v-model="form.${column.field}" placeholder="${column.name}" style="width:200px" clearable size="small">
+	           #foreach($temp in $column.values)
+               <el-option label="${temp.name}" value="${temp.value}"></el-option>
+               #end
+           </el-select>
+	       </el-form-item>
+	       #end
+	       #if($column.showtype =='unit')
+	       <el-form-item label="${column.name}">
+	       <el-select v-model="form.${column.field}" placeholder="${column.name}" style="width:178px" clearable size="small">
+	           #foreach($temp in $column.values)
+               <el-option label="${temp.name}" value="${temp.value}"></el-option>
+               #end
+           </el-select>
+           <a href="javascript:void(0);" @click="on_query_unit('${column.field}')"><i class="el-icon-search" style="font-size: 18px;color: rgb(64, 158, 255);"></i></a>
+	       </el-form-item>
+	       #end
+	       #if($column.showtype =='user')
+	       <el-form-item label="${column.name}">
+	       <el-select v-model="form.${column.field}" placeholder="${column.name}" style="width:178px" clearable size="small">
+	           #foreach($temp in $column.values)
+               <el-option label="${temp.name}" value="${temp.value}"></el-option>
+               #end
+           </el-select>
+           <a href="javascript:void(0);" @click="on_query_user('${column.field}')"><i class="el-icon-search" style="font-size: 18px;color: rgb(64, 158, 255);"></i></a>
+	       </el-form-item>
+	       #end
+	   #end
+	   #if($column.type =='DATE')
+	   <el-form-item label="${column.name}">
+	   <el-date-picker v-model="form.${column.field}" type="daterange" range-separator="至" start-placeholder="${column.name}(起)" end-placeholder="${column.name}(止)" value-format="yyyy-MM-dd" clearable size="small"></el-date-picker>
+	   </el-form-item>
+	   #end
+	   #if($column.type =='DATETIME')
+	   <el-form-item label="${column.name}">
+	   <el-date-picker v-model="form.${column.field}" type="datetimerange" align="right" start-placeholder="${column.name}(起)" end-placeholder="${column.name}(止)" :default-time="['00:00:00', '23:59:59']" value-format="yyyy-MM-dd" clearable size="small"></el-date-picker>
+	   </el-form-item>
+	   #end
+	   #if($column.type =='LONG')
+	   <el-form-item label="${column.name}">
+	   <el-input v-model="form.${column.field}_Begin" placeholder="0" style="width:89px" clearable size="small"></el-input> 至
+	   <el-input v-model="form.${column.field}_End" placeholder="0" style="width:89px" clearable size="small"></el-input>
+	   </el-form-item>
+	   #end
+	   #if($column.type =='FLOAT')
+	   <el-form-item label="${column.name}">
+	   <el-input v-model="form.${column.field}_Begin" placeholder="0" style="width:89px" clearable size="small"></el-input> 至
+	   <el-input v-model="form.${column.field}_End" placeholder="0" style="width:89px" clearable size="small"></el-input>
+	   </el-form-item>
+	   #end
+	   #end
+	   </el-form>
+   </div>
+   <div id="qcenter" class="handle-box" v-show="show_butt">
+       <el-button-group>
+       #if($hidden.queryType == 4)
+       <el-button type="primary" icon="el-icon-search" @click="ZRopenItemsAndRows" size="small" v-if="show_butt4">查询信息</el-button>
+       <el-button type="primary" icon="el-icon-refresh-left" @click="ZRopenItemsAndRowsBack" size="small" v-if="!show_butt4">返回条件</el-button>
+       #foreach($button in $butts)
+	   <el-button type="primary" icon="${button.icon}" @click="${button.click}" size="small" v-if="!show_butt4">${button.name}</el-button>
+	   #end
+       #end
+       #if($hidden.queryType != 4)
+       #foreach($button in $butts)
+	   <el-button type="primary" icon="${button.icon}" @click="${button.click}" size="small">${button.name}</el-button>
+	   #end
+       #end
+	   </el-button-group>
+   </div>
+   <div class="handle-box" v-show="show_rows">
+       <el-table :data="data" :max-height="maxHigth" v-loading="rowsLoading" highlight-current-row @row-dblclick="ondblclick" @row-click="onclick">
+           #if($rtable.check == 1)
+           <el-table-column type="selection" fixed width="35" align="center" @selection-change="handleSelectionChange"></el-table-column>
+           #end
+           <el-table-column type="index" fixed width="35"></el-table-column>
+           #foreach($field in $rfields)
+           <el-table-column prop="${field.prop}" label="${field.label}" v-if="${field.show}" #if($rtable.width != '') width="${field.width}" #end ></el-table-column>
+           #end
+        </el-table>
+        <div class="pagination">
+            <el-pagination background @current-change="handleCurrentChange" :page-size="limit" layout="total,prev,pager,next" :total="totalCount"></el-pagination>
+        </div>
+   </div>
+   
+   <!-- 弹出窗口 -->
+   <el-dialog id="querywin" :title="dialog_title" :visible.sync="dialog_query" :close-on-click-modal="false" :show-close="false" :width="dialog_width" custom-class="querywin">
+        <el-container style="">
+            <el-header class="el-dialog-ftl2">
+                <el-button-group>
+                    <el-button type="primary" icon="el-icon-close" @click="dialog_query = false" size="small"></el-button>
+                </el-button-group>
+            </el-header>
+            <el-main id="winmain" style="'padding: 0px;margin: -20px;height:450px;padding:0px;">
+                <iframe :src="dialog_url" scrolling="auto" frameborder="0" class="frame"></iframe>
+            </el-main>
+        </el-container>
+   </el-dialog>
+   
+   <!-- 选择单位 -->
+   <el-dialog title="选择单位" :visible.sync="dialog_unit" :close-on-click-modal="false" :show-close="false" width="300px">
+        <el-container style="">
+            <el-header class="el-dialog-ftl2">
+                <el-button-group>
+                    <el-button type="primary" icon="el-icon-close" @click="dialog_unit = false" size="small"></el-button>
+                </el-button-group>
+            </el-header>
+            <el-main style="padding: 0px;margin-top: -20px;">
+                <el-tree :data="unit_tree" ref="unit_tree"  accordion show-checkbox check-strictly node-key="unitid" :props="unit_proe" check-on-click-node @check="on_unit_onclick"></el-tree>
+            </el-main>
+        </el-container>
+   </el-dialog>
+   
+   <!-- 选择用户 -->
+   <el-dialog title="选择用户" :visible.sync="dialog_user" :close-on-click-modal="false" :show-close="false" width="300px">
+        <el-container style="">
+            <el-header class="el-dialog-ftl2">
+                <el-button-group>
+                    <el-button type="primary" icon="el-icon-close" @click="dialog_user = false" size="small"></el-button>
+                </el-button-group>
+            </el-header>
+            <el-main style="padding: 0px;margin-top: -20px;">
+                <el-tree :data="user_tree" ref="user_tree" accordion show-checkbox check-strictly node-key="userid" :props="proe_user" check-on-click-node @check="on_user_onclick"></el-tree>
+            </el-main>
+        </el-container>
+   </el-dialog>
+
+</div>
+<script>
+var vm = new Vue({
+    el: '#zrquery',
+    name: 'zr_query',
+    data() {
+        return {
+            htmlLoading:true,//全局加载
+            rowsLoading:false,//数据加载
+            rowsloadtitle:'数据加载...',
+            
+            show_inpt:${hidden.show_inpt},//条件显示
+            show_butt:${hidden.show_butt},//按钮显示
+            show_rows:${hidden.show_rows},//表格显示
+            show_butt4:true,//判断为分离结果查询按钮显示
+            
+            tableData: [], //显示数据集
+            page:1,//当前页码
+            limit: 10, //每页多少条
+            totalCount: 0, //总数据
+            
+            multipleSelection: [], //选中的行
+            
+            maxHigth:100,//表格初始化最大高度
+            
+            dialog_query:false,
+            
+            //弹框配置
+            dialog_title:'弹出窗口',
+            dialog_width:'500px',
+            dialog_height:'450px',
+            dialog_url:'',
+            
+            dialog_unit:false,//单位
+            unit_tree: [],
+            unit_proe: {
+                children: 'list',
+                label: 'unitname'
+            },
+            
+            dialog_user:false,//用户
+            user_tree: [],
+            proe_user: {
+                children: 'list',
+                label: 'name'
+            },
+            
+            post_items:{ //初始化参数
+               ID:'${hidden.ID}',
+	           SHOWTITLE:'${hidden.SHOWTITLE}',
+	           TITLENAME:'${hidden.TITLENAME}',
+	           STB:'${hidden.STB}',
+	           ALIGN:'${hidden.ALIGN}',
+	           XH:'${hidden.XH}',
+	           ISCODE:'${hidden.ISCODE}',
+	           BUTTONIDS:'${hidden.BUTTONIDS}',
+	           ISNULL:'${hidden.ISNULL}',
+	           P1:'${hidden.P1}',
+	           P2:'${hidden.P2}',
+	           P3:'${hidden.P3}',
+	           P4:'${hidden.P4}',
+	           P5:'${hidden.P5}',
+	           selectrow:'${hidden.selectrow}',
+            },
+            form:{
+            #foreach($table in $tables)
+            ${table}:{},
+            #end
+            },
+            //初始化查询条件字段
+            formList:[],
+        }
+    },
+    created() {
+        $query = this
+        this.init_query_higth()
+        ZRqueryUserList()//加载单位、单位和用户数据
+        this.ZRqueryFormList()//加载查询条件字段和类型
+    },
+    mounted(){
+        $query = this
+        this.init_query_higth()
+        #if(${hidden.queryType} == 2)
+        this.show_inpt = true
+        this.ZRqtopIshsow()
+        #end
+        #if(${hidden.queryType} == 4)
+        this.show_rows = false
+        #end
+        this.$nextTick(() => {
+		    this.htmlLoading = false
+		    if(${hidden.load_rows}){//第一次加载数据
+		        this.ZRqueryRowsData()
+		    }
+        })
+    },
+    computed: {
+        data() {
+            return this.tableData
+        }
+    },
+    methods: {
+        // 初始化高度
+        init_query_higth(){
+            let e = this
+            let qtopH = $('#qtop').height()
+            let qcenterH = $('#qcenter').height()
+            e.maxHigth = $(document).height()-qtopH-qcenterH-99
+        },
+        // 分页导航
+        handleCurrentChange(val) {
+            this.page = val
+            this.ZRqueryRowsData()
+        },
+        //复选框选择的值
+        handleSelectionChange(val) {
+            this.multipleSelection = val
+        },
+        //表格单击
+        onclick(row, column, event) {
+            this.multipleSelection = []
+            this.multipleSelection.push(row)
+            $query_rows = this.multipleSelection
+            ${onclick}
+        },
+        //双击表格
+        ondblclick(row, column, event) {
+            this.multipleSelection = []
+            this.multipleSelection.push(row)
+            $query_rows = this.multipleSelection
+            ${ondblclick}
+        },
+        //查询数据
+        ZRqueryData(){
+            let e = this
+            e.page = 1
+            e.ZRqueryRowsData()
+        },
+        // 调用后台返回数据
+        ZRqueryRowsData(){
+            let e = this
+            e.rowsLoading = true
+            let post = e.post_items
+            post.page = e.page
+            getRowsData(post,function(temp,rows){
+                e.tableData = rows
+                e.page = temp.cur_page
+                e.limit = temp.limit
+                e.totalCount = temp.totalCount
+                e.rowsLoading = false
+            })
+        },
+        // 条件显示/隐藏 查询条件
+        ZRqtopIshsow(){
+            let e = this
+            e.show_inpt = !e.show_inpt
+            let qtopH = $('#qtop').height()
+            let qcenterH = $('#qcenter').height()
+            e.maxHigth = e.show_inpt == false ? $(document).height()-qcenterH-93 : $(document).height()-qtopH-qcenterH-99
+        },
+        // 分离结果查询
+        ZRopenItemsAndRows(){
+            let e = this
+            e.show_butt4 = !e.show_butt4
+            e.show_rows = true
+            e.ZRqtopIshsow()
+            e.ZRqueryRowsData()
+        },
+        // 返回分离结果条件
+        ZRopenItemsAndRowsBack(){
+            let e = this
+            e.show_butt4 = !e.show_butt4
+            e.show_rows = false
+            e.ZRqtopIshsow()
+        },
+        //自定义查询按钮调用方法
+        #foreach($click in $clicks)
+        ${click}
+        #end
+        
+        //初始化查询条件字段
+        ZRqueryFormList(){
+            let e = this
+            let list = []
+            #foreach($column in $items)
+            list.push({field:'${column.field}',type:'${column.type}'})
+            #end
+            e.formList = list
+        },
+    }
+});
+</script>
+<style scoped>
+.table {
+    width: 100%;
+    font-size: 14px;
+}
+.frame {
+    position: relative;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+}
+</style>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+  <!-- 数据库驱动 -->
+  <classPathEntry location="mysql-connector-java-5.1.35.jar"/>
+  <!-- 此处指定生成针对MyBatis3的DAO -->
+  <context id="mysqlTables" targetRuntime="MyBatis3">
+    <!-- 关闭注释 -->
+    <commentGenerator>
+      <property name="suppressAllComments" value="true"/>
+    </commentGenerator>
+    <!-- 自动识别数据库关键字，默认false，如果设置为true，根据SqlReservedWords中定义
+    	   的关键字列表； 一般保留默认值，遇到数据库关键字（Java关键字），使用columnOverride覆盖
+	     -->
+    <!-- <property name="autoDelimitKeywords" value="false"/> -->
+    <!-- 生成的Java文件的编码 -->
+    <!-- <property name="javaFileEncoding" value="UTF-8"/> -->
+    <!-- beginningDelimiter和endingDelimiter：指明数据库的用于标记数据库对象名的符号，
+	 	   比如ORACLE就是双引号，MYSQL默认是`反引号； -->
+    <!-- 
+	    <property name="beginningDelimiter" value="`"/>
+	    <property name="endingDelimiter" value="`"/>
+	     -->
+    <!-- 数据库链接地址账号密码 -->
+    <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://127.0.0.1:3306/zrpowerdb?useUnicode=true&amp;characterEncoding=utf8" userId="root" password="root"/>
+    <!-- 类型转换：是否强制转换，只有forceBigDecimals一个属性 -->
+    <javaTypeResolver>
+      <property name="forceBigDecimals" value="false"/>
+    </javaTypeResolver>
+    <!-- 生成Model实体类*.java存放位置 -->
+    <javaModelGenerator targetPackage="zr.zrpower.model" targetProject="../src/main/java">
+      <property name="enableSubPackages" value="true"/>
+      <property name="trimStrings" value="true"/>
+      <property name="constructorBased" value="false"/>
+    </javaModelGenerator>
+    <!-- 生成映射文件*Mapper.xml存放位置 -->
+    <sqlMapGenerator targetPackage="mapper" targetProject="../src/main/resources">
+      <property name="enableSubPackages" value="true"/>
+    </sqlMapGenerator>
+    <!-- 生成DAO接口类*Mapper.java存放位置 -->
+    <javaClientGenerator type="XMLMAPPER" targetPackage="zr.zrpower.dao.mapper" targetProject="../src/main/java">
+      <property name="enableSubPackages" value="true"/>
+      <property name="useLegacyBuilder" value="true"/>
+    </javaClientGenerator>
+    <!-- 生成对应表及类名 -->
+    <table tableName="PM_CHART_SETUP" domainObjectName="PmChartSetup" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"/>
+  </context>
+</generatorConfiguration>

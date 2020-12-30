@@ -1,0 +1,345 @@
+<HTML>
+<HEAD>
+<TITLE></TITLE>
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="/static/vue/element-ui/lib/theme-chalk/index.css" >
+<link rel="stylesheet" type="text/css" href="/static/vue/element-ui/lib/theme-chalk/html.css" >
+<script type="text/javascript" src="/static/vue/jquery-1_15.9.1.min.js"></script>
+<script type="text/javascript" src="/static/vue/vue.min.js" ></script>
+<script type="text/javascript" src="/static/vue/element-ui/lib/index.js" type="text/javascript"></script>
+<SCRIPT type='text/javascript' src="/static/ZrWorkFlow/js/Workflow.js"></SCRIPT>
+<SCRIPT type='text/javascript' src="/static/vue/script/Public.js"></SCRIPT>
+<SCRIPT type='text/javascript' src="/static/ZrWorkFlow/js/DealListVue.js"></SCRIPT>
+<script type="text/javascript" src="/static/vue/ZRutils.js"></script>
+<script type="text/javascript" src="/static/vue/layer/layer.js"></script>
+
+<SCRIPT type="text/javascript" th:inline="javascript">
+
+function btnSpecialValue(strValue){
+  if(CheckInputWhereExpression($zrthis.form.WHERE1,strValue))
+     $zrthis.form.WHERE1=$zrthis.form.WHERE1+strValue;
+}
+
+function select_onchang(){
+	if ($zrthis.form.CONNTYPE=='5'){
+		$zrthis.isshow = true;
+    } else {
+    	$zrthis.isshow = false;
+    }
+    return false;
+}
+
+//====
+function fillTableName(obj){
+    tableName= $("select[name='TableList']").val();
+}
+
+function fillSessionName(obj){
+    SessionName = $("select[name='SessionValueList']").val();
+    $zrthis.form.WHERE1=$zrthis.form.WHERE1+SessionName;
+}
+
+function fillFieldName(obj) {
+    tableName=$("select[name='TableList']").val();
+    fieldName=$("select[name='FieldList']").val();
+    $zrthis.form.WHERE1=$zrthis.form.WHERE1+'['+tableName+'.'+fieldName+']';   
+}
+
+function ShowHelpModal(){
+  var url='/iframe?page=ZrWorkFlow/flowconfig/FlowProcess/formulaHelp.html';
+  var index =layer.open({
+      type: 2,
+      title: "条件设置说明",
+      area: ['500px', '300px'],
+      fix: false, //不固定
+      maxmin: false,
+      content: url
+  });
+}
+
+function deletedata(){
+	layer.confirm('确定要删除吗？', {icon: 3, title:'提示'}, function(index){
+		layer.close(index);
+		var url = "/flow/openflowcfg?Act=deleteconnid&cid="+[[${cid}]]+"&eid="+[[${eid}]];
+        location.href=url;
+	});
+}
+</SCRIPT>
+</HEAD>
+<body style="margin: 0px;background:white;">
+<div id="zrflowmain"  v-loading="htmlLoading"  class="container" style="padding-top: 0px;">
+  <el-form :model="form" ref="form" :rules="rules" style="margin-bottom: 0px;">
+     <el-tabs v-model="activeName">
+        <el-tab-pane name="1">
+            <span slot="label"><i class="el-icon-monitor"></i> 基本属性</span>
+            <div>
+                <el-row>
+                    <el-col :span="12">
+                        <el-form-item label="依赖名称" prop="NAME" :label-width="formLabelWidth">
+                            <el-input v-model="form.NAME" clearable placeholder="依赖名称" ></el-input>
+                        </el-form-item>
+                    </el-col>
+                    <el-col :span="12">
+                        <el-form-item label="依赖描述" prop="DESC1" :label-width="formLabelWidth">
+                            <el-input v-model="form.DESC1" clearable placeholder="依赖描述" ></el-input>
+                        </el-form-item>
+                    </el-col>
+                </el-row>
+                <el-row>
+                    <el-col :span="12">
+                        <el-form-item label="附件检测" :label-width="formLabelWidth">
+                            <el-radio v-model="form.ISATT" label="1">是</el-radio>
+                            <el-radio v-model="form.ISATT" label="0">否</el-radio>
+                        </el-form-item>
+                    </el-col>
+                    <el-col :span="12">
+                        <el-form-item label="关联流程必建" :label-width="formLabelWidth">
+                            <el-radio v-model="form.ISNEED" label="1">是</el-radio>
+                            <el-radio v-model="form.ISNEED" label="0">否</el-radio>
+                        </el-form-item>
+                    </el-col>
+                </el-row>
+                <el-row>
+                    <el-col :span="16">
+                          <select id="TableList" name="TableList" style="width:180px;height:190px" size=15 onChange="loadFieldList(this.value)" onclick="fillTableName(this)">
+                          </select>
+                          <select id="FieldList" name="FieldList" style="width:180px;height:190px" size=15 onclick="fillFieldName(this)">
+                          </select>
+                          <select name="SessionValueList" style="width:180px;height:190px" size=15 onclick="fillSessionName(this)" th:utext="${LIST1}">
+                          </select>
+                    </el-col>
+                    <el-col :span="8">
+                        <el-button-group>
+                           <el-button type="primary" size="small" onClick="btnSpecialValue('+')">+</el-button>
+                           <el-button type="primary" size="small" onClick="btnSpecialValue('-')">-</el-button>
+                           <el-button type="primary" size="small" onClick="btnSpecialValue('*')">*</el-button>
+                           <el-button type="primary" size="small" onClick="btnSpecialValue('/')">/</el-button>
+                           <el-button type="primary" size="small" onClick="btnSpecialValue('(')">(</el-button>
+                           <el-button type="primary" size="small" onClick="btnSpecialValue(')')">)</el-button>
+                        </el-button-group>  <br><br>
+                        <el-button-group> 
+                           <el-button type="primary" size="small" onClick="btnSpecialValue('>')">></el-button>
+                           <el-button type="primary" size="small" onClick="btnSpecialValue('>=')">>=</el-button>
+                           <el-button type="primary" size="small" onClick="btnSpecialValue('<')"><</el-button>
+                           <el-button type="primary" size="small" onClick="btnSpecialValue('<=')"><=</el-button>
+                           <el-button type="primary" size="small" onClick="btnSpecialValue('!=')">!=</el-button>
+                           <el-button type="primary" size="small" onClick="btnSpecialValue('=')">=</el-button>
+                        </el-button-group>  <br><br>
+                        <el-button-group>    
+                           <el-button type="primary" size="small" onClick="btnSpecialValue('0')">0</el-button>
+                           <el-button type="primary" size="small" onClick="btnSpecialValue('1')">1</el-button>
+                           <el-button type="primary" size="small" onClick="btnSpecialValue('2')">2</el-button>
+                           <el-button type="primary" size="small" onClick="btnSpecialValue('3')">3</el-button>
+                           <el-button type="primary" size="small" onClick="btnSpecialValue('4')">4</el-button>
+                           <el-button type="primary" size="small" onClick="btnSpecialValue('5')">5</el-button>
+                           <el-button type="primary" size="small" onClick="btnSpecialValue('6')">6</el-button>
+                        </el-button-group>  <br><br>
+                        <el-button-group>    
+                           <el-button type="primary" size="small" onClick="btnSpecialValue('7')">7</el-button>
+                           <el-button type="primary" size="small" onClick="btnSpecialValue('8')">8</el-button>
+                           <el-button type="primary" size="small" onClick="btnSpecialValue('9')">9</el-button>
+                           <el-button type="primary" size="small" onClick="btnSpecialValue(' AND ')">AND</el-button>
+                           <el-button type="primary" size="small" onClick="btnSpecialValue(' OR ')">OR</el-button>
+                        </el-button-group>   
+                    </el-col>
+                </el-row>
+                <br>
+                <el-row>
+                    <el-form-item label="依赖条件" :label-width="formLabelWidth">
+                        <el-input placeholder="选择或输入条件值" v-model="form.WHERE1" class="input-with-select">
+                            <el-button slot="append" icon="el-icon-document" onclick="javascript:ShowHelpModal();"></el-button>
+                        </el-input>    
+                    </el-form-item>
+                </el-row>
+                <div style="text-align:center;">
+                    <el-button type="primary" icon="el-icon-check" size="small" @click="save">保存</el-button>
+                    <el-button type="primary" icon="el-icon-delete" size="small" onclick="javascript:deletedata();">删除</el-button>
+                    <el-button type="primary" icon="el-icon-close" size="small" onclick="parent.layer.closeAll();">取消</el-button>
+                </div>
+            </div>
+       </el-tab-pane>
+       <el-tab-pane name="2">
+            <span slot="label"><i class="el-icon-s-custom"></i> 接收人设置</span>
+            <div>
+                <el-row>
+                        <el-form-item label="接收类型" :label-width="formLabelWidth">
+                            <el-select v-model="form.CONNTYPE" @change="select_onchang" clearable placeholder="请选择">
+                                <el-option v-for="item in LIST2" :key="item.value" :label="item.label" :value="item.value"></el-option>
+                            </el-select>
+                        </el-form-item>
+                </el-row>
+                <el-row v-if="isshow">
+                    <el-col :span="11"><div align="right" style="padding-right: 30px">可选流程组</div></el-col>
+                    <el-col :span="2">操作</el-col>
+                    <el-col :span="11">已选流程组</el-col>
+                </el-row>
+                <el-row v-if="isshow">
+                    <el-col :span="11">
+                        <div th:utext="${LIST4}" align="right" style="padding-right: 30px"></div><br>
+                        <div align="right" style="padding-right: 30px">
+                            <el-checkbox v-model="form.checked1" @change="check1">全选 &nbsp;&nbsp;&nbsp;&nbsp; 注：使用Ctrl键可选择多个</el-checkbox>
+                        </div>
+                    </el-col>
+                    <el-col :span="2">
+                        <el-button type="primary" size="small" icon="el-icon-arrow-up" onclick="javascript:upFromDestList();"></el-button><br><br>
+                        <el-button type="primary" size="small" icon="el-icon-arrow-right" onClick="javascript:addSrcToDestListPu(srcList,destList);"></el-button><br><br>
+                        <el-button type="primary" size="small" icon="el-icon-arrow-left" onclick="javascript:deleteFromDestListPu(destList);"></el-button><br><br>
+                        <el-button type="primary" size="small" icon="el-icon-arrow-down" onclick="javascript:downFromDestList();"></el-button>
+                      
+                    </el-col>
+                    <el-col :span="11">
+                        <div th:utext="${LIST5}" ></div><br>
+                        <div>
+                            <el-checkbox v-model="form.checked2" @change="check2">全选 &nbsp;&nbsp;&nbsp;&nbsp; 注：使用Ctrl键可选择多个</el-checkbox>
+                        </div>
+                    </el-col>
+                </el-row>
+                
+            </div>
+       </el-tab-pane>
+    </el-tabs>
+  </el-form>
+</div>
+<script type="text/javascript" th:inline="javascript">
+/* var pcList1 =  ZRoptionToJson([[${LIST1}]]);*/
+var pcList2 =  ZRoptionToJson([[${LIST2}]]); 
+var vm = new Vue({
+    el: '#zrflowmain',
+    name: 'zr_flowmain',
+    data() {
+        return {
+            htmlLoading:true,//全局加载
+            rowsloadtitle:'数据加载...',
+            
+            activeName: '1',
+            formLabelWidth: '100px',
+            
+            isshow:false,
+            
+            /* LIST1:pcList1,*/
+            LIST2:pcList2, 
+            form:{},
+            rules:{},
+            dialog:false,
+        }
+    },
+    created() {
+    	let e = this;
+    	$zrthis = this;
+    },
+    mounted(){
+    	let e = this
+        this.$nextTick(() => {
+		    this.htmlLoading = false
+		    e.form = [[${Pr}]]
+		    e.form.CONNTYPE = e.form.TYPE
+		    e.form.formfields = ''
+        	e.form.InputType = '1'
+        	e.form.ID = [[${ID}]]
+        	e.form.CID = [[${cid}]]
+        	e.form.EID = [[${eid}]]
+        	e.form.Act = 'edit1'
+        	select_onchang()
+        })
+    },
+    computed: {
+    },
+    methods: {
+    	save(){
+    		let e = this;
+    		if (!(ListAllVue(e.form))){
+    		    return false;
+    		}
+    		ZRsave(this.form, 'form', '/flow/flowprocess', function(back){
+    			parent.layer.closeAll();
+    		})
+    	},
+    	check1(data){
+    		CheckBoxSel(data,'srcList');
+    	},
+    	check2(data){
+    		CheckBoxSel(data,'destList');
+    	},
+    }
+});
+</script>
+<SCRIPT type="text/javascript">
+//加载数据表下拉列表
+function loadTableList(){
+	//Ajax请求数据信息
+    $.ajax({
+        async: false,
+        type: "GET",
+        url:'/flowMaActBean/getTableList',
+        contentType: "application/json",
+        dataType: "json",
+        success: function(result) {
+        	$("#TableList").empty();//清除select的option选项
+        	var jsonArr = result;//转换为json数组
+        	//给select下拉框赋值
+        	var optionVal = '',fistId='';
+        	for(var i=0; i<result.length; i++) {
+        		optionVal += '<option value ="'+jsonArr[i].id+'">'+jsonArr[i].text+'</option>';
+        		if(i == 0){
+        			fistId=jsonArr[i].id;
+        		}
+        	}
+        	$("#TableList").append(optionVal);
+        	
+        	if($("select[name='TableList']").length>0){
+        		$("select[name='TableList']").val(fistId);
+                loadFieldList(fistId);
+            }
+        },
+        error: function(exception) {
+        	console.log(exception)
+        }
+    });
+}
+
+loadTableList();//加载数据表下拉列表
+
+// 加载字段下拉列表
+function loadFieldList(TableName){
+    if(TableName==null||TableName==''){
+    	clearFieldList();
+    	return;
+    }
+    //Ajax请求数据信息
+    $.ajax({
+        async: false,
+        type: "GET",
+        url:'/flowMaActBean/getFieldList',
+        contentType: "application/json",
+        data:{"TableName" : TableName},
+        dataType: "json",
+        success: function(result) {
+        	clearFieldList();//清除select的option选项
+        	var jsonArr = result;//转换为json数组
+        	//给select下拉框赋值
+        	var optionVal = '',fistId = '';
+        	for(var i=0; i<result.length; i++) {
+        		optionVal += '<option value ="'+jsonArr[i].id+'">'+jsonArr[i].text+'</option>';
+        		if(i==0){
+        			fistId = jsonArr[i].id;
+        		}
+        	}
+        	$("#FieldList").append(optionVal);
+        	if($("select[name='FieldList']").length>0){
+        		$("select[name='FieldList']").val(fistId);
+            }
+        },
+        error: function(exception) {
+        	console.log(exception)
+        }
+    });
+}
+
+//清除select的option选项
+function clearFieldList(){
+    $("#FieldList").empty()
+}
+</SCRIPT>
+</BODY>
+</HTML>

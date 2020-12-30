@@ -1,0 +1,660 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="zr.zrpower.dao.mapper.QueryConfigMapper">
+  <!-- 增加配置表数据实体类 -->
+  <insert id="insertQUERY_CONFIG_TABLE" parameterType="java.util.Map">
+	Insert Into QUERY_CONFIG_TABLE
+	<trim prefix="(" suffix=")" suffixOverrides=",">
+		<if test="ID != null">
+			ID,
+		</if>
+		<if test="NAME != null">
+			NAME,
+		</if>
+		<if test="MAINTABLE != null">
+			MAINTABLE,
+		</if>
+		<if test="TYPE != null">
+			TYPE,
+		</if>
+		<if test="BID != null">
+			BID,
+		</if>
+		<if test="IFFIRSTDATA != null">
+			IFFIRSTDATA,
+		</if>
+		<if test="IFMULSEL != null">
+			IFMULSEL,
+		</if>
+		<if test="IFCOMBTN != null">
+			IFCOMBTN,
+		</if>
+		<if test="CID != null">
+			CID,
+		</if>
+		<if test="DCODE != null">
+			DCODE,
+		</if>
+		<if test="QITEMTYPE != null">
+			QITEMTYPE,
+		</if>
+		<if test="QTABLETYPE != null">
+			QTABLETYPE,
+		</if>
+	</trim>
+	<trim prefix="values (" suffix=")" suffixOverrides=",">
+		<if test="ID != null">
+			#{ID},
+		</if>
+		<if test="NAME != null">
+			#{NAME},
+		</if>
+		<if test="MAINTABLE != null">
+			#{MAINTABLE},
+		</if>
+		<if test="TYPE != null">
+			#{TYPE},
+		</if>
+		<if test="BID != null">
+			#{BID},
+		</if>
+		<if test="IFFIRSTDATA != null">
+			#{IFFIRSTDATA},
+		</if>
+		<if test="IFMULSEL != null">
+			#{IFMULSEL},
+		</if>
+		<if test="IFCOMBTN != null">
+			#{IFCOMBTN},
+		</if>
+		<if test="CID != null">
+			#{CID},
+		</if>
+		<if test="DCODE != null">
+			#{DCODE},
+		</if>
+		<if test="QITEMTYPE != null">
+			#{QITEMTYPE},
+		</if>
+		<if test="QTABLETYPE != null">
+			#{QTABLETYPE},
+		</if>
+	</trim>
+  </insert>
+
+  <!-- 编辑配置表数据实体类 -->
+  <update id="editQUERY_CONFIG_TABLE" parameterType="java.util.Map">
+    update QUERY_CONFIG_TABLE
+    <set>
+		<if test="NAME != null">
+			NAME = #{NAME},
+		</if>
+		<if test="MAINTABLE != null">
+			MAINTABLE = #{MAINTABLE},
+		</if>
+		<if test="TYPE != null">
+			TYPE = #{TYPE},
+		</if>
+		<if test="BID != null">
+			BID = #{BID},
+		</if>
+		<if test="IFFIRSTDATA != null">
+			IFFIRSTDATA = #{IFFIRSTDATA},
+		</if>
+		<if test="IFMULSEL != null">
+			IFMULSEL = #{IFMULSEL},
+		</if>
+		<if test="IFCOMBTN != null">
+			IFCOMBTN = #{IFCOMBTN},
+		</if>
+		<if test="CID != null">
+			CID = #{CID},
+		</if>
+		<if test="DCODE != null">
+			DCODE = #{DCODE},
+		</if>
+		<if test="QITEMTYPE != null">
+			QITEMTYPE = #{QITEMTYPE},
+		</if>
+		<if test="QTABLETYPE != null">
+			QTABLETYPE = #{QTABLETYPE},
+		</if>
+    </set>
+    Where ID = #{ID}
+  </update>
+
+  <!-- 增加查询显示结果配置表数据实体类 -->
+  <insert id="insertQUERY_CONFIG_SHOWFIELD" parameterType="java.util.Map">
+	Insert Into QUERY_CONFIG_SHOWFIELD
+	<trim prefix="(" suffix=")" suffixOverrides=",">
+		<if test="ID != null">
+			ID,
+		</if>
+		<if test="FID != null">
+			FID,
+		</if>
+		<if test="FIELD != null">
+			FIELD,
+		</if>
+		<if test="ISSHOW != null">
+			ISSHOW,
+		</if>
+		<if test="COLWIDTH != null">
+			COLWIDTH,
+		</if>
+		<if test="ISNUMBER != null">
+			ISNUMBER,
+		</if>
+		<if test="QALIGN != null">
+			QALIGN,
+		</if>
+	</trim>
+	<trim prefix="values (" suffix=")" suffixOverrides=",">
+		<if test="ID != null">
+			#{ID},
+		</if>
+		<if test="FID != null">
+			#{FID},
+		</if>
+		<if test="FIELD != null">
+			#{FIELD},
+		</if>
+		<if test="ISSHOW != null">
+			#{ISSHOW},
+		</if>
+		<if test="COLWIDTH != null">
+			#{COLWIDTH},
+		</if>
+		<if test="ISNUMBER != null">
+			#{ISNUMBER},
+		</if>
+		<if test="QALIGN != null">
+			#{QALIGN},
+		</if>
+	</trim>
+  </insert>
+
+  <!-- 编辑查询显示结果配置表数据实体类 -->
+  <update id="editQUERY_CONFIG_SHOWFIELD" parameterType="java.util.Map">
+    update QUERY_CONFIG_SHOWFIELD
+    <set>
+		<if test="FID != null">
+			FID = #{FID},
+		</if>
+		<if test="FIELD != null">
+			FIELD = #{FIELD},
+		</if>
+		<if test="ISSHOW != null">
+			ISSHOW = #{ISSHOW},
+		</if>
+		<if test="COLWIDTH != null">
+			COLWIDTH = #{COLWIDTH},
+		</if>
+		<if test="ISNUMBER != null">
+			ISNUMBER = #{ISNUMBER},
+		</if>
+		<if test="QALIGN != null">
+			QALIGN = #{QALIGN},
+		</if>
+    </set>
+    Where ID = #{ID}
+  </update>
+
+  <!-- 增加查询字段配置表数据实体类 -->
+  <insert id="insertQUERY_CONFIG_QUERYFIELD" parameterType="java.util.Map">
+	Insert Into QUERY_CONFIG_QUERYFIELD
+	<trim prefix="(" suffix=")" suffixOverrides=",">
+		<if test="ID != null">
+			ID,
+		</if>
+		<if test="FID != null">
+			FID,
+		</if>
+		<if test="FIELD != null">
+			FIELD,
+		</if>
+		<if test="ISPRECISION != null">
+			ISPRECISION,
+		</if>
+		<if test="ISMUST != null">
+			ISMUST,
+		</if>
+		<if test="ISDAY != null">
+			ISDAY,
+		</if>
+		<if test="DVALUE != null">
+			DVALUE,
+		</if>
+	</trim>
+	<trim prefix="values (" suffix=")" suffixOverrides=",">
+		<if test="ID != null">
+			#{ID},
+		</if>
+		<if test="FID != null">
+			#{FID},
+		</if>
+		<if test="FIELD != null">
+			#{FIELD},
+		</if>
+		<if test="ISPRECISION != null">
+			#{ISPRECISION},
+		</if>
+		<if test="ISMUST != null">
+			#{ISMUST},
+		</if>
+		<if test="ISDAY != null">
+			#{ISDAY},
+		</if>
+		<if test="DVALUE != null">
+			#{DVALUE},
+		</if>
+	</trim>
+  </insert>
+
+  <!-- 编辑查询字段配置表数据实体类 -->
+  <update id="editQUERY_CONFIG_QUERYFIELD" parameterType="java.util.Map">
+    update QUERY_CONFIG_QUERYFIELD
+    <set>
+		<if test="FID != null">
+			FID = #{FID},
+		</if>
+		<if test="FIELD != null">
+			FIELD = #{FIELD},
+		</if>
+		<if test="ISPRECISION != null">
+			ISPRECISION = #{ISPRECISION},
+		</if>
+		<if test="ISMUST != null">
+			ISMUST = #{ISMUST},
+		</if>
+		<if test="ISDAY != null">
+			ISDAY = #{ISDAY},
+		</if>
+		<if test="DVALUE != null">
+			DVALUE = #{DVALUE},
+		</if>
+    </set>
+    Where ID = #{ID}
+  </update>
+
+  <!-- 增加查询配置初始条件表数据实体类 -->
+  <insert id="insertQUERY_CONFIG_INIT" parameterType="java.util.Map">
+	Insert Into QUERY_CONFIG_INIT
+	<trim prefix="(" suffix=")" suffixOverrides=",">
+		<if test="ID != null">
+			ID,
+		</if>
+		<if test="FID != null">
+			FID,
+		</if>
+		<if test="QLEFT != null">
+			QLEFT,
+		</if>
+		<if test="FIELD != null">
+			FIELD,
+		</if>
+		<if test="SYMBOL != null">
+			SYMBOL,
+		</if>
+		<if test="WHEREVALUE != null">
+			WHEREVALUE,
+		</if>
+		<if test="QRIGHT != null">
+			QRIGHT,
+		</if>
+		<if test="LOGIC != null">
+			LOGIC,
+		</if>
+	</trim>
+	<trim prefix="values (" suffix=")" suffixOverrides=",">
+		<if test="ID != null">
+			#{ID},
+		</if>
+		<if test="FID != null">
+			#{FID},
+		</if>
+		<if test="QLEFT != null">
+			#{QLEFT},
+		</if>
+		<if test="FIELD != null">
+			#{FIELD},
+		</if>
+		<if test="SYMBOL != null">
+			#{SYMBOL},
+		</if>
+		<if test="WHEREVALUE != null">
+			#{WHEREVALUE},
+		</if>
+		<if test="QRIGHT != null">
+			#{QRIGHT},
+		</if>
+		<if test="LOGIC != null">
+			#{LOGIC},
+		</if>
+	</trim>
+  </insert>
+
+  <!-- 编辑查询配置初始条件表数据实体类 -->
+  <update id="editQUERY_CONFIG_INIT" parameterType="java.util.Map">
+    update QUERY_CONFIG_INIT
+    <set>
+		<if test="FID != null">
+			FID = #{FID},
+		</if>
+		<if test="QLEFT != null">
+			QLEFT = #{QLEFT},
+		</if>
+		<if test="FIELD != null">
+			FIELD = #{FIELD},
+		</if>
+		<if test="SYMBOL != null">
+			SYMBOL = #{SYMBOL},
+		</if>
+		<if test="WHEREVALUE != null">
+			WHEREVALUE = #{WHEREVALUE},
+		</if>
+		<if test="QRIGHT != null">
+			QRIGHT = #{QRIGHT},
+		</if>
+		<if test="LOGIC != null">
+			LOGIC = #{LOGIC},
+		</if>
+    </set>
+    Where ID = #{ID}
+  </update>
+
+  <!-- 增加查询关系配置表数据实体类 -->
+  <insert id="insertQUERY_CONFIG_CONNECTION" parameterType="java.util.Map">
+	Insert Into QUERY_CONFIG_CONNECTION
+	<trim prefix="(" suffix=")" suffixOverrides=",">
+		<if test="ID != null">
+			ID,
+		</if>
+		<if test="FID != null">
+			FID,
+		</if>
+		<if test="MFIELD != null">
+			MFIELD,
+		</if>
+		<if test="CFIELD != null">
+			CFIELD,
+		</if>
+		<if test="JOINTYPE != null">
+			JOINTYPE,
+		</if>
+	</trim>
+	<trim prefix="values (" suffix=")" suffixOverrides=",">
+		<if test="ID != null">
+			#{ID},
+		</if>
+		<if test="FID != null">
+			#{FID},
+		</if>
+		<if test="MFIELD != null">
+			#{MFIELD},
+		</if>
+		<if test="CFIELD != null">
+			#{CFIELD},
+		</if>
+		<if test="JOINTYPE != null">
+			#{JOINTYPE},
+		</if>
+	</trim>
+  </insert>
+
+  <!-- 编辑查询关系配置表数据实体类 -->
+  <update id="editQUERY_CONFIG_CONNECTION" parameterType="java.util.Map">
+    update QUERY_CONFIG_CONNECTION
+    <set>
+		<if test="FID != null">
+			FID = #{FID},
+		</if>
+		<if test="MFIELD != null">
+			MFIELD = #{MFIELD},
+		</if>
+		<if test="CFIELD != null">
+			CFIELD = #{CFIELD},
+		</if>
+		<if test="JOINTYPE != null">
+			JOINTYPE = #{JOINTYPE},
+		</if>
+    </set>
+    Where ID = #{ID}
+  </update>
+
+  <!-- 增加按钮配置关系表数据实体类 -->
+  <insert id="insertQUERY_CONFIG_BRELATION" parameterType="java.util.Map">
+	Insert Into QUERY_CONFIG_BRELATION
+	<trim prefix="(" suffix=")" suffixOverrides=",">
+		<if test="ID != null">
+			ID,
+		</if>
+		<if test="FID != null">
+			FID,
+		</if>
+		<if test="BID != null">
+			BID,
+		</if>
+	</trim>
+	<trim prefix="values (" suffix=")" suffixOverrides=",">
+		<if test="ID != null">
+			#{ID},
+		</if>
+		<if test="FID != null">
+			#{FID},
+		</if>
+		<if test="BID != null">
+			#{BID},
+		</if>
+	</trim>
+  </insert>
+
+  <!-- 编辑按钮配置关系表数据实体类 -->
+  <update id="editQUERY_CONFIG_BRELATION" parameterType="java.util.Map">
+    update QUERY_CONFIG_BRELATION
+    <set>
+		<if test="FID != null">
+			FID = #{FID},
+		</if>
+		<if test="BID != null">
+			BID = #{BID},
+		</if>
+    </set>
+    Where ID = #{ID}
+  </update>
+
+  <!-- 增加按钮参数配置表数据实体类 -->
+  <insert id="insertQUERY_CONFIG_PARAMETER" parameterType="java.util.Map">
+	Insert Into QUERY_CONFIG_PARAMETER
+	<trim prefix="(" suffix=")" suffixOverrides=",">
+		<if test="ID != null">
+			ID,
+		</if>
+		<if test="FID != null">
+			FID,
+		</if>
+		<if test="BID != null">
+			BID,
+		</if>
+		<if test="NAME != null">
+			NAME,
+		</if>
+		<if test="FIELD != null">
+			FIELD,
+		</if>
+	</trim>
+	<trim prefix="values (" suffix=")" suffixOverrides=",">
+		<if test="ID != null">
+			#{ID},
+		</if>
+		<if test="FID != null">
+			#{FID},
+		</if>
+		<if test="BID != null">
+			#{BID},
+		</if>
+		<if test="NAME != null">
+			#{NAME},
+		</if>
+		<if test="FIELD != null">
+			#{FIELD},
+		</if>
+	</trim>
+  </insert>
+
+  <!-- 编辑按钮参数配置表数据实体类 -->
+  <update id="editQUERY_CONFIG_PARAMETER" parameterType="java.util.Map">
+    update QUERY_CONFIG_PARAMETER
+    <set>
+		<if test="FID != null">
+			FID = #{FID},
+		</if>
+		<if test="BID != null">
+			BID = #{BID},
+		</if>
+		<if test="NAME != null">
+			NAME = #{NAME},
+		</if>
+		<if test="FIELD != null">
+			FIELD = #{FIELD},
+		</if>
+    </set>
+    Where ID = #{ID}
+  </update>
+
+  <!-- 增加数据实体类 -->
+  <insert id="insertQUERY_CONFIG_ORDER" parameterType="java.util.Map">
+	Insert Into QUERY_CONFIG_ORDER
+	<trim prefix="(" suffix=")" suffixOverrides=",">
+		<if test="ID != null">
+			ID,
+		</if>
+		<if test="FID != null">
+			FID,
+		</if>
+		<if test="FIELD != null">
+			FIELD,
+		</if>
+		<if test="TYPE != null">
+			TYPE,
+		</if>
+	</trim>
+	<trim prefix="values (" suffix=")" suffixOverrides=",">
+		<if test="ID != null">
+			#{ID},
+		</if>
+		<if test="FID != null">
+			#{FID},
+		</if>
+		<if test="FIELD != null">
+			#{FIELD},
+		</if>
+		<if test="TYPE != null">
+			#{TYPE},
+		</if>
+	</trim>
+  </insert>
+
+  <!-- 编辑数据实体类 -->
+  <update id="editQUERY_CONFIG_ORDER" parameterType="java.util.Map">
+    update QUERY_CONFIG_ORDER
+    <set>
+		<if test="FID != null">
+			FID = #{FID},
+		</if>
+		<if test="FIELD != null">
+			FIELD = #{FIELD},
+		</if>
+		<if test="TYPE != null">
+			TYPE = #{TYPE},
+		</if>
+    </set>
+    Where ID = #{ID}
+  </update>
+
+  <!-- 增加查询按钮表数据实体类 -->
+  <insert id="insertQUERY_CONFIG_BUTTON" parameterType="java.util.Map">
+	Insert Into QUERY_CONFIG_BUTTON
+	<trim prefix="(" suffix=")" suffixOverrides=",">
+		<if test="ID != null">
+			ID,
+		</if>
+		<if test="NAME != null">
+			NAME,
+		</if>
+		<if test="ICO != null">
+			ICO,
+		</if>
+		<if test="PATHORJS != null">
+			PATHORJS,
+		</if>
+		<if test="RUNNAME != null">
+			RUNNAME,
+		</if>
+		<if test="ROLEIDS != null">
+			ROLEIDS,
+		</if>
+		<if test="FID != null">
+			FID,
+		</if>
+		<if test="BCODE != null">
+			BCODE,
+		</if>
+	</trim>
+	<trim prefix="values (" suffix=")" suffixOverrides=",">
+		<if test="ID != null">
+			#{ID},
+		</if>
+		<if test="NAME != null">
+			#{NAME},
+		</if>
+		<if test="ICO != null">
+			#{ICO},
+		</if>
+		<if test="PATHORJS != null">
+			#{PATHORJS},
+		</if>
+		<if test="RUNNAME != null">
+			#{RUNNAME},
+		</if>
+		<if test="ROLEIDS != null">
+			#{ROLEIDS},
+		</if>
+		<if test="FID != null">
+			#{FID},
+		</if>
+		<if test="BCODE != null">
+			#{BCODE},
+		</if>
+	</trim>
+  </insert>
+
+  <!-- 编辑查询按钮表数据实体类 -->
+  <update id="editQUERY_CONFIG_BUTTON" parameterType="java.util.Map">
+    update QUERY_CONFIG_BUTTON
+    <set>
+		<if test="NAME != null">
+			NAME = #{NAME},
+		</if>
+		<if test="ICO != null">
+			ICO = #{ICO},
+		</if>
+		<if test="PATHORJS != null">
+			PATHORJS = #{PATHORJS},
+		</if>
+		<if test="RUNNAME != null">
+			RUNNAME = #{RUNNAME},
+		</if>
+		<if test="ROLEIDS != null">
+			ROLEIDS = #{ROLEIDS},
+		</if>
+		<if test="FID != null">
+			FID = #{FID},
+		</if>
+		<if test="BCODE != null">
+			BCODE = #{BCODE},
+		</if>
+    </set>
+    Where ID = #{ID}
+  </update>
+</mapper>

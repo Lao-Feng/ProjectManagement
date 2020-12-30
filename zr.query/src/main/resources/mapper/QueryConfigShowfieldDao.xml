@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="zr.zrpower.dao.QueryConfigShowfieldDao">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="zr.zrpower.domain.QueryConfigShowfield" id="queryConfigShowfieldMap">
+        <result property="id" column="ID"/>
+        <result property="fid" column="FID"/>
+        <result property="field" column="FIELD"/>
+        <result property="isshow" column="ISSHOW"/>
+        <result property="colwidth" column="COLWIDTH"/>
+        <result property="isnumber" column="ISNUMBER"/>
+        <result property="qalign" column="QALIGN"/>
+    </resultMap>
+    
+ <sql id="Base_Column_List" >
+`ID`, `FID`, `FIELD`, `ISSHOW`, `COLWIDTH`, `ISNUMBER`, `QALIGN`
+  </sql>
+  
+	<select id="queryObject" resultType="zr.zrpower.domain.QueryConfigShowfield">
+		select
+		 <include refid="Base_Column_List" />
+		 from query_config_showfield where ID = #{value}
+	</select>
+	
+	<select id="getMaxNo" resultType="String">
+		select max(id) as max_no from query_config_showfield
+	</select>
+
+	<select id="queryList" resultType="zr.zrpower.domain.QueryConfigShowfield">
+		select 
+		<include refid="Base_Column_List" />
+		from query_config_showfield
+        <where>
+            <if test="fid != null and fid != ''">
+                and `fid` = #{fid}
+            </if>
+        </where>
+        <choose>
+            <when test="sidx != null and sidx.trim() != ''">
+                order by ${sidx} ${order}
+            </when>
+			<otherwise>
+                order by ID asc
+			</otherwise>
+        </choose>
+		<if test="offset != null and limit != null">
+			limit #{offset}, #{limit}
+		</if>
+	</select>
+	
+ 	<select id="queryTotal" resultType="int">
+		select count(*) from query_config_showfield 
+	</select>
+	 
+	<insert id="save" parameterType="zr.zrpower.domain.QueryConfigShowfield">
+		insert into query_config_showfield
+		(
+			`ID`, 
+			`FID`, 
+			`FIELD`, 
+			`ISSHOW`, 
+			`COLWIDTH`, 
+			`ISNUMBER`, 
+			`QALIGN`
+		)
+		values
+		(
+			#{id}, 
+			#{fid}, 
+			#{field}, 
+			#{isshow}, 
+			#{colwidth}, 
+			#{isnumber}, 
+			#{qalign}
+		)
+	</insert>
+	
+	<insert id="saveBatchList" parameterType="java.util.List"
+		useGeneratedKeys="false">
+		insert into query_config_showfield
+		(
+			`ID`, 
+			`FID`, 
+			`FIELD`, 
+			`ISSHOW`, 
+			`COLWIDTH`, 
+			`ISNUMBER`, 
+			`QALIGN`
+		)
+		values
+		<foreach collection="list" item="item" index="index"
+			separator=",">
+			(
+			#{item.id},
+			#{item.fid}, 
+			#{item.field}, 
+			#{item.isshow}, 
+			#{item.colwidth}, 
+			#{item.isnumber}, 
+			#{item.qalign}
+			)
+		</foreach>
+	</insert>
+	 
+	<update id="update" parameterType="zr.zrpower.domain.QueryConfigShowfield">
+		update query_config_showfield 
+		<set>
+			<if test="fid != null">`FID` = #{fid}, </if>
+			<if test="field != null">`FIELD` = #{field}, </if>
+			<if test="isshow != null">`ISSHOW` = #{isshow}, </if>
+			<if test="colwidth != null">`COLWIDTH` = #{colwidth}, </if>
+			<if test="isnumber != null">`ISNUMBER` = #{isnumber}, </if>
+			<if test="qalign != null">`QALIGN` = #{qalign}</if>
+		</set>
+		where ID = #{id}
+	</update>
+	
+	<delete id="delete">
+		delete from query_config_showfield where FID = #{value}
+	</delete>
+	
+	<delete id="deleteBatch">
+		delete from query_config_showfield where ID in 
+		<foreach item="id" collection="array" open="(" separator="," close=")">
+			#{id}
+		</foreach>
+	</delete>
+
+</mapper>

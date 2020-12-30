@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="zr.zrpower.dao.mapper.BpipMenuMapper">
+
+	<!-- 信息 -->
+	<select id="queryObject" resultType="zr.zrpower.model.BPIP_MENU">
+		select * from bpip_menu where menuno = #{value}
+	</select>
+    <!-- 以下为菜单数据事务操作 -->
+	<select id="queryList" resultType="zr.zrpower.model.BPIP_MENU">
+		select * from bpip_menu
+		<where>
+			<if test="MENUNO != null">
+				and MENUNO like concat('',#{MENUNO},'')
+			</if>
+			<if test="FLAG != null and FLAG != ''">
+				and FLAG = #{FLAG}
+			</if>
+			<if test="MENUNAME != null and MENUNAME != ''">
+				and MENUNAME like concat('%',#{MENUNAME},'%')
+			</if>
+		</where>
+		order by menuno asc
+	</select>
+
+	<select id="queryTotal" resultType="int">
+		select count(*) from bpip_menu
+	</select>
+	
+	<select id="getMaxNo" resultType="String">
+		SELECT MAX(MENUNO) AS MAX_NO FROM BPIP_MENU WHERE MENUNO like concat('',#{menuno},'')
+	</select>
+
+	<insert id="save" parameterType="zr.zrpower.model.BPIP_MENU" useGeneratedKeys="true" keyProperty="menuno">
+		insert into bpip_menu
+		(
+		`MENUNO`,
+		`MENUNAME`,
+		`ISPOWER`,
+		`URL`,
+		`ISOPEN`,
+		`FLAG`,
+		`MNCODE`,
+		`ICON`,
+		`PERMS`
+		)
+		values
+		(
+		#{MENUNO},
+		#{MENUNAME},
+		#{ISPOWER},
+		#{URL},
+		#{ISOPEN},
+		#{FLAG},
+		#{MNCODE},
+		#{ICON},
+		#{PERMS}
+		)
+	</insert>
+
+	<update id="update" parameterType="zr.zrpower.model.BPIP_MENU">
+		update bpip_menu
+		<set>
+			<if test="MENUNO != null">`MENUNO` = #{MENUNO}, </if>
+			<if test="MENUNAME != null">`MENUNAME` = #{MENUNAME}, </if>
+			<if test="ISPOWER != null">`ISPOWER` = #{ISPOWER}, </if>
+			<if test="URL != null">`URL` = #{URL}, </if>
+			<if test="ISOPEN != null">`ISOPEN` = #{ISOPEN}, </if>
+			<if test="FLAG != null">`FLAG` = #{FLAG}, </if>
+			<if test="ICON != null">`ICON` = #{ICON}, </if>
+			<if test="PERMS != null">`PERMS` = #{PERMS}, </if>
+			<if test="MNCODE != null">`MNCODE` = #{MNCODE}</if>
+		</set>
+		where MENUNO = #{MENUNO}
+	</update>
+    
+    <!-- 删除菜单前，判断当前菜单是否有下一级 -->
+    <select id="nextCount" resultType="int">
+		Select count(MENUNO) as MenuCount From BPIP_MENU Where MENUNO like concat('',#{value},'')
+	</select>
+	<delete id="delete">
+		delete from bpip_menu where menuno = #{value}
+	</delete>
+	<!-- 删除角色权限菜单 -->
+	<delete id="deleteRoleMenu">
+		Delete From BPIP_ROLE_RERMISSISSON Where MENUNO=#{value}
+	</delete>
+
+</mapper>

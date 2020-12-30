@@ -1,0 +1,27 @@
+body {
+	margin-left:55px;
+	margin-top: 12px;
+}
+table {
+	word-break:break-all;
+}
+input {
+	BORDER-RIGHT: #000000 0px solid; BORDER-TOP: #000000 0px solid;
+	BORDER-LEFT: #000000 0px solid; BORDER-BOTTOM: #000000 1px solid;
+}
+
+.k1 {
+	font-family:"黑体"; font-size:35px; line-height:200%; font-weight:bold;
+}
+.k2 {
+	font-family:"宋体"; font-size:18px; line-height:200%; font-weight:bold;
+}
+.k3 {
+	font-family:"宋体"; font-size:16px;
+}
+.k4 {
+	font-family:"宋体"; font-size:17px; line-height:200%; font-weight:bold;
+}
+.k6 {
+	font-family:"黑体"; font-size:16px;
+}

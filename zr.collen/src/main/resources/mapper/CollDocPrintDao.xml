@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="zr.zrpower.dao.CollDocPrintDao">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="zr.zrpower.domain.CollDocPrint" id="collDocPrintMap">
+        <result property="id" column="ID"/>
+        <result property="docid" column="DOCID"/>
+        <result property="templaet" column="TEMPLAET"/>
+        <result property="page" column="PAGE"/>
+    </resultMap>
+    
+ <sql id="Base_Column_List" >
+`ID`, `DOCID`, `TEMPLAET`, `PAGE`
+  </sql>
+  
+	<select id="queryObject" resultType="zr.zrpower.domain.CollDocPrint">
+		select
+		 <include refid="Base_Column_List" />
+		 from coll_doc_print where ID = #{value}
+	</select>
+	
+	<select id="getMaxNo" resultType="String">
+		select max(id) as max_no from coll_doc_print
+	</select>
+
+	<select id="queryList" resultType="zr.zrpower.domain.CollDocPrint">
+		select 
+		<include refid="Base_Column_List" />
+		from coll_doc_print
+        <where>
+            <if test="docid != null and docid != ''">
+                and `docid` = #{docid}
+            </if>
+        </where>
+        <choose>
+            <when test="sidx != null and sidx.trim() != ''">
+                order by ${sidx} ${order}
+            </when>
+			<otherwise>
+                order by ID 
+			</otherwise>
+        </choose>
+		<if test="offset != null and limit != null">
+			limit #{offset}, #{limit}
+		</if>
+	</select>
+	
+ 	<select id="queryTotal" resultType="int">
+		select count(*) from coll_doc_print 
+	</select>
+	 
+	<insert id="save" parameterType="zr.zrpower.domain.CollDocPrint">
+		insert into coll_doc_print
+		(
+			`ID`, 
+			`DOCID`, 
+			`TEMPLAET`, 
+			`PAGE`
+		)
+		values
+		(
+			#{id}, 
+			#{docid}, 
+			#{templaet}, 
+			#{page}
+		)
+	</insert>
+	 
+	<update id="update" parameterType="zr.zrpower.domain.CollDocPrint">
+		update coll_doc_print 
+		<set>
+			<if test="docid != null">`DOCID` = #{docid}, </if>
+			<if test="templaet != null">`TEMPLAET` = #{templaet}, </if>
+			<if test="page != null">`PAGE` = #{page}</if>
+		</set>
+		where ID = #{id}
+	</update>
+	
+	<delete id="delete">
+		delete from coll_doc_print where docid = #{value}
+	</delete>
+	
+	<delete id="deleteBatch">
+		delete from coll_doc_print where ID in 
+		<foreach item="id" collection="array" open="(" separator="," close=")">
+			#{id}
+		</foreach>
+	</delete>
+
+</mapper>

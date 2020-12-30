@@ -1,0 +1,126 @@
+$(function () {
+    $("#jqGrid").jqGrid({
+        url: '../${pathName}/list',
+        datatype: "json",
+        colModel: [			
+#foreach($column in $columns)
+#if($column.columnName == $pk.columnName)
+			{ label: '${column.attrrname}', name: '${column.attrrname}', index: '${column.columnName}', width: 50, key: true },
+#else
+			{ label: '${column.comments}', name: '${column.attrrname}', index: '${column.columnName}', width: 140 }#if($velocityCount != $columns.size()), #end
+			
+#end			
+#end
+        ],
+		viewrecords: true,
+        height: 385,
+        rowNum: 10,
+		rowList : [10,30,50],
+        rownumbers: true, 
+        rownumWidth: 25, 
+        autowidth:true,
+        multiselect: true,
+        pager: "#jqGridPager",
+        jsonReader : {
+            root: "page.list",
+            page: "page.currPage",
+            total: "page.totalPage",
+            records: "page.totalCount"
+        },
+        prmNames : {
+            page:"page", 
+            rows:"limit", 
+            order: "order"
+        },
+		shrinkToFit: false,
+        autoScroll: true,
+       #* gridComplete:function(){
+        	//隐藏grid底部滚动条
+        	$("#jqGrid").closest(".ui-jqgrid-bdiv").css({ "overflow-x" : "hidden" }); 
+        }*#
+    });
+});
+
+var vm = new Vue({
+	el:'#rrapp',
+	data:{
+	q:{
+		query : null
+	},
+		showList: true,
+		title: null,
+		${classname}: {}
+	},
+	methods: {
+		query: function () {
+			vm.reload();
+		},
+		add: function(){
+			vm.showList = false;
+			vm.title = "新增";
+			vm.${classname} = {};
+		},
+		update: function (event) {
+			var $pk.attrrname = getSelectedRow();
+			if($pk.attrrname == null){
+				return ;
+			}
+			vm.showList = false;
+            vm.title = "修改";
+            
+            vm.getInfo(${pk.attrrname})
+		},
+		saveOrUpdate: function (event) {
+			var url = vm.${classname}.${pk.attrrname} == null ? "../${pathName}/save" : "../${pathName}/update";
+			$.ajax({
+				type: "POST",
+			    url: url,
+			    data: JSON.stringify(vm.${classname}),
+			    success: function(r){
+			    	if(r.code === 0){
+						alert('操作成功', function(index){
+							vm.reload();
+						});
+					}else{
+						alert(r.msg);
+					}
+				}
+			});
+		},
+		del: function (event) {
+			var ${pk.attrrname}s = getSelectedRows();
+			if(${pk.attrrname}s == null){
+				return ;
+			}
+			
+			confirm('确定要删除选中的记录？', function(){
+				$.ajax({
+					type: "POST",
+				    url: "../${pathName}/delete",
+				    data: JSON.stringify(${pk.attrrname}s),
+				    success: function(r){
+						if(r.code == 0){
+							alert('操作成功', function(index){
+								$("#jqGrid").trigger("reloadGrid");
+							});
+						}else{
+							alert(r.msg);
+						}
+					}
+				});
+			});
+		},
+		getInfo: function(${pk.attrrname}){
+			$.get("../${pathName}/info/"+${pk.attrrname}, function(r){
+                vm.${classname} = r.${classname};
+            });
+		},
+		reload: function (event) {
+			vm.showList = true;
+			var page = $("#jqGrid").jqGrid('getGridParam','page');
+			$("#jqGrid").jqGrid('setGridParam',{ 
+                page:page
+            }).trigger("reloadGrid");
+		}
+	}
+});

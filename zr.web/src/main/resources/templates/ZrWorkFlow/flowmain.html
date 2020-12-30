@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<title>流程配置管理</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<!-- 必要连接 -->
+<link href="/static/vue/element-ui/lib/theme-chalk/index.css" rel="stylesheet" type="text/css">
+<link href="/static/vue/element-ui/lib/theme-chalk/html.css" rel="stylesheet" type="text/css">
+<script src="/static/vue/jquery-1_15.9.1.min.js"></script>
+<script src="/static/vue/vue.min.js" type="text/javascript"></script>
+<script src="/static/vue/element-ui/lib/index.js" type="text/javascript"></script>
+
+<script type="text/javascript" src="/static/vue/script/Public.js"></script>
+<style>
+.el-container{
+    height: 100%;
+}
+.el-menu-vertical-demo:not(.el-menu--collapse) {
+    width: 200px;
+    height: 100%;
+}
+[class*=" el-icon-"], [class^=el-icon-] {
+    line-height: normal;
+}
+.el-breadcrumb{
+    height: 56px;
+    background: rgb(255, 255, 255);
+    line-height: 56px;
+    padding-left: 5px;
+}
+.el-aside{
+    border-right: 1px solid rgb(230, 230, 230);
+}
+.el-main{
+    padding: 0px;
+}
+.table {
+	width: 100%;
+	font-size: 14px;
+}
+
+.frame {
+	position: relative;
+	top: 0px;
+	width: 100%;
+	height: 100%;
+	border: 0px;
+}
+</style>
+</head>
+<body style="margin:0px;">
+	<div id="zrflowsj" class="table" v-loading="htmlLoading">
+		<el-container style="heigth:100%;"> 
+		    <el-aside id="left" width="200px">
+               <el-menu class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose" :collapse="isCollapse">
+                  <el-submenu index="1" @click="setMenu('流程设计','/flow/openflowcfg?Act=PackageDesign')">
+                      <template slot="title">
+                          <i class="el-icon-menu"></i>
+                          <span slot="title" @click="setMenu('流程设计','/flow/openflowcfg?Act=PackageDesign')">流程设计</span>
+                       </template> 
+                  </el-submenu>
+                  <el-submenu index="2">
+                      <template slot="title">
+                         <i class="el-icon-s-operation"></i>
+                         <span slot="title" @click="setMenu('流程按钮管理','/iframe?page=ZrWorkFlow/BaseSetup/FlowBaseButton/ButtonList.html')">流程按钮管理</span>
+                      </template>
+                  </el-submenu>
+                  <el-submenu index="3">
+                      <template slot="title">
+                          <i class="el-icon-setting"></i><span slot="title">流程监控与管理</span>
+                      </template>  
+                      <el-menu-item index="3-2">
+                          <i class="el-icon-arrow-right"></i>
+                          <span @click="setMenu('我的待办流程','/iframe?page=ZrWorkFlow/FlowMonitor/FlowToTurn/List.html')">我的待办流程</span>
+                      </el-menu-item>
+                      <el-menu-item index="3-3">
+                          <i class="el-icon-arrow-right"></i>
+                          <span @click="setMenu('我的处理中流程','/iframe?page=ZrWorkFlow/FlowMonitor/FlowProcess/List.html')">我的处理中流程</span>
+                      </el-menu-item>
+                      <el-menu-item index="3-4">
+                          <i class="el-icon-arrow-right"></i>
+                          <span @click="setMenu('我的完成流程','/iframe?page=ZrWorkFlow/FlowMonitor/FlowComplete/List.html')">我的完成流程</span>
+                      </el-menu-item>
+                      <el-menu-item index="3-5">
+                          <i class="el-icon-arrow-right"></i>
+                          <span @click="setMenu('我的权限委托','/iframe?page=ZrWorkFlow/FlowMonitor/FlowEntrust/EntrustList.html')">我的权限委托</span>
+                      </el-menu-item>
+                      <el-menu-item index="3-6">
+                          <i class="el-icon-arrow-right"></i>
+                          <span @click="setMenu('待办流程嵌入页面','/flow/openflowcfg?Act=showlist')">待办流程嵌入页面</span>
+                      </el-menu-item>
+                      <el-menu-item index="3-7">
+                          <i class="el-icon-arrow-right"></i>
+                          <span @click="setMenu('待办流程页面(更多)','/flow/openflowcfg?Act=showmorelist')">待办流程页面(更多)</span>
+                      </el-menu-item>
+                      <el-menu-item index="3-8">
+                          <i class="el-icon-arrow-right"></i>
+                          <span @click="setMenu('流程监控','/iframe?page=ZrWorkFlow/FlowMonitor/FlowControl/List.html')">流程监控</span>
+                      </el-menu-item>
+                      <el-menu-item index="3-9">
+                          <i class="el-icon-arrow-right"></i>
+                          <span @click="setMenu('流程任务重分配','/iframe?page=ZrWorkFlow/FlowMonitor/FlowAllotment/List.html')">流程任务重分配</span>
+                      </el-menu-item>
+                      <el-menu-item index="3-10">
+                          <i class="el-icon-arrow-right"></i>
+                          <span @click="setMenu('流程管理','/iframe?page=ZrWorkFlow/FlowMonitor/FlowComplete/List1.html')">流程管理</span>
+                      </el-menu-item>
+                      <el-menu-item index="3-11">
+                          <i class="el-icon-arrow-right"></i>
+                          <span @click="setMenu('流程操作日志','/iframe?page=ZrWorkFlow/FlowMonitor/FlowControl/DailyList.html')">流程操作日志</span>
+                      </el-menu-item>
+                  </el-submenu>
+               </el-menu>
+		   </el-aside>
+		   
+		   <el-main>
+		       <el-breadcrumb separator-class="el-icon-arrow-right">
+                   <el-breadcrumb-item :to="{ path: '/' }">流程引擎管理</el-breadcrumb-item>
+                   <el-breadcrumb-item>{{top_title}}</el-breadcrumb-item>
+               </el-breadcrumb>
+               <div id="mianUrl1" style="width: 100%; position: absolute;">
+                   <iframe :src="mianUrl1" id="mianUrl2" scrolling="auto" frameborder="0" class="frame"></iframe>
+               </div>
+		   </el-main> 
+		</el-container>
+	</div>
+<script>
+var vm = new Vue({
+    el: '#zrflowsj',
+    name: 'zr_flowsj',
+    data() {
+        return {
+            htmlLoading:true,//全局加载
+            rowsloadtitle:'数据加载...',
+            
+            isCollapse: false,
+            
+            top_title:'流程设计',
+            mianUrl1:'',//url
+            
+            dialog_user:false,//用户
+            user_tree: [],
+            proe_user: {
+                children: 'list',
+                label: 'name'
+            },
+        }
+    },
+    created() {
+    	$zrflow = this
+        this.init_query_higth()
+    },
+    mounted(){
+        $zrflow = this
+        this.$nextTick(() => {
+		    this.htmlLoading = false
+        })
+    },
+    computed: {
+    },
+    methods: {
+        // 初始化高度
+        init_query_higth(){
+            let e = this
+            $('#left').height($(document).height()-2)
+            $("#mianUrl1").width($(document).width()-200)
+            $("#mianUrl2").height($(document).height()-60)
+            this.setMenu('流程设计','/flow/openflowcfg?Act=PackageDesign')
+        },
+        //点击菜单，
+        setMenu(code,menuUrl){
+        	let e = this
+        	e.top_title = code
+        	e.mianUrl1 = menuUrl
+			
+		},
+        handleOpen(key, keyPath) {
+            //console.log(key, keyPath);
+        },
+        handleClose(key, keyPath) {
+            //console.log(key, keyPath);
+        }
+    }
+});
+</script>
+
+</body>
+</html>

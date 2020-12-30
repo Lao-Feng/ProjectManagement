@@ -1,0 +1,25 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<title>文档打印</title>
+<link rel="stylesheet" href="/static/ZrCollEngine/Print/print.css" type="text/css">
+</head>
+<script type="text/javascript">
+   	function nomenu(){
+   		return false;
+   	}
+   	document.oncontextmenu=nomenu;
+</script>
+<body style="background-Color:rgba(212, 208, 200, 0.36)">
+<br>
+<center>
+<div th:if="${TYPE == '1'}">
+	<iframe id="doc" name="doc" src="/static/ZrCollEngine/Print/loading.htm" width="791" height="1076" marginwidth="0" marginheight="0" border="0" frameborder="0" scrolling="no"></iframe>
+</div>
+<div th:unless="${TYPE == '1'}">
+  <iframe id="doc" name="doc" src="/static/ZrCollEngine/Print/loading.htm" width="1076" height="791" marginwidth="0" marginheight="0" border="0" frameborder="0" scrolling="no"></iframe>
+</div>
+</center>
+<br>
+</body>
+</html>
