@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="zr.zrpower.dao.mapper.BpipCodeMapper">
+<mapper namespace="com.yonglilian.dao.mapper.BpipCodeMapper">
 
 	<!-- 信息 -->
 	<select id="queryObject" resultType="zr.zrpower.model.CODE_YWXT">
@@ -27,7 +27,7 @@
 	</select>
 
     <!-- 查询不同类型的数据库表 -->
-	<select id="getTables" resultType="zr.zrpower.model.BPIP_TABLE">
+	<select id="getTables" resultType="com.yonglilian.model.BPIP_TABLE">
 		select * from bpip_table
 		<where>
 			<if test="TABLETYPE != null and TABLETYPE !=''">

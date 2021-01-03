@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="zr.zrpower.dao.QueryConfigBrelationDao">
+<mapper namespace="com.yonglilian.dao.QueryConfigBrelationDao">
 
 	<!-- 可根据自己的需求，是否要使用 -->
-    <resultMap type="zr.zrpower.domain.QueryConfigBrelation" id="queryConfigBrelationMap">
+    <resultMap type="com.yonglilian.domain.QueryConfigBrelation" id="queryConfigBrelationMap">
         <result property="id" column="ID"/>
         <result property="fid" column="FID"/>
         <result property="bid" column="BID"/>
@@ -14,7 +14,7 @@
 `ID`, `FID`, `BID`
   </sql>
   
-	<select id="queryObject" resultType="zr.zrpower.domain.QueryConfigBrelation">
+	<select id="queryObject" resultType="com.yonglilian.domain.QueryConfigBrelation">
 		select
 		 <include refid="Base_Column_List" />
 		 from query_config_brelation where ID = #{value}
@@ -24,7 +24,7 @@
 		select max(id) as max_no from query_config_brelation
 	</select>
 
-	<select id="queryList" resultType="zr.zrpower.domain.QueryConfigBrelation">
+	<select id="queryList" resultType="com.yonglilian.domain.QueryConfigBrelation">
 		select 
 		<include refid="Base_Column_List" />
 		from query_config_brelation
@@ -53,7 +53,7 @@
 		select count(*) from query_config_brelation 
 	</select>
 	 
-	<insert id="save" parameterType="zr.zrpower.domain.QueryConfigBrelation">
+	<insert id="save" parameterType="com.yonglilian.domain.QueryConfigBrelation">
 		insert into query_config_brelation
 		(
 			`ID`, 
@@ -68,7 +68,7 @@
 		)
 	</insert>
 	 
-	<update id="update" parameterType="zr.zrpower.domain.QueryConfigBrelation">
+	<update id="update" parameterType="com.yonglilian.domain.QueryConfigBrelation">
 		update query_config_brelation 
 		<set>
 			<if test="fid != null">`FID` = #{fid}, </if>

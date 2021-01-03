@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="zr.zrpower.dao.QueryConfigShowfieldDao">
+<mapper namespace="com.yonglilian.dao.QueryConfigShowfieldDao">
 
 	<!-- 可根据自己的需求，是否要使用 -->
-    <resultMap type="zr.zrpower.domain.QueryConfigShowfield" id="queryConfigShowfieldMap">
+    <resultMap type="com.yonglilian.domain.QueryConfigShowfield" id="queryConfigShowfieldMap">
         <result property="id" column="ID"/>
         <result property="fid" column="FID"/>
         <result property="field" column="FIELD"/>
@@ -18,7 +18,7 @@
 `ID`, `FID`, `FIELD`, `ISSHOW`, `COLWIDTH`, `ISNUMBER`, `QALIGN`
   </sql>
   
-	<select id="queryObject" resultType="zr.zrpower.domain.QueryConfigShowfield">
+	<select id="queryObject" resultType="com.yonglilian.domain.QueryConfigShowfield">
 		select
 		 <include refid="Base_Column_List" />
 		 from query_config_showfield where ID = #{value}
@@ -28,7 +28,7 @@
 		select max(id) as max_no from query_config_showfield
 	</select>
 
-	<select id="queryList" resultType="zr.zrpower.domain.QueryConfigShowfield">
+	<select id="queryList" resultType="com.yonglilian.domain.QueryConfigShowfield">
 		select 
 		<include refid="Base_Column_List" />
 		from query_config_showfield
@@ -54,7 +54,7 @@
 		select count(*) from query_config_showfield 
 	</select>
 	 
-	<insert id="save" parameterType="zr.zrpower.domain.QueryConfigShowfield">
+	<insert id="save" parameterType="com.yonglilian.domain.QueryConfigShowfield">
 		insert into query_config_showfield
 		(
 			`ID`, 
@@ -104,7 +104,7 @@
 		</foreach>
 	</insert>
 	 
-	<update id="update" parameterType="zr.zrpower.domain.QueryConfigShowfield">
+	<update id="update" parameterType="com.yonglilian.domain.QueryConfigShowfield">
 		update query_config_showfield 
 		<set>
 			<if test="fid != null">`FID` = #{fid}, </if>

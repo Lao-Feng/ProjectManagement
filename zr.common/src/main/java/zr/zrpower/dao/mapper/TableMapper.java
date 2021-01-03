@@ -10,7 +10,7 @@ import java.util.Map;
  * @author lwk
  *
  */
-@MapperScan({"zr.zrpower.dao.mapper"})
+@MapperScan({"com.yonglilian.dao.mapper"})
 public interface TableMapper {
 	/**
 	 * 动态创建数据表

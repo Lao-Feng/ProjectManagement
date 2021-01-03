@@ -78,7 +78,7 @@ public class SeManageServiceImpl implements SeManageService {
 	public boolean sysAttFileAdd(String strFLOWID, String strFORMID, String strAID, String strFileName,
 			String strUserID, String strUserFileID, String strpTitle) throws Exception {
 		
-	    String strALLPath= SysPreperty.getProperty().UploadFilePath + "/AttManage/" 
+	    String strALLPath= SysPreperty.getProperty().UploadFilePath + "/AttManage/"
 	    				 + strUserID + "/" + strUserFileID + "/" + strFileName;
 
 	    File objFile = new File(strALLPath.toString());

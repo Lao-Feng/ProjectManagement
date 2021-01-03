@@ -12,8 +12,8 @@ import java.util.Map;
  * @author nfzr
  *
  */
-@MapperScan({"zr.zrpower.dao.mapper"})
-public interface BpipTableMapper extends BaseDao<BPIP_TABLE>{
+@MapperScan({"com.yonglilian.dao.mapper"})
+public interface BpipTableMapper extends BaseDao<BPIP_TABLE> {
 	
 
 	/**

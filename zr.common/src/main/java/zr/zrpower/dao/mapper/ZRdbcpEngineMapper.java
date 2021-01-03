@@ -12,7 +12,7 @@ import java.util.Map;
  * @author lwk
  *
  */
-@MapperScan({"zr.zrpower.dao.mapper"})
+@MapperScan({"com.yonglilian.dao.mapper"})
 public interface ZRdbcpEngineMapper {
 	/**
 	 * 执行查询SQL语句，返回Integer

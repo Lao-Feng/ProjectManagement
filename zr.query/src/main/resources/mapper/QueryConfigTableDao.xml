@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="zr.zrpower.dao.QueryConfigTableDao">
+<mapper namespace="com.yonglilian.dao.QueryConfigTableDao">
 
 	<!-- 可根据自己的需求，是否要使用 -->
-    <resultMap type="zr.zrpower.domain.QueryConfigTable" id="queryConfigTableMap">
+    <resultMap type="com.yonglilian.domain.QueryConfigTable" id="queryConfigTableMap">
         <result property="id" column="ID"/>
         <result property="name" column="NAME"/>
         <result property="maintable" column="MAINTABLE"/>
@@ -23,7 +23,7 @@
 `ID`, `NAME`, `MAINTABLE`, `TYPE`, `BID`, `IFFIRSTDATA`, `IFMULSEL`, `IFCOMBTN`, `CID`, `DCODE`, `QITEMTYPE`, `QTABLETYPE`
   </sql>
   
-	<select id="queryObject" resultType="zr.zrpower.domain.QueryConfigTable">
+	<select id="queryObject" resultType="com.yonglilian.domain.QueryConfigTable">
 		select
 		 <include refid="Base_Column_List" />
 		 from query_config_table where ID = #{value}
@@ -33,7 +33,7 @@
 		select max(id) as max_no from query_config_table
 	</select>
 
-	<select id="queryList" resultType="zr.zrpower.domain.QueryConfigTable">
+	<select id="queryList" resultType="com.yonglilian.domain.QueryConfigTable">
 		select 
 		<include refid="Base_Column_List" />
 		from query_config_table
@@ -59,7 +59,7 @@
 		select count(*) from query_config_table 
 	</select>
 	 
-	<insert id="save" parameterType="zr.zrpower.domain.QueryConfigTable">
+	<insert id="save" parameterType="com.yonglilian.domain.QueryConfigTable">
 		insert into query_config_table
 		(
 			`ID`, 
@@ -92,7 +92,7 @@
 		)
 	</insert>
 	 
-	<update id="update" parameterType="zr.zrpower.domain.QueryConfigTable">
+	<update id="update" parameterType="com.yonglilian.domain.QueryConfigTable">
 		update query_config_table 
 		<set>
 			<if test="name != null">`NAME` = #{name}, </if>

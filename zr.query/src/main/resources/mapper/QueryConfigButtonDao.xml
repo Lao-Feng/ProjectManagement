@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="zr.zrpower.dao.QueryConfigButtonDao">
+<mapper namespace="com.yonglilian.dao.QueryConfigButtonDao">
 
 	<!-- 可根据自己的需求，是否要使用 -->
-	<resultMap type="zr.zrpower.domain.QueryConfigButton"
+	<resultMap type="com.yonglilian.domain.QueryConfigButton"
 		id="queryConfigButtonMap">
 		<result property="id" column="ID" />
 		<result property="name" column="NAME" />
@@ -25,14 +25,14 @@
 	</select>
 
 	<select id="queryObject"
-		resultType="zr.zrpower.domain.QueryConfigButton">
+		resultType="com.yonglilian.domain.QueryConfigButton">
 		select
 		<include refid="Base_Column_List" />
 		from query_config_button where ID = #{value}
 	</select>
 
 	<select id="queryList"
-		resultType="zr.zrpower.domain.QueryConfigButton">
+		resultType="com.yonglilian.domain.QueryConfigButton">
 		select
 		<include refid="Base_Column_List" />
 		from query_config_button
@@ -60,7 +60,7 @@
 	</select>
 
 	<insert id="save"
-		parameterType="zr.zrpower.domain.QueryConfigButton">
+		parameterType="com.yonglilian.domain.QueryConfigButton">
 		insert into query_config_button
 		(
 		`ID`,
@@ -86,7 +86,7 @@
 	</insert>
 
 	<update id="update"
-		parameterType="zr.zrpower.domain.QueryConfigButton">
+		parameterType="com.yonglilian.domain.QueryConfigButton">
 		update query_config_button
 		<set>
 			<if test="name != null">`NAME` = #{name}, </if>

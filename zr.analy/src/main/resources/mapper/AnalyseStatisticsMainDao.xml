@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="zr.zrpower.dao.AnalyseStatisticsMainDao">
+<mapper namespace="com.yonglilian.dao.AnalyseStatisticsMainDao">
 
 	<!-- 可根据自己的需求，是否要使用 -->
-    <resultMap type="zr.zrpower.domain.AnalyseStatisticsMain" id="analyseStatisticsMainMap">
+    <resultMap type="com.yonglilian.domain.AnalyseStatisticsMain" id="analyseStatisticsMainMap">
         <result property="id" column="ID"/>
         <result property="statisticsname" column="STATISTICSNAME"/>
         <result property="sdesc" column="SDESC"/>
@@ -38,7 +38,7 @@
 `ID`, `STATISTICSNAME`, `SDESC`, `TABLEID`, `TIMESTYPE`, `PLANARTABLE`, `PLANARFIELD`, `CPLANARFIELD`, `WHEREVALUE`, `EXCELTEMPLATE`, `PLANARFIELDNAME`, `WISMATCH`, `CJOIN`, `ISUNIT`, `SINPUTTYPE`, `SINPUTPAGE`, `ISAGV`, `ISSUM`, `ISSHOWTYPE`, `SHOWLINK`, `TIMETEMPLATE`, `CODETABLE`, `TBUTTON`, `ISNUMBER`, `ADDFIELD`, `DCODE`, `ISZERO`
   </sql>
   
-	<select id="queryObject" resultType="zr.zrpower.domain.AnalyseStatisticsMain">
+	<select id="queryObject" resultType="com.yonglilian.domain.AnalyseStatisticsMain">
 		select
 		 <include refid="Base_Column_List" />
 		 from analyse_statistics_main where ID = #{value}
@@ -49,7 +49,7 @@
 		analyse_statistics_main
 	</select>
 
-	<select id="queryList" resultType="zr.zrpower.domain.AnalyseStatisticsMain">
+	<select id="queryList" resultType="com.yonglilian.domain.AnalyseStatisticsMain">
 		select 
 		<include refid="Base_Column_List" />
 		from analyse_statistics_main
@@ -75,7 +75,7 @@
 		select count(*) from analyse_statistics_main 
 	</select>
 	 
-	<insert id="save" parameterType="zr.zrpower.domain.AnalyseStatisticsMain">
+	<insert id="save" parameterType="com.yonglilian.domain.AnalyseStatisticsMain">
 		insert into analyse_statistics_main
 		(
 			`ID`, 
@@ -138,7 +138,7 @@
 		)
 	</insert>
 	 
-	<update id="update" parameterType="zr.zrpower.domain.AnalyseStatisticsMain">
+	<update id="update" parameterType="com.yonglilian.domain.AnalyseStatisticsMain">
 		update analyse_statistics_main 
 		<set>
 			<if test="statisticsname != null">`STATISTICSNAME` = #{statisticsname}, </if>

@@ -9,6 +9,6 @@ import zr.zrpower.dao.BaseDbaDao;
  *
  */
 @MapperScan({"zr.zrpower.dao.mapper"})
-public interface BaseDbaDaoMapper extends BaseDbaDao{
+public interface BaseDbaDaoMapper extends BaseDbaDao {
 	
 }

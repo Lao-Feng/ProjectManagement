@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="zr.zrpower.dao.mapper.BpipUnitMapper">
+<mapper namespace="com.yonglilian.dao.mapper.BpipUnitMapper">
 
 	<!-- 信息 -->
-	<select id="queryObject" resultType="zr.zrpower.model.BPIP_UNIT">
+	<select id="queryObject" resultType="com.yonglilian.model.BPIP_UNIT">
 		select * from BPIP_UNIT
 		where unitid = #{value}
 	</select>
 	<!-- 以下为数据事务操作 -->
-	<select id="queryList" resultType="zr.zrpower.model.BPIP_UNIT">
+	<select id="queryList" resultType="com.yonglilian.model.BPIP_UNIT">
 		select * from BPIP_UNIT
 		<where>
 			<choose>
@@ -57,7 +57,7 @@
 		</where>
 	</select>
 
-	<insert id="save" parameterType="zr.zrpower.model.BPIP_UNIT"
+	<insert id="save" parameterType="com.yonglilian.model.BPIP_UNIT"
 		useGeneratedKeys="true" keyProperty="unitid">
 		insert into BPIP_UNIT
 		(
@@ -76,7 +76,7 @@
 	</insert>
 
 
-	<update id="update" parameterType="zr.zrpower.model.BPIP_UNIT">
+	<update id="update" parameterType="com.yonglilian.model.BPIP_UNIT">
 		update BPIP_UNIT
 		<set>
 			<if test="UNITID != null">`UNITID` = #{UNITID}, </if>

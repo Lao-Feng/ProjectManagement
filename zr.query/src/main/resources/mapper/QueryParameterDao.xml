@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="zr.zrpower.dao.QueryParameterDao">
+<mapper namespace="com.yonglilian.dao.QueryParameterDao">
 
 	<!-- 可根据自己的需求，是否要使用 -->
-    <resultMap type="zr.zrpower.domain.QueryParameter" id="queryParameterMap">
+    <resultMap type="com.yonglilian.domain.QueryParameter" id="queryParameterMap">
         <result property="userid" column="USERID"/>
         <result property="queryid" column="QUERYID"/>
         <result property="upHeight" column="UP_HEIGHT"/>
@@ -15,13 +15,13 @@
 `USERID`, `QUERYID`, `UP_HEIGHT`, `DOWN_HEIGHT`
   </sql>
   
-	<select id="queryObject" resultType="zr.zrpower.domain.QueryParameter">
+	<select id="queryObject" resultType="com.yonglilian.domain.QueryParameter">
 		select
 		 <include refid="Base_Column_List" />
 		 from query_parameter where USERID = #{value}
 	</select>
 
-	<select id="queryList" resultType="zr.zrpower.domain.QueryParameter">
+	<select id="queryList" resultType="com.yonglilian.domain.QueryParameter">
 		select 
 		<include refid="Base_Column_List" />
 		from query_parameter
@@ -50,7 +50,7 @@
 		select count(*) from query_parameter 
 	</select>
 	 
-	<insert id="save" parameterType="zr.zrpower.domain.QueryParameter">
+	<insert id="save" parameterType="com.yonglilian.domain.QueryParameter">
 		insert into query_parameter
 		(
 			`USERID`, 
@@ -67,7 +67,7 @@
 		)
 	</insert>
 	 
-	<update id="update" parameterType="zr.zrpower.domain.QueryParameter">
+	<update id="update" parameterType="com.yonglilian.domain.QueryParameter">
 		update query_parameter 
 		<set>
 			<if test="queryid != null">`QUERYID` = #{queryid}, </if>

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="zr.zrpower.dao.AnalyseStatisticsCwhereDao">
+<mapper namespace="com.yonglilian.dao.AnalyseStatisticsCwhereDao">
 
 	<!-- 可根据自己的需求，是否要使用 -->
-    <resultMap type="zr.zrpower.domain.AnalyseStatisticsCwhere" id="analyseStatisticsCwhereMap">
+    <resultMap type="com.yonglilian.domain.AnalyseStatisticsCwhere" id="analyseStatisticsCwhereMap">
         <result property="id" column="ID"/>
         <result property="fid" column="FID"/>
         <result property="sleft" column="SLEFT"/>
@@ -19,7 +19,7 @@
 `ID`, `FID`, `SLEFT`, `FIELD`, `SYMBOL`, `WHEREVALUE`, `SRIGHT`, `LOGIC`
   </sql>
   
-	<select id="queryObject" resultType="zr.zrpower.domain.AnalyseStatisticsCwhere">
+	<select id="queryObject" resultType="com.yonglilian.domain.AnalyseStatisticsCwhere">
 		select
 		 <include refid="Base_Column_List" />
 		 from analyse_statistics_cwhere where ID = #{value}
@@ -30,7 +30,7 @@
 		analyse_statistics_cwhere
 	</select>
 
-	<select id="queryList" resultType="zr.zrpower.domain.AnalyseStatisticsCwhere">
+	<select id="queryList" resultType="com.yonglilian.domain.AnalyseStatisticsCwhere">
 		select 
 		<include refid="Base_Column_List" />
 		from analyse_statistics_cwhere
@@ -56,7 +56,7 @@
 		select count(*) from analyse_statistics_cwhere 
 	</select>
 	 
-	<insert id="save" parameterType="zr.zrpower.domain.AnalyseStatisticsCwhere">
+	<insert id="save" parameterType="com.yonglilian.domain.AnalyseStatisticsCwhere">
 		insert into analyse_statistics_cwhere
 		(
 			`ID`, 
@@ -81,7 +81,7 @@
 		)
 	</insert>
 	 
-	<update id="update" parameterType="zr.zrpower.domain.AnalyseStatisticsCwhere">
+	<update id="update" parameterType="com.yonglilian.domain.AnalyseStatisticsCwhere">
 		update analyse_statistics_cwhere 
 		<set>
 			<if test="fid != null">`FID` = #{fid}, </if>

@@ -2,11 +2,11 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper
-	namespace="zr.zrpower.dao.AnalyseStatisticsCconnectionDao">
+	namespace="com.yonglilian.dao.AnalyseStatisticsCconnectionDao">
 
 	<!-- 可根据自己的需求，是否要使用 -->
 	<resultMap
-		type="zr.zrpower.domain.AnalyseStatisticsCconnection"
+		type="com.yonglilian.domain.AnalyseStatisticsCconnection"
 		id="analyseStatisticsCconnectionMap">
 		<result property="id" column="ID" />
 		<result property="fid" column="FID" />
@@ -20,7 +20,7 @@
 	</sql>
 
 	<select id="queryObject"
-		resultType="zr.zrpower.domain.AnalyseStatisticsCconnection">
+		resultType="com.yonglilian.domain.AnalyseStatisticsCconnection">
 		select
 		<include refid="Base_Column_List" />
 		from analyse_statistics_cconnection where ID = #{value}
@@ -32,7 +32,7 @@
 	</select>
 
 	<select id="queryList"
-		resultType="zr.zrpower.domain.AnalyseStatisticsCconnection">
+		resultType="com.yonglilian.domain.AnalyseStatisticsCconnection">
 		select
 		<include refid="Base_Column_List" />
 		from analyse_statistics_cconnection
@@ -60,7 +60,7 @@
 	</select>
 
 	<insert id="save"
-		parameterType="zr.zrpower.domain.AnalyseStatisticsCconnection">
+		parameterType="com.yonglilian.domain.AnalyseStatisticsCconnection">
 		insert into analyse_statistics_cconnection
 		(
 		`ID`,
@@ -80,7 +80,7 @@
 	</insert>
 
 	<update id="update"
-		parameterType="zr.zrpower.domain.AnalyseStatisticsCconnection">
+		parameterType="com.yonglilian.domain.AnalyseStatisticsCconnection">
 		update analyse_statistics_cconnection
 		<set>
 			<if test="fid != null">`FID` = #{fid}, </if>

@@ -9,8 +9,8 @@ import zr.zrpower.model.dbmanage.BPIP_TABLESPACE;
  * @author nfzr
  *
  */
-@MapperScan({"zr.zrpower.dao.mapper"})
-public interface BpipTablespaceMapper extends BaseDao<BPIP_TABLESPACE>{
+@MapperScan({"com.yonglilian.dao.mapper"})
+public interface BpipTablespaceMapper extends BaseDao<BPIP_TABLESPACE> {
 	
 	
 	/**

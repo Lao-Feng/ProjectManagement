@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="zr.zrpower.dao.mapper.QueryConfigMapper">
+<mapper namespace="com.yonglilian.dao.mapper.QueryConfigMapper">
   <!-- 增加配置表数据实体类 -->
   <insert id="insertQUERY_CONFIG_TABLE" parameterType="java.util.Map">
 	Insert Into QUERY_CONFIG_TABLE

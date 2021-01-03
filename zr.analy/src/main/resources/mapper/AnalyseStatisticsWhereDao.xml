@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="zr.zrpower.dao.AnalyseStatisticsWhereDao">
+<mapper namespace="com.yonglilian.dao.AnalyseStatisticsWhereDao">
 
 	<!-- 可根据自己的需求，是否要使用 -->
-    <resultMap type="zr.zrpower.domain.AnalyseStatisticsWhere" id="analyseStatisticsWhereMap">
+    <resultMap type="com.yonglilian.domain.AnalyseStatisticsWhere" id="analyseStatisticsWhereMap">
         <result property="id" column="ID"/>
         <result property="fid" column="FID"/>
         <result property="sleft" column="SLEFT"/>
@@ -19,7 +19,7 @@
 `ID`, `FID`, `SLEFT`, `FIELD`, `SYMBOL`, `WHEREVALUE`, `SRIGHT`, `LOGIC`
   </sql>
   
-	<select id="queryObject" resultType="zr.zrpower.domain.AnalyseStatisticsWhere">
+	<select id="queryObject" resultType="com.yonglilian.domain.AnalyseStatisticsWhere">
 		select
 		 <include refid="Base_Column_List" />
 		 from analyse_statistics_where where ID = #{value}
@@ -30,7 +30,7 @@
 		analyse_statistics_where
 	</select>
 
-	<select id="queryList" resultType="zr.zrpower.domain.AnalyseStatisticsWhere">
+	<select id="queryList" resultType="com.yonglilian.domain.AnalyseStatisticsWhere">
 		select 
 		<include refid="Base_Column_List" />
 		from analyse_statistics_where
@@ -56,7 +56,7 @@
 		select count(*) from analyse_statistics_where 
 	</select>
 	 
-	<insert id="save" parameterType="zr.zrpower.domain.AnalyseStatisticsWhere">
+	<insert id="save" parameterType="com.yonglilian.domain.AnalyseStatisticsWhere">
 		insert into analyse_statistics_where
 		(
 			`ID`, 
@@ -81,7 +81,7 @@
 		)
 	</insert>
 	 
-	<update id="update" parameterType="zr.zrpower.domain.AnalyseStatisticsWhere">
+	<update id="update" parameterType="com.yonglilian.domain.AnalyseStatisticsWhere">
 		update analyse_statistics_where 
 		<set>
 			<if test="fid != null">`FID` = #{fid}, </if>

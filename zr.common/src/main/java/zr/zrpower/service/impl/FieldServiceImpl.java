@@ -47,7 +47,7 @@ public class FieldServiceImpl implements FieldService {
 	 * 构造方法
 	 */
 	public FieldServiceImpl() {
-		dbEngine = new DBEngine(SysPreperty.getProperty().MainDataSource, 
+		dbEngine = new DBEngine(SysPreperty.getProperty().MainDataSource,
 				SysPreperty.getProperty().IsConvert);
 		dbEngine.initialize();
 		if (clients<1) {

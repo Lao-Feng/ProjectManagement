@@ -38,7 +38,7 @@
       <property name="enableSubPackages" value="true"/>
     </sqlMapGenerator>
     <!-- 生成DAO接口类*Mapper.java存放位置 -->
-    <javaClientGenerator type="XMLMAPPER" targetPackage="zr.zrpower.dao.mapper" targetProject="../src/main/java">
+    <javaClientGenerator type="XMLMAPPER" targetPackage="com.yonglilian.dao.mapper" targetProject="../src/main/java">
       <property name="enableSubPackages" value="true"/>
       <property name="useLegacyBuilder" value="true"/>
     </javaClientGenerator>

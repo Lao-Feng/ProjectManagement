@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="zr.zrpower.dao.QueryConfigConnectionDao">
+<mapper namespace="com.yonglilian.dao.QueryConfigConnectionDao">
 
 	<!-- 可根据自己的需求，是否要使用 -->
-	<resultMap type="zr.zrpower.domain.QueryConfigConnection"
+	<resultMap type="com.yonglilian.domain.QueryConfigConnection"
 		id="queryConfigConnectionMap">
 		<result property="id" column="ID" />
 		<result property="fid" column="FID" />
@@ -18,7 +18,7 @@
 	</sql>
 
 	<select id="queryObject"
-		resultType="zr.zrpower.domain.QueryConfigConnection">
+		resultType="com.yonglilian.domain.QueryConfigConnection">
 		select
 		<include refid="Base_Column_List" />
 		from query_config_connection where ID = #{value}
@@ -30,7 +30,7 @@
 	</select>
 
 	<select id="queryList"
-		resultType="zr.zrpower.domain.QueryConfigConnection">
+		resultType="com.yonglilian.domain.QueryConfigConnection">
 		select
 		<include refid="Base_Column_List" />
 		from query_config_connection
@@ -67,7 +67,7 @@
 	</select>
 
 	<insert id="save"
-		parameterType="zr.zrpower.domain.QueryConfigConnection">
+		parameterType="com.yonglilian.domain.QueryConfigConnection">
 		insert into query_config_connection
 		(
 		`ID`,
@@ -110,7 +110,7 @@
 	</insert>
 
 	<update id="update"
-		parameterType="zr.zrpower.domain.QueryConfigConnection">
+		parameterType="com.yonglilian.domain.QueryConfigConnection">
 		update query_config_connection
 		<set>
 			<if test="fid != null">`FID` = #{fid}, </if>

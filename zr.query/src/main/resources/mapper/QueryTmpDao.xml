@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="zr.zrpower.dao.QueryTmpDao">
+<mapper namespace="com.yonglilian.dao.QueryTmpDao">
 
 	<!-- 可根据自己的需求，是否要使用 -->
-    <resultMap type="zr.zrpower.domain.QueryTmp" id="queryTmpMap">
+    <resultMap type="com.yonglilian.domain.QueryTmp" id="queryTmpMap">
         <result property="userid" column="USERID"/>
         <result property="tmp" column="TMP"/>
     </resultMap>
@@ -13,13 +13,13 @@
 `USERID`, `TMP`
   </sql>
   
-	<select id="queryObject" resultType="zr.zrpower.domain.QueryTmp">
+	<select id="queryObject" resultType="com.yonglilian.domain.QueryTmp">
 		select
 		 <include refid="Base_Column_List" />
 		 from query_tmp where USERID = #{value}
 	</select>
 
-	<select id="queryList" resultType="zr.zrpower.domain.QueryTmp">
+	<select id="queryList" resultType="com.yonglilian.domain.QueryTmp">
 		select 
 		<include refid="Base_Column_List" />
 		from query_tmp
@@ -45,7 +45,7 @@
 		select count(*) from query_tmp 
 	</select>
 	 
-	<insert id="save" parameterType="zr.zrpower.domain.QueryTmp">
+	<insert id="save" parameterType="com.yonglilian.domain.QueryTmp">
 		insert into query_tmp
 		(
 			`USERID`, 
@@ -58,7 +58,7 @@
 		)
 	</insert>
 	 
-	<update id="update" parameterType="zr.zrpower.domain.QueryTmp">
+	<update id="update" parameterType="com.yonglilian.domain.QueryTmp">
 		update query_tmp 
 		<set>
 			<if test="tmp != null">`TMP` = #{tmp}</if>

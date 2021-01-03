@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="zr.zrpower.dao.QueryConfigInitDao">
+<mapper namespace="com.yonglilian.dao.QueryConfigInitDao">
 
 	<!-- 可根据自己的需求，是否要使用 -->
-    <resultMap type="zr.zrpower.domain.QueryConfigInit" id="queryConfigInitMap">
+    <resultMap type="com.yonglilian.domain.QueryConfigInit" id="queryConfigInitMap">
         <result property="id" column="ID"/>
         <result property="fid" column="FID"/>
         <result property="qleft" column="QLEFT"/>
@@ -19,7 +19,7 @@
 `ID`, `FID`, `QLEFT`, `FIELD`, `SYMBOL`, `WHEREVALUE`, `QRIGHT`, `LOGIC`
   </sql>
   
-	<select id="queryObject" resultType="zr.zrpower.domain.QueryConfigInit">
+	<select id="queryObject" resultType="com.yonglilian.domain.QueryConfigInit">
 		select
 		 <include refid="Base_Column_List" />
 		 from query_config_init where ID = #{value}
@@ -29,7 +29,7 @@
 		select max(id) as max_no from query_config_init
 	</select>
 
-	<select id="queryList" resultType="zr.zrpower.domain.QueryConfigInit">
+	<select id="queryList" resultType="com.yonglilian.domain.QueryConfigInit">
 		select 
 		<include refid="Base_Column_List" />
 		from query_config_init
@@ -55,7 +55,7 @@
 		select count(*) from query_config_init 
 	</select>
 	 
-	<insert id="save" parameterType="zr.zrpower.domain.QueryConfigInit">
+	<insert id="save" parameterType="com.yonglilian.domain.QueryConfigInit">
 		insert into query_config_init
 		(
 			`ID`, 
@@ -109,7 +109,7 @@
 		</foreach>
 	</insert>
 	 
-	<update id="update" parameterType="zr.zrpower.domain.QueryConfigInit">
+	<update id="update" parameterType="com.yonglilian.domain.QueryConfigInit">
 		update query_config_init 
 		<set>
 			<if test="fid != null">`FID` = #{fid}, </if>

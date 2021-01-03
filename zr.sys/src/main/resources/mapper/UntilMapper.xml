@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="zr.zrpower.dao.mapper.UntilMapper">
+<mapper namespace="com.yonglilian.dao.mapper.UntilMapper">
 
 	<!-- 根据userID查询用户权限菜单信息 -->
-	<select id="userMenuList" resultType="zr.zrpower.model.BPIP_MENU">
+	<select id="userMenuList" resultType="com.yonglilian.model.BPIP_MENU">
 		select * from BPIP_MENU 
 		<where>
 			<if test="flag != null and flag != ''">

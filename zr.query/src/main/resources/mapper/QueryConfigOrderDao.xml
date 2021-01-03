@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="zr.zrpower.dao.QueryConfigOrderDao">
+<mapper namespace="com.yonglilian.dao.QueryConfigOrderDao">
 
 	<!-- 可根据自己的需求，是否要使用 -->
-    <resultMap type="zr.zrpower.domain.QueryConfigOrder" id="queryConfigOrderMap">
+    <resultMap type="com.yonglilian.domain.QueryConfigOrder" id="queryConfigOrderMap">
         <result property="id" column="ID"/>
         <result property="fid" column="FID"/>
         <result property="field" column="FIELD"/>
@@ -15,7 +15,7 @@
 `ID`, `FID`, `FIELD`, `TYPE`
   </sql>
   
-	<select id="queryObject" resultType="zr.zrpower.domain.QueryConfigOrder">
+	<select id="queryObject" resultType="com.yonglilian.domain.QueryConfigOrder">
 		select
 		 <include refid="Base_Column_List" />
 		 from query_config_order where ID = #{value}
@@ -25,7 +25,7 @@
 		select max(id) as max_no from query_config_order
 	</select>
 
-	<select id="queryList" resultType="zr.zrpower.domain.QueryConfigOrder">
+	<select id="queryList" resultType="com.yonglilian.domain.QueryConfigOrder">
 		select 
 		<include refid="Base_Column_List" />
 		from query_config_order
@@ -51,7 +51,7 @@
 		select count(*) from query_config_order 
 	</select>
 	 
-	<insert id="save" parameterType="zr.zrpower.domain.QueryConfigOrder">
+	<insert id="save" parameterType="com.yonglilian.domain.QueryConfigOrder">
 		insert into query_config_order
 		(
 			`ID`, 
@@ -89,7 +89,7 @@
 		</foreach>
 	</insert>
 	 
-	<update id="update" parameterType="zr.zrpower.domain.QueryConfigOrder">
+	<update id="update" parameterType="com.yonglilian.domain.QueryConfigOrder">
 		update query_config_order 
 		<set>
 			<if test="fid != null">`FID` = #{fid}, </if>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="zr.zrpower.dao.mapper.StatisticsConfigMapper">
+<mapper namespace="com.yonglilian.dao.mapper.StatisticsConfigMapper">
   <!-- 增加统计计算字段配置表数据实体类信息 -->
   <insert id="addANALYSE_STATISTICS_CFIELD" parameterType="java.util.Map">
 	Insert Into ANALYSE_STATISTICS_CFIELD

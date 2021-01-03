@@ -12,7 +12,7 @@ import java.util.List;
  * @author lwk
  *
  */
-@MapperScan({"zr.zrpower.dao.mapper"})
+@MapperScan({"com.yonglilian.dao.mapper"})
 public interface FieldMapper {
 	/**
 	 * 获取字段名列表

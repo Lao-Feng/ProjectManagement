@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="zr.zrpower.dao.CollDocConfigDao">
+<mapper namespace="com.yonglilian.dao.CollDocConfigDao">
 
 	<!-- 可根据自己的需求，是否要使用 -->
-    <resultMap type="zr.zrpower.domain.CollDocConfig" id="collDocConfigMap">
+    <resultMap type="com.yonglilian.domain.CollDocConfig" id="collDocConfigMap">
         <result property="id" column="ID"/>
         <result property="docname" column="DOCNAME"/>
         <result property="templaet" column="TEMPLAET"/>
@@ -18,7 +18,7 @@
 `ID`, `DOCNAME`, `TEMPLAET`, `OTHERFIELD`, `MAINTABLE`, `DOCTYPE`, `DCODE`
   </sql>
   
-	<select id="queryObject" resultType="zr.zrpower.domain.CollDocConfig">
+	<select id="queryObject" resultType="com.yonglilian.domain.CollDocConfig">
 		select
 		 <include refid="Base_Column_List" />
 		 from coll_doc_config where ID = #{value}
@@ -28,7 +28,7 @@
 		select max(id) as max_no from coll_doc_config
 	</select>
 
-	<select id="queryList" resultType="zr.zrpower.domain.CollDocConfig">
+	<select id="queryList" resultType="com.yonglilian.domain.CollDocConfig">
 		select 
 		<include refid="Base_Column_List" />
 		from coll_doc_config
@@ -54,7 +54,7 @@
 		select count(*) from coll_doc_config 
 	</select>
 	 
-	<insert id="save" parameterType="zr.zrpower.domain.CollDocConfig">
+	<insert id="save" parameterType="com.yonglilian.domain.CollDocConfig">
 		insert into coll_doc_config
 		(
 			`ID`, 
@@ -77,7 +77,7 @@
 		)
 	</insert>
 	 
-	<update id="update" parameterType="zr.zrpower.domain.CollDocConfig">
+	<update id="update" parameterType="com.yonglilian.domain.CollDocConfig">
 		update coll_doc_config 
 		<set>
 			<if test="docname != null">`DOCNAME` = #{docname}, </if>

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="zr.zrpower.dao.AnalyseStatisticsCfieldDao">
+<mapper namespace="com.yonglilian.dao.AnalyseStatisticsCfieldDao">
 
 	<!-- 可根据自己的需求，是否要使用 -->
-    <resultMap type="zr.zrpower.domain.AnalyseStatisticsCfield" id="analyseStatisticsCfieldMap">
+    <resultMap type="com.yonglilian.domain.AnalyseStatisticsCfield" id="analyseStatisticsCfieldMap">
         <result property="id" column="ID"/>
         <result property="fid" column="FID"/>
         <result property="sfieldname" column="SFIELDNAME"/>
@@ -27,7 +27,7 @@
 `ID`, `FID`, `SFIELDNAME`, `SFIELDSHOWNAME`, `EXPRESSIONS`, `DISTINCTION`, `ISSHOW`, `SAVEFIELD`, `EXPRESSIONSWHERE`, `ADDSIGN`, `RADIXPOINT`, `SHOWCODE`, `TABLEID`, `CPLANARFIELD`, `CJOIN`, `CPLANARESPECIAL`
   </sql>
   
-	<select id="queryObject" resultType="zr.zrpower.domain.AnalyseStatisticsCfield">
+	<select id="queryObject" resultType="com.yonglilian.domain.AnalyseStatisticsCfield">
 		select
 		 <include refid="Base_Column_List" />
 		 from analyse_statistics_cfield where ID = #{value}
@@ -42,7 +42,7 @@
 		select id from analyse_statistics_cfield where fid=#{value}
 	</select>
 
-	<select id="queryList" resultType="zr.zrpower.domain.AnalyseStatisticsCfield">
+	<select id="queryList" resultType="com.yonglilian.domain.AnalyseStatisticsCfield">
 		select 
 		<include refid="Base_Column_List" />
 		from analyse_statistics_cfield
@@ -68,7 +68,7 @@
 		select count(*) from analyse_statistics_cfield 
 	</select>
 	 
-	<insert id="save" parameterType="zr.zrpower.domain.AnalyseStatisticsCfield">
+	<insert id="save" parameterType="com.yonglilian.domain.AnalyseStatisticsCfield">
 		insert into analyse_statistics_cfield
 		(
 			`ID`, 
@@ -109,7 +109,7 @@
 		)
 	</insert>
 	 
-	<update id="update" parameterType="zr.zrpower.domain.AnalyseStatisticsCfield">
+	<update id="update" parameterType="com.yonglilian.domain.AnalyseStatisticsCfield">
 		update analyse_statistics_cfield 
 		<set>
 			<if test="fid != null">`FID` = #{fid}, </if>

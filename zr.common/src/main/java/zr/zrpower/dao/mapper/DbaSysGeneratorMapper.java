@@ -10,7 +10,7 @@ import java.util.Map;
  * @author nfzr
  *
  */
-@MapperScan({"zr.zrpower.dao.mapper"})
+@MapperScan({"com.yonglilian.dao.mapper"})
 public interface DbaSysGeneratorMapper {
 
 	List<Map<String, Object>> queryList( Map<String, Object> map );

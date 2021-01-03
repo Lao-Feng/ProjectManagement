@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="zr.zrpower.dao.AnalyseStatisticsCustomDao">
+<mapper namespace="com.yonglilian.dao.AnalyseStatisticsCustomDao">
 
 	<!-- 可根据自己的需求，是否要使用 -->
-    <resultMap type="zr.zrpower.domain.AnalyseStatisticsCustom" id="analyseStatisticsCustomMap">
+    <resultMap type="com.yonglilian.domain.AnalyseStatisticsCustom" id="analyseStatisticsCustomMap">
         <result property="id" column="ID"/>
         <result property="fid" column="FID"/>
         <result property="gfield" column="GFIELD"/>
@@ -14,7 +14,7 @@
 `ID`, `FID`, `GFIELD`
   </sql>
   
-	<select id="queryObject" resultType="zr.zrpower.domain.AnalyseStatisticsCustom">
+	<select id="queryObject" resultType="com.yonglilian.domain.AnalyseStatisticsCustom">
 		select
 		 <include refid="Base_Column_List" />
 		 from analyse_statistics_custom where ID = #{value}
@@ -25,7 +25,7 @@
 		analyse_statistics_custom
 	</select>
 
-	<select id="queryList" resultType="zr.zrpower.domain.AnalyseStatisticsCustom">
+	<select id="queryList" resultType="com.yonglilian.domain.AnalyseStatisticsCustom">
 		select 
 		<include refid="Base_Column_List" />
 		from analyse_statistics_custom
@@ -51,7 +51,7 @@
 		select count(*) from analyse_statistics_custom 
 	</select>
 	 
-	<insert id="save" parameterType="zr.zrpower.domain.AnalyseStatisticsCustom">
+	<insert id="save" parameterType="com.yonglilian.domain.AnalyseStatisticsCustom">
 		insert into analyse_statistics_custom
 		(
 			`ID`, 
@@ -66,7 +66,7 @@
 		)
 	</insert>
 	 
-	<update id="update" parameterType="zr.zrpower.domain.AnalyseStatisticsCustom">
+	<update id="update" parameterType="com.yonglilian.domain.AnalyseStatisticsCustom">
 		update analyse_statistics_custom 
 		<set>
 			<if test="fid != null">`FID` = #{fid}, </if>
