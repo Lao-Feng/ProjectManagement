@@ -1,336 +1,337 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
-	<groupId>zr.zrpower</groupId>
-	<artifactId>zrweb</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
-	<packaging>pom</packaging>
-	<name>zrweb</name>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.yonglilian</groupId>
+    <artifactId>project-management</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <packaging>pom</packaging>
+    <name>project-management</name>
 
-	<!--maven module WEB打包 -->
-	<modules>
-		<module>zr.web</module>
-		<module>zr.common</module>
-		<module>zr.query</module>
-		<module>zr.sys</module>
-		<module>zr.collen</module>
-		<module>zr.analy</module>
-		<module>zr.flowen</module>
-        <module>zr.shiro</module>
-  </modules>
-
-
-	<parent>
-		<groupId>org.springframework.boot</groupId>
-		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>1.5.16.RELEASE</version>
-		<relativePath/><!-- lookup parent from repository -->
-	</parent>
-
-	<!-- 版本控制 -->
-	<properties>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-		<java.version>1.8</java.version>
-		<base.path>src/main/webapp/WEB-INF/lib</base.path>
-		<mybatis.version>3.4.6</mybatis.version>
-		<mybatis.spring.boot>1.3.2</mybatis.spring.boot>
-		<tk.mybatis>2.0.4</tk.mybatis>
-		<mybatis-spring>1.3.2</mybatis-spring>
-		<fastjson>1.2.49</fastjson>
-		<htmlparser>2.1</htmlparser>
-		<htmllexer>2.1</htmllexer>
-		<sax>2.0.1</sax>
-		<jotpverify>1.0</jotpverify>
-		<jxl>1.0</jxl>
-		<classes12>1.0</classes12>
-		<sqljdbc>1.0</sqljdbc>
-		<ZRpowerDbEngine>1.0</ZRpowerDbEngine>
-		<mysql-connector-java>5.1.46</mysql-connector-java>
-		<commons-dbcp>1.4</commons-dbcp>
-		<c3p0>0.9.5.2</c3p0>
-		<mchange-commons-java>0.2.11</mchange-commons-java>
-		<druid>1.1.10</druid>
-		<spring-data-redis>1.7.11.RELEASE</spring-data-redis>
-		<jedis>2.9.0</jedis>
-		<commons-pool2>2.6.0</commons-pool2>
-		<dom4j>1.6.1</dom4j>
-		<antlr4-runtime>4.1</antlr4-runtime>
-		<xssProtect>0.1</xssProtect>
-		<commons-io>2.5</commons-io>
-		<commons-fileupload>1.3.3</commons-fileupload>
-		<commons-codec>1.11</commons-codec>
-		<commons-httpclient>3.1</commons-httpclient>
-		<httpclient>4.5.6</httpclient>
-		<jstl>1.2</jstl>
-		<aspectjweaver>1.8.8</aspectjweaver>
-		<nekohtml>1.9.22</nekohtml>
-		<shiro-version>1.3.2</shiro-version>
-		<spring-boot-starter-log4j2>2.0.4.RELEASE</spring-boot-starter-log4j2>
-		<spring-boot-maven-plugin>1.4.2.RELEASE</spring-boot-maven-plugin>
-	</properties>
-
-	<dependencies>
-	<!-- 安全控制shiro依赖 -->
-	    <dependency>
-                <groupId>org.apache.shiro</groupId>
-                <artifactId>shiro-core</artifactId>
-                <version>${shiro-version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.shiro</groupId>
-                <artifactId>shiro-spring</artifactId>
-                <version>${shiro-version}</version>
-            </dependency>
-           <dependency>
-               <groupId>org.apache.shiro</groupId>
-               <artifactId>shiro-ehcache</artifactId>
-               <version>${shiro-version}</version>
-           </dependency>
-		
-		<!-- SpringBoot中Thymeleaf依赖 -->
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-thymeleaf</artifactId>
-		</dependency>
-		<!-- SpringBoot测试支持的jar -->
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-test</artifactId>
-			<scope>test</scope>
-		</dependency>
-		<!-- SpringBoot对Mybatis的支持 -->
-		<dependency>
-			<groupId>org.mybatis.spring.boot</groupId>
-			<artifactId>mybatis-spring-boot-starter</artifactId>
-			<version>${mybatis.spring.boot}</version>
-		</dependency>
-		<!-- 通用Mapper -->
-		<dependency>
-			<groupId>tk.mybatis</groupId>
-			<artifactId>mapper-spring-boot-starter</artifactId>
-			<version>${tk.mybatis}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.mybatis</groupId>
-			<artifactId>mybatis</artifactId>
-			<version>${mybatis.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.mybatis</groupId>
-			<artifactId>mybatis-spring</artifactId>
-			<version>${mybatis-spring}</version>
-		</dependency>
+    <!--maven module WEB打包 -->
+    <modules>
+        <module>web</module>
+        <module>common</module>
+        <module>query</module>
+        <module>sys</module>
+        <module>collen</module>
+        <module>analy</module>
+        <module>flowen</module>
+        <module>shiro</module>
+    </modules>
 
 
-		<!-- 开发时需要加入的第三方jar -->
-		<dependency>
-			<groupId>com.alibaba</groupId>
-			<artifactId>fastjson</artifactId>
-			<version>${fastjson}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.htmlparser</groupId>
-			<artifactId>htmlparser</artifactId>
-			<version>${htmlparser}</version>
-			<exclusions>
-				<exclusion>
-					<groupId>org.htmlparser</groupId>
-					<artifactId>htmllexer</artifactId>
-				</exclusion>
-				<exclusion>
-					<groupId>sax</groupId>
-					<artifactId>sax</artifactId>
-				</exclusion>
-			</exclusions>
-		</dependency>
-		<dependency>
-			<groupId>org.htmlparser</groupId>
-			<artifactId>htmllexer</artifactId>
-			<version>${htmllexer}</version>
-		</dependency>
-		<dependency>
-			<groupId>sax</groupId>
-			<artifactId>sax</artifactId>
-			<version>${sax}</version>
-			<optional>true</optional>
-		</dependency>
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>1.5.16.RELEASE</version>
+        <relativePath/><!-- lookup parent from repository -->
+    </parent>
+
+    <!-- 版本控制 -->
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <java.version>1.8</java.version>
+        <base.path>src/main/webapp/WEB-INF/lib</base.path>
+        <mybatis.version>3.4.6</mybatis.version>
+        <mybatis.spring.boot>1.3.2</mybatis.spring.boot>
+        <tk.mybatis>2.0.4</tk.mybatis>
+        <mybatis-spring>1.3.2</mybatis-spring>
+        <fastjson>1.2.49</fastjson>
+        <htmlparser>2.1</htmlparser>
+        <htmllexer>2.1</htmllexer>
+        <sax>2.0.1</sax>
+        <jotpverify>1.0</jotpverify>
+        <jxl>1.0</jxl>
+        <classes12>1.0</classes12>
+        <sqljdbc>1.0</sqljdbc>
+        <ZRpowerDbEngine>1.0</ZRpowerDbEngine>
+        <mysql-connector-java>5.1.46</mysql-connector-java>
+        <commons-dbcp>1.4</commons-dbcp>
+        <c3p0>0.9.5.2</c3p0>
+        <mchange-commons-java>0.2.11</mchange-commons-java>
+        <druid>1.1.10</druid>
+        <spring-data-redis>1.7.11.RELEASE</spring-data-redis>
+        <jedis>2.9.0</jedis>
+        <commons-pool2>2.6.0</commons-pool2>
+        <dom4j>1.6.1</dom4j>
+        <antlr4-runtime>4.1</antlr4-runtime>
+        <xssProtect>0.1</xssProtect>
+        <commons-io>2.5</commons-io>
+        <commons-fileupload>1.3.3</commons-fileupload>
+        <commons-codec>1.11</commons-codec>
+        <commons-httpclient>3.1</commons-httpclient>
+        <httpclient>4.5.6</httpclient>
+        <jstl>1.2</jstl>
+        <aspectjweaver>1.8.8</aspectjweaver>
+        <nekohtml>1.9.22</nekohtml>
+        <shiro-version>1.3.2</shiro-version>
+        <spring-boot-starter-log4j2>2.0.4.RELEASE</spring-boot-starter-log4j2>
+        <spring-boot-maven-plugin>1.4.2.RELEASE</spring-boot-maven-plugin>
+    </properties>
+
+    <dependencies>
+        <!-- 安全控制shiro依赖 -->
+        <dependency>
+            <groupId>org.apache.shiro</groupId>
+            <artifactId>shiro-core</artifactId>
+            <version>${shiro-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.shiro</groupId>
+            <artifactId>shiro-spring</artifactId>
+            <version>${shiro-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.shiro</groupId>
+            <artifactId>shiro-ehcache</artifactId>
+            <version>${shiro-version}</version>
+        </dependency>
+
+        <!-- SpringBoot中Thymeleaf依赖 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-thymeleaf</artifactId>
+        </dependency>
+        <!-- SpringBoot测试支持的jar -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <!-- SpringBoot对Mybatis的支持 -->
+        <dependency>
+            <groupId>org.mybatis.spring.boot</groupId>
+            <artifactId>mybatis-spring-boot-starter</artifactId>
+            <version>${mybatis.spring.boot}</version>
+        </dependency>
+        <!-- 通用Mapper -->
+        <dependency>
+            <groupId>tk.mybatis</groupId>
+            <artifactId>mapper-spring-boot-starter</artifactId>
+            <version>${tk.mybatis}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.mybatis</groupId>
+            <artifactId>mybatis</artifactId>
+            <version>${mybatis.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.mybatis</groupId>
+            <artifactId>mybatis-spring</artifactId>
+            <version>${mybatis-spring}</version>
+        </dependency>
 
 
-		<!-- 开源数据连接池dbcp/c3p0/druid -->
-		<dependency>
-			<groupId>mysql</groupId>
-			<artifactId>mysql-connector-java</artifactId>
-			<version>${mysql-connector-java}</version><!--$NO-MVN-MAN-VER$-->
-		</dependency>
-		<!-- dbcp数据库连接池 -->
-		<dependency>
-			<groupId>commons-dbcp</groupId>
-			<artifactId>commons-dbcp</artifactId>
-			<version>${commons-dbcp}</version><!--$NO-MVN-MAN-VER$-->
-		</dependency>
-		<!-- c3p0数据库连接池 -->
-		<dependency>
-			<groupId>com.mchange</groupId>
-			<artifactId>c3p0</artifactId>
-			<version>${c3p0}</version>
-			<exclusions>
-				<exclusion>
-					<groupId>com.mchange</groupId>
-					<artifactId>mchange-commons-java</artifactId>
-				</exclusion>
-			</exclusions>
-		</dependency>
-		<dependency>
-			<groupId>com.mchange</groupId>
-			<artifactId>mchange-commons-java</artifactId>
-			<version>${mchange-commons-java}</version>
-		</dependency>
-		<!-- druid数据库连接池 -->
-		<dependency>
-			<groupId>com.alibaba</groupId>
-			<artifactId>druid</artifactId>
-			<version>${druid}</version>
-		</dependency>
-
-		<!-- Sprng-Redis模块配置 -->
-		<dependency>
-			<groupId>org.springframework.data</groupId>
-			<artifactId>spring-data-redis</artifactId>
-			<version>${spring-data-redis}</version><!--$NO-MVN-MAN-VER$-->
-		</dependency>
-		<dependency>
-			<groupId>redis.clients</groupId>
-			<artifactId>jedis</artifactId>
-			<version>${jedis}</version><!--$NO-MVN-MAN-VER$-->
-		</dependency>
-		<dependency>
-			<groupId>org.apache.commons</groupId>
-			<artifactId>commons-pool2</artifactId>
-			<version>${commons-pool2}</version><!--$NO-MVN-MAN-VER$-->
-		</dependency>
-
-		<!-- 动态生成实体类，引入dom4j，实现程序对xml文件节点属性的修改 -->
-		<dependency>
-			<groupId>dom4j</groupId>
-			<artifactId>dom4j</artifactId>
-			<version>${dom4j}</version><!--$NO-MVN-MAN-VER$-->
-		</dependency>
+        <!-- 开发时需要加入的第三方jar -->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>${fastjson}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.htmlparser</groupId>
+            <artifactId>htmlparser</artifactId>
+            <version>${htmlparser}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.htmlparser</groupId>
+                    <artifactId>htmllexer</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>sax</groupId>
+                    <artifactId>sax</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.htmlparser</groupId>
+            <artifactId>htmllexer</artifactId>
+            <version>${htmllexer}</version>
+        </dependency>
+        <dependency>
+            <groupId>sax</groupId>
+            <artifactId>sax</artifactId>
+            <version>${sax}</version>
+            <optional>true</optional>
+        </dependency>
 
 
-		<!-- SpringBoot文件上传 -->
-		<dependency>
-			<groupId>commons-io</groupId>
-			<artifactId>commons-io</artifactId>
-			<version>${commons-io}</version>
-		</dependency>
-		<dependency>
-			<groupId>commons-fileupload</groupId>
-			<artifactId>commons-fileupload</artifactId>
-			<version>${commons-fileupload}</version>
-		</dependency>
-		<dependency>
-			<groupId>commons-codec</groupId>
-			<artifactId>commons-codec</artifactId>
-			<version>${commons-codec}</version><!--$NO-MVN-MAN-VER$-->
-		</dependency>
-		<dependency>
-			<groupId>commons-httpclient</groupId>
-			<artifactId>commons-httpclient</artifactId>
-			<version>${commons-httpclient}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.httpcomponents</groupId>
-			<artifactId>httpclient</artifactId>
-			<version>${httpclient}</version><!--$NO-MVN-MAN-VER$-->
-			<exclusions>
-				<exclusion>
-					<groupId>commons-codec</groupId>
-					<artifactId>commons-codec</artifactId>
-				</exclusion>
-			</exclusions>
-		</dependency>
-		<!-- jsp页面使用jstl标签 -->
-		<dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>jstl</artifactId>
-			<version>${jstl}</version><!--$NO-MVN-MAN-VER$-->
-		</dependency>
-		<!-- 用于编译jsp -->
-		<dependency>
-			<groupId>org.apache.tomcat.embed</groupId>
-			<artifactId>tomcat-embed-jasper</artifactId>
-			<scope>runtime</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.aspectj</groupId>
-			<artifactId>aspectjweaver</artifactId>
-			<version>${aspectjweaver}</version><!--$NO-MVN-MAN-VER$-->
-		</dependency>
-		<!-- SpringBoot项目中Thymeleaf使用非严格的HTML语法的支持 -->
-		<dependency>
-			<groupId>net.sourceforge.nekohtml</groupId>
-			<artifactId>nekohtml</artifactId>
-			<version>${nekohtml}</version><!--$NO-MVN-MAN-VER$-->
-		</dependency>
-		<!-- spring boot log4j2 -->
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-log4j2</artifactId>
-			<version>${spring-boot-starter-log4j2}</version><!--$NO-MVN-MAN-VER$-->
-		</dependency>
-		<!-- SpringBoot项目支持热更新 -->
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-devtools</artifactId>
-			<optional>true</optional>
-		</dependency>
+        <!-- 开源数据连接池dbcp/c3p0/druid -->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>${mysql-connector-java}</version><!--$NO-MVN-MAN-VER$-->
+        </dependency>
+        <!-- dbcp数据库连接池 -->
+        <dependency>
+            <groupId>commons-dbcp</groupId>
+            <artifactId>commons-dbcp</artifactId>
+            <version>${commons-dbcp}</version><!--$NO-MVN-MAN-VER$-->
+        </dependency>
+        <!-- c3p0数据库连接池 -->
+        <dependency>
+            <groupId>com.mchange</groupId>
+            <artifactId>c3p0</artifactId>
+            <version>${c3p0}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>com.mchange</groupId>
+                    <artifactId>mchange-commons-java</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>com.mchange</groupId>
+            <artifactId>mchange-commons-java</artifactId>
+            <version>${mchange-commons-java}</version>
+        </dependency>
+        <!-- druid数据库连接池 -->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>druid</artifactId>
+            <version>${druid}</version>
+        </dependency>
+
+        <!-- Sprng-Redis模块配置 -->
+        <dependency>
+            <groupId>org.springframework.data</groupId>
+            <artifactId>spring-data-redis</artifactId>
+            <version>${spring-data-redis}</version><!--$NO-MVN-MAN-VER$-->
+        </dependency>
+        <dependency>
+            <groupId>redis.clients</groupId>
+            <artifactId>jedis</artifactId>
+            <version>${jedis}</version><!--$NO-MVN-MAN-VER$-->
+        </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-pool2</artifactId>
+            <version>${commons-pool2}</version><!--$NO-MVN-MAN-VER$-->
+        </dependency>
+
+        <!-- 动态生成实体类，引入dom4j，实现程序对xml文件节点属性的修改 -->
+        <dependency>
+            <groupId>dom4j</groupId>
+            <artifactId>dom4j</artifactId>
+            <version>${dom4j}</version><!--$NO-MVN-MAN-VER$-->
+        </dependency>
 
 
-	</dependencies>
+        <!-- SpringBoot文件上传 -->
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>${commons-io}</version>
+        </dependency>
+        <dependency>
+            <groupId>commons-fileupload</groupId>
+            <artifactId>commons-fileupload</artifactId>
+            <version>${commons-fileupload}</version>
+        </dependency>
+        <dependency>
+            <groupId>commons-codec</groupId>
+            <artifactId>commons-codec</artifactId>
+            <version>${commons-codec}</version><!--$NO-MVN-MAN-VER$-->
+        </dependency>
+        <dependency>
+            <groupId>commons-httpclient</groupId>
+            <artifactId>commons-httpclient</artifactId>
+            <version>${commons-httpclient}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpclient</artifactId>
+            <version>${httpclient}</version><!--$NO-MVN-MAN-VER$-->
+            <exclusions>
+                <exclusion>
+                    <groupId>commons-codec</groupId>
+                    <artifactId>commons-codec</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <!-- jsp页面使用jstl标签 -->
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>jstl</artifactId>
+            <version>${jstl}</version><!--$NO-MVN-MAN-VER$-->
+        </dependency>
+        <!-- 用于编译jsp -->
+        <dependency>
+            <groupId>org.apache.tomcat.embed</groupId>
+            <artifactId>tomcat-embed-jasper</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjweaver</artifactId>
+            <version>${aspectjweaver}</version><!--$NO-MVN-MAN-VER$-->
+        </dependency>
+        <!-- SpringBoot项目中Thymeleaf使用非严格的HTML语法的支持 -->
+        <dependency>
+            <groupId>net.sourceforge.nekohtml</groupId>
+            <artifactId>nekohtml</artifactId>
+            <version>${nekohtml}</version><!--$NO-MVN-MAN-VER$-->
+        </dependency>
+        <!-- spring boot log4j2 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-log4j2</artifactId>
+            <version>${spring-boot-starter-log4j2}</version><!--$NO-MVN-MAN-VER$-->
+        </dependency>
+        <!-- SpringBoot项目支持热更新 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <optional>true</optional>
+        </dependency>
 
-	<build>
-		<resources>
-			<!-- 打包时将jsp文件拷贝到META-INF目录下 -->
-			<resource>
-				<!-- 指定resources插件处理哪个目录下的资源文件 -->
-				<directory>src/main/webapp</directory>
-				<!--注意此次必须要放在此目录下才能被访问到 -->
-				<targetPath>META-INF/resources</targetPath>
-				<includes>
-					<include>**/**</include>
-				</includes>
-			</resource>
-			<resource>
-				<directory>src/main/resources</directory>
-				<includes>
-					<include>**/**</include>
-				</includes>
-				<filtering>false</filtering>
-			</resource>
-			<resource>
-				<directory>src/main/java</directory>
-				<excludes>
-					<exclude>**/*.java</exclude>
-					<!-- resources配置解决mybatis 的mapperXml配置在java路径不被扫描的问题 -->
-					<!-- <include>**/*.xml</include> -->
-				</excludes>
-			</resource>
-		</resources>
 
-		<plugins>
-			<plugin>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<configuration>
-					<source>1.8</source>
-					<target>1.8</target>
-					<encoding>UTF-8</encoding>
-					<compilerArguments>
-						<!-- 将本地引入的第三方jar包打包到BOOT-INF/lib目录下 -->
-						<extdirs>${project.basedir}/${base.path}</extdirs>
-					</compilerArguments>
-				</configuration>
-			</plugin>
-		</plugins>
-	</build>
+    </dependencies>
+
+    <build>
+        <resources>
+            <!-- 打包时将jsp文件拷贝到META-INF目录下 -->
+            <resource>
+                <!-- 指定resources插件处理哪个目录下的资源文件 -->
+                <directory>src/main/webapp</directory>
+                <!--注意此次必须要放在此目录下才能被访问到 -->
+                <targetPath>META-INF/resources</targetPath>
+                <includes>
+                    <include>**/**</include>
+                </includes>
+            </resource>
+            <resource>
+                <directory>src/main/resources</directory>
+                <includes>
+                    <include>**/**</include>
+                </includes>
+                <filtering>false</filtering>
+            </resource>
+            <resource>
+                <directory>src/main/java</directory>
+                <excludes>
+                    <exclude>**/*.java</exclude>
+                    <!-- resources配置解决mybatis 的mapperXml配置在java路径不被扫描的问题 -->
+                    <!-- <include>**/*.xml</include> -->
+                </excludes>
+            </resource>
+        </resources>
+
+        <plugins>
+            <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                    <encoding>UTF-8</encoding>
+                    <compilerArguments>
+                        <!-- 将本地引入的第三方jar包打包到BOOT-INF/lib目录下 -->
+                        <extdirs>${project.basedir}/${base.path}</extdirs>
+                    </compilerArguments>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 </project>
