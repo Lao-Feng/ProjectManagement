@@ -20,7 +20,7 @@ import tk.mybatis.spring.annotation.MapperScan;
 //@ComponentScan(basePackages = {"zr.zrpower"})
 //@SpringBootApplication
 ////@MapperScan({"zr.zrpower.dao.mapper"})
-@MapperScan(value = {"zr.zrpower.dao", "com.yonglilian.dao"})
+@MapperScan(value = {"zr.zrpower.dao", "com.yonglilian.dao.mapper"})
 
 @ComponentScan(basePackages = {"zr.zrpower", "com.yonglilian"})
 @SpringBootApplication

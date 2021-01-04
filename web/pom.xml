@@ -120,69 +120,6 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-security</artifactId>
 		</dependency>
-		
-		<dependency>
-			<groupId>com.oracle</groupId>
-			<artifactId>classes12</artifactId>
-			<version>${classes12}</version>
-			<scope>system</scope>
-			<!-- 本地jar的路径，相对或者绝对都可以 -->
-			<systemPath>${project.basedir}/${base.path}/classes12.jar</systemPath>
-		</dependency>
-		<dependency>
-			<groupId>com.zrpower</groupId>
-			<artifactId>sqljdbc</artifactId>
-			<version>${sqljdbc}</version>
-			<scope>system</scope>
-			<!-- 本地jar的路径，相对或者绝对都可以 -->
-			<systemPath>${project.basedir}/${base.path}/sqljdbc.jar</systemPath>
-		</dependency>
-		<dependency>
-			<groupId>com.zrpower</groupId>
-			<artifactId>ZRpowerDbEngine</artifactId>
-			<version>${ZRpowerDbEngine}</version>
-			<scope>system</scope>
-			<!-- 本地jar的路径，相对或者绝对都可以 -->
-			<systemPath>${project.basedir}/${base.path}/ZRpowerDbEngine.jar</systemPath>
-		</dependency>
-
-		<!-- 防止Xss跨域攻击 -->
-		<dependency>
-			<groupId>com.zrpower</groupId>
-			<artifactId>antlr4-runtime</artifactId>
-			<version>${antlr4-runtime}</version>
-			<scope>system</scope>
-			<!-- 本地jar的路径，相对或者绝对都可以 -->
-			<systemPath>${project.basedir}/${base.path}/antlr4-runtime-4.1.jar</systemPath>
-		</dependency>
-		<dependency>
-			<groupId>com.zrpower</groupId>
-			<artifactId>xssProtect</artifactId>
-			<version>${xssProtect}</version>
-			<scope>system</scope>
-			<!-- 本地jar的路径，相对或者绝对都可以 -->
-			<systemPath>${project.basedir}/${base.path}/xssProtect-0.1.jar</systemPath>
-		</dependency>
-
-
-		<dependency>
-			<groupId>com.zrpower</groupId>
-			<artifactId>jotpverify</artifactId>
-			<version>${jotpverify}</version>
-			<scope>system</scope>
-			<!-- 本地jar的路径，相对或者绝对都可以 -->
-			<systemPath>${project.basedir}/${base.path}/jotpverify.jar</systemPath>
-		</dependency>
-		<dependency>
-			<groupId>com.zrpower</groupId>
-			<artifactId>jxl</artifactId>
-			<version>${jxl}</version>
-			<scope>system</scope>
-			<!-- 本地jar的路径，相对或者绝对都可以 -->
-			<systemPath>${project.basedir}/${base.path}/jxl.jar</systemPath>
-		</dependency>
-
-
 	</dependencies>
 
 	<build>
