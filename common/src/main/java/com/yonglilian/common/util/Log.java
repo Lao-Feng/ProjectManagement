@@ -1,10 +1,15 @@
 package com.yonglilian.common.util;
 
+
+
+import lombok.extern.slf4j.Slf4j;
+
 import java.io.*;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+@Slf4j
 public class Log implements Serializable {
 	/**
 	 * 
@@ -107,8 +112,8 @@ public class Log implements Serializable {
 			strDate = df.format(date);
 		}
 		LogMsg = strDate + " " + LogMsg;
-
-		logFile.println(LogMsg);
+		log.info(LogMsg);
+		// logFile.println(LogMsg);
 	}
 
 	private boolean bIsDebug;

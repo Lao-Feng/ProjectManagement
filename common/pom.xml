@@ -1,166 +1,166 @@
 <?xml version="1.0"?>
 <project
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
-	xmlns="http://maven.apache.org/POM/4.0.0"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-	<modelVersion>4.0.0</modelVersion>
-	<parent>
-		<groupId>com.yonglilian</groupId>
-		<artifactId>project-management</artifactId>
-		<version>0.0.1-SNAPSHOT</version>
-	</parent>
+        xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+        xmlns="http://maven.apache.org/POM/4.0.0"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.yonglilian</groupId>
+        <artifactId>project-management</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+    </parent>
 
-	<artifactId>common</artifactId>
-	<packaging>jar</packaging>
+    <artifactId>common</artifactId>
+    <packaging>jar</packaging>
 
-	<properties>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<java-version>1.8</java-version>
-		<base.path>src/main/resources/lib</base.path>
-	</properties>
-
-
-	<!-- 运行时需要加入的第本地jar -->
-	<dependencies>
-
-		<dependency>
-			<groupId>org.apache.commons</groupId>
-			<artifactId>commons-lang3</artifactId>
-			<version>3.7</version>
-		</dependency>
-		<dependency>
-			<groupId>commons-codec</groupId>
-			<artifactId>commons-codec</artifactId>
-			<version>1.13</version><!--$NO-MVN-MAN-VER$-->
-		</dependency>
-		
-		<dependency>
-			<groupId>commons-configuration</groupId>
-			<artifactId>commons-configuration</artifactId>
-			<version>1.10</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.velocity</groupId>
-			<artifactId>velocity</artifactId>
-			<version>1.7</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.velocity</groupId>
-			<artifactId>velocity-tools</artifactId>
-			<version>2.0</version>
-			<exclusions>
-				<exclusion>
-					<artifactId>dom4j</artifactId>
-					<groupId>dom4j</groupId>
-				</exclusion>
-				<exclusion>
-					<artifactId>oro</artifactId>
-					<groupId>oro</groupId>
-				</exclusion>
-				<exclusion>
-					<artifactId>sslext</artifactId>
-					<groupId>sslext</groupId>
-				</exclusion>
-				<exclusion>
-					<artifactId>struts-core</artifactId>
-					<groupId>org.apache.struts</groupId>
-				</exclusion>
-				<exclusion>
-					<artifactId>struts-taglib</artifactId>
-					<groupId>org.apache.struts</groupId>
-				</exclusion>
-				<exclusion>
-					<artifactId>struts-tiles</artifactId>
-					<groupId>org.apache.struts</groupId>
-				</exclusion>
-				<exclusion>
-					<artifactId>commons-validator</artifactId>
-					<groupId>commons-validator</groupId>
-				</exclusion>
-				<exclusion>
-					<artifactId>commons-beanutils</artifactId>
-					<groupId>commons-beanutils</groupId>
-				</exclusion>
-				<exclusion>
-					<artifactId>commons-chain</artifactId>
-					<groupId>commons-chain</groupId>
-				</exclusion>
-				<exclusion>
-					<artifactId>commons-collections</artifactId>
-					<groupId>commons-collections</groupId>
-				</exclusion>
-			</exclusions>
-		</dependency>
-
-		<dependency>
-			<groupId>com.oracle</groupId>
-			<artifactId>classes12</artifactId>
-			<version>${classes12}</version>
-			<scope>system</scope>
-			<!-- 本地jar的路径，相对或者绝对都可以 -->
-			<systemPath>${project.basedir}/${base.path}/classes12.jar</systemPath>
-		</dependency>
-		<dependency>
-			<groupId>com.zrpower</groupId>
-			<artifactId>sqljdbc</artifactId>
-			<version>${sqljdbc}</version>
-			<scope>system</scope>
-			<!-- 本地jar的路径，相对或者绝对都可以 -->
-			<systemPath>${project.basedir}/${base.path}/sqljdbc.jar</systemPath>
-		</dependency>
-		<dependency>
-			<groupId>com.zrpower</groupId>
-			<artifactId>ZRpowerDbEngine</artifactId>
-			<version>${ZRpowerDbEngine}</version>
-			<scope>system</scope>
-			<!-- 本地jar的路径，相对或者绝对都可以 -->
-			<systemPath>${project.basedir}/${base.path}/ZRpowerDbEngine.jar</systemPath>
-		</dependency>
-
-		<!-- 防止Xss跨域攻击 -->
-		<dependency>
-			<groupId>com.zrpower</groupId>
-			<artifactId>antlr4-runtime</artifactId>
-			<version>${antlr4-runtime}</version>
-			<scope>system</scope>
-			<!-- 本地jar的路径，相对或者绝对都可以 -->
-			<systemPath>${project.basedir}/${base.path}/antlr4-runtime-4.1.jar</systemPath>
-		</dependency>
-		<dependency>
-			<groupId>com.zrpower</groupId>
-			<artifactId>xssProtect</artifactId>
-			<version>${xssProtect}</version>
-			<scope>system</scope>
-			<!-- 本地jar的路径，相对或者绝对都可以 -->
-			<systemPath>${project.basedir}/${base.path}/xssProtect-0.1.jar</systemPath>
-		</dependency>
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <java-version>1.8</java-version>
+        <base.path>src/main/resources/lib</base.path>
+    </properties>
 
 
-		<dependency>
-			<groupId>com.zrpower</groupId>
-			<artifactId>jotpverify</artifactId>
-			<version>${jotpverify}</version>
-			<scope>system</scope>
-			<!-- 本地jar的路径，相对或者绝对都可以 -->
-			<systemPath>${project.basedir}/${base.path}/jotpverify.jar</systemPath>
-		</dependency>
-		<dependency>
-			<groupId>com.zrpower</groupId>
-			<artifactId>jxl</artifactId>
-			<version>${jxl}</version>
-			<scope>system</scope>
-			<!-- 本地jar的路径，相对或者绝对都可以 -->
-			<systemPath>${project.basedir}/${base.path}/jxl.jar</systemPath>
-		</dependency>
-	</dependencies>
+    <!-- 运行时需要加入的第本地jar -->
+    <dependencies>
 
-	<!-- pom加入打包插件 -->
-	<!-- <build>
-		<plugins>
-			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-			</plugin>
-		</plugins>
-	</build> -->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>3.7</version>
+        </dependency>
+        <dependency>
+            <groupId>commons-codec</groupId>
+            <artifactId>commons-codec</artifactId>
+            <version>1.13</version><!--$NO-MVN-MAN-VER$-->
+        </dependency>
+
+        <dependency>
+            <groupId>commons-configuration</groupId>
+            <artifactId>commons-configuration</artifactId>
+            <version>1.10</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.velocity</groupId>
+            <artifactId>velocity</artifactId>
+            <version>1.7</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.velocity</groupId>
+            <artifactId>velocity-tools</artifactId>
+            <version>2.0</version>
+            <exclusions>
+                <exclusion>
+                    <artifactId>dom4j</artifactId>
+                    <groupId>dom4j</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>oro</artifactId>
+                    <groupId>oro</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>sslext</artifactId>
+                    <groupId>sslext</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>struts-core</artifactId>
+                    <groupId>org.apache.struts</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>struts-taglib</artifactId>
+                    <groupId>org.apache.struts</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>struts-tiles</artifactId>
+                    <groupId>org.apache.struts</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>commons-validator</artifactId>
+                    <groupId>commons-validator</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>commons-beanutils</artifactId>
+                    <groupId>commons-beanutils</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>commons-chain</artifactId>
+                    <groupId>commons-chain</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>commons-collections</artifactId>
+                    <groupId>commons-collections</groupId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <dependency>
+            <groupId>com.oracle</groupId>
+            <artifactId>classes12</artifactId>
+            <version>${classes12}</version>
+            <scope>system</scope>
+            <!-- 本地jar的路径，相对或者绝对都可以 -->
+            <systemPath>${project.basedir}/${base.path}/classes12.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>com.zrpower</groupId>
+            <artifactId>sqljdbc</artifactId>
+            <version>${sqljdbc}</version>
+            <scope>system</scope>
+            <!-- 本地jar的路径，相对或者绝对都可以 -->
+            <systemPath>${project.basedir}/${base.path}/sqljdbc.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>com.zrpower</groupId>
+            <artifactId>ZRpowerDbEngine</artifactId>
+            <version>${ZRpowerDbEngine}</version>
+            <scope>system</scope>
+            <!-- 本地jar的路径，相对或者绝对都可以 -->
+            <systemPath>${project.basedir}/${base.path}/ZRpowerDbEngine.jar</systemPath>
+        </dependency>
+
+        <!-- 防止Xss跨域攻击 -->
+        <dependency>
+            <groupId>com.zrpower</groupId>
+            <artifactId>antlr4-runtime</artifactId>
+            <version>${antlr4-runtime}</version>
+            <scope>system</scope>
+            <!-- 本地jar的路径，相对或者绝对都可以 -->
+            <systemPath>${project.basedir}/${base.path}/antlr4-runtime-4.1.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>com.zrpower</groupId>
+            <artifactId>xssProtect</artifactId>
+            <version>${xssProtect}</version>
+            <scope>system</scope>
+            <!-- 本地jar的路径，相对或者绝对都可以 -->
+            <systemPath>${project.basedir}/${base.path}/xssProtect-0.1.jar</systemPath>
+        </dependency>
+
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>1.7.25</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-logging</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.zrpower</groupId>
+            <artifactId>jotpverify</artifactId>
+            <version>${jotpverify}</version>
+            <scope>system</scope>
+            <!-- 本地jar的路径，相对或者绝对都可以 -->
+            <systemPath>${project.basedir}/${base.path}/jotpverify.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>com.zrpower</groupId>
+            <artifactId>jxl</artifactId>
+            <version>${jxl}</version>
+            <scope>system</scope>
+            <!-- 本地jar的路径，相对或者绝对都可以 -->
+            <systemPath>${project.basedir}/${base.path}/jxl.jar</systemPath>
+        </dependency>
+    </dependencies>
+
 </project>
