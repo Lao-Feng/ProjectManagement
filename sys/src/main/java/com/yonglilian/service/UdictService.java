@@ -1,7 +1,7 @@
 package com.yonglilian.service;
 
-import zr.zrpower.common.util.FunctionMessage;
-import zr.zrpower.model.CODE_YWXT;
+import com.yonglilian.common.util.FunctionMessage;
+import com.yonglilian.model.CODE_YWXT;
 
 /**
  * 字典管理服务层

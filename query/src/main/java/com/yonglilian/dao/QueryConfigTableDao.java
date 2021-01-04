@@ -1,7 +1,6 @@
 package com.yonglilian.dao;
 
 import com.yonglilian.domain.QueryConfigTable;
-import zr.zrpower.dao.BaseDao;
 
 /**
  * 

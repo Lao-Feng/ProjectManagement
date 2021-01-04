@@ -8,11 +8,11 @@
 	</select>
 
 	<!-- 信息 -->
-	<select id="queryObject" resultType="zr.zrpower.model.BPIP_USER">
+	<select id="queryObject" resultType="com.yonglilian.model.BPIP_USER">
 		select * from BPIP_USER where userid = #{value}
 	</select>
 	<!-- 以下为数据事务操作 -->
-	<select id="queryList" resultType="zr.zrpower.model.BPIP_USER">
+	<select id="queryList" resultType="com.yonglilian.model.BPIP_USER">
 		select * from BPIP_USER
 		<where>
 			<if test="USERSTATE != null and USERSTATE != ''">
@@ -55,7 +55,7 @@
 		</where>
 	</select>
 
-	<insert id="saveBack" parameterType="zr.zrpower.model.BPIP_USER"
+	<insert id="saveBack" parameterType="com.yonglilian.model.BPIP_USER"
 		useGeneratedKeys="true" keyProperty="userid">
 		insert into BPIP_USER
 		(
@@ -104,7 +104,7 @@
 	</insert>
 
 
-	<update id="update" parameterType="zr.zrpower.model.BPIP_USER">
+	<update id="update" parameterType="com.yonglilian.model.BPIP_USER">
 		update BPIP_USER
 		<set>
 			<if test="USERID != null and USERID != '' ">`USERID` = #{USERID}, </if>

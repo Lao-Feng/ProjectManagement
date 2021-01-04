@@ -1,10 +1,10 @@
 package com.yonglilian.queryengine.html;
 
+import com.yonglilian.common.util.SysPreperty;
+import com.yonglilian.model.SessionUser;
 import com.yonglilian.queryengine.ItemField;
 import com.yonglilian.service.impl.QueryControlImpl;
 import zr.zrpower.common.db.DBEngine;
-import zr.zrpower.common.util.SysPreperty;
-import zr.zrpower.model.SessionUser;
 
 public class SelectControl_html5 extends ControlBase {
     StringBuffer resultHTML;

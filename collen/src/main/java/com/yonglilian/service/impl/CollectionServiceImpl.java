@@ -2,6 +2,11 @@ package com.yonglilian.service.impl;
 
 import com.yonglilian.collectionengine.*;
 import com.yonglilian.collectionengine.html.*;
+import com.yonglilian.common.remark.PrintJs;
+import com.yonglilian.common.remark.RemarkVb;
+import com.yonglilian.common.util.*;
+import com.yonglilian.dao.UserMapper;
+import com.yonglilian.model.SessionUser;
 import com.yonglilian.service.CollectionService;
 import com.yonglilian.service.ZRCollenHtmlUtils;
 import org.apache.commons.codec.binary.Base64;
@@ -17,11 +22,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import zr.zrpower.common.db.*;
-import zr.zrpower.common.remark.PrintJs;
-import zr.zrpower.common.remark.RemarkVb;
-import zr.zrpower.common.util.*;
-import zr.zrpower.dao.UserMapper;
-import zr.zrpower.model.SessionUser;
 
 import java.io.File;
 import java.io.IOException;

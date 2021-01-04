@@ -1,8 +1,8 @@
 package com.yonglilian.ejb.sys;
 
+import com.yonglilian.common.util.SysPreperty;
 import zr.zrpower.common.db.DBEngine;
 import zr.zrpower.common.db.DBSet;
-import zr.zrpower.common.util.SysPreperty;
 
 public class Common {
 	public Common() {

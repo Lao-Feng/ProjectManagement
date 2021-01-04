@@ -1,6 +1,7 @@
 package com.yonglilian.dao.mapper;
+
+import com.yonglilian.dao.BaseDao;
 import com.yonglilian.model.BpipMenuButtons;
-import zr.zrpower.dao.BaseDao;
 
 /**
  * 系统菜单按钮表

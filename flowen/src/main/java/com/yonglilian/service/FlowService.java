@@ -1,7 +1,7 @@
 package com.yonglilian.service;
 
-import zr.zrpower.model.CODE_YWXT;
-import zr.zrpower.model.dbmanage.BPIP_TABLE;
+import com.yonglilian.model.CODE_YWXT;
+import com.yonglilian.model.dbmanage.BPIP_TABLE;
 
 import java.util.List;
 import java.util.Map;

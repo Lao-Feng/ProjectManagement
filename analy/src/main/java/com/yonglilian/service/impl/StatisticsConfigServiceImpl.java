@@ -1,6 +1,10 @@
 package com.yonglilian.service.impl;
 
 import com.yonglilian.analyseengine.mode.*;
+import com.yonglilian.common.util.FunctionMessage;
+import com.yonglilian.common.util.ReflectionUtil;
+import com.yonglilian.common.util.SysPreperty;
+import com.yonglilian.dao.UserMapper;
 import com.yonglilian.service.StatisticsConfigService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -8,10 +12,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import zr.zrpower.common.db.DBEngine;
 import zr.zrpower.common.db.DBServer;
-import zr.zrpower.common.util.FunctionMessage;
-import zr.zrpower.common.util.ReflectionUtil;
-import zr.zrpower.common.util.SysPreperty;
-import zr.zrpower.dao.UserMapper;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -214,9 +214,7 @@ public class StatisticsConfigServiceImpl implements StatisticsConfigService {
 	public FunctionMessage saveAnalyseMain(ANALYSE_STATISTICS_MAIN entityObj) throws Exception {
         FunctionMessage funMsg = new FunctionMessage(1);
         DBServer dserver = new DBServer();
-        // dserver.saveAnalyseMain(entityObj);
-        // TODO: 2021/1/3 临时注释
-
+        dserver.saveAnalyseMain(entityObj);
         return funMsg;
 	}
 

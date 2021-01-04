@@ -1,9 +1,12 @@
 package com.yonglilian.controller;
 
 import com.alibaba.fastjson.JSONObject;
+import com.yonglilian.common.util.SysPreperty;
 import com.yonglilian.flowengine.mode.monitor.FLOW_RUNTIME_ENTRUSTLOG;
 import com.yonglilian.flowengine.mode.monitor.FLOW_RUNTIME_PROCESS;
+import com.yonglilian.intercept.annotation.ZrSafety;
 import com.yonglilian.model.BPIP_USER_IDEA;
+import com.yonglilian.model.SessionUser;
 import com.yonglilian.service.FlowMonitorService;
 import com.yonglilian.service.UserIdeaService;
 import com.yonglilian.service.impl.FlowMonitorServiceImpl;
@@ -12,9 +15,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import zr.zrpower.common.util.SysPreperty;
-import zr.zrpower.intercept.annotation.ZrSafety;
-import zr.zrpower.model.SessionUser;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

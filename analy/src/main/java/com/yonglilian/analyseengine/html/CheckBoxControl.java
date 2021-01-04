@@ -1,10 +1,10 @@
 package com.yonglilian.analyseengine.html;
 
 import com.yonglilian.analyseengine.ItemField;
+import com.yonglilian.common.util.Log;
+import com.yonglilian.common.util.SysPreperty;
 import zr.zrpower.common.db.DBEngine;
 import zr.zrpower.common.db.DBSet;
-import zr.zrpower.common.util.Log;
-import zr.zrpower.common.util.SysPreperty;
 
 public class CheckBoxControl extends ControlBase {
 	private StringBuffer resultHTML;

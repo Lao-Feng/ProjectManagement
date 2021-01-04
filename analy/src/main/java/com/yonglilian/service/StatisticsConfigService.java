@@ -1,7 +1,7 @@
 package com.yonglilian.service;
 
 import com.yonglilian.analyseengine.mode.*;
-import zr.zrpower.common.util.FunctionMessage;
+import com.yonglilian.common.util.FunctionMessage;
 
 import java.util.List;
 import java.util.Map;

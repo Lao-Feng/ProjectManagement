@@ -1,5 +1,8 @@
 package com.yonglilian.service.impl;
 
+import com.yonglilian.common.util.ReflectionUtil;
+import com.yonglilian.common.util.SysPreperty;
+import com.yonglilian.dao.UserMapper;
 import com.yonglilian.flowengine.mode.config.FLOW_CONFIG_ACTIVITY;
 import com.yonglilian.service.FlowManageService;
 import org.slf4j.Logger;
@@ -7,9 +10,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import zr.zrpower.common.db.DBEngine;
-import zr.zrpower.common.util.ReflectionUtil;
-import zr.zrpower.common.util.SysPreperty;
-import zr.zrpower.dao.UserMapper;
 
 import java.util.ArrayList;
 import java.util.HashMap;

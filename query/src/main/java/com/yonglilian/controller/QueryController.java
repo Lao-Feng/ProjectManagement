@@ -1,5 +1,8 @@
 package com.yonglilian.controller;
 
+import com.yonglilian.common.util.FunctionMessage;
+import com.yonglilian.intercept.annotation.ZrSafety;
+import com.yonglilian.model.SessionUser;
 import com.yonglilian.queryengine.JxExcel;
 import com.yonglilian.queryengine.Request;
 import com.yonglilian.queryengine.mode.*;
@@ -11,10 +14,6 @@ import com.yonglilian.service.impl.QueryControlImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import zr.zrpower.common.util.FunctionMessage;
-import zr.zrpower.controller.BaseController;
-import zr.zrpower.intercept.annotation.ZrSafety;
-import zr.zrpower.model.SessionUser;
 
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;

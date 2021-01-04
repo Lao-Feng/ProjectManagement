@@ -1,9 +1,9 @@
 package com.yonglilian.queryengine.html;
 
+import com.yonglilian.common.util.SysPreperty;
 import com.yonglilian.queryengine.ItemField;
 import zr.zrpower.common.db.DBEngine;
 import zr.zrpower.common.db.DBSet;
-import zr.zrpower.common.util.SysPreperty;
 
 public class DictControl extends ControlBase {
     private StringBuffer resultHTML;

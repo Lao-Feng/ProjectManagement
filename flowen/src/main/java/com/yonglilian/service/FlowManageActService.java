@@ -1,10 +1,10 @@
 package com.yonglilian.service;
 
+import com.yonglilian.common.util.FunctionMessage;
 import com.yonglilian.flowengine.mode.base.Button;
 import com.yonglilian.flowengine.mode.base.Group;
 import com.yonglilian.flowengine.mode.config.FLOW_CONFIG_ACTIVITY;
 import com.yonglilian.flowengine.mode.config.FLOW_CONFIG_TIME;
-import zr.zrpower.common.util.FunctionMessage;
 
 import java.util.List;
 import java.util.Map;

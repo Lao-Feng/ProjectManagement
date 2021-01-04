@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>project-management</artifactId>
+        <groupId>com.yonglilian</groupId>
+        <version>0.0.1-SNAPSHOT</version>
+    </parent>
+
+    <version>1.0</version>
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>ZRpowerDbEngine</artifactId>
+
+    <properties>
+        <project.version>0.0.1-SNAPSHOT</project.version>
+    </properties>
+
+    <description>
+        此项目主要是用于反编译 \common\src\main\resources\lib\ZRpowerDbEngine_back.jar, 方便修改
+        上线删除或者不打包此模块即可
+    </description>
+
+    <dependencies>
+        <!-- 加载模块 -->
+        <dependency>
+            <groupId>com.yonglilian</groupId>
+            <artifactId>sys</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>com.yonglilian</groupId>
+            <artifactId>query</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>com.yonglilian</groupId>
+            <artifactId>common</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>com.yonglilian</groupId>
+            <artifactId>collen</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>com.yonglilian</groupId>
+            <artifactId>analy</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>com.yonglilian</groupId>
+            <artifactId>flowen</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>com.yonglilian</groupId>
+            <artifactId>shiro</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
+</project>

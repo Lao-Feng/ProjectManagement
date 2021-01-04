@@ -1,5 +1,6 @@
 package com.yonglilian.controller;
 
+import com.yonglilian.common.util.R;
 import com.yonglilian.model.BPIP_MENU;
 import com.yonglilian.service.UIService;
 import org.slf4j.Logger;
@@ -8,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import zr.zrpower.common.util.R;
 
 import java.util.List;
 

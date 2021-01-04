@@ -1,6 +1,6 @@
 package com.yonglilian.collectionengine;
 
-import zr.zrpower.common.web.FileUpload;
+import com.yonglilian.common.web.FileUpload;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.Serializable;

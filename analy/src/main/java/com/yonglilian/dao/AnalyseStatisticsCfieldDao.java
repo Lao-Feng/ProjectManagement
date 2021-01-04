@@ -1,7 +1,6 @@
 package com.yonglilian.dao;
 
 import com.yonglilian.domain.AnalyseStatisticsCfield;
-import zr.zrpower.dao.BaseDao;
 
 import java.util.List;
 

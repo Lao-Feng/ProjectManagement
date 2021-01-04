@@ -2,7 +2,6 @@ package com.yonglilian.dao;
 
 import com.yonglilian.bean.QueryConfigShowfieldBean;
 import com.yonglilian.domain.QueryConfigShowfield;
-import zr.zrpower.dao.BaseDao;
 
 import java.util.List;
 

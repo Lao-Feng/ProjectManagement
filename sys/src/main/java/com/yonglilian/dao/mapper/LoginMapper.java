@@ -1,8 +1,8 @@
 package com.yonglilian.dao.mapper;
 
+import com.yonglilian.dao.BaseDao;
+import com.yonglilian.model.BPIP_USER;
 import tk.mybatis.spring.annotation.MapperScan;
-import zr.zrpower.dao.BaseDao;
-import zr.zrpower.model.BPIP_USER;
 
 import java.util.Map;
 

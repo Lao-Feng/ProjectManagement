@@ -60,7 +60,7 @@
 	<!-- 配置Java Xss保护过滤器 -->
     <filter>
         <filter-name>xssFilter</filter-name>
-        <filter-class>zr.zrpower.intercept.XssFilter</filter-class>
+        <filter-class>com.yonglilian.intercept.XssFilter</filter-class>
     </filter>
     <filter-mapping>
         <filter-name>xssFilter</filter-name>

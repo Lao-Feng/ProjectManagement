@@ -1,12 +1,12 @@
 package com.yonglilian.service.impl;
 
+import com.yonglilian.common.util.SysPreperty;
 import com.yonglilian.service.FlowAutoService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import zr.zrpower.common.db.DBEngine;
 import zr.zrpower.common.db.DBSet;
-import zr.zrpower.common.util.SysPreperty;
 
 import java.util.*;
 

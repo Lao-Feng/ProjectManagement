@@ -1,6 +1,9 @@
 package com.yonglilian.controller;
 
+import com.yonglilian.common.util.R;
+import com.yonglilian.intercept.annotation.ZrSafety;
 import com.yonglilian.model.BPIP_TABLE;
+import com.yonglilian.model.CODE_YWXT;
 import com.yonglilian.service.BpipCodeService;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,10 +11,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import zr.zrpower.common.util.R;
-import zr.zrpower.controller.BaseController;
-import zr.zrpower.intercept.annotation.ZrSafety;
-import zr.zrpower.model.CODE_YWXT;
 
 import java.util.List;
 import java.util.Map;

@@ -2,8 +2,8 @@ package com.yonglilian.service;
 
 import com.yonglilian.model.BPIP_MENU;
 import com.yonglilian.model.BPIP_ROLE;
+import com.yonglilian.model.BPIP_USER;
 import com.yonglilian.model.BPIP_USER_ROLE;
-import zr.zrpower.model.BPIP_USER;
 
 import java.util.List;
 

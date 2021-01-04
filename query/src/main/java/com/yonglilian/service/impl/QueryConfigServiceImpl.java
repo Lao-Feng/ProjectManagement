@@ -1,6 +1,10 @@
 package com.yonglilian.service.impl;
 
 
+import com.yonglilian.common.util.ReflectionUtil;
+import com.yonglilian.common.util.StringUtils;
+import com.yonglilian.common.util.SysPreperty;
+import com.yonglilian.dao.UserMapper;
 import com.yonglilian.dao.mapper.QueryConfigMapper;
 import com.yonglilian.queryengine.mode.*;
 import com.yonglilian.service.QueryConfigService;
@@ -11,10 +15,6 @@ import org.springframework.stereotype.Service;
 import zr.zrpower.common.db.DBEngine;
 import zr.zrpower.common.db.DBServer;
 import zr.zrpower.common.db.DBSet;
-import zr.zrpower.common.util.ReflectionUtil;
-import zr.zrpower.common.util.StringUtils;
-import zr.zrpower.common.util.SysPreperty;
-import zr.zrpower.dao.UserMapper;
 
 import java.util.ArrayList;
 import java.util.Hashtable;
@@ -105,7 +105,7 @@ public class QueryConfigServiceImpl implements QueryConfigService {
 	public boolean saveBaseProperty(QUERY_CONFIG_TABLE entityObj) throws Exception {
 		boolean result = false;
 		DBServer dserver = new DBServer();
-		// dserver.saveBaseProperty(entityObj);
+		dserver.saveBaseProperty(entityObj);
 		return result;
 	}
 

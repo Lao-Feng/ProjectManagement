@@ -1,8 +1,8 @@
 package com.yonglilian.ejb.sys;
 
+import com.yonglilian.common.util.Log;
+import com.yonglilian.common.util.SysPreperty;
 import zr.zrpower.common.db.DBEngine;
-import zr.zrpower.common.util.Log;
-import zr.zrpower.common.util.SysPreperty;
 
 import java.util.Timer;
 import java.util.TimerTask;

@@ -2,6 +2,9 @@ package com.yonglilian.service.impl;
 
 import com.yonglilian.collectionengine.COLL_DOC_PRINT;
 import com.yonglilian.collectionengine.CollectionInfo;
+import com.yonglilian.common.util.*;
+import com.yonglilian.dao.UserMapper;
+import com.yonglilian.model.COLL_CONFIG_OPERATE_FIELD;
 import com.yonglilian.service.ConfigService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,9 +14,6 @@ import zr.zrpower.common.db.DBEngine;
 import zr.zrpower.common.db.DBRow;
 import zr.zrpower.common.db.DBServer;
 import zr.zrpower.common.db.DBSet;
-import zr.zrpower.common.util.*;
-import zr.zrpower.dao.UserMapper;
-import zr.zrpower.model.COLL_CONFIG_OPERATE_FIELD;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -138,9 +138,8 @@ public class ConfigServiceImpl implements ConfigService {
 	@Override
 	public FunctionMessage addConfig(CollectionInfo bg) throws Exception {
       DBServer dbServer = new DBServer();
-      // FunctionMessage funMsg = dbServer.addConfig(bg);
-      // return funMsg;
-		return null;
+      FunctionMessage funMsg = dbServer.addConfig(bg);
+      return funMsg;
 	}
 
 	@Override

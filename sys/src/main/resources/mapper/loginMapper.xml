@@ -3,7 +3,7 @@
 <mapper namespace="com.yonglilian.dao.mapper.LoginMapper">
 
     <!-- 用户登录 -->
-	<select id="login" resultType="zr.zrpower.model.BPIP_USER">
+	<select id="login" resultType="com.yonglilian.model.BPIP_USER">
 		select * from BPIP_USER
 		<where>
 			<if test="LOGINID != null and LOGINID != ''">
@@ -13,7 +13,7 @@
 	</select>
 
 	<!-- 根据userID查询用户信息 -->
-	<select id="getUserInfo" resultType="zr.zrpower.model.BPIP_USER">
+	<select id="getUserInfo" resultType="com.yonglilian.model.BPIP_USER">
 		select * from BPIP_USER
 		<where>
 			<if test="USERID != null and USERID != ''">

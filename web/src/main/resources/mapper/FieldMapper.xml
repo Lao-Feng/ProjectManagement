@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="zr.zrpower.dao.mapper.FieldMapper">
+<mapper namespace="com.yonglilian.dao.mapper.FieldMapper">
   
   <!-- 获取字段名列表 -->
-  <select id="getBpipFieldList" parameterType="java.lang.String" resultType="zr.zrpower.model.dbmanage.BPIP_FIELD">
+  <select id="getBpipFieldList" parameterType="java.lang.String" resultType="com.yonglilian.model.dbmanage.BPIP_FIELD">
   	  Select FIELDID      	as FIELDID,
   	  		 TABLEID      	as TABLEID,
   	  		 FIELDNAME      as FIELDNAME,
@@ -29,7 +29,7 @@
   </select>
   
   <!-- 获取字段名信息 -->
-  <select id="getFieldId" parameterType="java.lang.String" resultType="zr.zrpower.model.dbmanage.BPIP_FIELD">
+  <select id="getFieldId" parameterType="java.lang.String" resultType="com.yonglilian.model.dbmanage.BPIP_FIELD">
   	  Select FIELDID      	as FIELDID,
   	  		 TABLEID      	as TABLEID,
   	  		 FIELDNAME      as FIELDNAME,

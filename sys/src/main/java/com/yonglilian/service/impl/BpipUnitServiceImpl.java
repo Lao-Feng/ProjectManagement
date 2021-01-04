@@ -1,5 +1,7 @@
 package com.yonglilian.service.impl;
 
+import com.yonglilian.common.util.StringUtils;
+import com.yonglilian.common.util.SysPreperty;
 import com.yonglilian.dao.mapper.BpipUnitMapper;
 import com.yonglilian.model.BPIP_UNIT;
 import com.yonglilian.service.BpipUnitService;
@@ -8,8 +10,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import zr.zrpower.common.db.DBEngine;
-import zr.zrpower.common.util.StringUtils;
-import zr.zrpower.common.util.SysPreperty;
 
 import java.util.HashMap;
 import java.util.List;

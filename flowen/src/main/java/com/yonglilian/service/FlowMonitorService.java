@@ -1,11 +1,11 @@
 package com.yonglilian.service;
 
+import com.yonglilian.common.util.FunctionMessage;
 import com.yonglilian.flowengine.mode.monitor.FLOW_CONFIG_ENTRUST;
 import com.yonglilian.flowengine.mode.monitor.FLOW_RUNTIME_ACTIVITY;
 import com.yonglilian.flowengine.mode.monitor.FLOW_RUNTIME_ENTRUSTLOG;
 import com.yonglilian.flowengine.mode.monitor.FLOW_RUNTIME_PROCESS;
-import zr.zrpower.common.util.FunctionMessage;
-import zr.zrpower.model.BPIP_USER;
+import com.yonglilian.model.BPIP_USER;
 
 import java.util.Map;
 

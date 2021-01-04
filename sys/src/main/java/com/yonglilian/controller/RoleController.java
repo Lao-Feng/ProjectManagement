@@ -1,16 +1,15 @@
 package com.yonglilian.controller;
 
+import com.yonglilian.common.util.StringWork;
+import com.yonglilian.intercept.annotation.ZrSafety;
 import com.yonglilian.model.BPIP_MENU;
 import com.yonglilian.model.BPIP_ROLE;
+import com.yonglilian.model.SessionUser;
 import com.yonglilian.service.SecurityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
-import zr.zrpower.common.util.StringWork;
-import zr.zrpower.controller.BaseController;
-import zr.zrpower.intercept.annotation.ZrSafety;
-import zr.zrpower.model.SessionUser;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

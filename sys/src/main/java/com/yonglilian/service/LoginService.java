@@ -1,7 +1,7 @@
 package com.yonglilian.service;
 
-import zr.zrpower.common.util.FunctionMessage;
-import zr.zrpower.model.BPIP_USER;
+import com.yonglilian.common.util.FunctionMessage;
+import com.yonglilian.model.BPIP_USER;
 
 import java.util.List;
 

@@ -1,9 +1,9 @@
 package com.yonglilian.service;
 
+import com.yonglilian.model.SessionUser;
 import com.yonglilian.queryengine.Request;
 import com.yonglilian.queryengine.mode.QUERY_CONFIG_BUTTON;
 import com.yonglilian.queryengine.mode.QUERY_CONFIG_TABLE;
-import zr.zrpower.model.SessionUser;
 
 /**
  * 查询控制管理EJB

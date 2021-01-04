@@ -3,11 +3,11 @@
 <mapper namespace="com.yonglilian.dao.mapper.BpipCodeMapper">
 
 	<!-- 信息 -->
-	<select id="queryObject" resultType="zr.zrpower.model.CODE_YWXT">
+	<select id="queryObject" resultType="com.yonglilian.model.CODE_YWXT">
 		select * from ${table} where code = #{value}
 	</select>
 	<!-- 以下为数据事务操作 -->
-	<select id="queryList" resultType="zr.zrpower.model.CODE_YWXT">
+	<select id="queryList" resultType="com.yonglilian.model.CODE_YWXT">
 		select * from ${table}
 		<where>
 			<if test=" code != null and code != '' ">
@@ -45,7 +45,7 @@
 		</where>
 	</select>
 
-	<insert id="save" parameterType="zr.zrpower.model.CODE_YWXT"
+	<insert id="save" parameterType="com.yonglilian.model.CODE_YWXT"
 		useGeneratedKeys="true" keyProperty="code">
 		insert into ${table}
 		(
@@ -64,7 +64,7 @@
 	</insert>
 	
 	
-	<update id="update" parameterType="zr.zrpower.model.CODE_YWXT">
+	<update id="update" parameterType="com.yonglilian.model.CODE_YWXT">
 		update ${table}
 		<set>
 			<if test="CODE != null">`CODE` = #{CODE}, </if>

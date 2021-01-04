@@ -1,8 +1,10 @@
 package com.yonglilian.realms;
 
 
+import com.yonglilian.common.util.MD5;
 import com.yonglilian.dao.mapper.LoginMapper;
 import com.yonglilian.model.BPIP_MENU;
+import com.yonglilian.model.BPIP_USER;
 import com.yonglilian.service.BpipMenuService;
 import com.yonglilian.service.UIService;
 import org.apache.commons.lang.StringUtils;
@@ -14,8 +16,6 @@ import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.util.ByteSource;
 import org.springframework.beans.factory.annotation.Autowired;
-import zr.zrpower.common.util.MD5;
-import zr.zrpower.model.BPIP_USER;
 
 import java.util.*;
 import java.util.stream.Collectors;

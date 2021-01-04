@@ -1,5 +1,7 @@
 package com.yonglilian.controller;
 
+import com.yonglilian.common.util.R;
+import com.yonglilian.intercept.annotation.ZrSafety;
 import com.yonglilian.model.BPIP_ROLE;
 import com.yonglilian.model.BPIP_ROLE_RERMISSISSON;
 import com.yonglilian.model.BPIP_USER_ROLE;
@@ -8,9 +10,6 @@ import com.yonglilian.service.BpipUserRoleService;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import zr.zrpower.common.util.R;
-import zr.zrpower.controller.BaseController;
-import zr.zrpower.intercept.annotation.ZrSafety;
 
 import java.util.ArrayList;
 import java.util.HashMap;

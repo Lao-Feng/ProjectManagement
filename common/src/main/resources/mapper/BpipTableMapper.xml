@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="zr.zrpower.dao.mapper.BpipTableMapper">
+<mapper namespace="com.yonglilian.dao.mapper.BpipTableMapper">
 
 	<!-- 信息 -->
-	<select id="queryObject" resultType="zr.zrpower.model.dbmanage.BPIP_TABLE">
+	<select id="queryObject" resultType="com.yonglilian.model.dbmanage.BPIP_TABLE">
 		select * from BPIP_TABLE where TABLEID = #{value}
 	</select>
     <!-- 以下为数据事务操作 -->
-	<select id="queryList" resultType="zr.zrpower.model.dbmanage.BPIP_TABLE">
+	<select id="queryList" resultType="com.yonglilian.model.dbmanage.BPIP_TABLE">
 		select * from BPIP_TABLE
 		<where>
 			<if test="TABLETYPE != null and TABLETYPE !=''">
@@ -27,7 +27,7 @@
 	</select>
 	
 	
-	<select id="selectList" resultType="zr.zrpower.model.dbmanage.BPIP_TABLE">
+	<select id="selectList" resultType="com.yonglilian.model.dbmanage.BPIP_TABLE">
 		select TABLEID,TABLENAME,CHINESENAME,TABLESPACE,TABLETYPE from BPIP_TABLE
 		<where>
 			<if test="TABLETYPE != null and TABLETYPE !=''">
@@ -46,7 +46,7 @@
 		order by TABLEID asc
 	</select>
 	
-	<insert id="save" parameterType="zr.zrpower.model.dbmanage.BPIP_TABLE" useGeneratedKeys="true" keyProperty="tableid">
+	<insert id="save" parameterType="com.yonglilian.model.dbmanage.BPIP_TABLE" useGeneratedKeys="true" keyProperty="tableid">
 		insert into BPIP_TABLE
 		(
 		`TABLEID`,
@@ -75,7 +75,7 @@
 		)
 	</insert>
 	
-	<update id="update" parameterType="zr.zrpower.model.dbmanage.BPIP_TABLE">
+	<update id="update" parameterType="com.yonglilian.model.dbmanage.BPIP_TABLE">
 		update BPIP_TABLE
 		<set>
 			<if test="TABLEID != null and TABLEID !='' ">`TABLEID` = #{TABLEID}, </if>

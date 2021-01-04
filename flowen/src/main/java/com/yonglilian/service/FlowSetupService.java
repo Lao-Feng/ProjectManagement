@@ -1,9 +1,9 @@
 package com.yonglilian.service;
 
+import com.yonglilian.common.util.FunctionMessage;
 import com.yonglilian.flowengine.mode.base.Button;
 import com.yonglilian.flowengine.mode.base.Package;
 import com.yonglilian.flowengine.mode.base.Variable;
-import zr.zrpower.common.util.FunctionMessage;
 
 /**
  * 流程引擎-流程基本属性管理服务层

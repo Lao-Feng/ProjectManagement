@@ -1,16 +1,15 @@
 package com.yonglilian.controller;
 
 import com.yonglilian.collectionengine.Request;
+import com.yonglilian.common.util.R;
+import com.yonglilian.intercept.annotation.ZrSafety;
+import com.yonglilian.model.SessionUser;
 import com.yonglilian.service.CollectionService;
 import com.yonglilian.service.ZRCollenHtmlUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import zr.zrpower.common.util.R;
-import zr.zrpower.controller.BaseController;
-import zr.zrpower.intercept.annotation.ZrSafety;
-import zr.zrpower.model.SessionUser;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

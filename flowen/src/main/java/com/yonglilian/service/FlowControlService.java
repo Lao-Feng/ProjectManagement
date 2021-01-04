@@ -7,7 +7,7 @@ import com.yonglilian.flowengine.mode.config.FLOW_CONFIG_PROCESS;
 import com.yonglilian.flowengine.mode.config.FLOW_CONFIG_PROCESS_CONNECTION;
 import com.yonglilian.flowengine.mode.monitor.FLOW_RUNTIME_PROCESS;
 import com.yonglilian.flowengine.runtime.ActFlowRun;
-import zr.zrpower.model.SessionUser;
+import com.yonglilian.model.SessionUser;
 
 /**
  * 流程控制函数库服务层

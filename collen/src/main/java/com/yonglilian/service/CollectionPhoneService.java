@@ -2,7 +2,7 @@ package com.yonglilian.service;
 
 import com.yonglilian.collectionengine.CollectionInfo;
 import com.yonglilian.collectionengine.Request;
-import zr.zrpower.model.SessionUser;
+import com.yonglilian.model.SessionUser;
 
 import java.util.Hashtable;
 import java.util.List;

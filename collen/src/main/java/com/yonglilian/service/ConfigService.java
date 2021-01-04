@@ -2,7 +2,7 @@ package com.yonglilian.service;
 
 import com.yonglilian.collectionengine.COLL_DOC_PRINT;
 import com.yonglilian.collectionengine.CollectionInfo;
-import zr.zrpower.common.util.FunctionMessage;
+import com.yonglilian.common.util.FunctionMessage;
 
 import java.util.List;
 import java.util.Map;

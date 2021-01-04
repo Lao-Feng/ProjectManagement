@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="zr.zrpower.dao.mapper.BpipTablespaceMapper">
+<mapper namespace="com.yonglilian.dao.mapper.BpipTablespaceMapper">
 
 	<!-- 信息 -->
-	<select id="queryObject" resultType="zr.zrpower.model.dbmanage.BPIP_TABLESPACE">
+	<select id="queryObject" resultType="com.yonglilian.model.dbmanage.BPIP_TABLESPACE">
 		select * from BPIP_TABLESPACE where ID = #{value}
 	</select>
     <!-- 以下为菜单数据事务操作 -->
-	<select id="queryList" resultType="zr.zrpower.model.dbmanage.BPIP_TABLESPACE">
+	<select id="queryList" resultType="com.yonglilian.model.dbmanage.BPIP_TABLESPACE">
 		select * from BPIP_TABLESPACE
 		<where>
 			<if test="ID != null">
@@ -27,7 +27,7 @@
 	    select max(id) as MAX_NO from BPIP_TABLESPACE
 	</select>
 
-	<insert id="save" parameterType="zr.zrpower.model.dbmanage.BPIP_TABLESPACE" useGeneratedKeys="true" keyProperty="id">
+	<insert id="save" parameterType="com.yonglilian.model.dbmanage.BPIP_TABLESPACE" useGeneratedKeys="true" keyProperty="id">
 		insert into BPIP_TABLESPACE
 		(
 		`ID`,
@@ -42,7 +42,7 @@
 		)
 	</insert>
 
-	<update id="update" parameterType="zr.zrpower.model.dbmanage.BPIP_TABLESPACE">
+	<update id="update" parameterType="com.yonglilian.model.dbmanage.BPIP_TABLESPACE">
 		update BPIP_TABLESPACE
 		<set>
 			<if test="ID != null">`ID` = #{ID}, </if>

@@ -1,16 +1,16 @@
 package com.yonglilian.service.impl;
 
+import com.yonglilian.common.util.FunctionMessage;
+import com.yonglilian.common.util.ReflectionUtil;
+import com.yonglilian.common.util.SysPreperty;
+import com.yonglilian.dao.UserMapper;
+import com.yonglilian.model.CODE_YWXT;
+import com.yonglilian.model.dbmanage.BPIP_TABLE;
 import com.yonglilian.service.FlowService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import zr.zrpower.common.db.DBEngine;
 import zr.zrpower.common.db.DBSet;
-import zr.zrpower.common.util.FunctionMessage;
-import zr.zrpower.common.util.ReflectionUtil;
-import zr.zrpower.common.util.SysPreperty;
-import zr.zrpower.dao.UserMapper;
-import zr.zrpower.model.CODE_YWXT;
-import zr.zrpower.model.dbmanage.BPIP_TABLE;
 
 import java.util.HashMap;
 import java.util.List;

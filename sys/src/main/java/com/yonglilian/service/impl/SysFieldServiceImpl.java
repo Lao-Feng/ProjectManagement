@@ -2,6 +2,14 @@ package com.yonglilian.service.impl;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.yonglilian.common.util.FunctionMessage;
+import com.yonglilian.common.util.StringUtils;
+import com.yonglilian.common.util.SysPreperty;
+import com.yonglilian.dao.UserMapper;
+import com.yonglilian.dao.mapper.FieldMapper;
+import com.yonglilian.dao.mapper.TableMapper;
+import com.yonglilian.model.dbmanage.BPIP_FIELD;
+import com.yonglilian.service.FieldService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,14 +17,6 @@ import org.springframework.stereotype.Service;
 import zr.zrpower.common.db.DBEngine;
 import zr.zrpower.common.db.DBRow;
 import zr.zrpower.common.db.DBSet;
-import zr.zrpower.common.util.FunctionMessage;
-import zr.zrpower.common.util.StringUtils;
-import zr.zrpower.common.util.SysPreperty;
-import zr.zrpower.dao.UserMapper;
-import zr.zrpower.dao.mapper.FieldMapper;
-import zr.zrpower.dao.mapper.TableMapper;
-import zr.zrpower.model.dbmanage.BPIP_FIELD;
-import zr.zrpower.service.FieldService;
 
 import java.util.HashMap;
 import java.util.List;
@@ -30,7 +30,7 @@ import java.util.Map;
 @Service
 public class SysFieldServiceImpl implements FieldService {
 	/** The FieldServiceImpl Logger. */
-	private static final Logger LOGGER = LoggerFactory.getLogger(zr.zrpower.service.impl.FieldServiceImpl.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(FieldServiceImpl.class);
 	private DBEngine dbEngine; // 数据库引擎
 	private static int clients = 0;
 	/** 用户操作数据层. */

@@ -1,5 +1,11 @@
 package com.yonglilian.service.impl;
 
+import com.yonglilian.common.util.ReflectionUtil;
+import com.yonglilian.common.util.StringUtils;
+import com.yonglilian.common.util.StringWork;
+import com.yonglilian.common.util.SysPreperty;
+import com.yonglilian.dao.UserMapper;
+import com.yonglilian.model.SessionUser;
 import com.yonglilian.queryengine.ItemField;
 import com.yonglilian.queryengine.ItemList;
 import com.yonglilian.queryengine.Request;
@@ -14,12 +20,6 @@ import zr.zrpower.common.db.DBEngine;
 import zr.zrpower.common.db.DBRow;
 import zr.zrpower.common.db.DBSet;
 import zr.zrpower.common.db.DBType;
-import zr.zrpower.common.util.ReflectionUtil;
-import zr.zrpower.common.util.StringUtils;
-import zr.zrpower.common.util.StringWork;
-import zr.zrpower.common.util.SysPreperty;
-import zr.zrpower.dao.UserMapper;
-import zr.zrpower.model.SessionUser;
 
 import java.io.BufferedReader;
 import java.io.File;

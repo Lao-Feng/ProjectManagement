@@ -1,19 +1,19 @@
 package com.yonglilian.service.impl;
 
+import com.yonglilian.common.util.CollectionUtil;
+import com.yonglilian.common.util.ReflectionUtil;
+import com.yonglilian.common.util.StringUtils;
+import com.yonglilian.dao.UserMapper;
 import com.yonglilian.dao.mapper.SecurityMapper;
 import com.yonglilian.model.BPIP_MENU;
 import com.yonglilian.model.BPIP_ROLE;
+import com.yonglilian.model.BPIP_USER;
 import com.yonglilian.model.BPIP_USER_ROLE;
 import com.yonglilian.service.SecurityService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import zr.zrpower.common.util.CollectionUtil;
-import zr.zrpower.common.util.ReflectionUtil;
-import zr.zrpower.common.util.StringUtils;
-import zr.zrpower.dao.UserMapper;
-import zr.zrpower.model.BPIP_USER;
 
 import java.util.ArrayList;
 import java.util.HashMap;

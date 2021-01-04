@@ -1,7 +1,7 @@
 package com.yonglilian.service;
 
+import com.yonglilian.common.util.FunctionMessage;
 import com.yonglilian.model.BPIP_USER_IDEA;
-import zr.zrpower.common.util.FunctionMessage;
 
 /**
  * 意见设置服务层

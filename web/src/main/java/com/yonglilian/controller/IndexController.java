@@ -1,5 +1,7 @@
 package com.yonglilian.controller;
 
+import com.yonglilian.common.util.*;
+import com.yonglilian.model.SessionUser;
 import com.yonglilian.service.CollectionService;
 import com.yonglilian.service.LoginService;
 import org.apache.shiro.SecurityUtils;
@@ -14,8 +16,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
-import zr.zrpower.common.util.*;
-import zr.zrpower.model.SessionUser;
 
 import javax.servlet.ServletException;
 import javax.servlet.ServletOutputStream;
@@ -116,7 +116,7 @@ public class IndexController {
 	 */
 	@RequestMapping("/checklogin")
 	public R checkLogin(@RequestParam Map<String, Object> params, HttpServletRequest request,
-                        HttpServletResponse response) {
+						HttpServletResponse response) {
 		try {
 			response.setContentType("text/html; charset=UTF-8");
 			if (params.containsKey("Act")) {

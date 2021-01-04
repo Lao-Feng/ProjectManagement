@@ -1,9 +1,8 @@
 package com.yonglilian.dao;
 
 import com.yonglilian.domain.CollDocConfig;
-import zr.zrpower.dao.BaseDao;
-import zr.zrpower.model.dbmanage.BPIP_FIELD;
-import zr.zrpower.model.dbmanage.BPIP_TABLE;
+import com.yonglilian.model.dbmanage.BPIP_FIELD;
+import com.yonglilian.model.dbmanage.BPIP_TABLE;
 
 import java.util.List;
 import java.util.Map;

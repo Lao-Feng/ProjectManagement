@@ -1,7 +1,7 @@
 package com.yonglilian.service;
 
 import com.yonglilian.analyseengine.mode.ANALYSE_STATISTICS_MAIN;
-import zr.zrpower.model.SessionUser;
+import com.yonglilian.model.SessionUser;
 
 import java.util.List;
 

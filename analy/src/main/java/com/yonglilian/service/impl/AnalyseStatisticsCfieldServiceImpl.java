@@ -3,6 +3,7 @@ package com.yonglilian.service.impl;
 import com.yonglilian.bean.AnalyseStatisticsCconnectionBean;
 import com.yonglilian.bean.AnalyseStatisticsCfieldBean;
 import com.yonglilian.bean.AnalyseStatisticsCwhereBean;
+import com.yonglilian.common.util.SysPreperty;
 import com.yonglilian.dao.AnalyseStatisticsCfieldDao;
 import com.yonglilian.domain.AnalyseStatisticsCfield;
 import com.yonglilian.service.AnalyseStatisticsCconnectionService;
@@ -14,7 +15,6 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import zr.zrpower.common.db.DBEngine;
-import zr.zrpower.common.util.SysPreperty;
 
 import java.util.ArrayList;
 import java.util.HashMap;

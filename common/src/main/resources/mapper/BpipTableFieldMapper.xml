@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="zr.zrpower.dao.mapper.BpipTableFieldMapper">
+<mapper namespace="com.yonglilian.dao.mapper.BpipTableFieldMapper">
 
 	<!-- 信息 -->
-	<select id="queryObject" resultType="zr.zrpower.model.dbmanage.BPIP_FIELD">
+	<select id="queryObject" resultType="com.yonglilian.model.dbmanage.BPIP_FIELD">
 		select * from BPIP_FIELD where FIELDID = #{value}
 	</select>
     <!-- 以下为数据事务操作 -->
-	<select id="queryList" resultType="zr.zrpower.model.dbmanage.BPIP_FIELD">
+	<select id="queryList" resultType="com.yonglilian.model.dbmanage.BPIP_FIELD">
 		select * from BPIP_FIELD
 		<where>
 			<if test="TABLEID != null and TABLEID !=''">
@@ -32,7 +32,7 @@
 		order by FIELDID asc
 	</select>
 	
-	<select id="selectList" resultType="zr.zrpower.model.dbmanage.BPIP_FIELD">
+	<select id="selectList" resultType="com.yonglilian.model.dbmanage.BPIP_FIELD">
 		select FIELDID,TABLEID,FIELDNAME,CHINESENAME from BPIP_FIELD
 		<where>
 			<if test="TABLEID != null and TABLEID !=''">
@@ -57,7 +57,7 @@
 		order by FIELDID asc
 	</select>
 	
-	<insert id="save" parameterType="zr.zrpower.model.dbmanage.BPIP_FIELD" useGeneratedKeys="true" keyProperty="fieldid">
+	<insert id="save" parameterType="com.yonglilian.model.dbmanage.BPIP_FIELD" useGeneratedKeys="true" keyProperty="fieldid">
 		insert into BPIP_FIELD
 		(
 		`FIELDID`,
@@ -102,7 +102,7 @@
 		)
 	</insert>
 	
-	<update id="update" parameterType="zr.zrpower.model.dbmanage.BPIP_FIELD">
+	<update id="update" parameterType="com.yonglilian.model.dbmanage.BPIP_FIELD">
 		update BPIP_FIELD
 		<set>
 			<if test="FIELDID != null and FIELDID !='' ">`FIELDID` = #{FIELDID}, </if>

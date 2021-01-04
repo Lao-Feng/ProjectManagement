@@ -1,6 +1,7 @@
 package com.yonglilian.analyseengine.bean;
 
 import com.yonglilian.analyseengine.mode.ANALYSE_STATISTICS_MAIN;
+import com.yonglilian.model.SessionUser;
 import com.yonglilian.service.impl.StatisticsControlServiceImpl;
 import jxl.Workbook;
 import jxl.format.UnderlineStyle;
@@ -8,7 +9,6 @@ import jxl.write.Label;
 import jxl.write.WritableCellFormat;
 import jxl.write.WritableFont;
 import jxl.write.WritableWorkbook;
-import zr.zrpower.model.SessionUser;
 
 import java.io.OutputStream;
 

@@ -1,8 +1,8 @@
 package com.yonglilian.anqueryflow.html;
 
+import com.yonglilian.model.SessionUser;
 import com.yonglilian.queryengine.ItemField;
 import zr.zrpower.common.db.DBType;
-import zr.zrpower.model.SessionUser;
 
 public class CreateControl {
     private ControlBase _control;

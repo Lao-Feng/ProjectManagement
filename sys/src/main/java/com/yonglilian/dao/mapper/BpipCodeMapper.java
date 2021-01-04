@@ -1,10 +1,10 @@
 package com.yonglilian.dao.mapper;
 
 
+import com.yonglilian.dao.BaseDao;
 import com.yonglilian.model.BPIP_TABLE;
+import com.yonglilian.model.CODE_YWXT;
 import tk.mybatis.spring.annotation.MapperScan;
-import zr.zrpower.dao.BaseDao;
-import zr.zrpower.model.CODE_YWXT;
 
 import java.util.List;
 import java.util.Map;

@@ -1,16 +1,16 @@
 package com.yonglilian.service.impl;
 
+import com.yonglilian.common.util.DaoSqlUtils;
+import com.yonglilian.common.util.StringUtils;
+import com.yonglilian.common.util.SysPreperty;
+import com.yonglilian.dao.UserMapper;
+import com.yonglilian.model.BPIP_USER;
 import com.yonglilian.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import zr.zrpower.common.db.DBEngine;
-import zr.zrpower.common.util.DaoSqlUtils;
-import zr.zrpower.common.util.StringUtils;
-import zr.zrpower.common.util.SysPreperty;
-import zr.zrpower.dao.UserMapper;
-import zr.zrpower.model.BPIP_USER;
 
 import java.util.ArrayList;
 import java.util.List;

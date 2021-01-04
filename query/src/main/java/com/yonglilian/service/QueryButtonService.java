@@ -1,7 +1,7 @@
 package com.yonglilian.service;
 
+import com.yonglilian.common.util.FunctionMessage;
 import com.yonglilian.queryengine.mode.QUERY_CONFIG_BUTTON;
-import zr.zrpower.common.util.FunctionMessage;
 
 public interface QueryButtonService {
 	/**

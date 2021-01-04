@@ -1,15 +1,14 @@
 package com.yonglilian.controller;
 
+import com.yonglilian.common.util.StringUtils;
+import com.yonglilian.common.util.SysPreperty;
+import com.yonglilian.common.web.FileUpload;
+import com.yonglilian.intercept.annotation.ZrSafety;
+import com.yonglilian.model.SessionUser;
+import com.yonglilian.service.SeManageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import zr.zrpower.common.util.StringUtils;
-import zr.zrpower.common.util.SysPreperty;
-import zr.zrpower.common.web.FileUpload;
-import zr.zrpower.controller.BaseController;
-import zr.zrpower.intercept.annotation.ZrSafety;
-import zr.zrpower.model.SessionUser;
-import zr.zrpower.service.SeManageService;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

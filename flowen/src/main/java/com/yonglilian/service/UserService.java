@@ -1,6 +1,6 @@
 package com.yonglilian.service;
 
-import zr.zrpower.model.BPIP_USER;
+import com.yonglilian.model.BPIP_USER;
 
 /**
  * 用户操作服务层

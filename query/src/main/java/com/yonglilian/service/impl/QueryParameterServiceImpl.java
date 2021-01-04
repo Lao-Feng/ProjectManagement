@@ -1,6 +1,7 @@
 package com.yonglilian.service.impl;
 
 import com.yonglilian.bean.QueryParameterBean;
+import com.yonglilian.common.util.SysPreperty;
 import com.yonglilian.dao.QueryParameterDao;
 import com.yonglilian.domain.QueryParameter;
 import com.yonglilian.service.QueryParameterService;
@@ -10,7 +11,6 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import zr.zrpower.common.db.DBEngine;
-import zr.zrpower.common.util.SysPreperty;
 
 import java.util.ArrayList;
 import java.util.List;

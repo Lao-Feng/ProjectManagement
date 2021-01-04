@@ -1,6 +1,11 @@
 package com.yonglilian.service.impl;
 
+import com.yonglilian.common.util.*;
+import com.yonglilian.dao.UserMapper;
 import com.yonglilian.dao.mapper.LoginMapper;
+import com.yonglilian.model.BPIP_USER;
+import com.yonglilian.model.BPIP_USER_PHOTO;
+import com.yonglilian.model.SessionUser;
 import com.yonglilian.service.LoginService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -10,11 +15,6 @@ import zr.zrpower.common.db.DBEngine;
 import zr.zrpower.common.db.DBMode;
 import zr.zrpower.common.db.DBRow;
 import zr.zrpower.common.db.DBSet;
-import zr.zrpower.common.util.*;
-import zr.zrpower.dao.UserMapper;
-import zr.zrpower.model.BPIP_USER;
-import zr.zrpower.model.BPIP_USER_PHOTO;
-import zr.zrpower.model.SessionUser;
 
 import java.util.ArrayList;
 import java.util.HashMap;

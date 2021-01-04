@@ -1,5 +1,7 @@
 package com.yonglilian.controller;
 
+import com.yonglilian.common.util.R;
+import com.yonglilian.model.SessionUser;
 import com.yonglilian.queryengine.JxExcel;
 import com.yonglilian.queryengine.Request;
 import com.yonglilian.queryengine.mode.QUERY_CONFIG_TABLE;
@@ -10,9 +12,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import zr.zrpower.common.util.R;
-import zr.zrpower.controller.BaseController;
-import zr.zrpower.model.SessionUser;
 
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;

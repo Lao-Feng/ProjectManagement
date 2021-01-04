@@ -1,7 +1,6 @@
 package com.yonglilian.dao;
 
 import com.yonglilian.domain.AnalyseStatisticsResult;
-import zr.zrpower.dao.BaseDao;
 
 /**
  * 

@@ -1,5 +1,6 @@
 package com.yonglilian.queryengine;
 
+import com.yonglilian.model.SessionUser;
 import com.yonglilian.service.impl.QueryControlImpl;
 import jxl.Workbook;
 import jxl.format.UnderlineStyle;
@@ -7,7 +8,6 @@ import jxl.write.Label;
 import jxl.write.WritableCellFormat;
 import jxl.write.WritableFont;
 import jxl.write.WritableWorkbook;
-import zr.zrpower.model.SessionUser;
 
 import java.io.OutputStream;
 

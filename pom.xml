@@ -18,6 +18,7 @@
         <module>analy</module>
         <module>flowen</module>
         <module>shiro</module>
+        <module>ZRpowerDbEngine</module>
     </modules>
 
 

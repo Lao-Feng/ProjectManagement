@@ -1,9 +1,9 @@
 package com.yonglilian.queryengine;
 
+import com.yonglilian.common.util.FunctionMessage;
 import com.yonglilian.queryengine.mode.QUERY_CONFIG_BUTTON;
 import com.yonglilian.service.impl.QueryButtonServiceImpl;
-import zr.zrpower.common.util.FunctionMessage;
-import zr.zrpower.web.bean.MessageBox;
+import com.yonglilian.web.bean.MessageBox;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;

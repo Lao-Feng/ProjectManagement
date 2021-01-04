@@ -1,9 +1,9 @@
 package com.yonglilian.queryengine.html;
 
+import com.yonglilian.common.util.SysPreperty;
 import com.yonglilian.queryengine.ItemField;
 import com.yonglilian.service.impl.QueryControlImpl;
 import zr.zrpower.common.db.DBEngine;
-import zr.zrpower.common.util.SysPreperty;
 
 import java.util.ArrayList;
 import java.util.HashMap;

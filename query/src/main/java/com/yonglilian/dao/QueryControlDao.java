@@ -1,5 +1,5 @@
 package com.yonglilian.dao;
-import zr.zrpower.dao.mapper.ZRdbcpEngineMapper;
+import com.yonglilian.dao.mapper.ZRdbcpEngineMapper;
 
 /**
  * 查询引擎调用所有sql 映射

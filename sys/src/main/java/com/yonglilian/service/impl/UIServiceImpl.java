@@ -1,12 +1,12 @@
 package com.yonglilian.service.impl;
 
+import com.yonglilian.common.util.SysPreperty;
+import com.yonglilian.dao.UserMapper;
 import com.yonglilian.dao.mapper.UntilMapper;
 import com.yonglilian.model.BPIP_MENU;
 import com.yonglilian.service.UIService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import zr.zrpower.common.util.SysPreperty;
-import zr.zrpower.dao.UserMapper;
 
 import java.util.ArrayList;
 import java.util.HashMap;

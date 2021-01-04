@@ -102,7 +102,7 @@
 	</delete>
 	
 	<!-- 引擎配置 业务数据查询 -->
-	<select id="getTable" resultType="zr.zrpower.model.dbmanage.BPIP_TABLE">
+	<select id="getTable" resultType="com.yonglilian.model.dbmanage.BPIP_TABLE">
 		select ${fields} from BPIP_TABLE 
 		<where>
             <foreach item="value" collection="wheres" open="(" separator="and" close=")">
@@ -110,7 +110,7 @@
 		    </foreach>
         </where>
 	</select>
-	<select id="getTableFields" resultType="zr.zrpower.model.dbmanage.BPIP_FIELD">
+	<select id="getTableFields" resultType="com.yonglilian.model.dbmanage.BPIP_FIELD">
 		select ${fields} from BPIP_FIELD
 		<where>
             <foreach item="value" collection="wheres" open="(" separator="and" close=")">

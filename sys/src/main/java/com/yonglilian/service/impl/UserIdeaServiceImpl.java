@@ -1,5 +1,9 @@
 package com.yonglilian.service.impl;
 
+import com.yonglilian.common.util.FunctionMessage;
+import com.yonglilian.common.util.ReflectionUtil;
+import com.yonglilian.common.util.StringUtils;
+import com.yonglilian.dao.UserMapper;
 import com.yonglilian.dao.mapper.UserIdeaMapper;
 import com.yonglilian.model.BPIP_USER_IDEA;
 import com.yonglilian.service.UserIdeaService;
@@ -7,10 +11,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import zr.zrpower.common.util.FunctionMessage;
-import zr.zrpower.common.util.ReflectionUtil;
-import zr.zrpower.common.util.StringUtils;
-import zr.zrpower.dao.UserMapper;
 
 import java.util.HashMap;
 import java.util.List;

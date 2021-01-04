@@ -1,9 +1,9 @@
 package com.yonglilian.service;
 
+import com.yonglilian.common.util.FunctionMessage;
 import com.yonglilian.flowengine.mode.base.Package;
 import com.yonglilian.flowengine.mode.config.FLOW_CONFIG_ACTIVITY_CONNE;
 import com.yonglilian.flowengine.mode.config.FLOW_CONFIG_PROCESS;
-import zr.zrpower.common.util.FunctionMessage;
 
 import java.util.List;
 import java.util.Vector;
