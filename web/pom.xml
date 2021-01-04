@@ -53,6 +53,7 @@
 		<nekohtml>1.9.22</nekohtml>
 		<spring-boot-starter-log4j2>2.0.4.RELEASE</spring-boot-starter-log4j2>
 		<spring-boot-maven-plugin>1.4.2.RELEASE</spring-boot-maven-plugin>
+		<swagger.version>2.9.2</swagger.version>
 	</properties>
 	
 
@@ -120,6 +121,20 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-security</artifactId>
 		</dependency>
+
+		<!--swagger start-->
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger2</artifactId>
+			<version>${swagger.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger-ui</artifactId>
+			<version>${swagger.version}</version>
+		</dependency>
+		<!--swagger end-->
+
 	</dependencies>
 
 	<build>
